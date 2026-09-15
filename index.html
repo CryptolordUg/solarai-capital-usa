@@ -1,12 +1,21 @@
-// === SOLARAI USA - UPDATED CONFIG ===
+<script>
+// === SOLARAI USA - WALLET CONFIG ===
 const WALLET_ADDRESS = "TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
 const WALLET_LABEL = "USDT (TRC20) - TRON Network";
 const MIN_DEPOSIT = 50;
 const MIN_WITHDRAW = 50;
 
-// 3 Deposit Options
 const DEPOSIT_OPTIONS = [
   { label: "$50 STARTER", amount: 50 },
   { label: "$500 PRO", amount: 500 },
   { label: "$5000 VIP", amount: 5000 }
 ];
+
+// Auto-update page display
+document.addEventListener("DOMContentLoaded", function(){
+  const el = document.getElementById("walletAddress");
+  if(el) {
+    el.innerText = WALLET_ADDRESS + " - " + WALLET_LABEL;
+  }
+});
+</script>
