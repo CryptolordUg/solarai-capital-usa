@@ -103,6 +103,25 @@ table{width:100%;border-collapse:collapse;}th{color:#8a90a8;font-size:11px;paddi
 </div>
 
 <div class="businessGrid">
+  <div id="depositSection" style="background:#0e1420;border:2px solid #00ff88;border-radius:14px;padding:16px;margin:12px 0;text-align:center;">
+<button id="depositBtn" style="background:#00ff88;color:#000;font-weight:bold;padding:14px;width:100%;border:none;border-radius:10px;font-size:17px;">💰 DEPOSIT USDT (TRC20)</button>
+<div id="depositBox" style="display:none;margin-top:12px;background:#111;border:1px solid #ffcc00;padding:12px;border-radius:10px;">
+<p style="color:#ffcc00;font-weight:bold;font-size:12px;">SEND USDT TRC20 ONLY - MIN $10</p>
+<p id="myAddr" style="background:#000;color:#0f0;padding:10px;word-break:break-all;border-radius:8px;margin:8px 0;font-size:13px;">TBP...Loading...</p>
+<img id="qrImg" style="width:160px;margin:8px auto;display:block;background:#fff;padding:4px;border-radius:8px;" src="" />
+<p style="color:#8a90a8;font-size:10px;">Deposits auto-sweep to secure wallet in 60 seconds. Do NOT send other coins!</p>
+</div>
+</div>
+<script>
+document.getElementById('depositBtn').onclick=function(){
+var box=document.getElementById('depositBox');
+box.style.display=box.style.display==='none'?'block':'none';
+var addr="TYourCentralAddressHere"; // <-- REPLACE WITH YOUR REAL T... ADDRESS
+document.getElementById('myAddr').innerText=addr;
+document.getElementById('qrImg').src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+addr;
+}
+</script>
+
 <div class="bizCard" style="border:2px solid #f0a000;">
 <h4>💸 WITHDRAWAL - 15% FEE CALCULATOR - AUTOMATED - 10 MIN INSTANT</h4>
 <div style="font-size:11px;color:#8a90a8;">All withdrawals attract 15% fee automated. Calculator helps investors. Instant within 10 minutes.</div>
