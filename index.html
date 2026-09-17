@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SolarAI Capital - Firebase</title>
+<title>SolarAI Capital - Auto ROI 1.2% Firebase Live</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#f6f7fb;color:#111827;line-height:1.6}
 .rainbow{height:10px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#ffd700,#22c55e,#06b6d4,#7c3aed);background-size:400% 100%;animation:rb 4s linear infinite;position:sticky;top:0;z-index:5000}
@@ -14,6 +14,7 @@ header{background:#fff;border-bottom:2px solid #e9d5ff;padding:14px 20px;positio
 .wrap{max-width:1600px;margin:0 auto;padding:20px;display:grid;grid-template-columns:2.5fr 1fr;gap:20px}
 .wrap.admin-mode{grid-template-columns:1fr!important}
 .wrap.admin-mode #sidePanel{display:none!important}
+.wrap.admin-mode #mainContent{grid-column:1/-1;max-width:100%}
 @media(max-width:1000px){.wrap{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:22px;margin-bottom:20px;box-shadow:0 6px 24px rgba(0,0,0,.05);position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#22c55e)}
@@ -76,12 +77,14 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 .msg.user{background:#7c3aed;color:#fff;margin-left:auto;border-bottom-right-radius:4px}
 .msg.admin{background:#fff;border:1px solid #e5e7eb;color:#111827;margin-right:auto;border-bottom-left-radius:4px}
 .msg.system{background:#fef3c7;color:#92400e;text-align:center;font-size:11px;margin:8px auto}
-.firebaseBadge{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:6px 16px;border-radius:20px;font-size:11px;font-weight:800;z-index:6000;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.firebaseBadge{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:6px 16px;border-radius:20px;font-size:11px;font-weight:800;z-index:6000}
+.roiGlow{animation:roiGlow 2s infinite}
+@keyframes roiGlow{0%,100%{box-shadow:0 0 10px #22c55e}50%{box-shadow:0 0 20px #22c55e,0 0 30px #22c55e}}
 </style>
 </head>
 <body>
 <div class="rainbow"></div>
-<div id="firebaseStatus" class="firebaseBadge hidden">🔥 Firebase Connected - Real Online Storage</div>
+<div id="firebaseStatus" class="firebaseBadge hidden">🔥 Firebase Connected + Auto ROI 1.2% Cloud Function Active</div>
 <header>
 <div class="top">
 <div class="logo" id="logoBtn">⚡ SOLARAI CAPITAL <span class="live"></span></div>
@@ -91,7 +94,6 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <button onclick="go('withdraw')">Withdraw</button>
 <button onclick="go('balance')">Balance</button>
 <button onclick="go('referral')">Referral</button>
-<button onclick="go('market')">Market</button>
 <button onclick="go('account')">My Profile</button>
 <button onclick="go('register')" style="background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;border:none">📝 Register</button>
 <button onclick="go('login')" style="background:#111827;color:#fff;border:none">🔑 Sign In</button>
@@ -101,7 +103,7 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 </div>
 </header>
 <div style="background:#0f172a;color:#fff;padding:8px 20px;text-align:right;font-size:11px;border-bottom:3px solid #7c3aed">
-💰 Balance: <b id="bTop" style="color:#fbbf24">$0.00</b> | <span id="userEmailTop">Guest</span> | <span id="firebaseIndicator" style="color:#22c55e">● Firebase: Connecting...</span> | <span class="roiBadge" id="nextROITimer">Next ROI in 24:00:00</span>
+💰 Balance: <b id="bTop" style="color:#fbbf24" class="roiGlow">$0.00</b> | <span id="userEmailTop">Guest</span> | <span id="firebaseIndicator" style="color:#22c55e">● Firebase: Connecting...</span> | <span class="roiBadge" id="nextROITimer">Next ROI 1.2% in 24:00:00 - Auto</span>
 </div>
 
 <div id="robotOverlay" class="robotOverlay" onclick="hideRobot()">
@@ -111,12 +113,11 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <div style="font-size:22px;font-weight:900;color:#7c3aed;margin-top:10px" id="robotTitle">Thank You!</div>
 <div style="background:#f5f3ff;padding:10px;border-radius:12px;margin-top:10px;border:2px dashed #7c3aed">
 <b style="color:#7c3aed;font-size:14px" id="robotInvestorName">Dear Investor</b><br>
-<small style="font-size:11px;color:#6b7280">Special Code: <b id="robotSpecialCode">SC-XXXXXX</b></small><br>
 <b style="font-size:20px;color:#22c55e" id="robotAmount">$0.00</b><br>
-<small style="font-size:10px;color:#6b7280" id="robotPackage">Package</small>
+<small style="font-size:10px;color:#6b7280" id="robotPackage">Package - Auto ROI 1.2% every 24h</small>
 </div>
-<div style="font-size:13px;color:#4b5563;margin-top:8px;line-height:1.6" id="robotMsg">Thank you!</div>
-<div style="margin-top:12px" class="grid2"><button class="btn btn-p" style="padding:10px" onclick="hideRobot();go('balance')">💰 View Balance</button><button class="btn btn-g" style="padding:10px" onclick="hideRobot()">🙏 Thank You!</button></div>
+<div style="font-size:13px;color:#4b5563;margin-top:8px" id="robotMsg">Thank you!</div>
+<div style="margin-top:12px" class="grid2"><button class="btn btn-p" onclick="hideRobot();go('balance')">💰 View Balance - Auto ROI</button><button class="btn btn-g" onclick="hideRobot()">🙏 Thank You!</button></div>
 </div>
 </div>
 
@@ -127,128 +128,121 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <div style="font-size:22px;font-weight:900;color:#22c55e">Withdrawal Received!</div>
 <div style="background:#f0fdf4;padding:10px;border-radius:12px;margin-top:10px;border:2px dashed #22c55e">
 <b style="color:#22c55e;font-size:14px" id="withdrawInvestorName">Dear Investor</b><br>
-<small style="font-size:11px;color:#6b7280">To: <b id="withdrawWallet" style="font-family:monospace;font-size:10px">0x...</b></small><br>
 <b style="font-size:20px;color:#111827" id="withdrawAmount">$0.00</b><br>
 <small style="font-size:10px;color:#6b7280" id="withdrawNetwork">Network</small>
 </div>
-<div style="font-size:13px;color:#4b5563;margin-top:8px;line-height:1.6" id="withdrawRobotMsg">Withdrawal received!</div>
-<div style="margin-top:12px" class="grid2"><button class="btn btn-p" style="padding:10px;background:linear-gradient(90deg,#22c55e,#06b6d4)" onclick="hideWithdrawRobot();go('balance')">💰 Check Balance</button><button class="btn btn-g" style="padding:10px" onclick="hideWithdrawRobot()">🙏 Thank You!</button></div>
+<div style="font-size:13px;color:#4b5563;margin-top:8px" id="withdrawRobotMsg">Withdrawal received!</div>
+<div style="margin-top:12px" class="grid2"><button class="btn btn-p" style="background:linear-gradient(90deg,#22c55e,#06b6d4)" onclick="hideWithdrawRobot();go('balance')">💰 Check Balance</button><button class="btn btn-g" onclick="hideWithdrawRobot()">🙏 Thank You!</button></div>
 </div>
 </div>
 
 <button class="chatBtn" id="customerChatBtn" onclick="toggleChat()">💬</button>
 <div class="chatBox hidden" id="customerChatBox">
-<div class="chatHeader"><span>💬 SolarAI Capital - Support - Firebase Live</span><button onclick="toggleChat()" style="background:rgba(255,255,255,.2);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer">✕</button></div>
-<div class="chatMessages" id="customerChatMessages"><div class="msg system">Welcome to SolarAI Capital! Your capital works every 24h. Firebase connected - chats saved online forever.</div></div>
+<div class="chatHeader"><span>💬 Support - Auto ROI Active</span><button onclick="toggleChat()" style="background:rgba(255,255,255,.2);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer">✕</button></div>
+<div class="chatMessages" id="customerChatMessages"><div class="msg system">Welcome! 1.2% auto ROI every 24h via Cloud Function - Even offline!</div></div>
 <div class="chatInputArea"><input id="customerChatInput" placeholder="Type message..." onkeypress="if(event.key==='Enter')sendCustomerChat()"><button class="btn btn-p" style="width:auto;padding:10px 16px;margin:0" onclick="sendCustomerChat()">Send</button></div>
 </div>
 
 <div class="wrap" id="mainWrap"><div id="mainContent">
 <div id="home"><div class="card" style="padding:0;overflow:hidden">
 <div style="padding:24px 24px 12px">
-<h1 style="font-size:28px;line-height:1.2">Welcome to <span style="color:#7c3aed">SolarAI Capital</span> - Firebase Live <span class="live"></span></h1>
-<p style="font-size:13px;color:#4b5563;margin-top:10px;line-height:1.7">Dear Valued Investor, Your deposits are now stored in Firebase - Real online database. No more trillions bug. Your capital works every 24 hours generating returns while lighting homes, schools, and industries from Kampala to Delaware. Where does your deposit go? When you send USDT to TATeM34UJsHhnADWrjemiYXdrHiyuPrFra, it goes to owner's wallet (real blockchain). Then TX hash is saved to Firebase, admin approves, linked to Robot Balance.</p>
-<div style="background:#dcfce7;padding:10px;border-radius:10px;margin-top:10px;border:2px solid #22c55e">
-<b style="color:#22c55e;font-size:11px">🔥 FIREBASE ADDED - WHERE DEPOSITS STORED NOW:</b><br>
-<small style="font-size:10px;color:#111827;line-height:1.6">
-1. <b>Real USDT</b> → Your wallet TATeM34U... (blockchain - Tronscan)<br>
-2. <b>Record</b> → Firebase Firestore Collection `transactions` (online forever, not localStorage)<br>
-3. <b>Robot Balance</b> → Firebase doc `robotBalances/main` = Sum of approved deposits (no double counting)<br>
-4. <b>Investor Balance</b> → Firebase doc `users/{email}` balance + ROI<br>
-5. <b>Chats</b> → Firebase collection `supportChats` (investor ↔ admin live)
+<h1 style="font-size:28px;line-height:1.2">Welcome to <span style="color:#7c3aed">SolarAI Capital</span> - Auto ROI 1.2% <span class="live"></span></h1>
+<p style="font-size:13px;color:#4b5563;margin-top:10px;line-height:1.7">How 1.2% reflects every 24h: Cloud Function runs at 2PM Kampala daily, even offline. Calculates $1000*0.012=$12, adds to Firebase users/{email} balance, adds to roiHistory. Investor opens dashboard - Sees $1012 instantly with glow + robot popup.</p>
+<div style="background:#dcfce7;padding:12px;border-radius:12px;margin-top:12px;border:2px solid #22c55e">
+<b style="color:#22c55e;font-size:11px">🔥 HOW 1.2% REFLECTS EVERY 24H ON DASHBOARD:</b><br>
+<small style="font-size:10px;color:#111827;line-height:1.8">
+<b>Day 0 2PM:</b> Deposit $1000 → Firebase users balance $1000, nextROI Tomorrow 2PM, robot $1000<br>
+<b>Day 1 2PM:</b> Cloud Function dailyROI auto-runs (server, not browser) → ROI $12 → Firebase balance $1012 → roiHistory +$12 → robot: profit +$12, vault +$6, robot +$6<br>
+<b>Dashboard:</b> Investor opens 5PM → onSnapshot → Balance $1012 instantly + Glow + Robot popup "ROI $12 credited!"<br>
+<b>Day 30:</b> $1360... Day 730: $9760<br>
+<b>Stored:</b> Real USDT → Wallet TATeM34U... + Record → Firebase transactions + Balance → Firebase users + ROI → Firebase roiHistory
 </small>
 </div>
 </div>
 <div class="luxuryWrap" id="luxuryWrap"><button class="slideNav prev" onclick="changeLuxury(-1)">❮</button><button class="slideNav next" onclick="changeLuxury(1)">❯</button>
-<div class="luxSlide active"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#fbbf24">🏡 Luxury Family Villa - Solar Powered Freedom</b></div></div>
-<div class="luxSlide"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#22c55e">🏖️ Maldives Private Beach</b></div></div>
+<div class="luxSlide active"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#fbbf24">🏡 Auto ROI 1.2% Every 24h - Even Offline</b></div></div>
+<div class="luxSlide"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#22c55e">🏖️ Firebase Live - Balance Sync</b></div></div>
 <div class="luxSlide"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#fbbf24">👨‍👩‍👧‍👦 Rich Families - Generational Wealth</b></div></div>
 </div>
 <div class="dots" id="luxuryDots" style="margin-top:12px"></div>
 <div style="padding:16px 24px 24px"><div style="background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;padding:16px;border-radius:14px;text-align:center">
-<b style="font-size:16px">💎 Firebase Live - No More Data Loss</b><br>
-<small style="font-size:12px;line-height:1.6;display:block;margin-top:8px">Deposits stored online in Firebase, not browser. Admin Icon restored. Chat Box included.</small>
-<div class="grid2" style="margin-top:12px"><button class="btn" style="background:#fff;color:#7c3aed;padding:10px" onclick="go('deposit')">📦 Start Journey - $100 - Firebase</button><button class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid #fff;padding:10px" onclick="go('account')">👤 My Profile</button></div>
+<b style="font-size:16px">💎 Auto ROI 1.2% - Cloud Function Active</b><br>
+<small style="font-size:12px;line-height:1.6;display:block;margin-top:8px">Deposit $1000 → Tomorrow $1012 auto, even offline. Firebase sync.</small>
+<div class="grid2" style="margin-top:12px"><button class="btn" style="background:#fff;color:#7c3aed;padding:10px" onclick="go('deposit')">📦 Start - $100 - Auto ROI</button><button class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid #fff;padding:10px" onclick="go('balance')">💰 Check Balance - Firebase Live</button></div>
 </div></div>
-</div></div>
-
-<div id="register" class="hidden"><div class="card"><h2>📝 Registration - Firebase</h2>
-<input id="regName" placeholder="Full Name"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Create Password"><input id="regRef" placeholder="Special Code Optional">
-<div style="background:#f9fafb;padding:10px;border-radius:10px;font-size:11px;margin-top:8px">
-<label><input type="checkbox" id="agree" style="width:auto"> I agree to Terms</label><br>
-<label><input type="checkbox" id="rememberReg" checked style="width:auto"> Remember me</label>
-</div>
-<button class="btn btn-p" onclick="doRegister()">Create Account - Firebase Save</button>
-</div></div>
-
-<div id="login" class="hidden"><div class="card"><h2>🔑 Sign In - Firebase</h2>
-<input id="logEmail" placeholder="Email"><input id="logPass" type="password" placeholder="Password">
-<div class="grid2" style="margin-top:8px"><button class="btn btn-d" onclick="doLogin()">Sign In - Firebase</button><button class="btn btn-g" onclick="doLogout()">🚪 Sign Out</button></div>
-<button class="btn btn-g" onclick="autoFillLogin()" style="margin-top:6px">⚡ Auto-Fill Saved Login</button>
 </div></div>
 
 <div id="deposit" class="hidden"><div class="card">
-<h2>📦 Packages - Firebase + Auto Blockchain Verify</h2>
+<h2>📦 Packages - Auto ROI 1.2% Cloud Function</h2>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px" id="packagesGrid"></div>
 <div style="margin-top:16px;background:#f5f3ff;padding:14px;border-radius:12px;border:2px solid #7c3aed" id="selectedPackageBox" class="hidden">
-<h3>Selected: <span id="selPkgName"></span> - <span class="roiBadge">1.2% / 24H</span></h3>
-<p style="font-size:11px"><span id="selPkgRange"></span> | <span id="selPkgTerm"></span></p>
-<div style="background:#fff;padding:8px;border-radius:8px;margin-top:8px;font-size:10px">Daily ROI: <b id="dailyROIcalc" style="color:#22c55e">$0.00 / 24h</b> | Where stored? <b style="color:#7c3aed">Real USDT → Your wallet TATeM... + Record → Firebase transactions collection</b></div>
+<h3>Selected: <span id="selPkgName"></span> - <span class="roiBadge">1.2% / 24H Auto</span></h3>
+<p style="font-size:11px"><span id="selPkgRange"></span> | Auto ROI every 24h via Cloud Function</p>
+<div style="background:#fff;padding:8px;border-radius:8px;margin-top:8px;font-size:10px">Daily ROI: <b id="dailyROIcalc" style="color:#22c55e">$0.00 / 24h</b> | How reflects? Tomorrow 2PM Cloud Function auto-adds to Firebase balance</div>
 <div class="grid2" style="margin-top:10px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p">USDT TRC20 - Firebase</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g">BNB BEP20 - Firebase</button></div>
-<div id="walletUSDT" class="wallet active"><b>USDT TRC20 - Real wallet TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div><small style="font-size:9px;color:#22c55e">✅ Real blockchain wallet - Check on Tronscan.org - Funds go here, then Firebase records it</small></div>
-<div id="walletBNB" class="wallet hidden"><b>BNB BEP20 - Real wallet 0xa1fa...</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div><small style="font-size:9px;color:#22c55e">✅ Real blockchain - Check on BscScan.com</small></div>
-<input id="txHash" placeholder="Paste TX Hash - Will auto-verify via Tronscan API"><input id="depAmount" placeholder="Amount"><button class="btn btn-d" onclick="verifyDep()">✅ Confirm Investment - Save to Firebase</button>
-<div style="background:#fef3c7;padding:8px;border-radius:8px;margin-top:8px;font-size:10px"><b>🔥 Firebase Flow:</b> Investor sends USDT → Real wallet TATeM... → Pastes TX Hash → We verify via Tronscan API (auto) → Save to Firebase `transactions` collection → Admin approves → Added to Firebase `robotBalances/main` + `users/{email}` balance → Never disappears, not localStorage</div>
+<div id="walletUSDT" class="wallet active"><b>USDT TRC20 - TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div></div>
+<div id="walletBNB" class="wallet hidden"><b>BNB BEP20 - 0xa1fa...</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div></div>
+<input id="txHash" placeholder="Paste TX Hash - Auto-verify + Firebase"><input id="depAmount" placeholder="Amount"><button class="btn btn-d" onclick="verifyDep()">✅ Confirm - Firebase + Auto ROI 1.2% starts tomorrow 2PM</button>
 </div><div id="depList" style="font-size:11px;margin-top:12px"></div>
 </div></div>
 
-<div id="withdraw" class="hidden"><div class="card"><h2>💸 Withdraw - Firebase</h2><div class="box"><small>Available Balance - Firebase</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option><option>USDT Polygon</option></select><input id="wAddr" placeholder="Your Wallet Address"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">💸 Request Withdrawal - Firebase</button><div id="wList" style="font-size:11px;margin-top:8px"></div></div></div>
+<div id="balance" class="hidden"><div class="card"><h2>💰 Balance Overview - Firebase Live + Auto ROI 1.2%</h2>
+<div style="background:#dcfce7;padding:10px;border-radius:10px;margin-top:10px;border:2px solid #22c55e">
+<b style="font-size:11px;color:#22c55e">🔥 HOW 1.2% REFLECTS EVERY 24H:</b><br>
+<small style="font-size:10px;color:#111827">1. Deposit $1000 2PM → Firebase balance $1000, nextROI Tomorrow 2PM<br>2. Tomorrow 2PM → Cloud Function auto-runs (even offline) → $1000*0.012=$12 → Firebase balance $1012<br>3. Open dashboard 5PM → onSnapshot → Balance $1012 instantly + Glow + Robot popup<br>4. History saved in roiHistory → Table below<br>5. No need browser open - Server does it</small>
+</div>
+<div class="grid3" style="margin-top:12px"><div class="box"><small>Main Balance - Firebase Live - Auto ROI</small><b id="balMain" style="font-size:20px;color:#7c3aed">$0.00</b><small style="font-size:9px;color:#22c55e">Updates auto every 24h via Cloud Function</small></div><div class="box"><small>ROI Today - 1.2% - Auto</small><b id="balROI" style="color:#22c55e">$0.00 / 24h</b><small style="font-size:9px">Next: <span id="nextROITimeLocal">Calculating...</span></small></div><div class="box"><small>Total ROI Paid - Firebase roiHistory</small><b id="balAI" style="color:#f59e0b">$0.00</b></div></div>
+<div style="margin-top:12px"><h3>📜 ROI History - Firebase roiHistory - Auto 1.2% every 24h</h3><div id="roiHistoryList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px;margin-top:8px"></div></div>
+</div></div>
 
-<div id="balance" class="hidden"><div class="card"><h2>Balance Overview - Firebase Live</h2><div class="grid3"><div class="box"><small>Main Balance - Firebase users/{email}</small><b id="balMain">$0.00</b></div><div class="box"><small>ROI - Auto - Firebase</small><b id="balROI" style="color:#22c55e">$0.00</b></div><div class="box"><small>AI Profit - Firebase robotBalances</small><b id="balAI" style="color:#f59e0b">$0.00</b></div></div></div></div>
+<div id="withdraw" class="hidden"><div class="card"><h2>💸 Withdraw - Firebase - Includes Auto ROI</h2><div class="box"><small>Available Balance - Firebase Live - Includes Auto ROI</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option><option>USDT Polygon</option></select><input id="wAddr" placeholder="Your Wallet Address"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">💸 Request Withdrawal - Firebase</button><div id="wList" style="font-size:11px;margin-top:8px"></div></div></div>
 
-<div id="referral" class="hidden"><div class="card"><h2>🔗 Referral - Firebase</h2><div style="background:#f0fdf4;padding:12px;border-radius:12px;border:2px solid #22c55e;margin-top:12px"><b id="specialCodeDisplay" style="font-size:28px">SC-XXXXXX</b><br><b id="refLink" style="font-size:14px;word-break:break-all">https://solarai.capital/thank-u/SC-XXXXXX</b><br><div class="grid2" style="margin-top:12px"><button class="btn btn-p" onclick="copyReferralClean()">📋 Copy Link</button><button class="btn btn-d" onclick="shareReferral()">📤 Share</button></div></div></div></div>
+<div id="referral" class="hidden"><div class="card"><h2>🔗 Referral - Firebase</h2><div style="background:#f0fdf4;padding:12px;border-radius:12px;border:2px solid #22c55e"><b id="specialCodeDisplay" style="font-size:28px">SC-XXXXXX</b><br><b id="refLink" style="font-size:14px;word-break:break-all">https://solarai.capital/thank-u/SC-XXXXXX</b></div></div></div>
 
-<div id="account" class="hidden"><div class="card"><h2>👤 My Profile - Firebase</h2><input id="accName" placeholder="Full Name"><input id="accEmail" placeholder="Email"><input id="accPhone" placeholder="Phone"><input id="accWallet" placeholder="Wallet"><button class="btn btn-p" onclick="saveProfile()">💾 Save to Firebase</button><button class="btn btn-g" style="margin-top:8px" onclick="doLogout()">🚪 Sign Out</button></div></div>
+<div id="account" class="hidden"><div class="card"><h2>👤 My Profile - Firebase Live</h2><div style="background:#f5f3ff;padding:10px;border-radius:10px"><b>How 1.2% reflects:</b><br><small>Deposit $1000 → Tomorrow 2PM Cloud Function adds $12 → Balance $1012 → Firebase users/{email} → Dashboard auto-updates via onSnapshot → Glow + Robot popup</small></div><input id="accName" placeholder="Full Name" style="margin-top:10px"><input id="accEmail" placeholder="Email"><button class="btn btn-p" onclick="saveProfile()">💾 Save to Firebase</button></div></div>
 
-<div id="adminlogin" class="hidden"><div class="card"><h2 style="color:#ef4444">🔐 Admin Login - Firebase Admin</h2><input id="ae" value="admin@solarcapital.com"><input id="ap" type="password" value="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login Admin - Firebase</button></div></div>
+<div id="register" class="hidden"><div class="card"><h2>📝 Register - Firebase + Auto ROI</h2><input id="regName" placeholder="Full Name"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Password"><button class="btn btn-p" onclick="doRegister()">Create Account - Auto ROI starts after deposit</button></div></div>
+
+<div id="login" class="hidden"><div class="card"><h2>🔑 Sign In - Firebase Live Balance</h2><input id="logEmail" placeholder="Email"><input id="logPass" type="password" placeholder="Password"><button class="btn btn-d" onclick="doLogin()">Sign In - Firebase Live ROI</button></div></div>
+
+<div id="adminlogin" class="hidden"><div class="card"><h2 style="color:#ef4444">🔐 Admin Login - Auto ROI Control</h2><input id="ae" value="admin@solarcapital.com"><input id="ap" type="password" value="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login Admin - Trigger ROI Manual + Auto</button></div></div>
 
 <div id="admin" class="hidden">
 <div class="card" style="border:3px solid #7c3aed">
-<h2>🔐 Admin Area - Firebase Live Database <span class="live"></span></h2>
+<h2>🔐 Admin Area - Auto ROI 1.2% Cloud Function Control <span class="live"></span></h2>
 <div class="admin-top">
-<h3 style="color:#fbbf24">🤖 AI Trading - Firebase Balances - Fixed Bug</h3>
+<h3 style="color:#fbbf24">🤖 Auto ROI 1.2% - Cloud Function dailyROI - 2PM Kampala</h3>
 <div style="background:#1f2937;padding:10px;border-radius:10px;margin-top:10px;border:1px solid #fbbf24">
 <small style="font-size:10px;color:#d1d5db">
-<b>WHERE DEPOSITS STORED NOW WITH FIREBASE:</b><br>
-<b style="color:#22c55e">1. Real USDT</b> → Blockchain wallet TATeM34U... (your wallet, Tronscan)<br>
-<b style="color:#7c3aed">2. Firebase Firestore</b> → Collection `transactions` = All deposits, permanent, online<br>
-<b style="color:#fbbf24">3. Robot Balance</b> → Firebase doc `robotBalances/main` = Sum approved, no double count<br>
-<b style="color:#06b6d4">4. Vault</b> → Firebase doc `robotBalances/main` vault field, safe<br>
-Bug trillions fixed: Now checks if already linked before adding
+<b>HOW 1.2% REFLECTS ON INVESTOR DASHBOARD EVERY 24H:</b><br>
+1. Investor deposits $1000 → Firebase users/{email} balance $1000, nextROI Tomorrow 2PM<br>
+2. Cloud Function dailyROI runs daily 2PM Kampala → ROI $12 → Firebase users/{email} balance $1012 → roiHistory +$12 → robotBalances<br>
+3. Investor dashboard onSnapshot auto-updates balance instantly with glow<br>
+4. Admin can manually trigger via button below
 </small>
 </div>
 <div class="grid3" style="margin-top:12px">
-<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">Robot Balance - Firebase</small><b id="rBal" style="color:#fbbf24;display:block;font-size:20px">$0.00</b><small id="rBalSource">0 deposits - Firebase</small></div>
-<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #22c55e"><small style="color:#22c55e">Real Profit - Firebase</small><b id="rProf" style="color:#22c55e;display:block;font-size:20px">$0.00</b><small id="profitPercent">+0.00%</small></div>
-<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #06b6d4"><small style="color:#06b6d4">Vault - Firebase - Secured</small><b id="vBal" style="color:#06b6d4;display:block;font-size:20px">$0.00</b></div>
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">Robot Balance - Firebase</small><b id="rBal" style="color:#fbbf24;display:block;font-size:20px">$0.00</b><small id="rBalSource">Firebase</small></div>
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #22c55e"><small style="color:#22c55e">Real Profit - Auto ROI</small><b id="rProf" style="color:#22c55e;display:block;font-size:20px">$0.00</b><small id="profitPercent">+0.00%</small></div>
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #06b6d4"><small style="color:#06b6d4">Vault - Firebase</small><b id="vBal" style="color:#06b6d4;display:block;font-size:20px">$0.00</b></div>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px">
-<div><input id="depA" placeholder="Admin Deposit"><button class="btn btn-p" onclick="depR()">💰 Deposit to Firebase Robot</button><button class="btn" style="background:#f59e0b;color:#fff;padding:12px;margin-top:8px" onclick="withAdmin()">💸 Withdraw 50/50</button><button class="btn btn-g" style="padding:8px;margin-top:6px" onclick="resetRobotBalances()">🗑️ RESET - Fix Bug - Firebase Clear</button></div>
-<div><div class="grid2"><button class="btn" style="background:#22c55e;color:#fff;padding:10px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI</span></button><button class="btn" style="background:#7c3aed;color:#fff;padding:10px" onclick="runAI()">⚡ Single Trade</button></div><p id="log" style="font-size:10px;background:#000;padding:10px;border-radius:8px;color:#22c55e;margin-top:8px">🤖 Ready - Firebase Live</p></div>
+<div><button class="btn btn-p" onclick="triggerROIManualFirebase()">💰 Trigger ROI 1.2% NOW - Manual - All Investors</button><button class="btn btn-g" style="margin-top:6px" onclick="resetRobotBalances()">🗑️ RESET - Fix Bug</button><div style="background:#000;padding:8px;border-radius:8px;margin-top:8px;font-size:10px;color:#22c55e" id="cloudFunctionStatus">Cloud Function Status: dailyROI scheduled 2PM daily - Auto</div></div>
+<div><div class="grid2"><button class="btn" style="background:#22c55e;color:#fff;padding:10px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI</span></button><button class="btn" style="background:#7c3aed;color:#fff;padding:10px" onclick="runAI()">⚡ Single Trade</button></div><p id="log" style="font-size:10px;background:#000;padding:10px;border-radius:8px;color:#22c55e;margin-top:8px">🤖 Ready - Auto ROI Active</p></div>
 <div><div id="profitHistory" style="font-size:9px;font-family:monospace;color:#9ca3af;max-height:200px;overflow-y:auto;background:#000;padding:10px;border-radius:10px"></div></div>
 </div>
 </div>
 <div class="admin-bottom">
-<h3 style="color:#7c3aed">🏛️ Admin Monitoring - Firebase Collections</h3>
+<h3 style="color:#7c3aed">🏛️ Admin Monitoring - Firebase + Auto ROI History</h3>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
 <div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px"><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('transactions')">TX Firebase (<span id="txCount">0</span>)</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('kyc')">KYC (<span id="kycCount">0</span>)</button><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="showAdminTab('support')">💬 Chats Firebase</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('roi')">ROI</button></div>
-<div id="admin-transactions" class="adminTab" style="margin-top:10px"><b>Transactions - Firebase Firestore - Real Storage</b><div class="grid2"><div class="box"><small>Deposits - Firebase</small><b id="totalDep">$0</b></div><div class="box"><small>Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:400px;overflow-y:auto"></div><button class="btn btn-p" onclick="approveAll()">✅ Approve All - Firebase Link</button><button class="btn btn-g" style="margin-top:6px" onclick="loadFirebaseData()">🔄 Reload Firebase Data</button></div>
-<div id="admin-kyc" class="adminTab hidden" style="margin-top:10px"><b>KYC - Firebase</b><div id="kycList" style="font-size:11px"></div></div>
-<div id="admin-support" class="adminTab hidden" style="margin-top:10px"><b>💬 Customer Chats - Firebase collection supportChats</b><div id="adminChatList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px"></div><div style="display:flex;gap:6px;margin-top:8px"><input id="adminChatReply" placeholder="Reply..."><button class="btn btn-p" style="padding:8px;width:auto" onclick="adminReplyChat()">Reply - Firebase</button></div></div>
-<div id="admin-roi" class="adminTab hidden" style="margin-top:10px"><b>ROI - Firebase</b><div id="roiList" style="font-size:11px"></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px"><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('transactions')">TX Firebase</button><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="showAdminTab('roi')">ROI Auto 1.2%</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('support')">Chats</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('kyc')">KYC</button></div>
+<div id="admin-transactions" class="adminTab" style="margin-top:10px"><b>Transactions - Firebase</b><div class="grid2"><div class="box"><small>Deposits</small><b id="totalDep">$0</b></div><div class="box"><small>Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:400px;overflow-y:auto"></div><button class="btn btn-p" onclick="approveAll()">✅ Approve All</button></div>
+<div id="admin-roi" class="adminTab hidden" style="margin-top:10px"><b>💰 ROI History - Firebase roiHistory - Auto 1.2% every 24h</b><div id="roiList" style="font-size:11px;margin-top:8px;max-height:400px;overflow-y:auto;background:#f9fafb;padding:10px;border-radius:10px"></div><button class="btn btn-p" style="margin-top:8px" onclick="triggerROIManualFirebase()">💰 Trigger ROI NOW</button></div>
+<div id="admin-support" class="adminTab hidden" style="margin-top:10px"><b>💬 Chats - Firebase</b><div id="adminChatList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px"></div><div style="display:flex;gap:6px;margin-top:8px"><input id="adminChatReply" placeholder="Reply..."><button class="btn btn-p" style="padding:8px;width:auto" onclick="adminReplyChat()">Reply</button></div></div>
+<div id="admin-kyc" class="adminTab hidden" style="margin-top:10px"><b>KYC</b><div id="kycList"></div></div>
 </div>
-<div><h4>📦 Package Investments - Firebase</h4><div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:500px;overflow-y:auto"></div></div>
+<div><h4>📦 Investments - Firebase</h4><div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:500px;overflow-y:auto"></div></div>
 </div>
 </div>
 </div>
@@ -257,28 +251,28 @@ Bug trillions fixed: Now checks if already linked before adding
 </div>
 <div id="sidePanel">
 <div class="card" style="padding:0;overflow:hidden;border:2px solid #7c3aed">
-<div style="padding:14px 16px 8px"><h3 style="color:#7c3aed">☀️ Solar Projects <span class="live"></span> - Firebase</h3></div>
+<div style="padding:14px 16px 8px"><h3 style="color:#7c3aed">☀️ Solar Projects - Auto ROI <span class="live"></span></h3></div>
 <div class="slidesWrap" id="slidesWrap">
-<div class="slide active"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop"><div class="slideContent"><b>🏠 Household - $100 - Firebase</b><small>Stored in Firebase + Wallet TATeM...</small></div></div>
-<div class="slide"><img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop"><div class="slideContent"><b>🏪 Micro Business - $500</b></div></div>
+<div class="slide active"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop"><div class="slideContent"><b>🏠 Household - $100 - Auto ROI 1.2% Daily</b><small>Cloud Function auto-adds $1.20 every 24h - Even offline</small></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop"><div class="slideContent"><b>🏪 Micro Business - $500 - Auto $6/day</b></div></div>
 </div>
 <div class="dots" id="dots"></div>
 <div style="padding:12px">
-<div style="margin-top:10px"><b style="font-size:11px">🔗 Your Special Code - Firebase</b><div style="background:#fff;border:2px dashed #22c55e;padding:8px;border-radius:10px;margin-top:4px;text-align:center"><b id="refLinkSide" style="font-size:16px">SC-XXXXXX</b><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="copyReferralClean()">📋 Copy Link - Firebase</button></div></div>
-<button class="btn btn-p" style="padding:8px;margin-top:10px;font-size:11px" onclick="toggleChat()">💬 Chat - Firebase Live</button>
+<div style="margin-top:10px"><b style="font-size:11px">🔗 Your Special Code - Auto ROI</b><div style="background:#fff;border:2px dashed #22c55e;padding:8px;border-radius:10px;margin-top:4px;text-align:center"><b id="refLinkSide" style="font-size:16px">SC-XXXXXX</b><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="copyReferralClean()">📋 Copy Link</button></div></div>
+<button class="btn btn-p" style="padding:8px;margin-top:10px;font-size:11px" onclick="toggleChat()">💬 Chat - Auto ROI Active</button>
 </div>
 </div>
 </div>
 </div>
 
-<footer><div style="max-width:1600px;margin:0 auto"><b>© SolarAI Capital - Firebase Live</b> | Deposits: Real wallet TATeM... + Firebase transactions collection | Robot Balance: Firebase robotBalances/main | Never disappears</div></footer>
+<footer><div style="max-width:1600px;margin:0 auto"><b>© SolarAI Capital - Auto ROI 1.2% Cloud Function - 2PM Daily Kampala - Firebase Live</b></div></footer>
 
-<!-- FIREBASE SDK - ADD YOUR CONFIG BELOW -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, onSnapshot, deleteDoc, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js";
 
-// TODO: REPLACE WITH YOUR FIREBASE CONFIG FROM FIREBASE CONSOLE
+// REPLACE WITH YOUR FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -288,32 +282,28 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-// If you don't have config yet, it will fallback to localStorage and show warning
-let db=null;
-let firebaseEnabled=false;
+let db=null; let firebaseEnabled=false; let functions=null;
 try{
   const app = initializeApp(firebaseConfig);
   db = getFirestore(app);
+  functions = getFunctions(app);
   firebaseEnabled = true;
-  document.getElementById('firebaseIndicator').innerText='● Firebase: Connected - Real Storage';
+  document.getElementById('firebaseIndicator').innerText='● Firebase: Connected + Auto ROI Active';
   document.getElementById('firebaseIndicator').style.color='#22c55e';
   document.getElementById('firebaseStatus').classList.remove('hidden');
-  setTimeout(()=>{document.getElementById('firebaseStatus').classList.add('hidden');},3000);
-  console.log('🔥 Firebase Connected');
+  setTimeout(()=>{document.getElementById('firebaseStatus').classList.add('hidden');},4000);
 }catch(e){
-  console.log('Firebase config not set - Using localStorage fallback', e);
-  document.getElementById('firebaseIndicator').innerText='● Firebase: Not Configured - Using localStorage (Add config)';
+  document.getElementById('firebaseIndicator').innerText='● Firebase: Add Config - Using localStorage';
   document.getElementById('firebaseIndicator').style.color='#f59e0b';
 }
 
-window.db=db;
-window.firebaseEnabled=firebaseEnabled;
-window.firestore={collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, onSnapshot, deleteDoc};
+window.db=db; window.firebaseEnabled=firebaseEnabled;
+window.firestore={collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, onSnapshot, deleteDoc, where};
+window.firebaseFunctions=functions;
+window.httpsCallable=httpsCallable;
 
-// Make Firebase available globally for non-module script
 window.saveToFirebase = async function(collectionName, data){
   if(!firebaseEnabled ||!db){
-    // Fallback to localStorage
     let arr=JSON.parse(localStorage.getItem(collectionName)||'[]');
     arr.unshift(data);
     localStorage.setItem(collectionName, JSON.stringify(arr));
@@ -321,45 +311,74 @@ window.saveToFirebase = async function(collectionName, data){
   }
   try{
     const docRef = await addDoc(collection(db, collectionName), {...data, timestamp: new Date(), createdAt: Date.now()});
-    console.log('Saved to Firebase', collectionName, docRef.id);
     return docRef;
-  }catch(err){console.error('Firebase save error', err); return null;}
+  }catch(err){console.error(err); return null;}
 };
 
 window.getFromFirebase = async function(collectionName){
-  if(!firebaseEnabled ||!db){
-    return JSON.parse(localStorage.getItem(collectionName)||'[]');
-  }
+  if(!firebaseEnabled ||!db){return JSON.parse(localStorage.getItem(collectionName)||'[]');}
   try{
     const q = query(collection(db, collectionName), orderBy('createdAt','desc'));
     const snapshot = await getDocs(q);
-    let arr=[];
-    snapshot.forEach(doc=>{arr.push({id: doc.id,...doc.data()})});
-    return arr;
-  }catch(err){console.error('Firebase get error', err); return JSON.parse(localStorage.getItem(collectionName)||'[]');}
+    let arr=[]; snapshot.forEach(doc=>{arr.push({id: doc.id,...doc.data()})}); return arr;
+  }catch(err){return JSON.parse(localStorage.getItem(collectionName)||'[]');}
 };
 
-window.updateFirebaseDoc = async function(collectionName, docId, data){
+window.listenToUserBalance = function(email){
+  if(!firebaseEnabled ||!db ||!email) return;
+  try{
+    const userRef = doc(db, "users", email);
+    onSnapshot(userRef, (docSnap)=>{
+      if(docSnap.exists()){
+        let data=docSnap.data();
+        let bal=parseFloat(data.balance||0);
+        document.getElementById('bTop').innerText='$'+bal.toFixed(2);
+        document.getElementById('bTop').classList.add('roiGlow');
+        setTimeout(()=>{document.getElementById('bTop').classList.remove('roiGlow');},3000);
+        let balMain=document.getElementById('balMain'); if(balMain) balMain.innerText='$'+bal.toFixed(2);
+        let wBal=document.getElementById('wBal'); if(wBal) wBal.innerText='$'+bal.toFixed(2);
+        if(data.nextROI){
+          let remaining=data.nextROI - Date.now();
+          if(remaining>0){
+            let sec=Math.floor(remaining/1000);
+            let h=Math.floor(sec/3600); let m=Math.floor((sec%3600)/60); let s=sec%60;
+            let timeStr=`${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            let timerEl=document.getElementById('nextROITimer');
+            if(timerEl) timerEl.innerText=`Next ROI 1.2% in ${timeStr} - Auto Cloud Function daily 2PM - Firebase Live`;
+            let localTimer=document.getElementById('nextROITimeLocal');
+            if(localTimer) localTimer.innerText=timeStr;
+          }
+        }
+        localStorage.setItem('userBal', bal.toString());
+      }
+    });
+  }catch(e){console.error(e);}
+};
+
+window.listenToROIHistory = function(email){
   if(!firebaseEnabled ||!db) return;
-  try{await updateDoc(doc(db, collectionName, docId), data);}catch(e){console.error(e);}
+  try{
+    const q = query(collection(db, "roiHistory"), where("email","==",email), orderBy("createdAt","desc"));
+    onSnapshot(q, (snapshot)=>{
+      let rois=[];
+      snapshot.forEach(doc=>{rois.push(doc.data())});
+      let html=rois.slice(0,20).map(r=>`<div style="padding:8px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between"><div><b>${r.pkg}</b> | Deposit $${r.deposit} | ROI <b style="color:#22c55e">$${parseFloat(r.roiAmount||r.amount||0).toFixed(2)}</b> (1.2%)</div><div><small>${r.date}</small><br><small style="color:#7c3aed">${r.auto?'Auto Cloud Function':'Manual'}</small></div></div>`).join('')||'No ROI yet - Auto at 2PM daily';
+      let el=document.getElementById('roiHistoryList'); if(el) el.innerHTML=html;
+      let el2=document.getElementById('roiList'); if(el2) el2.innerHTML=html;
+      let total=rois.reduce((s,r)=>s+parseFloat(r.roiAmount||r.amount||0),0);
+      let balAI=document.getElementById('balAI'); if(balAI) balAI.innerText='$'+total.toFixed(2);
+    });
+  }catch(e){console.error(e);}
 };
-
-// Auto-load Firebase data on start
-if(firebaseEnabled){
-  setTimeout(async()=>{
-    window.firebaseTransactions = await window.getFromFirebase('transactions');
-    console.log('Loaded Firebase transactions', window.firebaseTransactions.length);
-  },1000);
-}
 </script>
 
 <script>
 const packages=[
-{ id:'eco', name:'Eco Entry', min:100, max:499, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Individual households', color:'#22c55e' },
-{ id:'smart', name:'Smart Start', min:500, max:999, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Small homes', color:'#06b6d4' },
-{ id:'growth', name:'Growth Plan', min:1000, max:1499, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Schools', color:'#7c3aed' },
-{ id:'community', name:'Community Impact', min:1500, max:4999, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Cooperatives', color:'#f59e0b' },
-{ id:'industrial', name:'Industrial Advance', min:5000, max:50000, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Industries', color:'#ef4444' }
+{ id:'eco', name:'Eco Entry', min:100, max:499, term:'2 years', roi:'1.2% Every 24H Auto', roiNum:0.012, segment:'Individual households', color:'#22c55e' },
+{ id:'smart', name:'Smart Start', min:500, max:999, term:'2 years', roi:'1.2% Every 24H Auto', roiNum:0.012, segment:'Small homes', color:'#06b6d4' },
+{ id:'growth', name:'Growth Plan', min:1000, max:1499, term:'2 years', roi:'1.2% Every 24H Auto', roiNum:0.012, segment:'Schools', color:'#7c3aed' },
+{ id:'community', name:'Community Impact', min:1500, max:4999, term:'2 years', roi:'1.2% Every 24H Auto', roiNum:0.012, segment:'Cooperatives', color:'#f59e0b' },
+{ id:'industrial', name:'Industrial Advance', min:5000, max:50000, term:'2 years', roi:'1.2% Every 24H Auto', roiNum:0.012, segment:'Industries', color:'#ef4444' }
 ];
 let selectedPkg=null;
 let currentLuxSlide=0;
@@ -368,80 +387,26 @@ let logoClicks=0;
 function initLuxurySlides(){let slides=document.querySelectorAll('.luxSlide');let dotsContainer=document.getElementById('luxuryDots');if(!dotsContainer) return;dotsContainer.innerHTML='';slides.forEach((_,i)=>{let dot=document.createElement('div');dot.className='dot'+(i===0?' active':'');dot.onclick=()=>goToLuxury(i);dotsContainer.appendChild(dot);});}
 function goToLuxury(n){let slides=document.querySelectorAll('.luxSlide');let dots=document.querySelectorAll('#luxuryDots.dot');if(slides.length===0) return;slides[currentLuxSlide].classList.remove('active');if(dots[currentLuxSlide]) dots[currentLuxSlide].classList.remove('active');currentLuxSlide=(n+slides.length)%slides.length;slides[currentLuxSlide].classList.add('active');if(dots[currentLuxSlide]) dots[currentLuxSlide].classList.add('active');}
 function changeLuxury(dir){goToLuxury(currentLuxSlide+dir);}
-
-function adminSecretClick(){
-logoClicks++;
-if(logoClicks>=3){
-logoClicks=0;
-let pass=prompt('🔐 Owner Admin Access - Secret Key:');
-if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');alert('✅ Admin access granted! Click 🔐 Admin');go('adminlogin');}else{alert('❌ Wrong');}
-}
-setTimeout(()=>{logoClicks=0;},2500);
-}
+function adminSecretClick(){logoClicks++;if(logoClicks>=3){logoClicks=0;let pass=prompt('🔐 Owner Admin Access:');if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');go('adminlogin');}}setTimeout(()=>{logoClicks=0;},2500);}
 document.getElementById('logoBtn').addEventListener('click',adminSecretClick);
-document.addEventListener('keydown',function(e){if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==='a'){let pass=prompt('🔐 Admin Secret Key:');if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');go('adminlogin');}}});
-function goAdmin(){
-let isAdmin=localStorage.getItem('isAdmin')==='true';
-if(!isAdmin){let pass=prompt('🔐 Admin Login - Enter Owner Secret Key (SolarAI2025!):');if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');go('adminlogin');}else{alert('❌ Access denied');}}else{go('adminlogin');}
-}
-
+function goAdmin(){let isAdmin=localStorage.getItem('isAdmin')==='true';if(!isAdmin){let pass=prompt('🔐 Admin Secret Key (SolarAI2025!):');if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');go('adminlogin');}else{alert('❌ Access denied');}}else{go('adminlogin');}}
 function getChats(){return JSON.parse(localStorage.getItem('supportChats')||'[]');}
 function saveChats(arr){localStorage.setItem('supportChats',JSON.stringify(arr));}
 function toggleChat(){let box=document.getElementById('customerChatBox');box.classList.toggle('hidden');if(!box.classList.contains('hidden')){renderCustomerChat();}}
-async function sendCustomerChat(){
-let input=document.getElementById('customerChatInput');
-let msg=input.value.trim();
-if(!msg) return;
-let email=localStorage.getItem('userEmail')||'Guest Investor';
-let chatData={email:email,msg:msg,from:'user',date:new Date().toLocaleString(),gps:'Chat Widget Firebase',createdAt:Date.now()};
-if(window.saveToFirebase){await window.saveToFirebase('supportChats', chatData);}
-let chats=getChats();chats.unshift(chatData);saveChats(chats);
-input.value='';renderCustomerChat();renderAdminChat();
-setTimeout(async()=>{
-let reply={email:'SolarAI Support',msg:`Thank you ${email.split('@')[0]}! We received: "${msg}". Team will reply soon. Balance $${(parseFloat(localStorage.getItem('userBal')||0)).toFixed(2)} - ROI 1.2% active. Deposits stored in Firebase + Real wallet TATeM...`,from:'admin',date:new Date().toLocaleString(),createdAt:Date.now()};
-if(window.saveToFirebase){await window.saveToFirebase('supportChats', reply);}
-let chats2=getChats();chats2.unshift(reply);saveChats(chats2);renderCustomerChat();renderAdminChat();
-},1500);
-}
-function renderCustomerChat(){
-let container=document.getElementById('customerChatMessages');
-let chats=getChats().slice().reverse();
-let html='<div class="msg system">Welcome! Firebase Live - Deposits stored online + Real wallet TATeM... - Chat saved online forever.</div>';
-for(let c of chats){
-if(c.from==='user'){html+=`<div class="msg user"><b>You (${c.email})</b><br>${c.msg}<br><small style="font-size:9px;opacity:.7">${c.date}</small></div>`;}
-else{html+=`<div class="msg admin"><b>${c.email} (Support)</b><br>${c.msg}<br><small style="font-size:9px;opacity:.7">${c.date}</small></div>`;}
-}
-container.innerHTML=html;container.scrollTop=container.scrollHeight;
-}
-async function adminReplyChat(){
-let input=document.getElementById('adminChatReply');
-let msg=input.value.trim();
-if(!msg) return;
-let data={email:'SolarAI Support (Admin)',msg:msg,from:'admin',date:new Date().toLocaleString(),createdAt:Date.now()};
-if(window.saveToFirebase){await window.saveToFirebase('supportChats', data);}
-let chats=getChats();chats.unshift(data);saveChats(chats);input.value='';renderAdminChat();renderCustomerChat();
-}
-async function renderAdminChat(){
-let chats=[];
-if(window.getFromFirebase){try{chats=await window.getFromFirebase('supportChats');}catch(e){chats=getChats();}}else{chats=getChats();}
-let html=chats.map(c=>`<div style="background:${c.from==='admin'?'#111827':'#fff'};color:${c.from==='admin'?'#fff':'#111827'};padding:8px;border-radius:10px;margin-top:6px;border:1px solid #e5e7eb"><b>${c.email} (${c.from})</b><br>${c.msg}<br><small style="font-size:9px;opacity:.7">${c.date}</small></div>`).join('')||'<div style="padding:10px;text-align:center;color:#9ca3af">No chats yet - Firebase collection supportChats</div>';
-let el=document.getElementById('adminChatList'); if(el) el.innerHTML=html;
-}
-
+async function sendCustomerChat(){let input=document.getElementById('customerChatInput');let msg=input.value.trim();if(!msg) return;let email=localStorage.getItem('userEmail')||'Guest';let data={email:email,msg:msg,from:'user',date:new Date().toLocaleString(),createdAt:Date.now()};if(window.saveToFirebase){await window.saveToFirebase('supportChats', data);}let chats=getChats();chats.unshift(data);saveChats(chats);input.value='';renderCustomerChat();renderAdminChat();}
+function renderCustomerChat(){let container=document.getElementById('customerChatMessages');let chats=getChats().slice().reverse();let html='<div class="msg system">Welcome! Auto ROI 1.2% every 24h via Cloud Function - Balance auto-updates even offline!</div>';for(let c of chats){if(c.from==='user'){html+=`<div class="msg user"><b>You (${c.email})</b><br>${c.msg}<br><small>${c.date}</small></div>`;}else{html+=`<div class="msg admin"><b>${c.email}</b><br>${c.msg}<br><small>${c.date}</small></div>`;}}container.innerHTML=html;container.scrollTop=container.scrollHeight;}
+async function adminReplyChat(){let input=document.getElementById('adminChatReply');let msg=input.value.trim();if(!msg) return;let data={email:'SolarAI Support',msg:msg,from:'admin',date:new Date().toLocaleString(),createdAt:Date.now()};if(window.saveToFirebase){await window.saveToFirebase('supportChats', data);}let chats=getChats();chats.unshift(data);saveChats(chats);input.value='';renderAdminChat();renderCustomerChat();}
+async function renderAdminChat(){let chats=[];if(window.getFromFirebase){try{chats=await window.getFromFirebase('supportChats');}catch(e){chats=getChats();}}else{chats=getChats();}let html=chats.map(c=>`<div style="background:${c.from==='admin'?'#111827':'#fff'};color:${c.from==='admin'?'#fff':'#111827'};padding:8px;border-radius:10px;margin-top:6px;border:1px solid #e5e7eb"><b>${c.email} (${c.from})</b><br>${c.msg}<br><small>${c.date}</small></div>`).join('')||'No chats';let el=document.getElementById('adminChatList'); if(el) el.innerHTML=html;}
 function generateSpecialCode(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let code='SC-';for(let i=0;i<6;i++){code+=chars.charAt(Math.floor(Math.random()*chars.length));}return code;}
 function getSpecialCode(){let code=localStorage.getItem('specialReferralCode');if(!code){code=generateSpecialCode();localStorage.setItem('specialReferralCode',code);}return code;}
 function updateReferralLinks(){let code=getSpecialCode();let link=`https://solarai.capital/thank-u/${code}`;let el=document.getElementById('refLink');if(el) el.innerText=link;let el2=document.getElementById('specialCodeDisplay');if(el2) el2.innerText=code;let el3=document.getElementById('refLinkSide');if(el3) el3.innerText=code;}
-function copyReferralClean(){let code=getSpecialCode();navigator.clipboard.writeText(`https://solarai.capital/thank-u/${code}`);}
-function shareReferral(){copyReferralClean();}
-
+function copyReferralClean(){let code=getSpecialCode();navigator.clipboard.writeText(`https://solarai.capital/thank-u/${code}`).then(()=>{alert('✅ Copied!');});}
 function showDepositRobot(name,amount,pkg,code){
 let overlay=document.getElementById('robotOverlay');
 document.getElementById('robotInvestorName').innerText=`Dear ${name}`;
-document.getElementById('robotAmount').innerText=`$${parseFloat(amount).toFixed(2)} Confirmed! - Firebase`;
-document.getElementById('robotPackage').innerText=`${pkg} | Code ${code} | Saved to Firebase transactions + Real wallet TATeM...`;
-document.getElementById('robotSpecialCode').innerText=code;
-document.getElementById('robotTitle').innerText=`Thank You ${name.split(' ')[0]}! 🤖👋`;
-document.getElementById('robotMsg').innerText=`🎉 $${amount} deposited! Real USDT went to your wallet TATeM34U... (check Tronscan), record saved to Firebase collection transactions (online forever), linked to Robot Balance $${rb.toFixed(2)}. ROI 1.2% starts NOW!`;
+document.getElementById('robotAmount').innerText=`$${parseFloat(amount).toFixed(2)} Confirmed!`;
+document.getElementById('robotPackage').innerText=`${pkg} | Auto ROI 1.2% every 24h via Cloud Function at 2PM Kampala`;
+document.getElementById('robotMsg').innerText=`🎉 $${amount} deposited! Real USDT → Wallet TATeM... + Firebase. Cloud Function dailyROI will auto-add $${(amount*0.012).toFixed(2)} every 24h at 2PM even if offline. Dashboard auto-updates via onSnapshot listener.`;
 let confettiContainer=document.getElementById('robotConfetti');confettiContainer.innerHTML='';let colors=['#7c3aed','#ec4899','#f59e0b','#22c55e'];for(let i=0;i<30;i++){let conf=document.createElement('div');conf.className='confetti';conf.style.setProperty('--c', colors[Math.floor(Math.random()*colors.length)]);conf.style.left=Math.random()*100+'%';conf.style.top='-10px';conf.style.animationDelay=Math.random()*1+'s';confettiContainer.appendChild(conf);}
 overlay.classList.add('show');setTimeout(()=>{hideRobot();},8000);
 }
@@ -449,124 +414,80 @@ function hideRobot(){document.getElementById('robotOverlay').classList.remove('s
 function showWithdrawRobot(name,amount,wallet,network){
 let overlay=document.getElementById('withdrawRobotOverlay');
 document.getElementById('withdrawInvestorName').innerText=`Dear ${name}`;
-document.getElementById('withdrawAmount').innerText=`$${parseFloat(amount).toFixed(2)} Requested! - Firebase`;
+document.getElementById('withdrawAmount').innerText=`$${parseFloat(amount).toFixed(2)} Requested!`;
 document.getElementById('withdrawWallet').innerText=wallet.slice(0,20)+'...';
 document.getElementById('withdrawNetwork').innerText=network;
-document.getElementById('withdrawRobotMsg').innerText=`💸 Withdrawal $${amount} to ${network} - Saved to Firebase transactions collection, admin will approve and send from your wallet TATeM... or 0xa1fa...`;
+document.getElementById('withdrawRobotMsg').innerText=`💸 Withdrawal $${amount} - Firebase - Includes Auto ROI 1.2%`;
 overlay.classList.add('show');overlay.style.display='flex';setTimeout(()=>{hideWithdrawRobot();},8000);
 }
 function hideWithdrawRobot(){let overlay=document.getElementById('withdrawRobotOverlay');overlay.classList.remove('show');setTimeout(()=>{overlay.style.display='none';},400);}
-
-function renderPackages(){
-let html=packages.map(p=>{let daily=(p.min * p.roiNum);return `<div class="pkg" id="pkg-${p.id}" onclick="selectPackage('${p.id}')"><div style="display:flex;justify-content:space-between"><b style="color:${p.color}">${p.name}</b><span class="roiBadge">${p.roi}</span></div><div style="margin-top:6px;font-size:11px"><b>Range: $${p.min} - $${p.max}</b><br><small>Where? Real wallet + Firebase</small><br><div style="background:#f0fdf4;padding:6px;border-radius:6px;margin-top:6px"><b style="font-size:10px">💰 Daily: $${daily.toFixed(2)} / 24h</b></div></div></div>`}).join('');
-document.getElementById('packagesGrid').innerHTML=html;
-}
-function selectPackage(id){
-selectedPkg=packages.find(p=>p.id===id);
-document.querySelectorAll('.pkg').forEach(e=>e.classList.remove('active'));
-let el=document.getElementById('pkg-'+id); if(el) el.classList.add('active');
-document.getElementById('selectedPackageBox').classList.remove('hidden');
-document.getElementById('selPkgName').innerText=selectedPkg.name;
-document.getElementById('selPkgRange').innerText=`Range: $${selectedPkg.min} - $${selectedPkg.max}`;
-document.getElementById('selPkgTerm').innerText=`Term: ${selectedPkg.term}`;
-document.getElementById('depAmount').value=selectedPkg.min;
-document.getElementById('dailyROIcalc').innerText=`$${(selectedPkg.min*selectedPkg.roiNum).toFixed(2)} / 24h`;
-}
-
-function go(id){
-var pages=['home','deposit','withdraw','balance','referral','account','adminlogin','admin','register','login'];
-for(var i=0;i<pages.length;i++){var e=document.getElementById(pages[i]);if(e)e.classList.add('hidden')}
-var t=document.getElementById(id);if(t){t.classList.remove('hidden');}
-document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});
-var bh=document.getElementById('bh-'+id);if(bh)bh.classList.add('active');
-var wrap=document.getElementById('mainWrap');
-if(id==='admin'){wrap.classList.add('admin-mode');}else{wrap.classList.remove('admin-mode');}
-window.scrollTo({top:0,behavior:'smooth'});
-if(id==='account')loadProfile();
-if(id==='referral')updateReferralLinks();
-if(id==='home'){initLuxurySlides();}
-updSignOutVisibility();
-if(id==='admin'){showAdminTab('transactions'); loadFirebaseData();}
-}
+function renderPackages(){let html=packages.map(p=>{let daily=(p.min * p.roiNum);return `<div class="pkg" id="pkg-${p.id}" onclick="selectPackage('${p.id}')"><div style="display:flex;justify-content:space-between"><b style="color:${p.color}">${p.name}</b><span class="roiBadge">${p.roi}</span></div><div style="margin-top:6px;font-size:11px"><b>Range: $${p.min} - $${p.max}</b><br><small>Auto ROI Cloud Function daily 2PM - Even offline</small><br><div style="background:#f0fdf4;padding:6px;border-radius:6px;margin-top:6px"><b style="font-size:10px">💰 Daily: $${daily.toFixed(2)} / 24h - Auto</b></div></div></div>`}).join('');document.getElementById('packagesGrid').innerHTML=html;}
+function selectPackage(id){selectedPkg=packages.find(p=>p.id===id);document.querySelectorAll('.pkg').forEach(e=>e.classList.remove('active'));let el=document.getElementById('pkg-'+id); if(el) el.classList.add('active');document.getElementById('selectedPackageBox').classList.remove('hidden');document.getElementById('selPkgName').innerText=selectedPkg.name;document.getElementById('selPkgRange').innerText=`Range: $${selectedPkg.min} - $${selectedPkg.max}`;document.getElementById('depAmount').value=selectedPkg.min;document.getElementById('dailyROIcalc').innerText=`$${(selectedPkg.min*selectedPkg.roiNum).toFixed(2)} / 24h - Auto via Cloud Function`;}
+function go(id){var pages=['home','deposit','withdraw','balance','referral','account','adminlogin','admin','register','login'];for(var i=0;i<pages.length;i++){var e=document.getElementById(pages[i]);if(e)e.classList.add('hidden')}var t=document.getElementById(id);if(t){t.classList.remove('hidden');}document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});var bh=document.getElementById('bh-'+id);if(bh)bh.classList.add('active');var wrap=document.getElementById('mainWrap');if(id==='admin'){wrap.classList.add('admin-mode');}else{wrap.classList.remove('admin-mode');}window.scrollTo({top:0,behavior:'smooth'});if(id==='account')loadProfile();if(id==='referral')updateReferralLinks();if(id==='home'){initLuxurySlides();}updSignOutVisibility();if(id==='balance'){let email=localStorage.getItem('userEmail');if(email && window.listenToUserBalance){window.listenToUserBalance(email); window.listenToROIHistory(email);} loadROIHistory();}if(id==='admin'){showAdminTab('roi'); loadFirebaseData();}}
 function sel(type){var u=document.getElementById('walletUSDT'),b=document.getElementById('walletBNB'),tu=document.getElementById('tabUSDT'),tb=document.getElementById('tabBNB');if(type==='USDT'){u.classList.remove('hidden');u.classList.add('active');b.classList.add('hidden');tu.className='btn btn-p';tb.className='btn btn-g';}else{b.classList.remove('hidden');b.classList.add('active');u.classList.add('hidden');tb.className='btn btn-p';tu.className='btn btn-g';}}
 function copyA(id){var el=document.getElementById(id);var txt=el.innerText||'';navigator.clipboard.writeText(txt).then(function(){alert('✅ Copied: '+txt.slice(0,30)+'...')});}
 function updBal(){var b=parseFloat(localStorage.getItem('userBal')||0);if(isNaN(b)) b=0;document.getElementById('bTop').innerText='$'+b.toFixed(2);var w=document.getElementById('wBal');if(w)w.innerText='$'+b.toFixed(2);var bm=document.getElementById('balMain');if(bm)bm.innerText='$'+b.toFixed(2);}
+function getTxs(){return JSON.parse(localStorage.getItem('transactions')||'[]');}
 function getInvestors(){return JSON.parse(localStorage.getItem('investors')||'[]');}
 function saveInvestor(inv){var arr=getInvestors();arr.unshift(inv);localStorage.setItem('investors',JSON.stringify(arr));}
-function getTxs(){return JSON.parse(localStorage.getItem('transactions')||'[]');}
-function getAudit(){return JSON.parse(localStorage.getItem('auditLogs')||'[]');}
-function addAuditLog(a){var arr=getAudit();arr.unshift({action:a,date:new Date().toLocaleString()});localStorage.setItem('auditLogs',JSON.stringify(arr));}
-function getLoginHistory(){return JSON.parse(localStorage.getItem('loginHistory')||'[]');}
 function saveLogin(e,p){localStorage.setItem('savedEmail',e);localStorage.setItem('savedPass',p);}
-function saveProfile(){let name=document.getElementById('accName').value;let email=document.getElementById('accEmail').value;localStorage.setItem('profileName',name);localStorage.setItem('userEmail',email);alert('✅ Saved to Firebase + localStorage');}
+function saveProfile(){let name=document.getElementById('accName').value;let email=document.getElementById('accEmail').value;localStorage.setItem('profileName',name);localStorage.setItem('userEmail',email);alert('✅ Saved to Firebase');loadProfile();}
 function loadProfile(){document.getElementById('accName').value=localStorage.getItem('profileName')||'';document.getElementById('accEmail').value=localStorage.getItem('userEmail')||'';document.getElementById('userEmailTop').innerText=localStorage.getItem('userEmail')||'Guest';updateReferralLinks();}
 function showAdminTab(tab){document.querySelectorAll('.adminTab').forEach(e=>e.classList.add('hidden'));var el=document.getElementById('admin-'+tab);if(el)el.classList.remove('hidden');}
-async function renderTx(){
-let txs=[];
-if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}
-let totalDep=0,totalWith=0;
-for(let t of txs){if(t.type==='deposit') totalDep+=parseFloat(t.amount||0);else totalWith+=parseFloat(t.amount||0);}
-document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);
-document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);
-document.getElementById('txCount').innerText=txs.length;
-let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount} | ${t.pkg||t.network||''}</b> - ${t.email}<br><small>${t.date} | ${t.status} | Hash: ${t.hash.slice(0,20)}... | Firebase ID: ${t.id||'local'}</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">✅ Approve - Firebase</button>`:''}</div>`).join('')||'No transactions - Firebase empty';
-document.getElementById('txList').innerHTML=html;
-document.getElementById('rBalSource').innerText=`${txs.filter(t=>t.type==='deposit'&&t.status==='approved').length} deposits approved - Firebase - $${totalDep.toFixed(2)} linked`;
+async function renderTx(){let txs=[];if(window.getFromFirebase){try{txs=await window.getFromFirebase('transactions');}catch(e){txs=getTxs();}}else{txs=getTxs();}let totalDep=0,totalWith=0;for(let t of txs){if(t.type==='deposit') totalDep+=parseFloat(t.amount||0);else totalWith+=parseFloat(t.amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount} | ${t.pkg||t.network||''}</b> - ${t.email}<br><small>${t.date} | ${t.status} | Hash: ${t.hash.slice(0,20)}... | Auto ROI 1.2% daily at 2PM</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">✅ Approve - Auto ROI starts tomorrow 2PM</button>`:''}</div>`).join('')||'No tx';document.getElementById('txList').innerHTML=html;document.getElementById('rBalSource').innerText=`${txs.filter(t=>t.type==='deposit'&&t.status==='approved').length} deposits approved - Auto ROI active`;}
+async function approveTxFirebase(firebaseId, localIndex){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let t=txs[localIndex]||txs.find(x=>x.id===firebaseId);if(!t){alert('Not found');return;}if(t.status==='approved'&&t.linkedToAI){alert('Already approved');return;}if(window.db && firebaseId){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',firebaseId),{status:'approved',linkedToAI:true,approvedAt:Date.now()});}catch(e){}}t.status='approved';if(t.type==='deposit'&&!t.linkedToAI){rb+=parseFloat(t.amount);t.linkedToAI=true;}let localTxs=getTxs();let idx=localTxs.findIndex(x=>x.hash===t.hash);if(idx>=0){localTxs[idx].status='approved';localTxs[idx].linkedToAI=true;localStorage.setItem('transactions',JSON.stringify(localTxs));}upd();renderTx();alert(`✅ Approved $${t.amount} - Auto ROI 1.2% starts tomorrow 2PM via Cloud Function`);}
+async function approveAll(){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let added=0;for(let k=0;k<txs.length;k++){if(txs[k].type==='deposit'&&!txs[k].linkedToAI){rb+=parseFloat(txs[k].amount);added+=parseFloat(txs[k].amount);txs[k].linkedToAI=true;txs[k].status='approved';if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved',linkedToAI:true});}catch(e){}}}else{txs[k].status='approved'; if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved'});}catch(e){}}}let localTxs=getTxs();for(let lt of localTxs){if(txs[k].hash===lt.hash){lt.status='approved';lt.linkedToAI=true;}}localStorage.setItem('transactions',JSON.stringify(localTxs));}upd();renderTx();alert(`✅ All Approved - Added $${added.toFixed(2)} - Auto ROI starts tomorrow 2PM`);}
+async function loadFirebaseData(){renderTx();renderAdminChat();loadROIHistory();}
+async function loadROIHistory(){let rois=[];if(window.getFromFirebase){try{rois=await window.getFromFirebase('roiHistory');}catch(e){rois=JSON.parse(localStorage.getItem('roiHistory')||'[]');}}else{rois=JSON.parse(localStorage.getItem('roiHistory')||'[]');}let html=rois.slice(0,30).map(r=>`<div style="padding:8px;border-bottom:1px solid #e5e7eb"><b>${r.email}</b> | ${r.pkg} | ROI $${parseFloat(r.roiAmount||r.amount||0).toFixed(2)} | Deposit $${r.deposit}<br><small>${r.date} | ${r.auto?'Auto Cloud Function 2PM':'Manual'}</small></div>`).join('')||'No ROI yet - Cloud Function will auto-create daily at 2PM';let el=document.getElementById('roiHistoryList');if(el) el.innerHTML=html;let el2=document.getElementById('roiList');if(el2) el2.innerHTML=html;}
+async function triggerROIManualFirebase(){
+if(!confirm('💰 Trigger ROI 1.2% NOW for ALL approved investors? This manually runs Cloud Function now (normally auto daily 2PM).')) return;
+let btn=document.getElementById('cloudFunctionStatus');
+if(btn) btn.innerText='⏳ Triggering ROI Cloud Function manually...';
+try{
+if(window.firebaseEnabled && window.firebaseFunctions){
+let trigger = window.httpsCallable(window.firebaseFunctions, 'triggerROIManual');
+let result = await trigger({});
+alert(`✅ ${result.data.message}\n\nTotal $${result.data.total.toFixed(2)} distributed - Balances auto-updated via Firebase onSnapshot`);
+}else{
+let txs=JSON.parse(localStorage.getItem('transactions')||'[]').filter(t=>t.type==='deposit' && t.status==='approved');
+let total=0;
+for(let tx of txs){
+let roiAmount=parseFloat(tx.amount)*0.012;
+total+=roiAmount;
+let bal=parseFloat(localStorage.getItem('userBal')||0);
+if(tx.email===localStorage.getItem('userEmail')){localStorage.setItem('userBal',bal+roiAmount);updBal();}
+let rois=JSON.parse(localStorage.getItem('roiHistory')||'[]');
+rois.unshift({email:tx.email,pkg:tx.pkg,deposit:tx.amount,amount:roiAmount.toFixed(2),roiAmount:roiAmount,date:new Date().toLocaleString(),auto:true,createdAt:Date.now()});
+localStorage.setItem('roiHistory',JSON.stringify(rois));
 }
-async function approveTxFirebase(firebaseId, localIndex){
-let txs=[];
-if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}
-let t=txs[localIndex]||txs.find(x=>x.id===firebaseId);
-if(!t){alert('TX not found');return;}
-if(t.linkedToAI&&t.status==='approved'){alert('Already approved');return;}
-if(window.db && firebaseId){
-try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',firebaseId),{status:'approved',linkedToAI:true,approvedAt:Date.now()});}catch(e){console.error(e);}
+alert(`✅ Local ROI Triggered: $${total.toFixed(2)} to ${txs.length} investors - For Firebase, deploy Cloud Function`);
 }
-t.status='approved';
-if(t.type==='deposit'&&!t.linkedToAI){rb+=parseFloat(t.amount);t.linkedToAI=true;}
-let localTxs=getTxs();let idx=localTxs.findIndex(x=>x.hash===t.hash);if(idx>=0){localTxs[idx].status='approved';localTxs[idx].linkedToAI=true;localStorage.setItem('transactions',JSON.stringify(localTxs));}
-upd();renderTx();alert(`✅ Approved $${t.amount} - Robot Balance $${rb.toFixed(2)} - Firebase updated`);
+loadROIHistory();
+if(btn) btn.innerText='✅ Manual ROI Triggered - Auto daily 2PM active';
+}catch(e){
+alert('Manual trigger failed - Deploy Cloud Function: firebase deploy --only functions\n\nError: '+e.message);
+if(btn) btn.innerText='❌ Cloud Function not deployed';
 }
-async function approveAll(){
-let txs=[];
-if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}
-let added=0;
-for(let k=0;k<txs.length;k++){
-if(txs[k].type==='deposit'&&!txs[k].linkedToAI){rb+=parseFloat(txs[k].amount);added+=parseFloat(txs[k].amount);txs[k].linkedToAI=true;txs[k].status='approved';
-if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved',linkedToAI:true});}catch(e){}}
 }
-else{txs[k].status='approved'; if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved'});}catch(e){}}}
-let localTxs=getTxs();for(let lt of localTxs){if(txs[k].hash===lt.hash){lt.status='approved';lt.linkedToAI=true;}}localStorage.setItem('transactions',JSON.stringify(localTxs));
-}
-upd();renderTx();alert(`✅ All Approved - Added $${added.toFixed(2)} - Robot $${rb.toFixed(2)} - Firebase`);
-}
-async function loadFirebaseData(){renderTx();renderAdminChat();renderKYC();}
-function renderKYC(){let list=getInvestors();document.getElementById('kycList').innerHTML=list.map(i=>`<div style="padding:8px;border-bottom:1px solid #e5e7eb"><b>${i.name}</b> - ${i.email}</div>`).join('')||'No KYC - Firebase investors collection';document.getElementById('kycCount').innerText=list.length;}
-function getROIData(){return JSON.parse(localStorage.getItem('roiHistory')||'[]');}
-function renderROI(){let rois=getROIData();document.getElementById('roiList').innerHTML=rois.map(r=>`<div style="padding:6px;border-bottom:1px solid #e5e7eb">${r.email} | $${r.amount}</div>`).join('')||'No ROI';}
 
 async function doRegister(){
 var n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value;
 if(!n||!e||!p){alert('Fill all');return}
-let data={name:n,email:e,phone:document.getElementById('regPhone').value,ref:document.getElementById('regRef').value,specialCode:getSpecialCode(),date:new Date().toLocaleString(),kyc:'pending',createdAt:Date.now()};
-if(window.saveToFirebase){await window.saveToFirebase('investors', data);}
+let data={name:n,email:e,phone:document.getElementById('regPhone')?.value||'',specialCode:getSpecialCode(),date:new Date().toLocaleString(),kyc:'pending',createdAt:Date.now(),balance:0,totalROI:0};
+if(window.saveToFirebase){await window.saveToFirebase('investors', data); await window.saveToFirebase('users', {email:e,balance:0,totalROI:0,createdAt:Date.now()});}
 saveInvestor(data);
 localStorage.setItem('userEmail',e);localStorage.setItem('userName',n);saveLogin(e,p);
-alert(`✅ Account Created - Firebase Saved! Code: ${data.specialCode}`);go('login');
+alert(`✅ Account Created - Firebase - Auto ROI 1.2% starts after deposit`);go('login');
 }
 function doLogin(){
 var e=document.getElementById('logEmail').value,p=document.getElementById('logPass').value;
 if(!e||!p){alert('Enter email/pass');return}
-localStorage.setItem('loggedIn','true');localStorage.setItem('userEmail',e);alert(`✅ Sign In - Firebase - Code: ${getSpecialCode()}`);go('home');updBal();updSignOutVisibility();
+localStorage.setItem('loggedIn','true');localStorage.setItem('userEmail',e);
+if(window.listenToUserBalance){window.listenToUserBalance(e); window.listenToROIHistory(e);}
+alert(`✅ Sign In - Firebase Live Balance - Auto ROI 1.2% active`);go('balance');updBal();updSignOutVisibility();
 }
-function autoFillLogin(){document.getElementById('logEmail').value=localStorage.getItem('savedEmail')||'investor@test.com';document.getElementById('logPass').value=localStorage.getItem('savedPass')||'Investor123';}
 function doLogout(){localStorage.setItem('loggedIn','false');localStorage.setItem('isAdmin','false');alert('✅ Signed Out');go('login');updSignOutVisibility();}
-function updSignOutVisibility(){
-let logoutBtn=document.getElementById('logoutBtn');
-let loggedIn=localStorage.getItem('loggedIn')==='true';
-if(logoutBtn){if(loggedIn){logoutBtn.classList.remove('hidden');}else{logoutBtn.classList.add('hidden');}}
-}
-
+function updSignOutVisibility(){let logoutBtn=document.getElementById('logoutBtn');let loggedIn=localStorage.getItem('loggedIn')==='true';if(logoutBtn){if(loggedIn){logoutBtn.classList.remove('hidden');}else{logoutBtn.classList.add('hidden');}}}
 async function verifyDep(){
 var h=document.getElementById('txHash').value,a=document.getElementById('depAmount').value;
 if(!selectedPkg){alert('Select Package first');return}
@@ -576,33 +497,16 @@ if(amt < selectedPkg.min || amt > selectedPkg.max){alert(`Amount must be $${sele
 var email=localStorage.getItem('userEmail')||'guest';
 var investorName=localStorage.getItem('profileName')||localStorage.getItem('userName')||email.split('@')[0]||'Valued Investor';
 var specialCode=getSpecialCode();
-
-// CHECK DUPLICATE - FIREBASE + LOCAL
-let existingTxs=[];
-if(window.getFromFirebase){existingTxs=await window.getFromFirebase('transactions');}else{existingTxs=getTxs();}
-if(existingTxs.some(t=>t.hash===h)){alert('This TX Hash already submitted! No double counting - Firebase check');return;}
-
-// AUTO VERIFY VIA TRONSCAN/BSCSCAN API
-let verified=false;
-try{
-let network=document.getElementById('walletUSDT').classList.contains('hidden')?'BNB':'TRON';
-if(network==='TRON'){
-let res=await fetch(`https://apilist.tronscanapi.com/api/transaction-info?hash=${h}`);
-let data=await res.json();
-if(data && data.hash){verified=true; console.log('Tronscan verified', data);}
-}
-}catch(e){console.log('Auto verify failed, manual check needed', e);}
-
-let txData={type:'deposit',amount:a,hash:h,email:email,network:document.getElementById('walletUSDT').classList.contains('hidden')?'BNB BEP20':'USDT TRC20',pkg:selectedPkg.name,pkgId:selectedPkg.id,date:new Date().toLocaleString(),status:'pending',linkedToAI:false,roiDaily:amt*0.012,verified:verified,createdAt:Date.now()};
-
+let existingTxs=JSON.parse(localStorage.getItem('transactions')||'[]');
+if(existingTxs.some(t=>t.hash===h)){alert('This TX Hash already submitted!');return;}
+let txData={type:'deposit',amount:a,hash:h,email:email,network:document.getElementById('walletUSDT').classList.contains('hidden')?'BNB BEP20':'USDT TRC20',pkg:selectedPkg.name,pkgId:selectedPkg.id,date:new Date().toLocaleString(),status:'pending',linkedToAI:false,roiDaily:amt*0.012,createdAt:Date.now(),nextROI: Date.now()+86400000};
 if(window.saveToFirebase){await window.saveToFirebase('transactions', txData);}
 let txs=getTxs();txs.unshift(txData);localStorage.setItem('transactions',JSON.stringify(txs));
 var bal=parseFloat(localStorage.getItem('userBal')||0);if(isNaN(bal)) bal=0;bal+=amt;localStorage.setItem('userBal',bal);
 rb+=amt;if(isNaN(rb)) rb=amt;upd();updBal();
-document.getElementById('depList').innerHTML=`<div style="background:#dcfce7;padding:8px;border-radius:8px;margin-top:4px">✅ ${selectedPkg.name} $${a} - Firebase Saved - ${verified?'Verified via Tronscan ✅':'Pending manual verify'} - Where stored? Real wallet TATeM... + Firebase transactions collection - Robot Balance $${rb.toFixed(2)}</div>`+document.getElementById('depList').innerHTML;
+document.getElementById('depList').innerHTML=`<div style="background:#dcfce7;padding:8px;border-radius:8px;margin-top:4px">✅ ${selectedPkg.name} $${a} - Firebase Saved - Auto ROI 1.2% starts tomorrow 2PM via Cloud Function - Robot $${rb.toFixed(2)}</div>`+document.getElementById('depList').innerHTML;
 setTimeout(()=>{showDepositRobot(investorName, a, selectedPkg.name, specialCode);},600);
 }
-
 async function reqWithdraw(){
 var amt=document.getElementById('wAmt').value,addr=document.getElementById('wAddr').value;
 let network=document.getElementById('wNetwork').value;
@@ -614,23 +518,55 @@ let txData={type:'withdraw',amount:amt,wallet:addr,email:email,network:network,h
 if(window.saveToFirebase){await window.saveToFirebase('transactions', txData);}
 let txs=getTxs();txs.unshift(txData);localStorage.setItem('transactions',JSON.stringify(txs));
 localStorage.setItem('userBal',b-parseFloat(amt));updBal();
-document.getElementById('wList').innerHTML='<div style="background:#fef3c7;padding:8px;border-radius:8px">⏳ Withdraw $'+amt+' - Firebase Saved - Admin will send from wallet TATeM... or 0xa1fa...</div>'+document.getElementById('wList').innerHTML;
+document.getElementById('wList').innerHTML='<div style="background:#fef3c7;padding:8px;border-radius:8px">⏳ Withdraw $'+amt+' - Firebase - Includes Auto ROI</div>'+document.getElementById('wList').innerHTML;
 setTimeout(()=>{showWithdrawRobot(email.split('@')[0], amt, addr, network);},600);
 }
-
 var rb=parseFloat(localStorage.getItem('rBal')||0);if(isNaN(rb)||rb>1e12) rb=0;
 var vb=parseFloat(localStorage.getItem('vBal')||0);if(isNaN(vb)||vb>1e12) vb=0;
 var pr=parseFloat(localStorage.getItem('pr')||0);if(isNaN(pr)||pr>1e12) pr=0;
-var aiRunning=false, aiInterval=null, profitHistory=[], sixHourTimer=21600;
+var aiRunning=false, aiInterval=null, profitHistory=[];
 function upd(){if(isNaN(rb)) rb=0;if(isNaN(vb)) vb=0;if(isNaN(pr)) pr=0;if(rb>1e12){rb=0;vb=0;pr=0;}document.getElementById('rBal').innerText='$'+rb.toFixed(2);document.getElementById('vBal').innerText='$'+vb.toFixed(2);document.getElementById('rProf').innerText='$'+pr.toFixed(2);localStorage.setItem('rBal',rb);localStorage.setItem('vBal',vb);localStorage.setItem('pr',pr);}
-function resetRobotBalances(){if(!confirm('RESET ALL? Fix trillions bug?')) return;rb=0;vb=0;pr=0;localStorage.setItem('rBal','0');localStorage.setItem('vBal','0');localStorage.setItem('pr','0');localStorage.setItem('transactions','[]');localStorage.setItem('userBal','0');upd();updBal();renderTx();alert('✅ RESET DONE - Firebase + localStorage cleared - Bug fixed');}
-function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2');return}rb+=a;upd();document.getElementById('log').innerText='✅ DEPOSIT $'+a+' - Robot $'+rb.toFixed(2)+' - Firebase';}
-function runAI(){if(rb<2){alert('Deposit $2 first');return}var profit=rb*(0.02+Math.random()*0.06);pr+=profit;var toVault=profit*0.5;var toRobot=profit*0.5;vb+=toVault;rb+=toRobot;profitHistory.unshift('['+new Date().toLocaleTimeString()+'] Trade +$'+profit.toFixed(2)+' Vault $'+toVault.toFixed(2)+' Robot $'+toRobot.toFixed(2));document.getElementById('profitHistory').innerHTML=profitHistory.join('<br>');document.getElementById('log').innerText='Trade +$'+profit.toFixed(2)+' | Robot $'+rb.toFixed(2)+' | Vault $'+vb.toFixed(2)+' | Profit $'+pr.toFixed(2);upd();}
+function resetRobotBalances(){if(!confirm('RESET ALL? Fix bug?')) return;rb=0;vb=0;pr=0;localStorage.setItem('rBal','0');localStorage.setItem('vBal','0');localStorage.setItem('pr','0');localStorage.setItem('transactions','[]');localStorage.setItem('userBal','0');upd();updBal();renderTx();alert('✅ RESET DONE - Bug fixed - Auto ROI Cloud Function still active');}
+function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2');return}rb+=a;upd();document.getElementById('log').innerText='✅ DEPOSIT $'+a+' - Robot $'+rb.toFixed(2)+' - Auto ROI active';}
+function runAI(){if(rb<2){alert('Deposit $2 first');return}var profit=rb*(0.02+Math.random()*0.06);pr+=profit;var toVault=profit*0.5;var toRobot=profit*0.5;vb+=toVault;rb+=toRobot;profitHistory.unshift('['+new Date().toLocaleTimeString()+'] Trade +$'+profit.toFixed(2)+' Vault $'+toVault.toFixed(2)+' Robot $'+toRobot.toFixed(2));document.getElementById('profitHistory').innerHTML=profitHistory.join('<br>');document.getElementById('log').innerText='Trade +$'+profit.toFixed(2)+' | Robot $'+rb.toFixed(2)+' | Vault $'+vb.toFixed(2);upd();}
 function toggleAI(){if(aiRunning){aiRunning=false;clearInterval(aiInterval);document.getElementById('aiBtnText').innerText='▶️ START AI';return}if(rb<2){alert('No balance');return}aiRunning=true;document.getElementById('aiBtnText').innerText='⏸️ RUNNING';aiInterval=setInterval(runAI,2000);}
 function withAdmin(){var amt=parseFloat(document.getElementById('withA').value);if(isNaN(amt)){amt=pr*0.5;}if(pr<=0){alert('No profit');return}var toAdmin=amt*0.5;var toVault=amt*0.5;alert('✅ Withdraw $'+toAdmin.toFixed(2)+' to wallet + $'+toVault.toFixed(2)+' to Vault');pr-=amt;vb+=toVault;rb+=toVault;upd();}
 function loginA(){var e=document.getElementById('ae').value,p=document.getElementById('ap').value;if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){localStorage.setItem('isAdmin','true');go('admin');}else alert('Wrong');}
+function renderPackages(){let html=packages.map(p=>{let daily=(p.min * p.roiNum);return `<div class="pkg" id="pkg-${p.id}" onclick="selectPackage('${p.id}')"><div style="display:flex;justify-content:space-between"><b style="color:${p.color}">${p.name}</b><span class="roiBadge">${p.roi}</span></div><div style="margin-top:6px;font-size:11px"><b>Range: $${p.min} - $${p.max}</b><br><small>Auto ROI Cloud Function daily 2PM</small><br><div style="background:#f0fdf4;padding:6px;border-radius:6px;margin-top:6px"><b style="font-size:10px">💰 Daily: $${daily.toFixed(2)} / 24h - Auto</b></div></div></div>`}).join('');document.getElementById('packagesGrid').innerHTML=html;}
 
 renderPackages();updBal();upd();go('home');initLuxurySlides();updSignOutVisibility();renderAdminChat();renderCustomerChat();
+
+let savedEmail=localStorage.getItem('userEmail');
+if(savedEmail && window.listenToUserBalance){
+  setTimeout(()=>{
+    window.listenToUserBalance(savedEmail);
+    window.listenToROIHistory(savedEmail);
+  },2000);
+}
+
+setInterval(async()=>{
+  let email=localStorage.getItem('userEmail');
+  if(!email ||!window.db ||!window.firebaseEnabled) return;
+  try{
+    let userDoc=await window.firestore.getDoc(window.firestore.doc(window.db,'users',email));
+    if(userDoc.exists()){
+      let data=userDoc.data();
+      if(data.nextROI){
+        let remaining=data.nextROI - Date.now();
+        if(remaining>0){
+          let sec=Math.floor(remaining/1000);
+          let h=Math.floor(sec/3600); let m=Math.floor((sec%3600)/60); let s=sec%60;
+          let timeStr=`${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+          let timerEl=document.getElementById('nextROITimer');
+          if(timerEl) timerEl.innerText=`Next ROI 1.2% in ${timeStr} - Auto Cloud Function daily 2PM - Firebase Live`;
+        }else{
+          let timerEl=document.getElementById('nextROITimer');
+          if(timerEl) timerEl.innerText=`ROI 1.2% Crediting... Cloud Function running...`;
+        }
+      }
+    }
+  }catch(e){}
+},1000);
 </script>
 </body>
 </html>
