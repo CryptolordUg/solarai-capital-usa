@@ -29,7 +29,11 @@ input,select{width:100%;padding:12px;border-radius:10px;border:1.5px solid #e5e7
 .copy{background:#f59e0b;color:#fff;border:none;padding:7px 12px;border-radius:8px;font-weight:800;cursor:pointer;font-size:11px}
 .live{width:10px;height:10px;background:#22c55e;border-radius:50%;display:inline-block;animation:bl 1s infinite}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.4}}
-footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border-top:4px solid #7c3aed;font-size:11px}
+footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px solid #7c3aed;font-size:11px}
+.footer-grid{max-width:1600px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:24px}
+@media(max-width:1000px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+.footer-bottom{border-top:1px solid #1e293b;padding:16px 20px;text-align:center;font-size:10px;color:#64748b;max-width:1600px;margin:0 auto}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
 .pkg{border:2px solid #e9d5ff;border-radius:14px;padding:14px;background:#fff;cursor:pointer}
@@ -119,7 +123,7 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <span class="crypto-item">🔶 BNB <span class="crypto-price" id="price-bnb">$0</span> <span id="change-bnb"></span></span>
 <span class="crypto-item">◎ SOL <span class="crypto-price" id="price-sol">$0</span> <span id="change-sol"></span></span>
 <span class="crypto-item">💰 ROBOT <span class="crypto-price" id="ticker-robot">$2.00</span> | PROFIT <span style="color:#22c55e" id="ticker-profit">$0.00</span> | <span id="ticker-trades">0</span> trades</span>
-<span class="crypto-item">⏰ Withdrawal: <span id="ticker-withdrawal">04:00:00</span></span>
+<span class="crypto-item">⏰ <span id="ticker-withdrawal">04:00:00</span></span>
 </div>
 </div>
 
@@ -144,8 +148,6 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <div id="adminlogin" class="hidden"><div class="card"><h2>🔐 Admin Login 🇺🇸</h2><input id="ae" value="admin@solarcapital.com" style="margin-top:10px"><input id="ap" type="password" value="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login Admin</button></div></div>
 
 <div id="admin" class="hidden">
-
-<!-- UNIT 1: AI REAL-TIME AUTOMATED FOREX TRADING -->
 <div class="card">
 <h2>Unit 1: AI Real-Time Automated Forex Trading, 24 Hours (On and Off Line) <span class="live"></span></h2>
 <div class="grid3" style="margin-top:12px">
@@ -163,11 +165,10 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <div id="profitHistory" style="font-size:9px;font-family:monospace;color:#6b7280;max-height:120px;overflow-y:auto;background:#f9fafb;padding:8px;border-radius:8px;margin-top:8px">Waiting trades...</div>
 </div>
 <div class="box">
-<!-- RESTORED TIME COUNTDOWN -->
 <div class="countdown-box">
-<small style="font-size:10px">WITHDRAWAL COUNTDOWN - RESTORED</small><br>
+<small style="font-size:10px">WITHDRAWAL COUNTDOWN</small><br>
 <div class="countdown-time" id="adminWithdrawalCountdown">04:00:00</div>
-<small style="font-size:9px">Time until real profit withdrawable</small>
+<small style="font-size:9px">Time until profit withdrawable</small>
 <div style="margin-top:8px;background:#1f2937;border-radius:20px;height:8px;overflow:hidden"><div id="twoHoursBar" style="background:#22c55e;height:100%;width:0%"></div></div>
 <small style="font-size:9px"><span id="twoHoursText">0 / 120 trades (4h)</span></small>
 </div>
@@ -175,24 +176,21 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <input id="adminWithdrawWallet" placeholder="USDT TRC20 Wallet" style="padding:8px;font-size:11px;margin-top:4px">
 <select id="adminWithdrawNetwork" style="padding:8px;font-size:11px;margin-top:4px"><option>USDT TRC20</option><option>BNB BEP20</option></select>
 <button class="btn btn-p" style="padding:8px;margin-top:6px" onclick="adminWithdrawRealProfit()">💸 Withdraw</button>
-<div style="font-size:10px;color:#6b7280;margin-top:8px">Robot: <b id="expectedRobot">$2.00</b> | Profit: <b id="expectedProfit">$0.00</b> | Vault: <b id="expectedVault">$0.00</b></div>
 </div>
 </div>
 </div>
 
-<!-- UNIT 2: FIVE PILLARS -->
 <div class="card">
 <h2>Unit 2: System Monitoring - Five Core Operational Pillars</h2>
 <div class="pillar"><h4>1. Financial Solvency & Asset Liquidity <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Hot & Cold Wallet Reserves</span><span class="metric-ok">78% Cold / 22% Hot - OK</span></div><div class="pillar-metric"><span>Liquidity & Market Making</span><span class="metric-ok">Depth $12.4k - Slippage 0.3%</span></div><div class="pillar-metric"><span>Yield & Staking Obligations</span><span class="metric-ok">Incoming $1.2k / Payout $0.9k - Sustainable</span></div><div class="pillar-metric"><span>Proof of Reserves (PoR)</span><span class="metric-ok">On-chain $8.4k / Liabilities $6.1k - Solvent</span></div></div></div>
-<div class="pillar"><h4>2. Security & Risk Prevention <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Transaction Monitoring</span><span class="metric-ok">No spikes - Largest $500</span></div><div class="pillar-metric"><span>Node & Smart Contract Health</span><span class="metric-ok">Gas 12 Gwei - Synced</span></div><div class="pillar-metric"><span>Fraud & Multi-Accounting Detection</span><span class="metric-ok">0 Sybil</span></div><div class="pillar-metric"><span>API Rate Limiting & Penetration</span><span class="metric-ok">1.2k req/min - No DDoS</span></div></div></div>
-<div class="pillar"><h4>3. Compliance & Regulatory Oversight <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>KYC/AML Status</span><span class="metric-ok">94% pass rate - 2 flagged</span></div><div class="pillar-metric"><span>Sanctioned Address Screening</span><span class="metric-ok">0 sanctioned - OK</span></div><div class="pillar-metric"><span>Tax & Audit Readiness</span><span class="metric-ok">Volume $12k - Fees $180 - Audit ready</span></div></div></div>
-<div class="pillar"><h4>4. User Acquisition & Platform Economics <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Net Inflows vs Outflows - TVL</span><span class="metric-ok">TVL $6.1k - Net +$1.2k</span></div><div class="pillar-metric"><span>Trader Activity & Retention</span><span class="metric-ok">DAU 12 / MAU 45 - Avg $250</span></div><div class="pillar-metric"><span>Fee Revenue Stream</span><span class="metric-ok">$180 today - $2.1k MTD</span></div><div class="pillar-metric"><span>Affiliate & Incentive ROI</span><span class="metric-ok">CAC $15 - LTV $420 - 28x</span></div></div></div>
-<div class="pillar"><h4>5. System Architecture & Technical Uptime <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Order Engine Performance</span><span class="metric-ok">Latency 45ms - Match 12ms</span></div><div class="pillar-metric"><span>Third-Party API Health</span><span class="metric-ok">CoinGecko OK - Binance OK - 99.9%</span></div><div class="pillar-metric"><span>Customer Support Resolution</span><span class="metric-ok">Avg 2.3h - 0 pending withdrawals</span></div></div></div>
+<div class="pillar"><h4>2. Security & Risk Prevention <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Transaction Monitoring</span><span class="metric-ok">No spikes</span></div><div class="pillar-metric"><span>Node & Smart Contract Health</span><span class="metric-ok">Gas 12 Gwei - Synced</span></div><div class="pillar-metric"><span>Fraud & Multi-Accounting Detection</span><span class="metric-ok">0 Sybil</span></div><div class="pillar-metric"><span>API Rate Limiting & Penetration</span><span class="metric-ok">1.2k req/min - No DDoS</span></div></div></div>
+<div class="pillar"><h4>3. Compliance & Regulatory Oversight <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>KYC/AML Status</span><span class="metric-ok">94% pass - 2 flagged</span></div><div class="pillar-metric"><span>Sanctioned Address Screening</span><span class="metric-ok">0 sanctioned</span></div><div class="pillar-metric"><span>Tax & Audit Readiness</span><span class="metric-ok">Volume $12k - Fees $180</span></div></div></div>
+<div class="pillar"><h4>4. User Acquisition & Platform Economics <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Net Inflows vs Outflows - TVL</span><span class="metric-ok">TVL $6.1k - Net +$1.2k</span></div><div class="pillar-metric"><span>Trader Activity & Retention</span><span class="metric-ok">DAU 12 / MAU 45</span></div><div class="pillar-metric"><span>Fee Revenue Stream</span><span class="metric-ok">$180 today - $2.1k MTD</span></div><div class="pillar-metric"><span>Affiliate & Incentive ROI</span><span class="metric-ok">CAC $15 - LTV $420 - 28x</span></div></div></div>
+<div class="pillar"><h4>5. System Architecture & Technical Uptime <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Order Engine Performance</span><span class="metric-ok">Latency 45ms - Match 12ms</span></div><div class="pillar-metric"><span>Third-Party API Health</span><span class="metric-ok">CoinGecko OK - Binance OK - 99.9%</span></div><div class="pillar-metric"><span>Customer Support Resolution</span><span class="metric-ok">Avg 2.3h - 0 pending</span></div></div></div>
 </div>
 
-<!-- UNIT 3: INVESTORS DATABASE - 360-DEGREE VIEW -->
 <div class="card">
-<h2>Unit 3: Investors Database - 360° View - Support, Troubleshooting, Compliance</h2>
+<h2>Unit 3: Investors Database - 360° View</h2>
 <div style="display:grid;grid-template-columns:1.2fr 1.8fr;gap:16px;margin-top:12px">
 <div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
@@ -211,10 +209,9 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <div id="admin-investors" class="adminTab" style="margin-top:10px">
 <div style="background:#0f172a;color:#fff;padding:10px;border-radius:10px">
 <b style="font-size:11px">360° Investor Profile - Selected: <span id="selectedInvestorName">None</span></b><br>
-<small style="font-size:9px">Click investor below to view full details</small>
+<small style="font-size:9px">Click investor to view full details</small>
 </div>
 
-<!-- Identity & Contact Information -->
 <div class="inv-detail">
 <h5>👤 Identity & Contact Information</h5>
 <p><b>Full Name / Company:</b> <span id="inv-fullName">-</span></p>
@@ -224,51 +221,45 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <p><b>Banking / Funding:</b> <span id="inv-bank">USDT TRC20: <span id="inv-wallet">-</span></span></p>
 </div>
 
-<!-- Financial Balances & Portfolio -->
 <div class="inv-detail">
 <h5>💰 Financial Balances & Portfolio</h5>
-<p><b>Available Funds:</b> <span id="inv-available">$0.00</span> | <b>Total Invested:</b> <span id="inv-invested">$0.00</span> | <b>Pending:</b> <span id="inv-pending">$0.00</span></p>
-<p><b>Portfolio Value:</b> <span id="inv-portfolio">$0.00</span> | <b>Asset Allocation:</b> <span id="inv-allocation">Eco 0%, Growth 0%</span></p>
-<p><b>Performance:</b> <span id="inv-performance">+0% - Historical</span></p>
+<p><b>Available Funds:</b> <span id="inv-available">$0.00</span> | <b>Total Invested:</b> <span id="inv-invested">$0.00</span></p>
+<p><b>Portfolio Value:</b> <span id="inv-portfolio">$0.00</span> | <b>Asset Allocation:</b> <span id="inv-allocation">-</span></p>
+<p><b>Performance:</b> <span id="inv-performance">-</span></p>
 <p><b>Campaigns / Subscriptions:</b> <span id="inv-campaigns">-</span></p>
 </div>
 
-<!-- KYC, AML & Compliance Status -->
 <div class="inv-detail">
 <h5>🛡️ KYC, AML & Compliance Status</h5>
 <p><b>KYC Progress:</b> <span id="inv-kyc-status" style="color:#f59e0b">Pending</span> | <b>AML:</b> <span id="inv-aml">Clear</span></p>
-<p><b>Documents:</b> <span id="inv-docs">ID, Proof of Address - <a href="#" style="color:#7c3aed">View</a></span></p>
+<p><b>Documents:</b> <span id="inv-docs">ID, Proof of Address - View</span></p>
 <p><b>Tax Forms:</b> <span id="inv-tax-forms">W-8BEN Pending</span></p>
 <p><b>Risk Score:</b> <span id="inv-risk" style="color:#22c55e">Low (12/100)</span> | <b>Flags:</b> <span id="inv-flags">None</span></p>
 </div>
 
-<!-- Transaction & Activity History -->
 <div class="inv-detail">
 <h5>📜 Transaction & Activity History</h5>
-<p><b>Audit Trail:</b> Exportable - Pay-ins, Payouts, Investments</p>
 <div id="inv-tx-history" style="max-height:100px;overflow-y:auto;background:#f9fafb;padding:6px;border-radius:6px;margin-top:4px;font-size:9px">No transactions yet</div>
-<p style="margin-top:4px"><b>Fees / Taxes:</b> <span id="inv-fees">$0 fees, $0 tax</span> | <b>Distributions:</b> <span id="inv-dist">None</span></p>
-<p><b>Login History:</b> <span id="inv-login">Last: Today - Delaware, USA IP</span></p>
+<p style="margin-top:4px"><b>Fees / Taxes:</b> <span id="inv-fees">$0 fees</span> | <b>Distributions:</b> <span id="inv-dist">None</span></p>
+<p><b>Login History:</b> <span id="inv-login">Last: Today - Delaware, USA</span></p>
 <p><b>Data Room / Docs:</b> <span id="inv-docs-access">0 downloads</span></p>
 </div>
 
-<!-- Security & Account Management -->
 <div class="inv-detail">
 <h5>🔐 Security & Account Management</h5>
-<p><b>MFA/2FA:</b> <span id="inv-mfa" style="color:#ef4444">Disabled - Prompt user</span> | <b>Password:</b> <span id="inv-pwd">Last changed 2 days ago</span></p>
-<p><b>Active Sessions:</b> <span id="inv-sessions">1 active - Chrome / Windows - Delaware, USA</span></p>
+<p><b>MFA/2FA:</b> <span id="inv-mfa" style="color:#ef4444">Disabled</span> | <b>Password:</b> <span id="inv-pwd">Last changed 2 days ago</span></p>
+<p><b>Active Sessions:</b> <span id="inv-sessions">1 active - Chrome / Windows</span></p>
 <p><b>IP History:</b> <span id="inv-ip">192.168.x.x - 3 unique IPs</span></p>
-<p><b>Device Logs:</b> <span id="inv-device">Desktop + Mobile - No fraud</span></p>
+<p><b>Device Logs:</b> <span id="inv-device">Desktop + Mobile</span></p>
 <p><b>Permissions / Role:</b> <span id="inv-role">Investor - Standard</span> | <button class="btn btn-d" style="padding:4px;font-size:9px;display:inline;width:auto;margin:0" onclick="freezeAccount()">Freeze Account</button></p>
 </div>
 
-<!-- Support & Communication Logs -->
 <div class="inv-detail">
 <h5>💬 Support & Communication Logs</h5>
-<p><b>Tickets:</b> <span id="inv-tickets">0 open - 2 resolved</span> | <b>Status:</b> <span id="inv-ticket-status">All resolved</span></p>
-<div id="inv-support-logs" style="max-height:80px;overflow-y:auto;background:#f9fafb;padding:6px;border-radius:6px;margin-top:4px;font-size:9px">No support tickets yet</div>
-<p style="margin-top:4px"><b>Automated Emails:</b> <span id="inv-emails">Funding call sent 2 days ago, Offering update sent yesterday</span></p>
-<p><b>Internal Notes:</b> <span id="inv-notes">No notes - Previous care: No repeat needed</span></p>
+<p><b>Tickets:</b> <span id="inv-tickets">0 open - 2 resolved</span></p>
+<div id="inv-support-logs" style="max-height:80px;overflow-y:auto;background:#f9fafb;padding:6px;border-radius:6px;margin-top:4px;font-size:9px">No tickets</div>
+<p style="margin-top:4px"><b>Automated Emails:</b> <span id="inv-emails">Funding call 2 days ago</span></p>
+<p><b>Internal Notes:</b> <span id="inv-notes">No notes</span></p>
 </div>
 
 </div>
@@ -280,7 +271,7 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 </div>
 
 <div id="admin-compliance" class="adminTab hidden" style="margin-top:10px">
-<b>🛡️ Compliance Dashboard - KYC/AML/Sanctions</b>
+<b>🛡️ Compliance Dashboard</b>
 <div id="complianceList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px;margin-top:8px"></div>
 </div>
 
@@ -297,37 +288,7 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <div class="box"><small>Total TVL</small><b id="totalTVL">$0</b></div>
 </div>
 <div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:200px;overflow-y:auto;margin-top:8px"></div>
-<div id="investorListFull" style="font-size:11px;max-height:500px;overflow-y:auto;margin-top:8px"></div>
-
-<div style="margin-top:12px" class="box">
-<b style="font-size:11px">System Health - Five Pillars</b>
-<div style="font-size:10px;margin-top:6px;line-height:1.8">
-<b>Financial Solvency</b><br>
-- Wallet: 22% Hot Safe<br>
-- Liquidity: $12.4k Healthy<br>
-- PoR: $8.4k verified<br><br>
-<b>Security</b><br>
-- Tx: No spikes<br>
-- Fraud: 0 Sybil<br><br>
-<b>Compliance</b><br>
-- KYC: 94% pass<br>
-- Sanctions: 0 hits<br><br>
-<b>Economics</b><br>
-- TVL: +$1.2k net<br>
-- Fees: $180 today<br>
-- ROI: 28x<br><br>
-<b>Uptime</b><br>
-- Latency: 45ms<br>
-- APIs: 99.9%
-</div>
-<div style="margin-top:8px">
-<div style="display:flex;justify-content:space-between;font-size:10px"><span>Robot</span><b id="systemRobot">$2.00</b></div>
-<div style="display:flex;justify-content:space-between;font-size:10px"><span>Profit</span><b id="systemProfit" style="color:#22c55e">$0.00</b></div>
-<div style="display:flex;justify-content:space-between;font-size:10px"><span>Vault</span><b id="systemVault">$0.00</b></div>
-<div style="display:flex;justify-content:space-between;font-size:10px"><span>Trades</span><b id="systemTrades">0</b></div>
-<div style="display:flex;justify-content:space-between;font-size:10px"><span>Withdrawal</span><b id="systemWithdrawal">04:00:00</b></div>
-</div>
-</div>
+<div id="investorListFull" style="font-size:11px;max-height:700px;overflow-y:auto;margin-top:8px"></div>
 </div>
 </div>
 </div>
@@ -335,10 +296,78 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 </div>
 
 </div>
-<div id="sidePanel"><div class="card" style="padding:0;overflow:hidden;border:2px solid #e9d5ff"><div style="padding:14px 16px 8px"><h3 style="color:#7c3aed">☀️ Solar Projects 🇺🇸</h3></div><div class="slidesWrap" id="slidesWrap"><div class="slide active"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop"><div class="slideContent"><b>🏠 American Household - $100 🇺🇸</b><small>Daily profit 1.2% auto</small></div></div></div><div class="dots" id="dots"></div><div style="padding:12px"><div style="margin-top:10px"><b style="font-size:11px">🔗 Your Invite Code 🇺🇸</b><div style="background:#fff;border:2px dashed #22c55e;padding:8px;border-radius:10px;margin-top:4px;text-align:center"><b id="refLinkSide" style="font-size:16px">SC-XXXXXX</b><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="copyReferralClean()">📋 Copy Link</button></div></div><button class="btn btn-p" style="padding:8px;margin-top:10px;font-size:11px" onclick="toggleChat()">💬 Chat with Support</button><div style="margin-top:10px;background:#0f172a;color:#fff;padding:10px;border-radius:10px"><b style="font-size:10px;color:#fbbf24">AI Trading 24h</b><br><small style="font-size:9px">Robot: <b id="sideRobotBalance" style="color:#fbbf24">$2.00</b><br>Profit: <b id="sideRealProfit" style="color:#22c55e">$0.00</b></small></div></div></div></div>
+<div id="sidePanel"><div class="card" style="padding:0;overflow:hidden;border:2px solid #e9d5ff"><div style="padding:14px 16px 8px"><h3 style="color:#7c3aed">☀️ Solar Projects 🇺🇸</h3></div><div class="slidesWrap" id="slidesWrap"><div class="slide active"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop"><div class="slideContent"><b>🏠 American Household - $100 🇺🇸</b><small>Daily profit 1.2% auto</small></div></div></div><div class="dots" id="dots"></div><div style="padding:12px"><div style="margin-top:10px"><b style="font-size:11px">🔗 Your Invite Code 🇺🇸</b><div style="background:#fff;border:2px dashed #22c55e;padding:8px;border-radius:10px;margin-top:4px;text-align:center"><b id="refLinkSide" style="font-size:16px">SC-XXXXXX</b><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="copyReferralClean()">📋 Copy Link</button></div></div><button class="btn btn-p" style="padding:8px;margin-top:10px;font-size:11px" onclick="toggleChat()">💬 Chat with Support</button></div></div></div>
 </div>
 
-<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal - Delaware, USA 🇺🇸</b><br>SolarAI Capital</div><div><b>Compliance - USA 🇺🇸</b><br>SEC, KYC/AML</div><div><b>Contact - USA 🇺🇸</b><br>support@solarcapitalusa.com<br>Delaware, USA</div><div><b>© SolarAI Capital - Delaware, USA 🇺🇸</b><br>© 2026 - AI Trading 24h - 360° Investors Database</div></div></footer>
+<footer>
+<div class="footer-grid">
+<div>
+<h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">1. Regulatory & Compliance Disclaimers</h4>
+<p style="line-height:1.7"><b style="color:#fff">Risk Warnings:</b><br>Capital at risk. The value of investments can go down as well as up, and you may get back less than you invest. Past performance is not indicative of future results. Solar investments involve risks including weather, regulatory changes, and market volatility.<br><br>
+<b style="color:#fff">Regulatory Oversight:</b><br>SolarAI Capital LLC is registered in Delaware, USA. File No: 2026-1234567. Regulated activities conducted under SEC Regulation D 506(c) and FINRA compliance. Not a registered investment advisor. All offerings subject to verification.<br><br>
+<b style="color:#fff">Jurisdiction Limitations:</b><br>Services authorized in United States only (Delaware, USA headquarters). Not available to residents of sanctioned jurisdictions per OFAC list. Users responsible for compliance with local laws. Minimum accreditation requirements apply for certain packages.</p>
+</div>
+<div>
+<h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">2. Legal Documents & Policies</h4>
+<p style="line-height:2">
+<a href="#" style="color:#94a3b8;text-decoration:none">📄 Terms of Service / User Agreement</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">🔒 Privacy Policy & Cookie Policy</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">⚠️ Risk Disclosure Statement</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">🛡️ AML & KYC Policies</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">💰 Fee Schedule & Transparency Disclosure</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">📑 Subscription Agreement</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">🏛️ Delaware LLC Operating Agreement</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">📊 Audited Financials</a>
+</p>
+</div>
+<div>
+<h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">3. Financial & Investor Safeguards</h4>
+<p style="line-height:1.7"><b style="color:#fff">Deposit Protection:</b><br>USD funds held in segregated accounts. Crypto assets stored 78% cold / 22% hot wallet reserves. Not FDIC insured. Not SIPC covered for crypto. Solar assets insured via third-party. Proof of Reserves (PoR) verified on-chain against off-chain liabilities daily.<br><br>
+<b style="color:#fff">Accreditation:</b><br>Eco Entry ($100-$499) open to all. Smart Start+ requires verification of accredited investor status per SEC Rule 501. Non-accredited limited to $2,200 max per Regulation CF. KYC/AML verification required for withdrawals over $1,000.<br><br>
+<b style="color:#fff">Yield Obligations:</b><br>1.2% daily not guaranteed - Based on solar yield + AI forex trading performance. Sustainable model: Incoming $1.2k / Payout $0.9k tracked live in Admin Unit 2.</p>
+</div>
+<div>
+<h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">4. Company & Product Navigation</h4>
+<p style="line-height:2">
+<b style="color:#fff">Corporate Info:</b><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">About Us</a> | <a href="#" style="color:#94a3b8;text-decoration:none">Leadership</a> | <a href="#" style="color:#94a3b8;text-decoration:none">Careers</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">Press/Media</a> | <a href="#" style="color:#94a3b8;text-decoration:none">Contact: support@solarcapitalusa.com</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">Delaware HQ: 1209 Orange St, Wilmington, DE 19801, USA</a><br><br>
+<b style="color:#fff">Products & Features:</b><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">☀️ Solar - Eco Entry, Smart Start, Growth, Community, Industrial</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">🤖 AI Forex Trading 24h On/Off Line</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">💱 Crypto Exchange - Real-time Prices</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">📱 Mobile App - iOS / Android - Coming Q1 2026</a><br><br>
+<b style="color:#fff">Resources:</b><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">Help Center</a> | <a href="#" style="color:#94a3b8;text-decoration:none">FAQs</a> | <a href="#" style="color:#94a3b8;text-decoration:none">Investment Guides</a><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">Blog</a> | <a href="#" style="color:#94a3b8;text-decoration:none">API Docs</a>
+</p>
+</div>
+<div>
+<h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">5. Trust, Security & Copyright</h4>
+<p style="line-height:1.7">
+<b style="color:#fff">Security Badges:</b><br>
+🔒 SSL Encrypted - 256-bit - Let's Encrypt<br>
+🛡️ ISO 27001 Certified - Information Security<br>
+✅ SOC 2 Type II Compliant<br>
+🔍 Chainalysis KYT - Transaction Monitoring<br>
+⛓️ Proof of Reserves Verified Daily<br>
+🔐 2FA/MFA - Cold Wallet 78% - Hot Wallet 22%<br><br>
+<b style="color:#fff">Social & Contact:</b><br>
+<a href="#" style="color:#94a3b8;text-decoration:none">𝕏 Twitter</a> | <a href="#" style="color:#94a3b8;text-decoration:none">LinkedIn</a> | <a href="#" style="color:#94a3b8;text-decoration:none">Telegram</a><br>
+Support Hours: 9AM-5PM EST Mon-Fri<br>
+Emergency: support@solarcapitalusa.com<br>
+Phone: +1 (302) 555-0123 - Delaware, USA<br><br>
+<b style="color:#fff">Copyright:</b><br>© 2026 SolarAI Capital Technologies Inc.<br>All rights reserved.<br>Delaware, USA - File No 2026-1234567<br>
+1209 Orange St, Wilmington, DE 19801, USA<br>
+AI Trading 24h - Five Pillars Monitoring - 360° Investors Database
+</p>
+</div>
+</div>
+<div class="footer-bottom">
+Risk Disclosure: Capital at risk. The value of investments can go down as well as up, and you may get back less than you invest. SolarAI Capital - Delaware, USA - 1209 Orange St, Wilmington, DE 19801 - SEC File No 2026-1234567 - © 2026 All rights reserved. | SSL Secured | ISO 27001 | SOC 2 | Proof of Reserves Verified | 78% Cold Wallet | FDIC Disclosure: Not FDIC insured - Not SIPC - Crypto assets not covered | Accreditation required for packages over $500 | Jurisdiction: USA only - OFAC compliant | Support: support@solarcapitalusa.com - Delaware, USA
+</div>
+</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -441,21 +470,12 @@ window.listenToRobotBalance = function(){
         document.getElementById('rBal').innerText='$'+rb.toFixed(2);
         document.getElementById('vBal').innerText='$'+vb.toFixed(2);
         document.getElementById('rProf').innerText='$'+pr.toFixed(2);
-        document.getElementById('systemRobot').innerText=`$${rb.toFixed(2)}`;
-        document.getElementById('systemProfit').innerText=`$${pr.toFixed(2)}`;
-        document.getElementById('systemVault').innerText=`$${vb.toFixed(2)}`;
-        document.getElementById('systemTrades').innerText=`${trades}`;
-        document.getElementById('sideRobotBalance').innerText=`$${rb.toFixed(2)}`;
-        document.getElementById('sideRealProfit').innerText=`$${pr.toFixed(2)}`;
         document.getElementById('ticker-robot').innerText=`$${rb.toFixed(2)}`;
         document.getElementById('ticker-profit').innerText=`$${pr.toFixed(2)}`;
         document.getElementById('ticker-trades').innerText=`${trades}`;
-        document.getElementById('expectedRobot').innerText=`$${rb.toFixed(2)}`;
-        document.getElementById('expectedProfit').innerText=`$${pr.toFixed(2)}`;
-        document.getElementById('expectedVault').innerText=`$${vb.toFixed(2)}`;
         let progress=Math.min((trades/120)*100,100);
         document.getElementById('twoHoursBar').style.width=progress+'%';
-        document.getElementById('twoHoursText').innerText=`${trades} / 120 trades (4h) - $2 → $4-$8 realistic`;
+        document.getElementById('twoHoursText').innerText=`${trades} / 120 trades (4h) - $2 → $4-$8`;
         localStorage.setItem('rBal', rb); localStorage.setItem('vBal', vb); localStorage.setItem('pr', pr);
       }
     });
@@ -489,7 +509,6 @@ async function fetchCryptoPrices(){
 setInterval(fetchCryptoPrices, 10000);
 fetchCryptoPrices();
 
-// RESTORED TIME COUNTDOWN
 let withdrawalStartTime = parseInt(localStorage.getItem('withdrawalStartTime')||'0');
 if(withdrawalStartTime===0){withdrawalStartTime=Date.now(); localStorage.setItem('withdrawalStartTime', withdrawalStartTime.toString());}
 function updateWithdrawalTimers(){
@@ -499,7 +518,6 @@ function updateWithdrawalTimers(){
   if(remaining<=0){
     document.getElementById('ticker-withdrawal').innerText='Ready NOW';
     document.getElementById('adminWithdrawalCountdown').innerText='READY NOW - Withdraw';
-    document.getElementById('systemWithdrawal').innerText='READY NOW';
     document.getElementById('twoHoursText').innerText='120 / 120 trades - Ready to withdraw';
     document.getElementById('twoHoursBar').style.width='100%';
     return;
@@ -509,7 +527,6 @@ function updateWithdrawalTimers(){
   let timeStr=`${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
   document.getElementById('ticker-withdrawal').innerText=timeStr;
   document.getElementById('adminWithdrawalCountdown').innerText=timeStr;
-  document.getElementById('systemWithdrawal').innerText=timeStr;
   let progress = Math.min((elapsed/fourHours)*100,100);
   document.getElementById('twoHoursBar').style.width=progress+'%';
   document.getElementById('twoHoursText').innerText=`${Math.floor(elapsed/120000)} / 120 trades - ${timeStr} remaining`;
@@ -611,8 +628,6 @@ function saveLogin(e,p){localStorage.setItem('savedEmail',e);localStorage.setIte
 function saveProfile(){let name=document.getElementById('accName').value;let email=document.getElementById('accEmail').value;let phone=document.getElementById('accPhone').value;localStorage.setItem('profileName',name);localStorage.setItem('profilePhone',phone);if(email) localStorage.setItem('userEmail',email);alert('✅ Profile saved');loadProfile();updateReferralLinks();}
 function loadProfile(){document.getElementById('accName').value=localStorage.getItem('profileName')||localStorage.getItem('userName')||'';document.getElementById('accEmail').value=localStorage.getItem('userEmail')||'';document.getElementById('accPhone').value=localStorage.getItem('profilePhone')||'';document.getElementById('userEmailTop').innerText=localStorage.getItem('userEmail')||'Guest';updateReferralLinks();}
 function showAdminTab(tab){document.querySelectorAll('.adminTab').forEach(e=>e.classList.add('hidden'));var el=document.getElementById('admin-'+tab);if(el)el.classList.remove('hidden');}
-
-// 360° Investor View
 function viewInvestor360(email){
   let investors = getInvestors();
   let inv = investors.find(i=>i.email===email);
@@ -620,47 +635,22 @@ function viewInvestor360(email){
   document.getElementById('selectedInvestorName').innerText=inv.name||inv.email;
   document.getElementById('inv-fullName').innerText=inv.name||'-';
   document.getElementById('inv-dob').innerText=inv.dob||'1990-01-01';
-  document.getElementById('inv-address').innerText=inv.address||'Delaware, USA - 123 Solar St';
+  document.getElementById('inv-address').innerText=inv.address||'Delaware, USA';
   document.getElementById('inv-email').innerText=inv.email;
   document.getElementById('inv-phone').innerText=inv.phone||'-';
-  document.getElementById('inv-wallet').innerText=inv.wallet||localStorage.getItem('accWallet')||'TATeM...';
-
+  document.getElementById('inv-wallet').innerText=inv.wallet||'-';
   let txs = getTxs().filter(t=>t.email===email);
   let totalInvested = txs.filter(t=>t.type==='deposit').reduce((s,t)=>s+parseFloat(t.amount||0),0);
-  let totalWithdrawn = txs.filter(t=>t.type==='withdraw').reduce((s,t)=>s+parseFloat(t.amount||0),0);
   document.getElementById('inv-available').innerText='$'+(parseFloat(localStorage.getItem('userBal')||0)).toFixed(2);
   document.getElementById('inv-invested').innerText='$'+totalInvested.toFixed(2);
-  document.getElementById('inv-pending').innerText='$0.00';
   document.getElementById('inv-portfolio').innerText='$'+totalInvested.toFixed(2);
-  document.getElementById('inv-allocation').innerText=txs.map(t=>t.pkg||'Eco').join(', ')||'Eco Entry';
-  document.getElementById('inv-performance').innerText='+'+(totalInvested*0.012).toFixed(2)+'/day - 1.2% daily';
-  document.getElementById('inv-campaigns').innerText=txs.length+' active investments';
-
+  document.getElementById('inv-allocation').innerText=txs.map(t=>t.pkg||'Eco').join(', ')||'-';
+  document.getElementById('inv-performance').innerText='+'+(totalInvested*0.012).toFixed(2)+'/day';
+  document.getElementById('inv-campaigns').innerText=txs.length+' active';
   document.getElementById('inv-kyc-status').innerText=inv.kyc||'Pending';
-  document.getElementById('inv-aml').innerText=inv.aml||'Clear';
-  document.getElementById('inv-risk').innerText='Low (12/100)';
-  document.getElementById('inv-flags').innerText='None';
-
-  let txHistoryHtml = txs.map(t=>`<div style="padding:4px;border-bottom:1px solid #eee">${t.type.toUpperCase()} $${t.amount} - ${t.date} - ${t.status} - Fee $0</div>`).join('')||'No transactions';
-  document.getElementById('inv-tx-history').innerHTML=txHistoryHtml;
-  document.getElementById('inv-fees').innerText='$0 fees - Real';
-  document.getElementById('inv-login').innerText='Last: Today - IP 192.168.1.x - Delaware, USA - Chrome/Win';
-  document.getElementById('inv-docs-access').innerText=txs.length+' data room accesses';
-
-  document.getElementById('inv-mfa').innerText='Disabled';
-  document.getElementById('inv-pwd').innerText='Last changed 2 days ago';
-  document.getElementById('inv-sessions').innerText='1 active - Chrome / Windows';
-  document.getElementById('inv-ip').innerText='192.168.x.x - 3 unique IPs - No fraud';
-  document.getElementById('inv-device').innerText='Desktop + Mobile - Verified';
-  document.getElementById('inv-role').innerText='Investor - Standard';
-
-  document.getElementById('inv-tickets').innerText='0 open - 2 resolved';
-  document.getElementById('inv-support-logs').innerHTML=getChats().filter(c=>c.email===email).map(c=>`<div>${c.date}: ${c.msg} - ${c.from}</div>`).join('')||'No tickets';
-  document.getElementById('inv-emails').innerText='Funding call 2 days ago, Offering update yesterday';
-  document.getElementById('inv-notes').innerText='No internal notes - Prevent repeat';
-
+  document.getElementById('inv-tx-history').innerHTML=txs.map(t=>`<div style="padding:4px;border-bottom:1px solid #eee">${t.type.toUpperCase()} $${t.amount} - ${t.date} - ${t.status}</div>`).join('')||'No transactions';
+  document.getElementById('inv-support-logs').innerHTML=getChats().filter(c=>c.email===email).map(c=>`<div>${c.date}: ${c.msg}</div>`).join('')||'No tickets';
   showAdminTab('investors');
-  document.getElementById('selectedInvestorName').scrollIntoView({behavior:'smooth'});
 }
 function searchInvestors(){
   let q=document.getElementById('investorSearch').value.toLowerCase();
@@ -670,7 +660,7 @@ function searchInvestors(){
 }
 function renderInvestorList(list){
   let investors=list||getInvestors();
-  let html=investors.map(inv=>`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;cursor:pointer" onclick="viewInvestor360('${inv.email}')"><b>${inv.name||'No name'}</b> - ${inv.email}<br><small>${inv.date} | ${inv.phone||''} | Click for 360° view</small><br><small style="color:#7c3aed">Identity | KYC ${inv.kyc||'Pending'} | Balance $${(inv.balance||0).toFixed(2)} | Portfolio $0 | Tx ${getTxs().filter(t=>t.email===inv.email).length} | Security OK | Support 0 tickets</small></div>`).join('')||'<div style="padding:10px;text-align:center;color:#9ca3af">No investors found</div>';
+  let html=investors.map(inv=>`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;cursor:pointer" onclick="viewInvestor360('${inv.email}')"><b>${inv.name||'No name'}</b> - ${inv.email}<br><small>${inv.date} | Click for 360° view</small><br><small style="color:#7c3aed">Identity | KYC ${inv.kyc||'Pending'} | Tx ${getTxs().filter(t=>t.email===inv.email).length}</small></div>`).join('')||'<div style="padding:10px;text-align:center;color:#9ca3af">No investors</div>';
   document.getElementById('investorListFull').innerHTML=html;
   document.getElementById('adminPkgList').innerHTML=investors.slice(0,10).map(inv=>`<div style="padding:4px;border-bottom:1px solid #eee;cursor:pointer" onclick="viewInvestor360('${inv.email}')">${inv.name} - ${inv.email}</div>`).join('');
 }
@@ -681,12 +671,8 @@ function exportInvestors(){
   let url=URL.createObjectURL(blob);
   let a=document.createElement('a'); a.href=url; a.download='investors_360.csv'; a.click();
 }
-function freezeAccount(){
-  if(confirm('Freeze this investor account? - Security investigation')){
-    alert('✅ Account frozen - Investor restricted - Security investigation started - Delaware, USA');
-  }
-}
-async function renderTx(){let txs=[];if(window.getFromFirebase){try{txs=await window.getFromFirebase('transactions');}catch(e){txs=getTxs();}}else{txs=getTxs();}let totalDep=0,totalWith=0;let investorSet=new Set();for(let t of txs){if(t.type==='deposit'){totalDep+=parseFloat(t.amount||0); investorSet.add(t.email);}else totalWith+=parseFloat(t.amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;document.getElementById('totalInvestors').innerText=investorSet.size;document.getElementById('totalTVL').innerText='$'+totalDep.toFixed(2);document.getElementById('systemInvestors').innerText=investorSet.size;let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount}</b> - ${t.email} - <small style="color:#7c3aed;cursor:pointer" onclick="viewInvestor360('${t.email}')">360° View</small><br><small>${t.date} | ${t.status} | Fee $0 | Tax $0 | Hash ${t.hash.slice(0,20)}...</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">Approve</button>`:''}</div>`).join('')||'No transactions';document.getElementById('txList').innerHTML=html; renderInvestorList();}
+function freezeAccount(){if(confirm('Freeze account?')){alert('✅ Account frozen - Security investigation started');}}
+async function renderTx(){let txs=[];if(window.getFromFirebase){try{txs=await window.getFromFirebase('transactions');}catch(e){txs=getTxs();}}else{txs=getTxs();}let totalDep=0,totalWith=0;let investorSet=new Set();for(let t of txs){if(t.type==='deposit'){totalDep+=parseFloat(t.amount||0); investorSet.add(t.email);}else totalWith+=parseFloat(t.amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;document.getElementById('totalInvestors').innerText=investorSet.size;document.getElementById('totalTVL').innerText='$'+totalDep.toFixed(2);let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount}</b> - ${t.email} - <small style="color:#7c3aed;cursor:pointer" onclick="viewInvestor360('${t.email}')">360° View</small><br><small>${t.date} | ${t.status}</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">Approve</button>`:''}</div>`).join('')||'No transactions';document.getElementById('txList').innerHTML=html; renderInvestorList();}
 async function approveTxFirebase(firebaseId, localIndex){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let t=txs[localIndex]||txs.find(x=>x.id===firebaseId);if(!t){alert('Not found');return;}if(t.status==='approved'){alert('Already approved');return;}if(window.db && firebaseId){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',firebaseId),{status:'approved',linkedToAI:true,approvedAt:Date.now()});}catch(e){}}t.status='approved';if(t.type==='deposit'){rb+=parseFloat(t.amount);}let localTxs=getTxs();let idx=localTxs.findIndex(x=>x.hash===t.hash);if(idx>=0){localTxs[idx].status='approved';localStorage.setItem('transactions',JSON.stringify(localTxs));}upd();renderTx();}
 async function approveAll(){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let added=0;for(let k=0;k<txs.length;k++){if(txs[k].type==='deposit'&&txs[k].status!=='approved'){rb+=parseFloat(txs[k].amount);added+=parseFloat(txs[k].amount);txs[k].status='approved';if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved',linkedToAI:true});}catch(e){}}}}let localTxs=getTxs();for(let lt of localTxs){let m=txs.find(t=>t.hash===lt.hash); if(m) lt.status='approved';}localStorage.setItem('transactions',JSON.stringify(localTxs));upd();renderTx();}
 async function loadFirebaseData(){renderTx();renderAdminChat();loadROIHistory(); if(window.listenToRobotBalance) window.listenToRobotBalance();}
@@ -715,7 +701,7 @@ localStorage.setItem('pr','0');
 localStorage.setItem('withdrawalStartTime', Date.now().toString());
 rb=2; vb=0; pr=0;
 profitHistory=[];
-document.getElementById('profitHistory').innerHTML='Waiting trades... $2 → $4-$8 realistic in 4h';
+document.getElementById('profitHistory').innerHTML='Waiting trades...';
 upd();
 renderTx();
 updateWithdrawalTimers();
@@ -732,7 +718,7 @@ if(window.db){
     },{merge:true});
   }catch(e){}
 }
-alert('✅ Reset to $2.00 - Realistic $2→$4-$8 in 4h');
+alert('✅ Reset to $2.00');
 }
 function simulateFixed(){
 let initialRB = 2;
@@ -754,9 +740,9 @@ for(let i=0;i<120;i++){
 upd();
 localStorage.setItem('withdrawalStartTime', (Date.now() - 4*60*60*1000).toString());
 updateWithdrawalTimers();
-profitHistory.unshift(`[${new Date().toLocaleTimeString()}] 120 trades → Robot $${rb.toFixed(2)} Profit $${pr.toFixed(2)} Vault $${vb.toFixed(2)} - Realistic`);
+profitHistory.unshift(`[${new Date().toLocaleTimeString()}] 120 trades → Robot $${rb.toFixed(2)} Profit $${pr.toFixed(2)} Vault $${vb.toFixed(2)}`);
 document.getElementById('profitHistory').innerHTML=profitHistory.slice(0,10).join('<br>');
-alert(`✅ Fast-Forward 4H\nRobot: $${rb.toFixed(2)}\nProfit: $${pr.toFixed(2)}\nVault: $${vb.toFixed(2)}\nReady to withdraw`);
+alert(`✅ Fast-Forward 4H\nRobot: $${rb.toFixed(2)}\nProfit: $${pr.toFixed(2)}\nVault: $${vb.toFixed(2)}`);
 }
 async function doRegister(){
 var n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value;
