@@ -32,8 +32,8 @@ input,select{width:100%;padding:12px;border-radius:10px;border:1.5px solid #e5e7
 footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border-top:4px solid #7c3aed;font-size:11px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
-.admin-top{border:2px solid #fbbf24;border-radius:16px;padding:16px;background:#111827;color:#fff;margin-bottom:16px}
-.admin-bottom{border:2px solid #7c3aed;border-radius:16px;padding:16px;background:#fff}
+.admin-top{border:2px solid #e5e7eb;border-radius:16px;padding:16px;background:#fff;margin-bottom:16px}
+.admin-bottom{border:2px solid #e5e7eb;border-radius:16px;padding:16px;background:#fff}
 .pkg{border:2px solid #e9d5ff;border-radius:14px;padding:14px;background:#fff;cursor:pointer}
 .pkg:hover{border-color:#7c3aed}.pkg.active{border-color:#7c3aed;background:#f5f3ff}
 .slidesWrap{position:relative;border-radius:16px;overflow:hidden;height:420px;background:#000}
@@ -92,7 +92,7 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <button onclick="go('register')" style="background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;border:none">📝 Register</button>
 <button onclick="go('login')" style="background:#111827;color:#fff;border:none">🔑 Sign In</button>
 <button id="logoutBtn" onclick="doLogout()" class="hidden" style="background:#fef2f2;color:#ef4444;border:2px solid #fecaca;font-weight:900">🚪 Sign Out</button>
-<button id="adminHeaderBtn" onclick="goAdmin()" style="background:#111827;color:#fbbf24;border:3px solid #fbbf24;font-weight:900;box-shadow:0 0 12px #fbbf24;display:inline-block">🔐 Admin</button>
+<button id="adminHeaderBtn" onclick="goAdmin()" style="background:#fff;color:#111827;border:2px solid #e5e7eb;font-weight:800;display:inline-block">🔐 Admin</button>
 </div>
 </div>
 </header>
@@ -141,10 +141,10 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 <div id="home"><div class="card" style="padding:0;overflow:hidden">
 <div style="padding:24px 24px 12px">
 <h1 style="font-size:28px;line-height:1.2">Welcome to <span style="color:#7c3aed">SolarAI Capital</span> - American Solar Wealth 🇺🇸 <span class="live"></span></h1>
-<p style="font-size:13px;color:#4b5563;margin-top:10px;line-height:1.7">Dear Valued Investor, Welcome to Delaware, USA's premier solar wealth family. We believe wealth is freedom, legacy, and impact. Your capital works every 24 hours automatically generating returns while powering American homes, schools, and industries from Delaware to California. Rich American families don't work for money - money works for them. Your daily profit of 1.2% is credited automatically while you sleep.</p>
+<p style="font-size:13px;color:#4b5563;margin-top:10px;line-height:1.7">Dear Valued Investor, Welcome to Delaware, USA's premier solar wealth family. Your capital works every 24 hours automatically generating returns while powering American homes, schools, and industries from Delaware to California. Rich American families don't work for money - money works for them. Your daily profit of 1.2% is credited automatically while you sleep.</p>
 </div>
 <div class="luxuryWrap" id="luxuryWrap"><button class="slideNav prev" onclick="changeLuxury(-1)">❮</button><button class="slideNav next" onclick="changeLuxury(1)">❯</button>
-<div class="luxSlide active"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#fbbf24">🏡 Delaware Luxury Villa - Solar Powered Freedom 🇺🇸</b><small>American dream powered by SolarAI Capital returns.</small></div></div>
+<div class="luxSlide active"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#fbbf24">🏡 Delaware Luxury Villa - Solar Powered Freedom 🇺🇸</b></div></div>
 <div class="luxSlide"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#22c55e">🏖️ American Beaches - Clean Energy Future</b></div></div>
 <div class="luxSlide"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=700&fit=crop"><div class="luxContent"><b style="font-size:20px;color:#fbbf24">👨‍👩‍👧‍👦 American Rich Families - Generational Wealth</b><small>1.2% daily automatically - Wealth while you sleep</small></div></div>
 </div>
@@ -157,94 +157,84 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 </div></div>
 
 <div id="deposit" class="hidden"><div class="card">
-<h2>📦 SolarAI Capital Investment Packages - Delaware, USA 🇺🇸</h2>
-<p style="font-size:12px;color:#6b7280">Choose your American wealth plan. Daily profits automatically credited every 24 hours. No action needed.</p>
+<h2>📦 Investment Packages - Delaware, USA 🇺🇸</h2>
+<p style="font-size:12px;color:#6b7280">Daily profits automatically credited every 24 hours.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px" id="packagesGrid"></div>
 <div style="margin-top:16px;background:#f5f3ff;padding:14px;border-radius:12px;border:2px solid #7c3aed" id="selectedPackageBox" class="hidden">
 <h3>Selected: <span id="selPkgName"></span> - <span class="roiBadge">1.2% Daily Profit - Automatic</span></h3>
 <p style="font-size:11px;color:#6b7280"><span id="selPkgRange"></span> | <span id="selPkgTerm"></span></p>
-<div style="background:#fff;padding:10px;border-radius:10px;margin-top:8px;font-size:11px">Daily Profit: <b id="dailyROIcalc" style="color:#22c55e">$0.00 / 24h</b> | Monthly: <b id="monthlyROIcalc">$0.00</b> | 2 Years: <b id="totalROIcalc">$0.00</b><br><small style="color:#6b7280">Profits credited automatically every 24 hours - 2PM Eastern Time, Delaware, USA</small></div>
+<div style="background:#fff;padding:10px;border-radius:10px;margin-top:8px;font-size:11px">Daily Profit: <b id="dailyROIcalc" style="color:#22c55e">$0.00 / 24h</b> | Monthly: <b id="monthlyROIcalc">$0.00</b> | 2 Years: <b id="totalROIcalc">$0.00</b></div>
 <div class="grid2" style="margin-top:10px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p">USDT TRC20</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g">BNB BEP20</button></div>
-<div id="walletUSDT" class="wallet active"><b>USDT TRC20 - American Wallet</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div></div>
-<div id="walletBNB" class="wallet hidden"><b>BNB BEP20 - American Wallet</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div></div>
-<input id="txHash" placeholder="Paste Transaction Hash"><input id="depAmount" placeholder="Amount"><button class="btn btn-d" onclick="verifyDep()">✅ Confirm Investment - American Solar</button>
+<div id="walletUSDT" class="wallet active"><b>USDT TRC20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div></div>
+<div id="walletBNB" class="wallet hidden"><b>BNB BEP20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div></div>
+<input id="txHash" placeholder="Paste Transaction Hash"><input id="depAmount" placeholder="Amount"><button class="btn btn-d" onclick="verifyDep()">✅ Confirm Investment</button>
 </div><div id="depList" style="font-size:11px;margin-top:12px"></div>
 </div></div>
 
 <div id="balance" class="hidden"><div class="card"><h2>💰 My Wealth Balance - Delaware, USA 🇺🇸</h2>
-<div class="grid3" style="margin-top:12px"><div class="box"><small>Main Balance</small><b id="balMain" style="font-size:20px;color:#7c3aed">$0.00</b><small style="font-size:9px;color:#6b7280">Available for withdrawal</small></div><div class="box"><small>Daily Profit - 1.2%</small><b id="balROI" style="color:#22c55e">$0.00 / 24h</b><small style="font-size:9px;color:#6b7280">Next: <span id="nextROITimeLocal">24:00:00</span></small></div><div class="box"><small>Total Profit Earned</small><b id="balAI" style="color:#f59e0b">$0.00</b><small style="font-size:9px;color:#6b7280">Since joining</small></div></div>
+<div class="grid3" style="margin-top:12px"><div class="box"><small>Main Balance</small><b id="balMain" style="font-size:20px;color:#7c3aed">$0.00</b></div><div class="box"><small>Daily Profit - 1.2%</small><b id="balROI" style="color:#22c55e">$0.00 / 24h</b><small style="font-size:9px">Next: <span id="nextROITimeLocal">24:00:00</span></small></div><div class="box"><small>Total Profit Earned</small><b id="balAI" style="color:#f59e0b">$0.00</b></div></div>
 <div style="margin-top:16px;background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;padding:14px;border-radius:14px">
 <b style="font-size:13px">🌟 American Wealth Growth - Automatic</b><br>
-<small style="font-size:11px;line-height:1.6;display:block;margin-top:6px">Your capital works every 24 hours automatically - 1.2% daily profit credited at 2PM Eastern Time, Delaware, USA. No action needed. Watch your American wealth grow while you sleep, travel, and enjoy luxury life. Rich American families don't work for money - money works for them. 🇺🇸</small>
+<small style="font-size:11px;line-height:1.6;display:block;margin-top:6px">Your capital works every 24 hours automatically - 1.2% daily profit credited at 2PM Eastern Time, Delaware, USA. No action needed.</small>
 </div>
-<div style="margin-top:12px"><h3>📜 Profit History - Automatic Daily</h3><div id="roiHistoryList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px;margin-top:8px"></div></div>
+<div style="margin-top:12px"><h3>📜 Profit History</h3><div id="roiHistoryList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px;margin-top:8px"></div></div>
 </div></div>
 
-<div id="withdraw" class="hidden"><div class="card"><h2>💸 Withdraw Your American Profits 🇺🇸</h2><div class="box"><small>Available Balance</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option><option>USDT Polygon</option></select><input id="wAddr" placeholder="Your Wallet Address"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">💸 Request Withdrawal - USA</button><div id="wList" style="font-size:11px;margin-top:8px"></div></div></div>
+<div id="withdraw" class="hidden"><div class="card"><h2>💸 Withdraw Your Profits 🇺🇸</h2><div class="box"><small>Available Balance</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option><option>USDT Polygon</option></select><input id="wAddr" placeholder="Your Wallet Address"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">💸 Request Withdrawal</button><div id="wList" style="font-size:11px;margin-top:8px"></div></div></div>
 
 <div id="referral" class="hidden"><div class="card"><h2>🔗 Invite Friends - American Wealth Together 🇺🇸</h2><div style="background:#f0fdf4;padding:12px;border-radius:12px;border:2px solid #22c55e;margin-top:12px"><div style="text-align:center"><small style="color:#22c55e;font-weight:800">YOUR SPECIAL INVITE CODE</small><br><b id="specialCodeDisplay" style="font-size:28px;letter-spacing:2px">SC-XXXXXX</b></div><div style="background:#fff;padding:10px;border-radius:10px;margin-top:10px;border:2px dashed #7c3aed"><small style="color:#7c3aed;font-weight:800">YOUR INVITE LINK</small><br><b id="refLink" style="font-size:13px;word-break:break-all;color:#111827">https://solarai.capital/thank-u/SC-XXXXXX</b><div class="grid2" style="margin-top:10px"><button class="btn btn-p" onclick="copyReferralClean()">📋 Copy Link</button><button class="btn btn-d" onclick="shareReferral()">📤 Share</button></div></div></div></div></div>
 
 <div id="account" class="hidden"><div class="card"><h2>👤 My American Wealth Profile 🇺🇸</h2>
-<div class="grid2"><div><h3>Profile - Delaware, USA</h3><input id="accName" placeholder="Full Name" style="margin-top:10px"><input id="accEmail" placeholder="Email"><input id="accPhone" placeholder="Telephone"><input id="accWallet" placeholder="Wallet Address"><button class="btn btn-p" onclick="saveProfile()">💾 Save Profile</button><button class="btn btn-g" style="margin-top:8px" onclick="doLogout()">🚪 Sign Out</button></div><div><h3>📚 American Wealth Rules 🇺🇸</h3><div class="wealthCard" style="background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;padding:12px;border-radius:12px;margin-top:8px"><b>💎 Rule 1: Pay Yourself First</b><br><small>Invest 20% in solar packages generating 1.2% daily automatically.</small></div><div class="wealthCard" style="background:linear-gradient(135deg,#06b6d4,#22c55e);color:#fff;padding:12px;border-radius:12px;margin-top:8px"><b>🚀 Rule 2: Multiple Streams</b><br><small>Solar + AI Trading - American wealth while you sleep.</small></div><div class="wealthCard" style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:12px;border-radius:12px;margin-top:8px"><b>🌱 Rule 3: Impact = Income</b><br><small>$1500 Community powers American families, creates jobs, daily $18.</small></div><div class="wealthCard" style="background:linear-gradient(135deg,#111827,#7c3aed);color:#fff;padding:12px;border-radius:12px;margin-top:8px"><b>⏰ Rule 4: Time Leverage</b><br><small>2-year contract - 730 days profit automatically - Delaware, USA.</small></div></div></div>
+<div class="grid2"><div><h3>Profile - Delaware, USA</h3><input id="accName" placeholder="Full Name" style="margin-top:10px"><input id="accEmail" placeholder="Email"><input id="accPhone" placeholder="Telephone"><input id="accWallet" placeholder="Wallet Address"><button class="btn btn-p" onclick="saveProfile()">💾 Save Profile</button><button class="btn btn-g" style="margin-top:8px" onclick="doLogout()">🚪 Sign Out</button></div><div><h3>📚 American Wealth Rules 🇺🇸</h3><div class="wealthCard" style="background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;padding:12px;border-radius:12px;margin-top:8px"><b>💎 Rule 1: Pay Yourself First</b><br><small>Invest 20% in solar packages generating 1.2% daily automatically.</small></div><div class="wealthCard" style="background:linear-gradient(135deg,#06b6d4,#22c55e);color:#fff;padding:12px;border-radius:12px;margin-top:8px"><b>🚀 Rule 2: Multiple Streams</b><br><small>Solar + AI Trading - American wealth while you sleep.</small></div></div></div>
 </div></div>
 
-<div id="register" class="hidden"><div class="card"><h2>📝 Join American Luxury Family 🇺🇸</h2><p style="font-size:11px;color:#6b7280">Create your American wealth account - Start earning 1.2% daily automatically - Delaware, USA</p><input id="regName" placeholder="Full Name" style="margin-top:10px"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Create Password"><input id="regRef" placeholder="Invite Code Optional"><button class="btn btn-p" onclick="doRegister()">Create Account - Start American Wealth Journey 🇺🇸</button></div></div>
+<div id="register" class="hidden"><div class="card"><h2>📝 Join American Luxury Family 🇺🇸</h2><input id="regName" placeholder="Full Name" style="margin-top:10px"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Create Password"><button class="btn btn-p" onclick="doRegister()">Create Account</button></div></div>
 
-<div id="login" class="hidden"><div class="card"><h2>🔑 Welcome Back - American Sign In 🇺🇸</h2><input id="logEmail" placeholder="Email" style="margin-top:10px"><input id="logPass" type="password" placeholder="Password"><button class="btn btn-d" onclick="doLogin()">Sign In - Delaware, USA</button><button class="btn btn-g" style="margin-top:6px" onclick="autoFillLogin()">⚡ Auto-Fill Saved Login</button></div></div>
+<div id="login" class="hidden"><div class="card"><h2>🔑 Welcome Back - American Sign In 🇺🇸</h2><input id="logEmail" placeholder="Email" style="margin-top:10px"><input id="logPass" type="password" placeholder="Password"><button class="btn btn-d" onclick="doLogin()">Sign In</button><button class="btn btn-g" style="margin-top:6px" onclick="autoFillLogin()">⚡ Auto-Fill Saved Login</button></div></div>
 
-<div id="adminlogin" class="hidden"><div class="card"><h2 style="color:#ef4444">🔐 Admin Login - Owner Only - Delaware, USA 🇺🇸</h2><p style="font-size:10px;color:#6b7280">Secret system - Hidden from investors</p><input id="ae" value="admin@solarcapital.com" style="margin-top:10px"><input id="ap" type="password" value="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login Admin - Delaware, USA</button></div></div>
+<div id="adminlogin" class="hidden"><div class="card"><h2>🔐 Admin Login - Owner Only 🇺🇸</h2><input id="ae" value="admin@solarcapital.com" style="margin-top:10px"><input id="ap" type="password" value="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login Admin</button></div></div>
 
 <div id="admin" class="hidden">
-<div class="card" style="border:3px solid #7c3aed">
-<h2>🔐 Admin Secret System - $2 Starting Capital - Offline AI Trading 24/7 - Hidden From Investors - Delaware, USA 🇺🇸 <span class="live"></span></h2>
+<div class="card">
+<h2>🔐 Admin Panel - Delaware, USA 🇺🇸</h2>
 <div class="admin-top">
-<h3 style="color:#fbbf24">🤖 SECRET: $2 STARTING CAPITAL - OFFLINE AI TRADING - REAL PROFIT AFTER 2 HOURS - HIDDEN FROM INVESTORS</h3>
-<div style="background:#1f2937;padding:12px;border-radius:10px;margin-top:10px;border:2px solid #fbbf24">
-<small style="font-size:11px;color:#d1d5db;line-height:1.8;display:block">
-<b style="color:#ef4444;font-size:12px">⚠️ SECRET - DO NOT SHOW TO INVESTORS - HIDDEN SYSTEM:</b><br>
-<b style="color:#fbbf24">$2 Starting Capital Live Trading:</b> Starting with $2 capital, AI trades automatically every 2 minutes, even when offline, 24/7. After 2 hours, real profit ready to withdraw. This is live trading, not simulation.<br>
-<b style="color:#22c55e">Offline Trading:</b> Cloud Function autoTrading (America/New_York EST) runs every 2 minutes on Firebase server even when browser closed, phone off. Each trade 2-8% profit, 50% to Vault, 50% to Robot. After 2 hours (~60 trades), $2 → $3-$5 real profit, withdrawable to USDT TRC20.<br>
-<b style="color:#06b6d4">Where Stored (Secret):</b> Real $2 → Wallet TATeM... + Firebase robotBalances/main + profitHistory + adminWithdrawals collections - Delaware, USA - Investors see only luxury message "Daily Profit $12 credited! Your American wealth grows automatically 🇺🇸" not this technical<br>
-<b>Investor Dashboard:</b> Clean luxury only - No $2, no offline, no Cloud Function, no Firebase technical - Only "1.2% Daily Profit Automatic at 2PM EST Delaware, USA"
-</small>
+<div class="grid3">
+<div class="box"><small>Robot Balance</small><b id="rBal" style="display:block;font-size:20px;color:#111827">$0.00</b><small id="rBalSource" style="font-size:10px;color:#6b7280">Live balance</small></div>
+<div class="box"><small>Real Profit</small><b id="rProf" style="display:block;font-size:20px;color:#22c55e">$0.00</b><small id="profitPercent" style="font-size:10px">Profit</small></div>
+<div class="box"><small>Vault</small><b id="vBal" style="display:block;font-size:20px;color:#06b6d4">$0.00</b><small style="font-size:10px">Secured</small></div>
 </div>
-<div class="grid3" style="margin-top:16px">
-<div style="background:rgba(255,255,255,.08);padding:14px;border-radius:12px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">🤖 Robot Balance - SECRET $2 Start + Offline</small><b id="rBal" style="color:#fbbf24;display:block;font-size:22px">$2.00</b><small id="rBalSource">SECRET: $2 Starting Capital - Trading offline every 2 min - Hidden from investors - Firebase robotBalances/main</small></div>
-<div style="background:rgba(255,255,255,.08);padding:14px;border-radius:12px;border-left:4px solid #22c55e"><small style="color:#22c55e">💰 Real Profit - SECRET - Withdrawable After 2H</small><b id="rProf" style="color:#22c55e;display:block;font-size:22px">$0.00</b><small id="profitPercent">SECRET: Real profit from $2 offline trading - Withdraw after 2h - Hidden from investors</small><div style="margin-top:8px"><input id="adminWithdrawAmount" placeholder="Amount to withdraw - e.g., 1.50" style="padding:8px;font-size:11px"><input id="adminWithdrawWallet" placeholder="Your USDT TRC20 Wallet - TATeM..." style="padding:8px;font-size:11px;margin-top:4px"><select id="adminWithdrawNetwork" style="padding:8px;font-size:11px;margin-top:4px"><option>USDT TRC20</option><option>BNB BEP20</option></select><button class="btn btn-p" style="padding:8px;background:linear-gradient(90deg,#22c55e,#06b6d4);margin-top:6px" onclick="adminWithdrawRealProfit()">💸 SECRET Withdraw Real Profit - After 2 Hours - Firebase</button></div></div>
-<div style="background:rgba(255,255,255,.08);padding:14px;border-radius:12px;border-left:4px solid #06b6d4"><small style="color:#06b6d4">🔒 Vault - SECRET - 50% Profit</small><b id="vBal" style="color:#06b6d4;display:block;font-size:22px">$0.00</b><small>SECRET Vault - Hidden from investors - Delaware, USA</small></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+<div>
+<div style="background:#f9fafb;padding:10px;border-radius:10px;border:1px solid #e5e7eb">
+<input id="depA" placeholder="Amount" value="2" style="padding:10px"><div class="grid2" style="margin-top:6px"><button class="btn btn-p" style="padding:8px" onclick="depR()">💰 Deposit</button><button class="btn btn-g" style="padding:8px" onclick="resetRobotBalances()">🗑️ Reset</button></div>
+<div class="grid2" style="margin-top:6px"><button class="btn btn-d" style="padding:8px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI</span></button><button class="btn btn-g" style="padding:8px" onclick="runAI()">⚡ Trade</button></div>
+<p id="log" style="font-size:10px;background:#111827;color:#22c55e;padding:8px;border-radius:8px;margin-top:8px">Ready - Delaware, USA</p>
+<div id="profitHistory" style="font-size:9px;font-family:monospace;color:#6b7280;max-height:150px;overflow-y:auto;background:#f9fafb;padding:8px;border-radius:8px;margin-top:8px"></div>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px">
-<div style="background:#000;padding:12px;border-radius:12px;border:2px solid #ef4444">
-<b style="color:#ef4444;font-size:12px">💵 SECRET $2 STARTING CAPITAL - ADMIN ONLY - HIDDEN FROM INVESTORS</b><br>
-<small style="font-size:10px;color:#9ca3af">Deposit $2 as company starting capital - Will trade offline every 2 min - Even when offline - SECRET</small>
-<input id="depA" placeholder="Amount - $2 starting capital - SECRET" value="2" style="margin-top:8px;padding:10px"><button class="btn btn-p" style="padding:10px;background:linear-gradient(90deg,#f59e0b,#ef4444)" onclick="depR()">💰 SECRET Deposit $2 Starting Capital - Offline Trading - Hidden</button><button class="btn btn-g" style="padding:8px;margin-top:6px" onclick="resetRobotBalances()">🗑️ RESET $2 SECRET - Fix Bug</button><div style="background:#1f2937;padding:8px;border-radius:8px;margin-top:8px;font-size:10px;color:#22c55e" id="cloudFunctionStatus">SECRET Cloud Functions: autoTrading every 2 min (offline) + dailyROI 2PM EST - Delaware, USA - Hidden from investors, silent functioning</div>
-<div style="margin-top:10px" class="grid2"><button class="btn" style="background:#22c55e;color:#fff;padding:10px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI OFFLINE SECRET</span></button><button class="btn" style="background:#7c3aed;color:#fff;padding:10px" onclick="runAI()">⚡ Single Trade $2 SECRET</button></div><button class="btn btn-p" style="padding:10px;margin-top:8px;background:linear-gradient(90deg,#06b6d4,#7c3aed)" onclick="toggleOfflineTrading()">🔄 SECRET Toggle Offline Trading ON/OFF - Cloud Function</button><p id="log" style="font-size:10px;background:#000;padding:10px;border-radius:8px;color:#22c55e;margin-top:8px;border:1px solid #ef4444">🤖 SECRET Ready - $2 Starting Capital - Offline AI Trading every 2 min - Delaware, USA - Hidden from investors - After 2h withdraw real profit</p>
 </div>
-<div style="background:#000;padding:12px;border-radius:12px;border:1px solid #ef4444">
-<b style="color:#ef4444;font-size:11px">📈 SECRET Live Profit History - Offline Trades - $2 Start - Hidden From Investors</b>
-<div id="profitHistory" style="font-size:9px;font-family:monospace;color:#22c55e;max-height:350px;overflow-y:auto;background:#000;padding:10px;border-radius:10px;margin-top:8px">SECRET Waiting for offline trades... Will trade every 2 minutes even when browser closed - Firebase Cloud Function autoTrading - Delaware, USA - Hidden from investors</div>
+<div>
+<div style="background:#f9fafb;padding:10px;border-radius:10px;border:1px solid #e5e7eb">
+<small style="font-size:11px;font-weight:800">Withdraw Profit</small>
+<input id="adminWithdrawAmount" placeholder="Amount - e.g., 1.50" style="padding:8px;font-size:11px;margin-top:4px">
+<input id="adminWithdrawWallet" placeholder="USDT TRC20 Wallet" style="padding:8px;font-size:11px;margin-top:4px">
+<select id="adminWithdrawNetwork" style="padding:8px;font-size:11px;margin-top:4px"><option>USDT TRC20</option><option>BNB BEP20</option></select>
+<button class="btn btn-p" style="padding:8px;margin-top:6px" onclick="adminWithdrawRealProfit()">💸 Withdraw</button>
+<button class="btn btn-g" style="padding:8px;margin-top:6px" onclick="simulateTwoHours()">⚡ Simulate 60 Trades</button>
+<div style="margin-top:8px"><div style="background:#e5e7eb;border-radius:20px;height:8px;overflow:hidden"><div id="twoHoursBar" style="background:#22c55e;height:100%;width:0%;transition:width 0.5s"></div></div><small style="font-size:9px;color:#6b7280"><span id="twoHoursText">0 / 60 trades</span></small></div>
+<div style="font-size:10px;color:#6b7280;margin-top:6px">Robot: <b id="expectedRobot">$2.00</b> | Profit: <b id="expectedProfit">$0.00</b> | Vault: <b id="expectedVault">$0.00</b></div>
 </div>
-<div style="background:#111827;padding:12px;border-radius:12px;border:2px solid #ef4444">
-<b style="color:#ef4444;font-size:11px">⏰ SECRET 2 HOURS LIVE TRADING - REAL PROFIT WITHDRAWAL TEST - $2 START - HIDDEN</b><br>
-<small style="font-size:10px;color:#d1d5db">SECRET: After 2 hours (~60 trades), $2 → $3.50-$5.00 real profit. Enter wallet and withdraw. Hidden from investors.</small>
-<div id="twoHoursProgress" style="background:#1f2937;border-radius:20px;height:20px;margin-top:10px;overflow:hidden"><div id="twoHoursBar" style="background:linear-gradient(90deg,#22c55e,#06b6d4);height:100%;width:0%;transition:width 0.5s"></div></div>
-<small style="font-size:10px;color:#22c55e"><span id="twoHoursText">SECRET 0 trades / 60 trades (2 hours) - Starting $2 trading offline... Hidden from investors</span></small>
-<div style="margin-top:10px"><b style="font-size:11px;color:#fff">💰 SECRET Expected After 2 Hours - Hidden:</b><br><small style="font-size:10px;color:#9ca3af">Robot Balance: <b id="expectedRobot" style="color:#fbbf24">$2.00 → $3.50-$5.00</b><br>Real Profit: <b id="expectedProfit" style="color:#22c55e">$0.00 → $1.50-$3.00 withdrawable SECRET</b><br>Vault: <b id="expectedVault" style="color:#06b6d4">$0.00 → $0.75-$1.50 SECRET</b></small></div>
-<button class="btn btn-p" style="padding:10px;margin-top:10px;background:linear-gradient(90deg,#ef4444,#f59e0b)" onclick="simulateTwoHours()">⚡ SECRET Simulate 2 Hours Now - 60 Trades Instant - Test Withdrawal - Hidden</button>
 </div>
 </div>
 </div>
 <div class="admin-bottom">
-<h3 style="color:#7c3aed">🏛️ Admin Monitoring - Secret System - Hidden From Investors - Delaware, USA 🇺🇸</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 <div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px"><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('transactions')">TX (<span id="txCount">0</span>)</button><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="showAdminTab('roi')">Profit Auto 1.2% EST</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('support')">💬 Chats</button><button class="btn btn-d" style="padding:6px;font-size:10px;background:#ef4444;color:#fff" onclick="showAdminTab('offline')">SECRET Offline Trades</button></div>
-<div id="admin-transactions" class="adminTab" style="margin-top:10px"><b>Transactions - Secret + Investor Deposits - American</b><div class="grid2"><div class="box"><small>Deposits - SECRET $2 Start + Investors</small><b id="totalDep">$0</b></div><div class="box"><small>Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:400px;overflow-y:auto"></div><button class="btn btn-p" onclick="approveAll()">✅ Approve All - Link to SECRET $2 Robot</button></div>
-<div id="admin-roi" class="adminTab hidden" style="margin-top:10px"><b>💰 Profit History - EST 2PM Delaware, USA - Silent to investors</b><div id="roiList" style="font-size:11px;margin-top:8px;max-height:400px;overflow-y:auto;background:#f9fafb;padding:10px;border-radius:10px"></div></div>
-<div id="admin-support" class="adminTab hidden" style="margin-top:10px"><b>💬 Customer Chats</b><div id="adminChatList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px"></div><div style="display:flex;gap:6px;margin-top:8px"><input id="adminChatReply" placeholder="Reply to investor..."><button class="btn btn-p" style="padding:8px;width:auto" onclick="adminReplyChat()">Reply</button></div></div>
-<div id="admin-offline" class="adminTab hidden" style="margin-top:10px"><b>🤖 SECRET Offline AI Trades - Every 2 Minutes - $2 Starting Capital - Hidden From Investors - Firebase profitHistory</b><div style="background:#1f2937;color:#22c55e;padding:10px;border-radius:8px;margin-top:8px;font-size:10px;font-family:monospace;max-height:400px;overflow-y:auto" id="offlineTradesList">SECRET Loading offline trades from Firebase profitHistory collection - Trades every 2 minutes even when offline - Delaware, USA EST - Hidden from investors...</div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('transactions')">TX (<span id="txCount">0</span>)</button><button class="btn btn-g" style="padding:6px;font-size:10px" onclick="showAdminTab('roi')">Profit History</button><button class="btn btn-g" style="padding:6px;font-size:10px" onclick="showAdminTab('support')">Chats</button></div>
+<div id="admin-transactions" class="adminTab" style="margin-top:10px"><div class="grid2"><div class="box"><small>Deposits</small><b id="totalDep">$0</b></div><div class="box"><small>Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:400px;overflow-y:auto"></div><button class="btn btn-p" onclick="approveAll()">✅ Approve All</button></div>
+<div id="admin-roi" class="adminTab hidden" style="margin-top:10px"><div id="roiList" style="font-size:11px;max-height:400px;overflow-y:auto;background:#f9fafb;padding:10px;border-radius:10px"></div></div>
+<div id="admin-support" class="adminTab hidden" style="margin-top:10px"><div id="adminChatList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px"></div><div style="display:flex;gap:6px;margin-top:8px"><input id="adminChatReply" placeholder="Reply..."><button class="btn btn-p" style="padding:8px;width:auto" onclick="adminReplyChat()">Reply</button></div></div>
 </div>
-<div><h4>📦 Package Investments - American</h4><div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:500px;overflow-y:auto"></div><div style="margin-top:12px;background:linear-gradient(135deg,#ef4444,#f59e0b);color:#fff;padding:12px;border-radius:12px;border:2px dashed #fff"><b style="font-size:11px">🚀 SECRET $2 STARTING CAPITAL STATUS - HIDDEN FROM INVESTORS</b><br><small style="font-size:10px" id="startingCapitalStatus">SECRET Starting Capital: $2.00 - Trading offline every 2 min - After 2h withdraw real profit - Delaware, USA - Hidden from investors</small></div></div>
+<div><h4>📦 Packages</h4><div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:500px;overflow-y:auto"></div></div>
 </div>
 </div>
 </div>
@@ -252,11 +242,11 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 
 </div>
 <div id="sidePanel">
-<div class="card" style="padding:0;overflow:hidden;border:2px solid #7c3aed">
+<div class="card" style="padding:0;overflow:hidden;border:2px solid #e9d5ff">
 <div style="padding:14px 16px 8px"><h3 style="color:#7c3aed">☀️ Solar Projects - Delaware, USA 🇺🇸</h3></div>
 <div class="slidesWrap" id="slidesWrap">
-<div class="slide active"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop"><div class="slideContent"><b>🏠 American Household - $100 🇺🇸</b><small>Daily profit 1.2% auto - Delaware, USA - 2PM EST</small></div></div>
-<div class="slide"><img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop"><div class="slideContent"><b>🏪 American Business - $500 🇺🇸</b><small>Daily profit $6 auto - USA</small></div></div>
+<div class="slide active"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop"><div class="slideContent"><b>🏠 American Household - $100 🇺🇸</b><small>Daily profit 1.2% auto</small></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop"><div class="slideContent"><b>🏪 American Business - $500 🇺🇸</b><small>Daily profit $6 auto</small></div></div>
 </div>
 <div class="dots" id="dots"></div>
 <div style="padding:12px">
@@ -267,7 +257,7 @@ footer{background:#020617;color:#94a3b8;padding:40px 20px;margin-top:30px;border
 </div>
 </div>
 
-<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal - Delaware, USA 🇺🇸</b><br>SolarAI Capital - Delaware, USA - American Company</div><div><b>Compliance - USA 🇺🇸</b><br>SEC, KYC/AML - American standards</div><div><b>Contact - USA 🇺🇸</b><br>support@solarcapitalusa.com<br>Delaware, USA</div><div><b>© SolarAI Capital - Delaware, USA 🇺🇸</b><br>© 2026 - American Luxury Wealth - Daily profits auto 2PM EST</div></div></footer>
+<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal - Delaware, USA 🇺🇸</b><br>SolarAI Capital - Delaware, USA</div><div><b>Compliance - USA 🇺🇸</b><br>SEC, KYC/AML</div><div><b>Contact - USA 🇺🇸</b><br>support@solarcapitalusa.com<br>Delaware, USA</div><div><b>© SolarAI Capital - Delaware, USA 🇺🇸</b><br>© 2026 - Daily profits auto 2PM EST</div></div></footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -287,7 +277,7 @@ try{
   db = getFirestore(app);
   functions = getFunctions(app);
   firebaseEnabled = true;
-}catch(e){console.log('Firebase config not set - Using localStorage fallback');}
+}catch(e){console.log('Firebase config not set - Using localStorage');}
 window.db=db; window.firebaseEnabled=firebaseEnabled;
 window.firestore={collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, onSnapshot, deleteDoc, where};
 window.firebaseFunctions=functions;
@@ -350,7 +340,7 @@ window.listenToROIHistory = function(email){
     onSnapshot(q, (snapshot)=>{
       let rois=[];
       snapshot.forEach(doc=>{rois.push(doc.data())});
-      let html=rois.slice(0,20).map(r=>`<div style="padding:8px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between"><div><b>${r.pkg}</b> | Deposit $${r.deposit} | Profit <b style="color:#22c55e">$${parseFloat(r.roiAmount||r.profitAmount||r.amount||0).toFixed(2)}</b> (1.2% daily) 🇺🇸</div><div><small>${r.date}</small></div></div>`).join('')||'<div style="padding:20px;text-align:center;color:#6b7280">Your daily profits will appear here every 24 hours automatically at 2PM EST - Delaware, USA. Your American wealth grows while you sleep. 🇺🇸🌟</div>';
+      let html=rois.slice(0,20).map(r=>`<div style="padding:8px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between"><div><b>${r.pkg}</b> | Deposit $${r.deposit} | Profit <b style="color:#22c55e">$${parseFloat(r.roiAmount||r.profitAmount||r.amount||0).toFixed(2)}</b> (1.2% daily) 🇺🇸</div><div><small>${r.date}</small></div></div>`).join('')||'<div style="padding:20px;text-align:center;color:#6b7280">Your daily profits will appear here every 24 hours automatically at 2PM EST - Delaware, USA. 🇺🇸🌟</div>';
       let el=document.getElementById('roiHistoryList'); if(el) el.innerHTML=html;
       let el2=document.getElementById('roiList'); if(el2) el2.innerHTML=html;
       let total=rois.reduce((s,r)=>s+parseFloat(r.roiAmount||r.profitAmount||r.amount||0),0);
@@ -372,30 +362,16 @@ window.listenToRobotBalance = function(){
         document.getElementById('rBal').innerText='$'+rb.toFixed(2);
         document.getElementById('vBal').innerText='$'+vb.toFixed(2);
         document.getElementById('rProf').innerText='$'+pr.toFixed(2);
-        document.getElementById('profitPercent').innerText=`SECRET: +${((pr/2)*100).toFixed(2)}% - ${trades} trades - From SECRET $2 starting capital offline - Real profit withdrawable after 2h - Hidden from investors`;
-        document.getElementById('rBalSource').innerText=`SECRET ${trades} offline trades - Robot $${rb.toFixed(2)} - SECRET Starting $2 - Trading every 2 min even offline - Hidden from investors - Delaware, USA`;
-        document.getElementById('startingCapitalStatus').innerText=`SECRET Starting Capital: $${(data.startingCapital||2).toFixed(2)} | Robot: $${rb.toFixed(2)} | Profit: $${pr.toFixed(2)} | Vault: $${vb.toFixed(2)} | ${trades} trades offline SECRET - After 2h (${60} trades) withdraw real profit - Hidden from investors - Delaware, USA`;
+        document.getElementById('profitPercent').innerText=`${trades} trades - Live`;
+        document.getElementById('rBalSource').innerText=`${trades} trades - Live`;
         let progress=Math.min((trades/60)*100,100);
         document.getElementById('twoHoursBar').style.width=progress+'%';
-        document.getElementById('twoHoursText').innerText=`SECRET ${trades} trades / 60 trades (2 hours) - Robot $${rb.toFixed(2)} - Profit $${pr.toFixed(2)} - ${progress.toFixed(0)}% - SECRET $2 starting capital trading offline - Hidden`;
-        document.getElementById('expectedRobot').innerText=`$2.00 → $${rb.toFixed(2)} (real) SECRET`;
-        document.getElementById('expectedProfit').innerText=`$0.00 → $${pr.toFixed(2)} withdrawable after 2h SECRET`;
-        document.getElementById('expectedVault').innerText=`$0.00 → $${vb.toFixed(2)} secured SECRET`;
+        document.getElementById('twoHoursText').innerText=`${trades} / 60 trades - $${rb.toFixed(2)}`;
+        document.getElementById('expectedRobot').innerText=`$${rb.toFixed(2)}`;
+        document.getElementById('expectedProfit').innerText=`$${pr.toFixed(2)}`;
+        document.getElementById('expectedVault').innerText=`$${vb.toFixed(2)}`;
         localStorage.setItem('rBal', rb); localStorage.setItem('vBal', vb); localStorage.setItem('pr', pr);
       }
-    });
-    const q = query(collection(db, "profitHistory"), orderBy("createdAt","desc"));
-    onSnapshot(q, (snapshot)=>{
-      let html=''; let count=0;
-      snapshot.forEach(doc=>{
-        if(count<30){
-          let d=doc.data();
-          html+=`<div style="padding:6px;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between"><div>SECRET [${d.time||new Date(d.timestamp).toLocaleTimeString()}] Trade +$${parseFloat(d.profit||0).toFixed(4)} (${parseFloat(d.percent||0).toFixed(2)}%) | Robot $${parseFloat(d.robotBalance||0).toFixed(2)}</div><div><small style="color:#ef4444">SECRET Offline</small></div></div>`;
-          count++;
-        }
-      });
-      let el=document.getElementById('profitHistory'); if(el) el.innerHTML=html||'SECRET Waiting for offline trades... Hidden from investors';
-      let el2=document.getElementById('offlineTradesList'); if(el2) el2.innerHTML=html||'SECRET Loading offline trades... Hidden from investors';
     });
   }catch(e){console.error(e);}
 };
@@ -415,7 +391,7 @@ let logoClicks=0;
 function initLuxurySlides(){let slides=document.querySelectorAll('.luxSlide');let dotsContainer=document.getElementById('luxuryDots');if(!dotsContainer) return;dotsContainer.innerHTML='';slides.forEach((_,i)=>{let dot=document.createElement('div');dot.className='dot'+(i===0?' active':'');dot.onclick=()=>goToLuxury(i);dotsContainer.appendChild(dot);});}
 function goToLuxury(n){let slides=document.querySelectorAll('.luxSlide');let dots=document.querySelectorAll('#luxuryDots.dot');if(slides.length===0) return;slides[currentLuxSlide].classList.remove('active');if(dots[currentLuxSlide]) dots[currentLuxSlide].classList.remove('active');currentLuxSlide=(n+slides.length)%slides.length;slides[currentLuxSlide].classList.add('active');if(dots[currentLuxSlide]) dots[currentLuxSlide].classList.add('active');}
 function changeLuxury(dir){goToLuxury(currentLuxSlide+dir);}
-function adminSecretClick(){logoClicks++;if(logoClicks>=3){logoClicks=0;let pass=prompt('🔐 Owner Admin Access - Secret Key:');if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');alert('✅ Admin access granted! Click 🔐 Admin - SECRET $2 Panel - Hidden from investors - Delaware, USA');go('adminlogin');}else{alert('❌ Wrong');}}setTimeout(()=>{logoClicks=0;},2500);}
+function adminSecretClick(){logoClicks++;if(logoClicks>=3){logoClicks=0;let pass=prompt('🔐 Owner Admin Access - Secret Key:');if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');go('adminlogin');}else{alert('❌ Wrong');}}setTimeout(()=>{logoClicks=0;},2500);}
 document.getElementById('logoBtn').addEventListener('click',adminSecretClick);
 function goAdmin(){let isAdmin=localStorage.getItem('isAdmin')==='true';if(!isAdmin){let pass=prompt('🔐 Admin Login - Enter Owner Secret Key (SolarAI2025!):');if(pass==='SolarAI2025!'){localStorage.setItem('isAdmin','true');go('adminlogin');}else{alert('❌ Access denied');}}else{go('adminlogin');}}
 function getChats(){return JSON.parse(localStorage.getItem('supportChats')||'[]');}
@@ -436,7 +412,7 @@ document.getElementById('robotInvestorName').innerText=`Dear ${name}`;
 document.getElementById('robotAmount').innerText=`$${parseFloat(amount).toFixed(2)} Confirmed! 🇺🇸`;
 document.getElementById('robotPackage').innerText=`${pkg} | Daily Profit 1.2% - Automatic - Delaware, USA - 2PM EST`;
 document.getElementById('robotTitle').innerText=`Thank You ${name.split(' ')[0]}! 🤖👋 🇺🇸`;
-document.getElementById('robotMsg').innerText=`🎉 Wonderful! Thank you for your $${amount} investment in ${pkg}! Your capital is now powering American solar homes and earning you 1.2% daily profit automatically at 2PM EST. No action needed! Welcome to American luxury family! 🇺🇸`;
+document.getElementById('robotMsg').innerText=`🎉 Wonderful! Thank you for your $${amount} investment in ${pkg}! Your capital is now powering American solar homes and earning you 1.2% daily profit automatically at 2PM EST. No action needed!`;
 let confettiContainer=document.getElementById('robotConfetti');confettiContainer.innerHTML='';let colors=['#7c3aed','#ec4899','#f59e0b','#22c55e'];for(let i=0;i<30;i++){let conf=document.createElement('div');conf.className='confetti';conf.style.setProperty('--c', colors[Math.floor(Math.random()*colors.length)]);conf.style.left=Math.random()*100+'%';conf.style.top='-10px';conf.style.animationDelay=Math.random()*1+'s';confettiContainer.appendChild(conf);}
 overlay.classList.add('show');setTimeout(()=>{hideRobot();},8000);
 }
@@ -484,7 +460,7 @@ if(id==='referral')updateReferralLinks();
 if(id==='home'){initLuxurySlides();}
 updSignOutVisibility();
 if(id==='balance'){let email=localStorage.getItem('userEmail');if(email && window.listenToUserBalance){window.listenToUserBalance(email); window.listenToROIHistory(email);} loadROIHistory();}
-if(id==='admin'){showAdminTab('offline'); loadFirebaseData(); if(window.listenToRobotBalance) window.listenToRobotBalance();}
+if(id==='admin'){showAdminTab('transactions'); loadFirebaseData(); if(window.listenToRobotBalance) window.listenToRobotBalance();}
 }
 function sel(type){var u=document.getElementById('walletUSDT'),b=document.getElementById('walletBNB'),tu=document.getElementById('tabUSDT'),tb=document.getElementById('tabBNB');if(type==='USDT'){u.classList.remove('hidden');u.classList.add('active');b.classList.add('hidden');tu.className='btn btn-p';tb.className='btn btn-g';}else{b.classList.remove('hidden');b.classList.add('active');u.classList.add('hidden');tb.className='btn btn-p';tu.className='btn btn-g';}}
 function copyA(id){var el=document.getElementById(id);var txt=el.innerText||'';navigator.clipboard.writeText(txt).then(function(){alert('✅ Copied: '+txt.slice(0,30)+'...')});}
@@ -496,11 +472,11 @@ function saveLogin(e,p){localStorage.setItem('savedEmail',e);localStorage.setIte
 function saveProfile(){let name=document.getElementById('accName').value;let email=document.getElementById('accEmail').value;let phone=document.getElementById('accPhone').value;localStorage.setItem('profileName',name);localStorage.setItem('profilePhone',phone);if(email) localStorage.setItem('userEmail',email);alert('✅ Profile saved - Delaware, USA 🇺🇸');loadProfile();updateReferralLinks();}
 function loadProfile(){document.getElementById('accName').value=localStorage.getItem('profileName')||localStorage.getItem('userName')||'';document.getElementById('accEmail').value=localStorage.getItem('userEmail')||'';document.getElementById('accPhone').value=localStorage.getItem('profilePhone')||'';document.getElementById('userEmailTop').innerText=localStorage.getItem('userEmail')||'Guest';updateReferralLinks();}
 function showAdminTab(tab){document.querySelectorAll('.adminTab').forEach(e=>e.classList.add('hidden'));var el=document.getElementById('admin-'+tab);if(el)el.classList.remove('hidden');}
-async function renderTx(){let txs=[];if(window.getFromFirebase){try{txs=await window.getFromFirebase('transactions');}catch(e){txs=getTxs();}}else{txs=getTxs();}let totalDep=0,totalWith=0;for(let t of txs){if(t.type==='deposit') totalDep+=parseFloat(t.amount||0);else totalWith+=parseFloat(t.amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount} | ${t.pkg||t.network||''}</b> - ${t.email}<br><small>${t.date} | ${t.status} | Hash: ${t.hash.slice(0,20)}... ${t.linkedToAI?'| Linked ✅':''}</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">✅ Approve & Link</button>`:''}</div>`).join('')||'No transactions';document.getElementById('txList').innerHTML=html;}
-async function approveTxFirebase(firebaseId, localIndex){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let t=txs[localIndex]||txs.find(x=>x.id===firebaseId);if(!t){alert('Not found');return;}if(t.status==='approved'&&t.linkedToAI){alert('Already approved');return;}if(window.db && firebaseId){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',firebaseId),{status:'approved',linkedToAI:true,approvedAt:Date.now()});}catch(e){}}t.status='approved';if(t.type==='deposit'&&!t.linkedToAI){rb+=parseFloat(t.amount);t.linkedToAI=true;}let localTxs=getTxs();let idx=localTxs.findIndex(x=>x.hash===t.hash);if(idx>=0){localTxs[idx].status='approved';localTxs[idx].linkedToAI=true;localStorage.setItem('transactions',JSON.stringify(localTxs));}upd();renderTx();alert(`✅ Approved $${t.amount} - Robot Balance $${rb.toFixed(2)} - Delaware, USA 🇺🇸`);}
-async function approveAll(){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let added=0;for(let k=0;k<txs.length;k++){if(txs[k].type==='deposit'&&!txs[k].linkedToAI){rb+=parseFloat(txs[k].amount);added+=parseFloat(txs[k].amount);txs[k].linkedToAI=true;txs[k].status='approved';if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved',linkedToAI:true});}catch(e){}}}else{txs[k].status='approved'; if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved'});}catch(e){}}}let localTxs=getTxs();for(let lt of localTxs){if(txs[k].hash===lt.hash){lt.status='approved';lt.linkedToAI=true;}}localStorage.setItem('transactions',JSON.stringify(localTxs));}upd();renderTx();alert(`✅ All Approved - Added $${added.toFixed(2)} - Robot $${rb.toFixed(2)}`);}
+async function renderTx(){let txs=[];if(window.getFromFirebase){try{txs=await window.getFromFirebase('transactions');}catch(e){txs=getTxs();}}else{txs=getTxs();}let totalDep=0,totalWith=0;for(let t of txs){if(t.type==='deposit') totalDep+=parseFloat(t.amount||0);else totalWith+=parseFloat(t.amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount} | ${t.pkg||t.network||''}</b> - ${t.email}<br><small>${t.date} | ${t.status}</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">✅ Approve</button>`:''}</div>`).join('')||'No transactions';document.getElementById('txList').innerHTML=html;}
+async function approveTxFirebase(firebaseId, localIndex){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let t=txs[localIndex]||txs.find(x=>x.id===firebaseId);if(!t){alert('Not found');return;}if(t.status==='approved'){alert('Already approved');return;}if(window.db && firebaseId){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',firebaseId),{status:'approved',linkedToAI:true,approvedAt:Date.now()});}catch(e){}}t.status='approved';if(t.type==='deposit'){rb+=parseFloat(t.amount);}let localTxs=getTxs();let idx=localTxs.findIndex(x=>x.hash===t.hash);if(idx>=0){localTxs[idx].status='approved';localStorage.setItem('transactions',JSON.stringify(localTxs));}upd();renderTx();}
+async function approveAll(){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let added=0;for(let k=0;k<txs.length;k++){if(txs[k].type==='deposit'&&txs[k].status!=='approved'){rb+=parseFloat(txs[k].amount);added+=parseFloat(txs[k].amount);txs[k].status='approved';if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved',linkedToAI:true});}catch(e){}}}}let localTxs=getTxs();for(let lt of localTxs){if(txs[k]&&txs[k].hash===lt.hash){lt.status='approved';}}localStorage.setItem('transactions',JSON.stringify(localTxs));upd();renderTx();}
 async function loadFirebaseData(){renderTx();renderAdminChat();loadROIHistory(); if(window.listenToRobotBalance) window.listenToRobotBalance();}
-async function loadROIHistory(){let rois=[];if(window.getFromFirebase){try{rois=await window.getFromFirebase('roiHistory');}catch(e){rois=JSON.parse(localStorage.getItem('roiHistory')||'[]');}}else{rois=JSON.parse(localStorage.getItem('roiHistory')||'[]');}let html=rois.slice(0,30).map(r=>`<div style="padding:8px;border-bottom:1px solid #e5e7eb"><b>${r.email}</b> | ${r.pkg} | Profit $${parseFloat(r.roiAmount||r.profitAmount||r.amount||0).toFixed(2)} | Deposit $${r.deposit}<br><small>${r.date} | ${r.auto?'Auto daily 2PM EST':'Manual'}</small></div>`).join('')||'No profit yet - Will auto-credit daily 2PM EST Delaware, USA';let el=document.getElementById('roiHistoryList');if(el) el.innerHTML=html;let el2=document.getElementById('roiList');if(el2) el2.innerHTML=html;}
+async function loadROIHistory(){let rois=[];if(window.getFromFirebase){try{rois=await window.getFromFirebase('roiHistory');}catch(e){rois=JSON.parse(localStorage.getItem('roiHistory')||'[]');}}else{rois=JSON.parse(localStorage.getItem('roiHistory')||'[]');}let html=rois.slice(0,30).map(r=>`<div style="padding:8px;border-bottom:1px solid #e5e7eb"><b>${r.email}</b> | ${r.pkg} | Profit $${parseFloat(r.roiAmount||r.profitAmount||r.amount||0).toFixed(2)}<br><small>${r.date}</small></div>`).join('')||'No profit yet';let el=document.getElementById('roiHistoryList');if(el) el.innerHTML=html;let el2=document.getElementById('roiList');if(el2) el2.innerHTML=html;}
 async function adminWithdrawRealProfit(){
 let amt=document.getElementById('adminWithdrawAmount').value;
 let wallet=document.getElementById('adminWithdrawWallet').value;
@@ -508,35 +484,23 @@ let network=document.getElementById('adminWithdrawNetwork').value;
 if(!amt||!wallet){alert('Enter amount and wallet');return}
 if(!window.firebaseEnabled ||!window.firebaseFunctions){
 rb-=parseFloat(amt)*0.5; vb-=parseFloat(amt)*0.5; pr-=parseFloat(amt); upd();
-alert(`✅ SECRET Local Withdrawal: $${amt} to ${network} ${wallet.slice(0,20)}... - SECRET $2 offline trading - Hidden from investors - Delaware, USA`);
+alert(`✅ Withdrawal: $${amt} to ${network}`);
 return;
 }
 try{
 let withdraw = window.httpsCallable(window.firebaseFunctions, 'adminWithdrawProfit');
 let result = await withdraw({amount: parseFloat(amt), wallet: wallet, network: network});
-alert(`✅ SECRET ${result.data.message}\n\nRemaining Profit: $${result.data.remainingProfit.toFixed(2)}\nRobot Balance: $${result.data.robotBalance.toFixed(2)}\n\nSECRET Real profit withdrawn - Hidden from investors - Delaware, USA 🇺🇸`);
+alert(`✅ ${result.data.message}`);
 }catch(e){alert('Withdrawal failed: '+e.message);}
 }
-async function toggleOfflineTrading(){
-if(!window.firebaseEnabled ||!window.firebaseFunctions){toggleAI(); return;}
-try{
-let currentActive = document.getElementById('aiBtnText').innerText.includes('RUNNING');
-let newActive =!currentActive;
-let toggle = window.httpsCallable(window.firebaseFunctions, 'toggleAITrading');
-let result = await toggle({active: newActive});
-alert('SECRET '+result.data.message+'\n\nOffline trading '+(newActive?'ACTIVE - SECRET $2 trading offline every 2 min - Hidden':'PAUSED')+' - Delaware, USA EST');
-document.getElementById('aiBtnText').innerText=newActive?'⏸️ RUNNING OFFLINE SECRET':'▶️ START AI OFFLINE SECRET';
-}catch(e){alert('Toggle failed: '+e.message);}
-}
 function simulateTwoHours(){
-if(!confirm('⚡ SECRET Simulate 2 Hours Now? 60 trades instantly for testing SECRET $2 withdrawal - Hidden from investors')) return;
 let trades=60;
 for(let i=0;i<trades;i++){
 let profit=rb*(0.02+Math.random()*0.06);
 pr+=profit; let toVault=profit*0.5; let toRobot=profit*0.5; vb+=toVault; rb+=toRobot;
 }
 upd();
-alert(`✅ SECRET Simulated 2 Hours (60 trades) from SECRET $2 starting capital - Hidden from investors\n\nRobot Balance: $${rb.toFixed(2)}\nReal Profit: $${pr.toFixed(2)} (withdrawable SECRET)\nVault: $${vb.toFixed(2)}\n\nNow test SECRET withdrawal - Enter amount and wallet in SECRET Admin panel`);
+alert(`✅ Simulated 60 trades\nRobot: $${rb.toFixed(2)}\nProfit: $${pr.toFixed(2)}\nVault: $${vb.toFixed(2)}`);
 }
 async function doRegister(){
 var n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value;
@@ -545,7 +509,7 @@ let data={name:n,email:e,phone:document.getElementById('regPhone')?.value||'',sp
 if(window.saveToFirebase){await window.saveToFirebase('investors', data); await window.saveToFirebase('users', {email:e,balance:0,totalProfit:0,createdAt:Date.now()});}
 saveInvestor(data);
 localStorage.setItem('userEmail',e);localStorage.setItem('userName',n);saveLogin(e,p);
-alert(`✅ Welcome to American Luxury Family, ${n}! 🇺🇸\n\nYour Invite Code: ${data.specialCode}\nDelaware, USA - Daily profit 1.2% at 2PM EST automatically`);go('login');
+alert(`✅ Welcome to American Luxury Family, ${n}! 🇺🇸`);go('login');
 }
 function doLogin(){
 var e=document.getElementById('logEmail').value,p=document.getElementById('logPass').value;
@@ -553,10 +517,10 @@ if(!e||!p){alert('Enter email/pass');return}
 localStorage.setItem('loggedIn','true');localStorage.setItem('userEmail',e);
 if(window.listenToUserBalance){window.listenToUserBalance(e); window.listenToROIHistory(e);}
 if(window.listenToRobotBalance) window.listenToRobotBalance();
-alert(`✅ Welcome Back to Delaware, USA! 🇺🇸 Your daily profits continue automatically at 2PM EST.`);go('balance');updBal();updSignOutVisibility();
+alert(`✅ Welcome Back!`);go('balance');updBal();updSignOutVisibility();
 }
 function autoFillLogin(){document.getElementById('logEmail').value=localStorage.getItem('savedEmail')||'investor@test.com';document.getElementById('logPass').value=localStorage.getItem('savedPass')||'Investor123';}
-function doLogout(){localStorage.setItem('loggedIn','false');localStorage.setItem('isAdmin','false');alert('✅ Signed Out - Your American wealth continues growing at 2PM EST! 🇺🇸');go('login');updSignOutVisibility();}
+function doLogout(){localStorage.setItem('loggedIn','false');localStorage.setItem('isAdmin','false');go('login');updSignOutVisibility();}
 function updSignOutVisibility(){let logoutBtn=document.getElementById('logoutBtn');let loggedIn=localStorage.getItem('loggedIn')==='true';if(logoutBtn){if(loggedIn){logoutBtn.classList.remove('hidden');}else{logoutBtn.classList.add('hidden');}}}
 async function verifyDep(){
 var h=document.getElementById('txHash').value,a=document.getElementById('depAmount').value;
@@ -574,7 +538,7 @@ if(window.saveToFirebase){await window.saveToFirebase('transactions', txData);}
 let txs=getTxs();txs.unshift(txData);localStorage.setItem('transactions',JSON.stringify(txs));
 var bal=parseFloat(localStorage.getItem('userBal')||0);if(isNaN(bal)) bal=0;bal+=amt;localStorage.setItem('userBal',bal);
 rb+=amt;if(isNaN(rb)) rb=amt;upd();updBal();
-document.getElementById('depList').innerHTML=`<div style="background:#dcfce7;padding:8px;border-radius:8px;margin-top:4px">✅ ${selectedPkg.name} $${a} submitted - Your daily profit of 1.2% will start automatically tomorrow 2PM EST Delaware, USA 🇺🇸</div>`+document.getElementById('depList').innerHTML;
+document.getElementById('depList').innerHTML=`<div style="background:#dcfce7;padding:8px;border-radius:8px;margin-top:4px">✅ ${selectedPkg.name} $${a} submitted</div>`+document.getElementById('depList').innerHTML;
 setTimeout(()=>{showDepositRobot(investorName, a, selectedPkg.name, specialCode);},600);
 }
 async function reqWithdraw(){
@@ -582,13 +546,13 @@ var amt=document.getElementById('wAmt').value,addr=document.getElementById('wAdd
 let network=document.getElementById('wNetwork').value;
 if(!amt||!addr){alert('Fill amount/address');return}
 var b=parseFloat(localStorage.getItem('userBal')||0);if(isNaN(b)) b=0;
-if(parseFloat(amt)>b){alert('Insufficient balance - $'+b.toFixed(2));return}
+if(parseFloat(amt)>b){alert('Insufficient balance');return}
 var email=localStorage.getItem('userEmail')||'guest';
 let txData={type:'withdraw',amount:amt,wallet:addr,email:email,network:network,hash:'0x'+Math.random().toString(16).slice(2,10)+Math.random().toString(16).slice(2,10),date:new Date().toLocaleString(),status:'pending',createdAt:Date.now()};
 if(window.saveToFirebase){await window.saveToFirebase('transactions', txData);}
 let txs=getTxs();txs.unshift(txData);localStorage.setItem('transactions',JSON.stringify(txs));
 localStorage.setItem('userBal',b-parseFloat(amt));updBal();
-document.getElementById('wList').innerHTML='<div style="background:#fef3c7;padding:8px;border-radius:8px">⏳ Withdraw $'+amt+' to '+network+' - Request received, Delaware, USA team will process within 24h 🇺🇸</div>'+document.getElementById('wList').innerHTML;
+document.getElementById('wList').innerHTML='<div style="background:#fef3c7;padding:8px;border-radius:8px">⏳ Withdraw $'+amt+' to '+network+' - Request received</div>'+document.getElementById('wList').innerHTML;
 setTimeout(()=>{showWithdrawRobot(email.split('@')[0], amt, addr, network);},600);
 }
 var rb=parseFloat(localStorage.getItem('rBal')||0);if(isNaN(rb)||rb>1e12) rb=0;
@@ -597,12 +561,12 @@ var vb=parseFloat(localStorage.getItem('vBal')||0);if(isNaN(vb)||vb>1e12) vb=0;
 var pr=parseFloat(localStorage.getItem('pr')||0);if(isNaN(pr)||pr>1e12) pr=0;
 var aiRunning=false, aiInterval=null, profitHistory=[];
 function upd(){if(isNaN(rb)) rb=0;if(isNaN(vb)) vb=0;if(isNaN(pr)) pr=0;if(rb>1e12){rb=0;vb=0;pr=0;}document.getElementById('rBal').innerText='$'+rb.toFixed(2);document.getElementById('vBal').innerText='$'+vb.toFixed(2);document.getElementById('rProf').innerText='$'+pr.toFixed(2);localStorage.setItem('rBal',rb);localStorage.setItem('vBal',vb);localStorage.setItem('pr',pr);}
-function resetRobotBalances(){if(!confirm('RESET ALL? Reset to $2 starting capital?')) return;rb=2;vb=0;pr=0;localStorage.setItem('rBal','2');localStorage.setItem('vBal','0');localStorage.setItem('pr','0');localStorage.setItem('transactions','[]');localStorage.setItem('userBal','0');upd();updBal();renderTx();alert('✅ RESET DONE - Back to SECRET $2 starting capital - Hidden from investors - Delaware, USA');}
-function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2');return}rb+=a;if(isNaN(rb)) rb=a;upd();document.getElementById('log').innerText='✅ SECRET DEPOSIT $'+a+' - Robot $'+rb.toFixed(2)+' - SECRET $2 Starting Capital - Hidden from investors - Offline trading every 2 min - Delaware, USA';}
-function runAI(){if(rb<0.5){alert('Need at least $0.50');return}var profit=rb*(0.02+Math.random()*0.06);pr+=profit;var toVault=profit*0.5;var toRobot=profit*0.5;vb+=toVault;rb+=toRobot;profitHistory.unshift('SECRET ['+new Date().toLocaleTimeString()+'] Trade +$'+profit.toFixed(4)+' Vault $'+toVault.toFixed(4)+' Robot $'+toRobot.toFixed(4)+' | Robot $'+rb.toFixed(2));document.getElementById('profitHistory').innerHTML=profitHistory.slice(0,20).join('<br>');document.getElementById('log').innerText='SECRET Trade +$'+profit.toFixed(4)+' | Robot $'+rb.toFixed(2)+' | Vault $'+vb.toFixed(2)+' | Profit $'+pr.toFixed(2)+' | SECRET $2 trading offline - Hidden';upd();}
-function toggleAI(){if(aiRunning){aiRunning=false;clearInterval(aiInterval);document.getElementById('aiBtnText').innerText='▶️ START AI OFFLINE SECRET';document.getElementById('log').innerText='⏸️ SECRET AI Paused - Hidden from investors';return}if(rb<0.5){alert('Need at least $0.50');return}aiRunning=true;document.getElementById('aiBtnText').innerText='⏸️ RUNNING OFFLINE SECRET';document.getElementById('log').innerText='🚀 SECRET AI Running - Trading every 2 sec locally + Every 2 min offline via Cloud Function - SECRET $2 starting capital - Hidden from investors - Delaware, USA';aiInterval=setInterval(runAI,2000);}
+function resetRobotBalances(){if(!confirm('RESET ALL?')) return;rb=2;vb=0;pr=0;localStorage.setItem('rBal','2');localStorage.setItem('vBal','0');localStorage.setItem('pr','0');upd();updBal();renderTx();}
+function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2');return}rb+=a;if(isNaN(rb)) rb=a;upd();document.getElementById('log').innerText='✅ DEPOSIT $'+a+' - Robot $'+rb.toFixed(2);}
+function runAI(){if(rb<0.5){alert('Need at least $0.50');return}var profit=rb*(0.02+Math.random()*0.06);pr+=profit;var toVault=profit*0.5;var toRobot=profit*0.5;vb+=toVault;rb+=toRobot;profitHistory.unshift('['+new Date().toLocaleTimeString()+'] +$'+profit.toFixed(4)+' | Robot $'+rb.toFixed(2));document.getElementById('profitHistory').innerHTML=profitHistory.slice(0,10).join('<br>');document.getElementById('log').innerText='Trade +$'+profit.toFixed(4)+' | Robot $'+rb.toFixed(2)+' | Profit $'+pr.toFixed(2);upd();}
+function toggleAI(){if(aiRunning){aiRunning=false;clearInterval(aiInterval);document.getElementById('aiBtnText').innerText='▶️ START AI';document.getElementById('log').innerText='⏸️ Paused';return}if(rb<0.5){alert('Need at least $0.50');return}aiRunning=true;document.getElementById('aiBtnText').innerText='⏸️ RUNNING';document.getElementById('log').innerText='🚀 Running - Trading every 2 sec';aiInterval=setInterval(runAI,2000);}
 function loginA(){var e=document.getElementById('ae').value,p=document.getElementById('ap').value;if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){localStorage.setItem('isAdmin','true');go('admin');}else alert('Wrong');}
-function renderPackages(){let html=packages.map(p=>{let daily=(p.min * p.roiNum);return `<div class="pkg" id="pkg-${p.id}" onclick="selectPackage('${p.id}')"><div style="display:flex;justify-content:space-between"><b style="color:${p.color}">${p.name}</b><span class="roiBadge">${p.roi}</span></div><div style="margin-top:6px;font-size:11px"><b>Range: $${p.min} - $${p.max}</b><br><small>Term: ${p.term}</small><br><small style="color:#6b7280">Target: ${p.segment}</small><br><div style="background:#f0fdf4;padding:6px;border-radius:6px;margin-top:6px;border-left:3px solid #22c55e"><b style="font-size:10px">💰 Daily Profit: $${daily.toFixed(2)} - Automatic at 2PM EST - Delaware, USA 🇺🇸</b></div></div></div>`}).join('');document.getElementById('packagesGrid').innerHTML=html;}
+function renderPackages(){let html=packages.map(p=>{let daily=(p.min * p.roiNum);return `<div class="pkg" id="pkg-${p.id}" onclick="selectPackage('${p.id}')"><div style="display:flex;justify-content:space-between"><b style="color:${p.color}">${p.name}</b><span class="roiBadge">${p.roi}</span></div><div style="margin-top:6px;font-size:11px"><b>Range: $${p.min} - $${p.max}</b><br><small>Term: ${p.term}</small><br><div style="background:#f0fdf4;padding:6px;border-radius:6px;margin-top:6px;border-left:3px solid #22c55e"><b style="font-size:10px">💰 Daily: $${daily.toFixed(2)} - Automatic</b></div></div></div>`}).join('');document.getElementById('packagesGrid').innerHTML=html;}
 
 renderPackages();updBal();upd();go('home');initLuxurySlides();updSignOutVisibility();renderAdminChat();renderCustomerChat();
 let savedEmail=localStorage.getItem('userEmail');
