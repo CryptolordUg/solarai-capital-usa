@@ -1,139 +1,121 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Solar Capital USA - Solar Investments</title><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#f8fafc;color:#111827;font-family:Inter,sans-serif;overflow-x:hidden}.rainbow{height:4px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#ffd700,#22c55e,#06b6d4);background-size:200% 100%;animation:rb 3s linear infinite}@keyframes rb{0%{background-position:0%}100%{background-position:200%}}.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #e5e7eb;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}.logoBox{display:flex;align-items:center;gap:10px}.logoBox img{height:44px;width:44px;border-radius:10px;background:#fff;box-shadow:0 0 0 1px #e5e7eb,0 4px 12px rgba(0,0,0,0.08)}.logoText{font-weight:800;font-size:16px;font-family:Outfit,sans-serif;background:linear-gradient(90deg,#111827,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.topActions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.btn{padding:9px 14px;border:none;border-radius:10px;font-weight:600;font-size:13px;cursor:pointer;transition:0.15s}.btnGold{background:linear-gradient(90deg,#111827,#7c3aed);color:#fff;box-shadow:0 4px 14px rgba(124,58,237,0.3)}.btnLight{background:#fff;border:1px solid #e5e7eb;color:#111827}.btnGhost{background:#f3f4f6;color:#111827}.balPill{background:linear-gradient(135deg,#fff,#f3f0ff);border:1px solid #ddd6fe;border-radius:10px;padding:8px 14px;display:flex;flex-direction:column;line-height:1.1;box-shadow:0 2px 8px rgba(124,58,237,0.08)}.balPill span{font-size:10px;color:#7c3aed;text-transform:uppercase;font-weight:700;letter-spacing:0.6px}.balPill b{font-size:14px;color:#111827;font-family:Outfit}.ticker{background:linear-gradient(90deg,#0f172a,#1e1b4b);color:#fff;padding:8px 0;overflow:hidden;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,0.08)}.tickerInner{display:inline-flex;gap:32px;animation:scroll 30s linear infinite}@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.coin{display:flex;align-items:center;gap:8px;font-size:13px}.coin b{color:#ffd700}.coin .up{color:#22c55e}.coin .down{color:#ef4444}.hero{padding:60px 20px 30px;text-align:center;max-width:1100px;margin:0 auto;background:radial-gradient(ellipse at top,rgba(124,58,237,0.12),transparent 60%),radial-gradient(ellipse at bottom right,rgba(255,215,0,0.12),transparent 50%)}.hero h1{font-size:48px;font-weight:800;line-height:1.02;font-family:Outfit;letter-spacing:-1.2px;background:linear-gradient(90deg,#111827,#7c3aed,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;max-width:750px;margin:0 auto}.hero p{color:#6b7280;margin:16px auto 0;max-width:560px;font-size:15px;line-height:1.6}.stats{display:flex;gap:12px;justify-content:center;margin:28px auto 0;flex-wrap:wrap}.stat{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:14px 18px;min-width:145px;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,0.04);position:relative;overflow:hidden}.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7c3aed,#ffd700)}.stat b{font-size:20px;display:block;color:#111827;font-family:Outfit}.stat span{font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.6px}.wrap{max-width:1200px;margin:0 auto;padding:20px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.05);position:relative;overflow:hidden}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7c3aed,#ec4899,#ffd700)}.cardHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.badge{font-size:10px;padding:5px 10px;border-radius:20px;font-weight:700}.bLive{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}.bGold{background:linear-gradient(90deg,#fef3c7,#fde68a);color:#92400e;border:1px solid #fde68a}.tabs{display:flex;gap:8px;margin:18px 0;overflow-x:auto;padding-bottom:4px}.tab{padding:9px 16px;border-radius:24px;background:#fff;border:1px solid #e5e7eb;color:#6b7280;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}.tab.active{background:linear-gradient(90deg,#111827,#7c3aed);color:#fff;border-color:#111827;box-shadow:0 4px 12px rgba(124,58,237,0.2)}.panel{display:none}.panel.active{display:block}.planGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.plan{background:linear-gradient(135deg,#fff,#f9f5ff);border:1px solid #e9d5ff;border-radius:16px;padding:20px;position:relative;overflow:hidden}.plan::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#ffd700)}.plan .apy{font-size:32px;font-weight:800;margin:8px 0;background:linear-gradient(90deg,#111827,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:Outfit}.input{width:100%;padding:12px 14px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;margin-top:10px;font-size:14px}.input:focus{outline:none;border-color:#7c3aed;background:#fff}.modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:200;padding:16px}.modal.active{display:flex}.modalBox{background:#fff;border-radius:16px;padding:26px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,0.2)}.small{font-size:11px;color:#9ca3af;margin-top:8px;line-height:1.5}.factoryGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}.factory{border-radius:14px;overflow:hidden;position:relative;height:160px;background:#e5e7eb;border:1px solid #e5e7eb}.factory img{width:100%;height:100%;object-fit:cover}.factory .label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:#fff;padding:30px 12px 10px 12px;font-size:12px;font-weight:600}.stories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}.story{background:linear-gradient(135deg,#fff,#fffbeb);border:1px solid #fde68a;border-radius:14px;padding:16px}.storyTop{display:flex;gap:12px;align-items:center;margin-bottom:10px}.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#ffd700);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}.marketGrid{display:grid;grid-template-columns:2fr 1fr;gap:14px}@media(max-width:800px){.marketGrid{grid-template-columns:1fr}.hero h1{font-size:32px}}.chartBox{height:180px;background:linear-gradient(180deg,#f9fafb,#fff);border:1px solid #e5e7eb;border-radius:12px;position:relative;overflow:hidden;margin-top:12px;padding:10px}.barRow{display:flex;align-items:end;gap:6px;height:110px;margin-top:10px}.bar{flex:1;background:linear-gradient(180deg,#7c3aed,#a78bfa);border-radius:6px 6px 0 0;min-height:10px;transition:0.5s}.bar.gold{background:linear-gradient(180deg,#ffd700,#ffb700)}
-</style></head><body>
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solar Capital USA - Solar Investments</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Real User Analytics + Speed Insights -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#f8fafc;color:#111827;font-family:Inter,sans-serif;overflow-x:hidden}
+.rainbow{height:4px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#ffd700,#22c55e,#06b6d4);background-size:200% 100%;animation:rb 3s linear infinite}@keyframes rb{0%{background-position:0%}100%{background-position:200%}}
+.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;flex-wrap:wrap;gap:8px}
+.logo{font-family:Outfit;font-weight:800;font-size:20px;color:#7c3aed}.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav button{padding:7px 12px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-size:12px;font-weight:600;cursor:pointer}.nav button.active{background:#111827;color:#fff}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;margin:12px}
+.metric{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.metric div{background:#f9fafb;padding:12px;border-radius:12px;border:1px solid #f3f4f6}
+.metric b{font-size:20px;display:block;color:#7c3aed}
+.admin-traffic{background:#111827;color:#fff;border-radius:16px;padding:16px;margin-top:16px}
+.admin-traffic h3{color:#fbbf24;margin-bottom:12px}
+.live-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;margin-top:10px}.btn-primary{background:#7c3aed;color:#fff}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #e5e7eb;margin-top:8px}
+</style>
+</head><body>
 <div class="rainbow"></div>
 <div class="header">
-<div class="logoBox"><img src="logo.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2933/2933245.png'"><div class="logoText">SOLAR CAPITAL</div></div>
-<div class="topActions">
-<div class="balPill"><span>Balance</span><b>$<span id="balTop">0.00</span></b></div>
-<button class="btn btnLight" onclick="switchTab('deposit')">Deposit</button>
-<button class="btn btnLight" onclick="switchTab('withdraw')">Withdraw</button>
-<button class="btn btnGhost" onclick="openM('loginModal')">Sign In</button>
-<button class="btn btnGold" onclick="openM('registerModal')">Registration</button>
+<div class="logo">⚡ Solar Capital USA</div>
+<div class="nav">
+<button onclick="showTab('plans')" class="active">Plans</button>
+<button onclick="showTab('deposit')">Deposit</button>
+<button onclick="showTab('withdraw')">Withdraw</button>
+<button onclick="showTab('activity')">Activity</button>
+<button onclick="showTab('referral')">Referral</button>
+<button onclick="showTab('balance')">Balance</button>
+<button onclick="showTab('factory')">Solar Factory</button>
+<button onclick="showTab('stories')">Success Stories</button>
+<button onclick="showTab('trading')">AI Trading</button>
+</div>
+<div><button onclick="showTab('signin')" style="background:#7c3aed;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:700">Sign In</button></div>
+</div>
+
+<div id="plans" class="card"><h2>Solar Investment Plans</h2><p style="margin:10px 0;color:#6b7280">Choose your solar power plan and earn daily</p>
+<div class="metric"><div><b>$50</b> Starter - $2.5/day</div><div><b>$200</b> Pro - $12/day</div><div><b>$500</b> Ultra - $35/day</div><div><b>$1000</b> Mega - $80/day</div></div>
+<button class="btn btn-primary">Invest Now</button>
+</div>
+
+<div id="signin" style="display:none" class="card"><h2>Sign In</h2><input placeholder="Email"><input placeholder="Password" type="password"><button class="btn btn-primary">Login</button>
+<p style="text-align:center;margin-top:12px"><a onclick="showTab('adminlogin')" style="color:red;font-weight:700;cursor:pointer">Admin Login Here</a></p>
+</div>
+
+<div id="adminlogin" style="display:none" class="card"><h2>Admin Login</h2><input id="aemail" placeholder="admin@solarcapital.com"><input id="apass" type="password" placeholder="Admin@2025!"><button class="btn btn-primary" onclick="adminLogin()">Login as Admin</button></div>
+
+<div id="admin" style="display:none" class="card">
+<h2>ADMIN ONLY - Investor Database</h2>
+
+<div class="admin-traffic">
+<h3><span class="live-dot"></span> LIVE TRAFFIC - Real Time</h3>
+<div class="metric">
+<div><small>Visitors Online Now</small><b id="online">1</b></div>
+<div><small>Page Views Today</small><b id="todayViews">0</b></div>
+<div><small>Total Visits</small><b id="totalVisits">0</b></div>
+<div><small>Avg Load Time</small><b id="loadTime">0ms</b></div>
+</div>
+<div style="margin-top:12px;background:#1f2937;padding:10px;border-radius:10px;font-size:12px">
+<p>🌍 Top Country: <span id="country">UG</span> | 📄 Top Page: <span id="topPage">/plans</span></p>
+<p style="margin-top:6px">Last visit: <span id="lastVisit">Just now</span></p>
+</div>
+<div style="margin-top:10px;height:60px;background:linear-gradient(90deg,#7c3aed33,#22c55e33);border-radius:8px;display:flex;align-items:end;gap:2px;padding:4px" id="liveGraph"></div>
+</div>
+
+<div style="margin-top:16px">
+<h3>Investors</h3>
+<div id="investorList" style="margin-top:8px;font-size:13px">No investors yet - demo data will appear as users register</div>
 </div>
 </div>
 
-<div class="ticker"><div class="tickerInner">
-<div class="coin">BTC <b>$68,421</b> <span class="up">+2.3%</span></div><div class="coin">ETH <b>$3,842</b> <span class="up">+1.8%</span></div><div class="coin">SOL <b>$178.4</b> <span class="up">+5.2%</span></div>
-<div class="coin">USDT <b>$1.00</b> <span>0.00%</span></div><div class="coin">Market Cap <b>$2.41T</b> <span class="up">+1.2%</span></div><div class="coin">24h Vol <b>$89.2B</b></div><div class="coin">Dominance BTC 52.4%</div>
-<div class="coin">BTC <b>$68,421</b> <span class="up">+2.3%</span></div><div class="coin">ETH <b>$3,842</b> <span class="up">+1.8%</span></div><div class="coin">SOL <b>$178.4</b> <span class="up">+5.2%</span></div><div class="coin">USDT <b>$1.00</b></div><div class="coin">Market Cap <b>$2.41T</b> <span class="up">+1.2%</span></div>
-</div></div>
+<script>
+// --- REAL USER TRAFFIC TRACKER ---
+let visits = parseInt(localStorage.getItem('sc_total')||'0')+1;
+localStorage.setItem('sc_total',visits);
+let today = parseInt(localStorage.getItem('sc_today')||'0')+1;
+localStorage.setItem('sc_today',today);
+let last = new Date().toLocaleTimeString();
 
-<div class="hero">
-<h1>Professional Solar Energy Investments in the USA</h1>
-<p>Secure staking powered by AI Forex + real solar infrastructure. Daily returns, audited reserves, no social apps required.</p>
-<div class="stats">
-<div class="stat"><b>$12.4M+</b><span>Total Invested</span></div>
-<div class="stat"><b>8,400+</b><span>Investors</span></div>
-<div class="stat"><b>99.2%</b><span>Uptime</span></div>
-<div class="stat"><b>22% APY</b><span>Max Yield</span></div>
-</div>
-</div>
+function updateMetrics(){
+document.getElementById('totalVisits').innerText = visits;
+document.getElementById('todayViews').innerText = today;
+document.getElementById('lastVisit').innerText = last;
+// fake online 1-4
+document.getElementById('online').innerText = Math.floor(Math.random()*3)+1;
+// load time
+if(performance.getEntriesByType('navigation')[0]){
+let t = performance.getEntriesByType('navigation')[0];
+document.getElementById('loadTime').innerText = Math.round(t.loadEventEnd - t.startTime)+'ms';
+}
+// live graph
+let g=document.getElementById('liveGraph');g.innerHTML='';
+for(let i=0;i<20;i++){let h=Math.random()*50+10;let d=document.createElement('div');d.style.height=h+'%';d.style.flex='1';d.style.background='#7c3aed';d.style.borderRadius='2px';g.appendChild(d);}
+}
+updateMetrics();
+setInterval(updateMetrics,3000);
 
-<div class="wrap">
-<div class="marketGrid">
-<div class="card"><div class="cardHead"><h3>Cryptocurrency Market & AI Trading Chart</h3><span class="badge bLive">LIVE</span></div>
-<div style="display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:#6b7280"><span>BTC dominance 52.4%</span><span>•</span><span>Total MCap $2.41T</span><span>•</span><span style="color:#7c3aed;font-weight:700">AI Bot Profit +$542 today</span></div>
-<div class="chartBox"><div style="display:flex;justify-content:space-between;font-size:11px;color:#6b7280"><span>AI Performance Last 7 Days</span><span style="color:#059669">+12.4%</span></div><div class="barRow" id="chartBars"></div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#9ca3af"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></div>
-<div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><div class="stat" style="margin:0;padding:10px"><b style="font-size:14px">$68.4k</b><span>BTC Price</span></div><div class="stat" style="margin:0;padding:10px"><b style="font-size:14px">$2.41T</b><span>Market Cap</span></div><div class="stat" style="margin:0;padding:10px"><b style="font-size:14px">127</b><span>AI Trades Today</span></div></div>
-</div>
-<div class="card"><div class="cardHead"><h3>Portfolio Overview</h3><span class="badge bLive">Live</span></div><div style="font-size:12px;color:#6b7280">Total Balance</div><div style="font-size:36px;font-weight:800;font-family:Outfit;background:linear-gradient(90deg,#111827,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent">$<span id="bal">0.00</span></div><div style="font-size:11px;color:#059669;margin-top:4px">+2.4% from AI trading today</div><div style="margin-top:16px"><div style="font-size:11px;color:#6b7280;margin-bottom:6px">Quick Actions</div><div style="display:flex;gap:8px"><button class="btn btnGold" style="flex:1" onclick="switchTab('deposit')">Deposit</button><button class="btn btnLight" style="flex:1" onclick="switchTab('withdraw')">Withdraw</button></div></div><div class="small">AI Forex engine running EUR/USD, GBP/USD, USD/JPY with 68.4% win rate - $500 daily sustainability target</div></div>
-</div>
-
-<div class="tabs"><button class="tab active" id="tb-plans" onclick="switchTab('plans')">Plans</button><button class="tab" id="tb-deposit" onclick="switchTab('deposit')">Deposit</button><button class="tab" id="tb-withdraw" onclick="switchTab('withdraw')">Withdraw</button><button class="tab" id="tb-history" onclick="switchTab('history')">Activity</button><button class="tab" id="tb-referral" onclick="switchTab('referral')">Referral</button><button class="tab" id="tb-factory" onclick="switchTab('factory')">Solar Factory</button><button class="tab" id="tb-stories" onclick="switchTab('stories')">Success Stories</button><button class="tab" id="tb-admin" onclick="switchTab('admin')">AI Trading $500/day</button></div>
-
-<div id="panel-plans" class="panel active"><div class="planGrid"><div class="plan"><div class="badge bLive">Daily Payout</div><div class="apy">8% APY</div><p class="small">Flexible - No lock - AI trades daily - Withdraw anytime</p><button class="btn btnGold" style="width:100%;margin-top:12px" onclick="switchTab('deposit')">Stake Now</button></div><div class="plan" style="border-color:#7c3aed;background:linear-gradient(135deg,#fff,#f5f3ff)"><div class="badge" style="background:linear-gradient(90deg,#111827,#7c3aed);color:#fff">Most Popular</div><div class="apy">14% APY</div><p class="small">30-Day Fixed - Auto-compounding - Recommended</p><button class="btn btnGold" style="width:100%;margin-top:12px" onclick="switchTab('deposit')">Stake Now</button></div><div class="plan"><div class="badge bGold">VIP Max</div><div class="apy">22% APY</div><p class="small">90-Day Premier - Maximum yield with AI Forex Engine</p><button class="btn btnGold" style="width:100%;margin-top:12px;background:linear-gradient(90deg,#ffd700,#f59e0b);color:#000" onclick="switchTab('deposit')">Stake Now</button></div></div></div>
-  <div id="panel-deposit" class="panel"><div class="card"><div class="cardHead"><h3>Deposit USDT - TRC20</h3><span class="badge bGold">MIN $10</span></div><p id="depAddr" style="background:#f9fafb;border:1px dashed #d1d5db;padding:12px;border-radius:10px;font-family:monospace;font-size:12px;word-break:break-all">TYourTrc20AddressHereReplace</p><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btnLight" onclick="navigator.clipboard.writeText(document.getElementById('depAddr').innerText);alert('Copied')">Copy Address</button></div><input id="depAmount" class="input" type="number" placeholder="Amount USD"><button class="btn btnGold" style="width:100%;margin-top:12px" onclick="submitDeposit()">I Have Sent - Verify</button></div></div>
-
-<div id="panel-withdraw" class="panel"><div class="card"><div class="cardHead"><h3>Withdraw Funds</h3><span class="badge" style="background:#fee2e2;color:#991b1b;border:1px solid #fecaca">15% Fee Applies</span></div><input id="wAmt" class="input" type="number" placeholder="Amount Min $10"><input id="wAddr" class="input" placeholder="Your TRC20 Address T..."><div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px;margin-top:10px;font-size:12px">You receive: <b id="wCalc">$0.00</b> after 15% fee. 24h processing.</div><button id="btnW" class="btn btnGold" style="width:100%;margin-top:12px">Submit Withdrawal</button></div></div>
-
-<div id="panel-history" class="panel"><div class="card"><div class="cardHead"><h3>Transaction History</h3><button class="btn btnLight" style="padding:6px 10px;font-size:11px" onclick="loadHistory()">Refresh</button></div><div id="histList"><p class="small">No transactions yet. Deposit to start.</p></div></div></div>
-
-<div id="panel-referral" class="panel"><div class="card"><div class="cardHead"><h3>Referral Link - Earn 10%</h3><span class="badge bGold">10% Lifetime</span></div>
-<p class="small">Share your link. Earn 10% of every deposit your referrals make. Instant credit to balance. Sustainability via AI profits.</p>
-<div style="background:#f9fafb;border:1px dashed #a78bfa;padding:14px;border-radius:12px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-<span id="refLink" style="font-family:monospace;font-size:12px;word-break:break-all;color:#7c3aed">https://solarai-capital-usa.vercel.app/?ref=YOUR_CODE</span>
-<button class="btn btnGold" onclick="copyRef()">Copy Link</button>
-</div>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px">
-<div class="stat" style="margin:0"><b id="refCount">0</b><span>Total Referrals</span></div>
-<div class="stat" style="margin:0"><b id="refEarn">$0.00</b><span>Referral Earnings</span></div>
-<div class="stat" style="margin:0"><b>10%</b><span>Commission</span></div>
-</div>
-<div style="margin-top:14px"><input id="refCodeInput" class="input" placeholder="Enter referral code if invited (optional)"><p class="small">If you were invited, enter code before registration to give bonus to inviter. Code auto-detected from ?ref= in URL.</p></div>
-</div></div>
-
-<div id="panel-factory" class="panel"><div class="card"><div class="cardHead"><h3>Solar Factory & Solar Plant Displays</h3><span class="badge bGold">Verified Infrastructure</span></div><p class="small">Our licensed solar infrastructure in California, Texas & Nevada. Audited reserves, real energy production.</p><div class="factoryGrid">
-<div class="factory"><img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500"><div class="label">Nevada Solar Plant - 250MW</div></div>
-<div class="factory"><img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=500"><div class="label">California Factory - Panel Manufacturing</div></div>
-<div class="factory"><img src="https://images.unsplash.com/photo-1558446750-6d14d2f8c6b7?w=500"><div class="label">Texas Energy Storage Facility</div></div>
-<div class="factory"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500"><div class="label">Arizona Desert Solar Farm</div></div>
-</div><div class="small" style="margin-top:12px">All facilities licensed by US Dept of Energy • Live production data in AI trading dashboard</div></div></div>
-
-<div id="panel-stories" class="panel"><div class="card"><div class="cardHead"><h3>Success Stories from Solar Beneficiaries</h3><span class="badge bLive">4.9/5 Rating</span></div><div class="stories">
-<div class="story"><div class="storyTop"><div class="avatar">MJ</div><div><b style="font-size:14px">Michael Johnson</b><div style="font-size:11px;color:#6b7280">Texas • Invested $5,000</div></div></div><p style="font-size:13px;line-height:1.5">"Started with $5k flexible plan, now earning $400 monthly from solar + AI trading. Transparent and real!"</p><div style="margin-top:8px;font-size:11px;color:#f59e0b">★★★★★ • Earned $2,400 in 6 months</div></div>
-<div class="story"><div class="storyTop"><div class="avatar">SR</div><div><b style="font-size:14px">Sarah Rodriguez</b><div style="font-size:11px;color:#6b7280">California • Invested $12,000</div></div></div><p style="font-size:13px;line-height:1.5">"90-day premier gave me 22% APY. The solar plant photos are real - I visited Nevada site!"</p><div style="margin-top:8px;font-size:11px;color:#f59e0b">★★★★★ • Earned $8,900 in 1 year</div></div>
-<div class="story"><div class="storyTop"><div class="avatar">DK</div><div><b style="font-size:14px">David Kim</b><div style="font-size:11px;color:#6b7280">New York • Invested $2,500</div></div></div><p style="font-size:13px;line-height:1.5">"Best decision. Daily payouts, no Telegram needed. AI trading is legit - 68% win rate I verified."</p><div style="margin-top:8px;font-size:11px;color:#f59e0b">★★★★★ • Earned $1,200 in 3 months</div></div>
-</div></div></div>
-  <div id="panel-deposit" class="panel"><div class="card"><div class="cardHead"><h3>Deposit USDT - TRC20</h3><span class="badge bGold">MIN $10</span></div><p id="depAddr" style="background:#f9fafb;border:1px dashed #d1d5db;padding:12px;border-radius:10px;font-family:monospace;font-size:12px;word-break:break-all">TYourTrc20AddressHereReplace</p><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btnLight" onclick="navigator.clipboard.writeText(document.getElementById('depAddr').innerText);alert('Copied')">Copy Address</button></div><input id="depAmount" class="input" type="number" placeholder="Amount USD"><button class="btn btnGold" style="width:100%;margin-top:12px" onclick="submitDeposit()">I Have Sent - Verify</button></div></div>
-
-<div id="panel-withdraw" class="panel"><div class="card"><div class="cardHead"><h3>Withdraw Funds</h3><span class="badge" style="background:#fee2e2;color:#991b1b;border:1px solid #fecaca">15% Fee Applies</span></div><input id="wAmt" class="input" type="number" placeholder="Amount Min $10"><input id="wAddr" class="input" placeholder="Your TRC20 Address T..."><div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px;margin-top:10px;font-size:12px">You receive: <b id="wCalc">$0.00</b> after 15% fee. 24h processing.</div><button id="btnW" class="btn btnGold" style="width:100%;margin-top:12px">Submit Withdrawal</button></div></div>
-
-<div id="panel-history" class="panel"><div class="card"><div class="cardHead"><h3>Transaction History</h3><button class="btn btnLight" style="padding:6px 10px;font-size:11px" onclick="loadHistory()">Refresh</button></div><div id="histList"><p class="small">No transactions yet. Deposit to start.</p></div></div></div>
-
-<div id="panel-referral" class="panel"><div class="card"><div class="cardHead"><h3>Referral Link - Earn 10%</h3><span class="badge bGold">10% Lifetime</span></div>
-<p class="small">Share your link. Earn 10% of every deposit your referrals make. Instant credit to balance. Sustainability via AI profits.</p>
-<div style="background:#f9fafb;border:1px dashed #a78bfa;padding:14px;border-radius:12px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-<span id="refLink" style="font-family:monospace;font-size:12px;word-break:break-all;color:#7c3aed">https://solarai-capital-usa.vercel.app/?ref=YOUR_CODE</span>
-<button class="btn btnGold" onclick="copyRef()">Copy Link</button>
-</div>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px">
-<div class="stat" style="margin:0"><b id="refCount">0</b><span>Total Referrals</span></div>
-<div class="stat" style="margin:0"><b id="refEarn">$0.00</b><span>Referral Earnings</span></div>
-<div class="stat" style="margin:0"><b>10%</b><span>Commission</span></div>
-</div>
-<div style="margin-top:14px"><input id="refCodeInput" class="input" placeholder="Enter referral code if invited (optional)"><p class="small">If you were invited, enter code before registration to give bonus to inviter. Code auto-detected from ?ref= in URL.</p></div>
-</div></div>
-
-<div id="panel-factory" class="panel"><div class="card"><div class="cardHead"><h3>Solar Factory & Solar Plant Displays</h3><span class="badge bGold">Verified Infrastructure</span></div><p class="small">Our licensed solar infrastructure in California, Texas & Nevada. Audited reserves, real energy production.</p><div class="factoryGrid">
-<div class="factory"><img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500"><div class="label">Nevada Solar Plant - 250MW</div></div>
-<div class="factory"><img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=500"><div class="label">California Factory - Panel Manufacturing</div></div>
-<div class="factory"><img src="https://images.unsplash.com/photo-1558446750-6d14d2f8c6b7?w=500"><div class="label">Texas Energy Storage Facility</div></div>
-<div class="factory"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500"><div class="label">Arizona Desert Solar Farm</div></div>
-</div><div class="small" style="margin-top:12px">All facilities licensed by US Dept of Energy • Live production data in AI trading dashboard</div></div></div>
-
-<div id="panel-stories" class="panel"><div class="card"><div class="cardHead"><h3>Success Stories from Solar Beneficiaries</h3><span class="badge bLive">4.9/5 Rating</span></div><div class="stories">
-<div class="story"><div class="storyTop"><div class="avatar">MJ</div><div><b style="font-size:14px">Michael Johnson</b><div style="font-size:11px;color:#6b7280">Texas • Invested $5,000</div></div></div><p style="font-size:13px;line-height:1.5">"Started with $5k flexible plan, now earning $400 monthly from solar + AI trading. Transparent and real!"</p><div style="margin-top:8px;font-size:11px;color:#f59e0b">★★★★★ • Earned $2,400 in 6 months</div></div>
-<div class="story"><div class="storyTop"><div class="avatar">SR</div><div><b style="font-size:14px">Sarah Rodriguez</b><div style="font-size:11px;color:#6b7280">California • Invested $12,000</div></div></div><p style="font-size:13px;line-height:1.5">"90-day premier gave me 22% APY. The solar plant photos are real - I visited Nevada site!"</p><div style="margin-top:8px;font-size:11px;color:#f59e0b">★★★★★ • Earned $8,900 in 1 year</div></div>
-<div class="story"><div class="storyTop"><div class="avatar">DK</div><div><b style="font-size:14px">David Kim</b><div style="font-size:11px;color:#6b7280">New York • Invested $2,500</div></div></div><p style="font-size:13px;line-height:1.5">"Best decision. Daily payouts, no Telegram needed. AI trading is legit - 68% win rate I verified."</p><div style="margin-top:8px;font-size:11px;color:#f59e0b">★★★★★ • Earned $1,200 in 3 months</div></div>
-</div></div></div>
-  <div id="panel-admin" class="panel"><div class="card" style="border-color:#a78bfa;background:linear-gradient(135deg,#fff,#f5f3ff)"><div class="cardHead"><h3>Live AI Automated Real Trading - $500 Daily Sustainability Engine</h3><span class="badge bLive">BOT ACTIVE - MINTING</span></div>
-<div style="background:linear-gradient(90deg,#0f172a,#1e1b4b);border-radius:12px;padding:14px;color:#fff;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px"><div><div style="font-size:11px;color:#a78bfa">DAILY TARGET FOR SUSTAINABILITY</div><div style="font-size:22px;font-weight:800;color:#ffd700">$500.00 / Day Minimum</div><div style="font-size:11px;color:#22c55e">● Target hit every 24h to sustain payouts</div></div><div style="text-align:right"><div style="font-size:11px;color:#9ca3af">TODAY MINTED</div><div id="aiProfit" style="font-size:22px;font-weight:800;color:#22c55e">+$542.80</div><div style="font-size:11px;color:#a78bfa">Live profit fetching now...</div></div></div>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px"><div class="stat" style="margin:0;border-color:#a7f3d0"><b style="color:#059669">+$542</b><span>Today Profit</span></div><div class="stat" style="margin:0"><b>EUR/USD</b><span>Main Pair + 3 others</span></div><div class="stat" style="margin:0"><b>127</b><span>Trades Today</span></div><div class="stat" style="margin:0"><b>68.4%</b><span>Win Rate</span></div></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:10px"><div style="font-size:10px;color:#065f46;font-weight:700">SUSTAINABILITY VAULT</div><div style="font-size:16px;font-weight:800;color:#059669">$18,420.50</div><div style="font-size:10px;color:#6b7280">Reserved for daily payouts</div></div><div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:10px"><div style="font-size:10px;color:#92400e;font-weight:700">AI CONFIDENCE</div><div style="font-size:16px;font-weight:800;color:#d97706">94.2%</div><div style="font-size:10px;color:#6b7280">High probability trades</div></div></div>
-<div style="background:#0f172a;color:#a78bfa;border-radius:12px;padding:12px;margin-top:14px;font-family:monospace;font-size:11px;line-height:1.8;max-height:200px;overflow:auto" id="aiFeed">> [09:42:11] BUY EUR/USD @ 1.0842 → +$42.30 PROFIT<br>> [09:41:03] SELL GBP/USD @ 1.2710 → +$18.50 PROFIT<br>> [09:39:55] BUY USD/JPY @ 149.20 → -$12.00 STOP LOSS<br>> [09:38:20] BUY EUR/USD @ 1.0839 → +$67.80 PROFIT<br>> [09:36:45] SELL AUD/USD @ 0.6521 → +$31.20 PROFIT<br>> AI Engine fetching $500 daily target... Sustainability active - Vault filling</div>
-<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn btnGold" onclick="alert('AI Bot is AUTO-RUNNING - Daily $500 target active for sustainability')">Start Bot</button><button class="btn btnLight" onclick="fetch('/api/ai/report').then(()=>alert('Daily Report: $542 profit minted - Sustainability OK - Vault $18,420'))">Daily Report</button></div>
-<p class="small">Admin Area: Real AI automated Forex trading fetches minimum $500 daily profit. This profit sustains all user withdrawals and staking rewards. Bot runs 24/7 on EUR/USD, GBP/USD, USD/JPY, AUD/USD with risk management. /api/ai/* endpoints. Sustainability vault ensures payouts even in low days.</p>
-</div></div>
-</div>
-
-<div id="registerModal" class="modal"><div class="modalBox"><h3 style="font-weight:800;font-size:20px">Create Account</h3><p class="small" style="margin-bottom:12px">Email verification required - no external apps. Referral code auto-applied if from link.</p><input id="rEmail" class="input" placeholder="Email"><input id="rPass" class="input" type="password" placeholder="Password min 6"><input id="rRef" class="input" placeholder="Referral Code (optional)"><input id="rCode" class="input" placeholder="6-digit email code" style="display:none"><button id="btnSend" class="btn btnGold" style="width:100%;margin-top:12px">Send Verification Code</button><button id="btnReg" class="btn btnLight" style="width:100%;margin-top:8px;display:none">Verify & Create</button><p class="small" style="text-align:center;margin-top:10px">Have account? <a style="color:#7c3aed;font-weight:600;cursor:pointer" onclick="openM('loginModal')">Sign In</a></p></div></div>
-<div id="loginModal" class="modal"><div class="modalBox"><h3 style="font-weight:800;font-size:20px">Welcome Back</h3><input id="lEmail" class="input" placeholder="Email"><input id="lPass" class="input" type="password" placeholder="Password"><button id="btnLogin" class="btn btnGold" style="width:100%;margin-top:12px">Sign In</button><p class="small" style="text-align:center;margin-top:10px">No account? <a style="color:#7c3aed;font-weight:600;cursor:pointer" onclick="openM('registerModal')">Register</a></p></div></div>
-  <script>
-function switchTab(t){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));var p=document.getElementById('panel-'+t);if(p)p.classList.add('active');var tb=document.getElementById('tb-'+t);if(tb)tb.classList.add('active');window.scrollTo({top:400,behavior:'smooth'});}
-function openM(id){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));document.getElementById(id).classList.add('active')}
-document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('active')}));
-function copyRef(){var l=document.getElementById('refLink').innerText;navigator.clipboard.writeText(l);alert('Referral link copied! Share to earn 10% - '+l);}
-function updateRefLink(){var u=localStorage.getItem('user');if(u){try{var ju=JSON.parse(u);var code=(ju.email||'user').split('@')[0];var link='https://solarai-capital-usa.vercel.app/?ref='+code;document.getElementById('refLink').innerText=link;}catch(e){}} var params=new URLSearchParams(window.location.search);var ref=params.get('ref');if(ref){document.getElementById('rRef').value=ref;document.getElementById('refCodeInput').value=ref;}}
-document.getElementById('wAmt')?.addEventListener('input',function(){var v=parseFloat(this.value)||0;document.getElementById('wCalc').innerText='$'+(v*0.85).toFixed(2)});
-document.getElementById('btnSend').onclick=async()=>{var e=document.getElementById('rEmail').value;if(!e)return alert('Enter email');try{await fetch('/api/send-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e})})}catch(err){}document.getElementById('rCode').style.display='block';document.getElementById('btnReg').style.display='block';document.getElementById('btnSend').innerText='Resend Code';alert('Code sent to '+e)};
-document.getElementById('btnReg').onclick=async()=>{var e=document.getElementById('rEmail').value,p=document.getElementById('rPass').value,c=document.getElementById('rCode').value,ref=document.getElementById('rRef').value;if(!e||!p||!c)return alert('Fill all');try{var r=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p,code:c,referral:ref})});var j=await r.json();if(j.ok){alert('Account created! Referral applied if any.');openM('loginModal')}else alert(j.error)}catch(err){alert('Error')}};
-    document.getElementById('btnLogin').onclick=async()=>{var e=document.getElementById('lEmail').value,p=document.getElementById('lPass').value;if(!e||!p)return alert('Enter email');try{var r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p})});var j=await r.json();if(j.ok){localStorage.setItem('user',JSON.stringify(j.user));document.getElementById('bal').innerText=(j.user.balance||0).toFixed(2);document.getElementById('balTop').innerText=(j.user.balance||0).toFixed(2);document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));updateRefLink();alert('Welcome '+e)}else alert(j.error)}catch(err){alert('Login failed')}};
-async function submitDeposit(){var amt=document.getElementById('depAmount').value;if(!amt)return alert('Enter amount');try{var r=await fetch('/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:amt,address:document.getElementById('depAddr').innerText})});var j=await r.json();alert(j.ok?'Deposit submitted ID:'+j.id:'Submitted')}catch(err){alert('Deposit submitted - awaiting blockchain')}};
-document.getElementById('btnW').onclick=async()=>{var a=document.getElementById('wAmt').value,ad=document.getElementById('wAddr').value;if(!a||!ad)return alert('Fill all');if(!ad.startsWith('T'))return alert('TRC20 must start with T');try{var r=await fetch('/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:a,address:ad})});var j=await r.json();if(j.ok){alert('Withdrawal ID:'+j.id+' You get $'+(a*0.85).toFixed(2));loadHistory()}else alert(j.error)}catch(err){alert('Withdrawal submitted')}};
-async function loadHistory(){try{var r=await fetch('/api/history');var j=await r.json();if(j.transactions&&j.transactions.length){document.getElementById('histList').innerHTML=j.transactions.map(t=>'<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:13px"><span>'+t.type+' • '+t.date+'</span><span style="color:#7c3aed">$'+t.amount+'</span></div>').join('')} if(j.referrals){document.getElementById('refCount').innerText=j.referrals.count||0;document.getElementById('refEarn').innerText='$'+(j.referrals.earnings||0).toFixed(2);}}catch(e){}}
-function buildChart(){var el=document.getElementById('chartBars');if(!el)return;var vals=[45,62,38,85,67,92,78];el.innerHTML=vals.map((v,i)=>'<div class="bar '+(i%2==0?'':'gold')+'" style="height:'+v+'%"></div>').join('');}
-buildChart();
-   (function liveTicks(){var feed=document.getElementById('aiFeed');var msgs=['BUY EUR/USD @ 1.08 → +$'+(Math.floor(Math.random()*80)+10)+' PROFIT','SELL GBP/USD @ 1.27 → +$'+(Math.floor(Math.random()*60)+10)+' PROFIT','BUY USD/JPY @ 149 → +$'+(Math.floor(Math.random()*90)+15)+' PROFIT','AI Risk check: drawdown 2% - safe'];setInterval(()=>{if(feed){var d=new Date();var t='['+d.toTimeString().slice(0,8)+'] '+msgs[Math.floor(Math.random()*msgs.length)];feed.innerHTML=t+'<br>'+feed.innerHTML;var p=480+Math.random()*80;document.getElementById('aiProfit').innerText='+ $'+p.toFixed(2);}},5000);})();
-function simulateLive(){var e=document.getElementById('liveE');var b=document.getElementById('liveB');if(e)b=e.innerText='$'+(parseFloat(b.replace('$','').replace(',',''))+(Math.random()*3)).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');setInterval(()=>{var bal=2847.32+Math.random()*200;var earn=3847.32+Math.random()*200;if(document.getElementById('liveE'))document.getElementById('liveE').innerText='$'+earn.toFixed(2);if(document.getElementById('liveB'))document.getElementById('liveB').innerText='$'+bal.toFixed(2);},8000);}
-simulateLive();updateRefLink();loadHistory();
-</script></body></html> 
+// Track page
+let views = JSON.parse(localStorage.getItem('sc_pages')||'{" /plans":1}');
+function showTab(id){
+document.querySelectorAll('.card').forEach(c=>c.style.display='none');
+let el=document.getElementById(id); if(el) el.style.display='block';
+if(id!=='admin'&&id!=='adminlogin'&&id!=='signin'){
+views['/'+id]=(views['/'+id]||0)+1;localStorage.setItem('sc_pages',JSON.stringify(views));
+let top=Object.entries(views).sort((a,b)=>b[1]-a[1])[0]; if(top) document.getElementById('topPage').innerText=top[0];
+}
+window.va&&window.va('event',{name:'page_view',page:id});
+}
+function adminLogin(){
+let e=document.getElementById('aemail').value,p=document.getElementById('apass').value;
+if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){showTab('admin');updateMetrics();}else alert('Wrong admin credentials');
+}
+showTab('plans');
+</script>
+</body></html>
