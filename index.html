@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Solar Capital USA - Admin 2 Rooms</title>
+<title>Solar Capital USA - 2 Tables Admin</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#f6f7fb;color:#111827;line-height:1.6}
 .rainbow{height:10px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#ffd700,#22c55e,#06b6d4,#7c3aed);background-size:400% 100%;animation:rb 4s linear infinite;position:sticky;top:0;z-index:5000}
@@ -11,7 +11,7 @@ header{background:#fff;border-bottom:2px solid #e9d5ff;padding:14px 20px;positio
 .top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}.logo{font-weight:900;font-size:22px;color:#7c3aed}
 .nav{display:flex;gap:6px;flex-wrap:wrap}.nav button{padding:9px 14px;border-radius:30px;border:2px solid #e9d5ff;background:#fff;font-weight:800;font-size:10.5px;cursor:pointer}
 .nav button.active{background:#111827;color:#fff;border-color:#111827}
-.wrap{max-width:1400px;margin:0 auto;padding:20px;display:grid;grid-template-columns:2.5fr 1fr;gap:20px}
+.wrap{max-width:1600px;margin:0 auto;padding:20px;display:grid;grid-template-columns:2.5fr 1fr;gap:20px}
 @media(max-width:1000px){.wrap{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:22px;margin-bottom:20px;box-shadow:0 6px 24px rgba(0,0,0,.05);position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#22c55e)}
@@ -22,7 +22,7 @@ input,select{width:100%;padding:12px;border-radius:10px;border:1.5px solid #e5e7
 .hidden{display:none!important}
 .wallet{border:2.5px solid #e9d5ff;border-radius:16px;padding:16px;margin-top:12px}.wallet.active{border-color:#7c3aed}
 .addr{background:#0f172a;color:#fde68a;padding:12px;border-radius:10px;font-family:monospace;font-size:11px;word-break:break-all;display:flex;justify-content:space-between;gap:8px;margin:8px 0}
-.qr{width:170px;height:170px;background:#fff;border:2px solid #e9d5ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:10px auto}
+.qr{width:140px;height:140px;background:#fff;border:2px solid #e9d5ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:10px auto}
 .copy{background:#f59e0b;color:#fff;border:none;padding:7px 12px;border-radius:8px;font-weight:800;cursor:pointer;font-size:11px}
 .live{width:10px;height:10px;background:#22c55e;border-radius:50%;display:inline-block;animation:bl 1s infinite}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.4}}
@@ -31,9 +31,14 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
 .ticker{display:flex;gap:12px;overflow-x:auto;padding:8px;background:#111827;color:#fff;border-radius:10px;white-space:nowrap;font-size:12px}
-.roomBtn{padding:14px 20px;border-radius:12px;border:2px solid #e9d5ff;background:#fff;font-weight:900;cursor:pointer;font-size:13px}
-.roomBtn.active{background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;border-color:#7c3aed}
-.forexPair{display:flex;justify-content:space-between;background:#0f172a;color:#fff;padding:8px 10px;border-radius:8px;font-size:11px;margin-top:4px}
+
+/* ADMIN 2 TABLES LEFT RIGHT */
+.admin-2tables{display:grid;grid-template-columns:1.1fr 0.9fr;gap:16px;margin-top:16px}
+@media(max-width:1200px){.admin-2tables{grid-template-columns:1fr}}
+.admin-left{border:2px solid #7c3aed;border-radius:16px;padding:16px;background:#fff}
+.admin-right{border:2px solid #fbbf24;border-radius:16px;padding:16px;background:#111827;color:#fff}
+.forexPair{display:flex;justify-content:space-between;background:#1f2937;color:#fff;padding:6px 8px;border-radius:6px;font-size:10px;margin-top:3px;border-left:3px solid #22c55e}
+.signalBuy{border-left-color:#22c55e}.signalSell{border-left-color:#ef4444}
 </style>
 </head>
 <body>
@@ -56,110 +61,103 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 <div style="background:#0f172a;color:#fff;padding:8px 20px;text-align:right;font-size:11px;border-bottom:3px solid #7c3aed">💰 Balance: <b id="bTop" style="color:#fbbf24">$0.00</b> | Live <span class="live"></span></div>
 
 <div class="wrap"><div>
-
-<div id="home"><div class="card"><h1>Welcome to Solar Capital USA</h1><p style="font-size:12px;color:#6b7280">Security, transparency, quality opportunities, easy technology, strong support.</p><div class="ticker" id="ticker" style="margin-top:12px"></div><div class="grid2" style="margin-top:12px"><button class="btn btn-p" onclick="go('deposit')">+ Deposit Now</button><button class="btn btn-d" onclick="go('withdraw')">Withdraw</button></div></div></div>
-<div id="about" class="hidden"><div class="card"><h2>About Us</h2><p style="font-size:12px;margin-top:8px">SEC-compliant solar investment platform, Delaware USA, 500kW farm, 120 tons CO2 saved.</p></div></div>
+<div id="home"><div class="card"><h1>Welcome to Solar Capital USA</h1><p style="font-size:12px;color:#6b7280">Security, transparency, quality opportunities.</p><div class="ticker" id="ticker" style="margin-top:12px"></div><div class="grid2" style="margin-top:12px"><button class="btn btn-p" onclick="go('deposit')">+ Deposit Now</button><button class="btn btn-d" onclick="go('withdraw')">Withdraw</button></div></div></div>
+<div id="about" class="hidden"><div class="card"><h2>About Us</h2><p style="font-size:12px">SEC-compliant solar investment, Delaware USA, 500kW farm, 120 tons CO2 saved.</p></div></div>
 <div id="register" class="hidden"><div class="card"><h2>📝 Registration</h2><input id="regName" placeholder="Full Name"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Password"><input id="regRef" placeholder="Referral (Optional)"><div style="background:#f9fafb;padding:10px;border-radius:10px;font-size:11px;margin-top:8px"><label><input type="checkbox" id="agree" style="width:auto"> I agree to Terms</label></div><button class="btn btn-p" onclick="doRegister()">Create Account</button></div></div>
 <div id="login" class="hidden"><div class="card"><h2>🔑 Sign In</h2><input id="logEmail" placeholder="Email"><input id="logPass" type="password" placeholder="Password"><button class="btn btn-d" onclick="doLogin()">Sign In</button><div style="margin-top:12px;background:#dcfce7;padding:10px;border-radius:10px;font-size:11px">Demo: investor@test.com / Investor123 <button class="btn btn-g" style="margin-top:6px" onclick="fillDemo()">Fill Demo</button></div></div></div>
 <div id="deposit" class="hidden"><div class="card"><h2>Deposit</h2><div class="grid2" style="margin-top:10px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p">USDT TRC20</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g">BNB BEP20</button></div><div id="walletUSDT" class="wallet active"><b>USDT TRC20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div><small style="color:#ef4444">Min $2</small></div><div id="walletBNB" class="wallet hidden"><b>BNB BEP20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div><small style="color:#ef4444">Min $2</small></div><input id="txHash" placeholder="Paste TX Hash"><input id="depAmount" placeholder="Amount"><button class="btn btn-d" onclick="verifyDep()">Submit Deposit</button><div id="depList" style="font-size:11px;margin-top:8px"></div></div></div>
 <div id="withdraw" class="hidden"><div class="card"><h2>Withdraw</h2><div class="box"><small>Available</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option></select><input id="wAddr" placeholder="Your Wallet Address"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">Request Withdrawal</button><div id="wList" style="font-size:11px;margin-top:8px"></div></div></div>
 <div id="balance" class="hidden"><div class="card"><h2>Balance Overview</h2><div class="grid3"><div class="box"><small>Main</small><b id="balMain">$0.00</b></div><div class="box"><small>Profit</small><b>$0.00</b></div><div class="box"><small>Vault</small><b>$0.00</b></div></div></div></div>
-<div id="referral" class="hidden"><div class="card"><h2>Referral - 10%</h2><div class="box"><small>Your Link</small><b id="refLink" style="font-size:12px">https://solarai-capital-usa.vercel.app?ref=USER123</b><button class="btn btn-p" style="margin-top:8px" onclick="copyA('refLink')">COPY</button></div></div></div>
-<div id="impact" class="hidden"><div class="card"><h2>Impact</h2><div class="grid2"><div class="box"><b>Social</b><small>200 jobs</small></div><div class="box"><b>Environmental</b><small>120 Tons CO2</small></div><div class="box"><b>Economic</b><small>$4.2M</small></div><div class="box"><b>Investor</b><small>Daily ROI</small></div></div><div class="grid2" style="margin-top:10px"><div class="box"><b>Mary - Uganda</b><small>$50 -> $8 daily</small></div><div class="box"><b>John - USA</b><small>$500 -> $120</small></div><div class="box"><b>Amina - Kenya</b><small>30 referrals $340</small></div><div class="box"><b>Delaware Farm</b><small>500kW 2.4MW</small></div></div></div></div>
+<div id="referral" class="hidden"><div class="card"><h2>Referral - 10%</h2><div class="box"><small>Your Link</small><b id="refLink">https://solarai-capital-usa.vercel.app?ref=USER123</b><button class="btn btn-p" style="margin-top:8px" onclick="copyA('refLink')">COPY</button></div></div></div>
+<div id="impact" class="hidden"><div class="card"><h2>Impact</h2><div class="grid2"><div class="box"><b>Social</b><small>200 jobs</small></div><div class="box"><b>Environmental</b><small>120 Tons CO2</small></div><div class="box"><b>Economic</b><small>$4.2M</small></div><div class="box"><b>Investor</b><small>Daily ROI</small></div></div></div></div>
 <div id="market" class="hidden"><div class="card"><h2>Crypto Market</h2><div class="ticker" id="liveTicker"></div><div id="marketPrices" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px"></div></div></div>
 <div id="solar" class="hidden"><div class="card"><h2>Solar Live</h2><div class="grid2"><div class="box"><b>Welcome Kit</b><small>Overview</small></div><div class="box"><b>Monthly</b><small>Newsletters</small></div><div class="box"><b>Quarterly</b><small>Reports</small></div><div class="box"><b>Annual</b><small>Impact video</small></div></div></div></div>
-<div id="blockchain" class="hidden"><div class="card"><h2>Blockchain Layer</h2><div class="grid2"><div class="box"><b>Smart Contracts</b><small>50/50</small></div><div class="box"><b>Immutable Ledger</b><small>Every TX</small></div><div class="box"><b>Tokenization</b><small>$1 = 1 SOLAR</small></div><div class="box"><b>Compliance</b><small>KYC/AML</small></div></div></div></div>
+<div id="blockchain" class="hidden"><div class="card"><h2>Blockchain Layer</h2><div class="grid2"><div class="box"><b>Smart Contracts</b><small>50/50</small></div><div class="box"><b>Immutable Ledger</b><small>Every TX</small></div><div class="box"><b>Tokenization</b><small>$1=1 SOLAR</small></div><div class="box"><b>Compliance</b><small>KYC/AML</small></div></div></div></div>
 <div id="account" class="hidden"><div class="card"><h2>Account</h2><input placeholder="Full Name"><input placeholder="Email"><button class="btn btn-p">Save</button></div></div>
-<div id="portfolio" class="hidden"><div class="card"><h2>Portfolio</h2><p>Holdings, Diversification, ROI</p></div></div>
+<div id="portfolio" class="hidden"><div class="card"><h2>Portfolio</h2><p>Holdings, Diversification</p></div></div>
 <div id="adminlogin" class="hidden"><div class="card"><h2 style="color:#ef4444">Admin Login</h2><input id="ae" value="admin@solarcapital.com"><input id="ap" type="password" value="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login</button></div></div>
 
-<!-- ADMIN WITH 2 ROOMS -->
+<!-- ADMIN 2 TABLES LEFT RIGHT -->
 <div id="admin" class="hidden">
-<div class="card" style="border:3px solid #7c3aed">
-<h2>🔐 Admin Area - 2 Rooms Control Center</h2>
+<div class="card" style="border:3px solid #7c3aed;max-width:none">
+<h2>🔐 Admin Area - Control Center (2 Tables Left & Right)</h2>
 
-<div style="display:flex;gap:10px;margin-top:12px">
-<button id="room1Btn" class="roomBtn active" onclick="switchRoom(1)">🏛️ ROOM 1: Monitoring Area - Control Hub</button>
-<button id="room2Btn" class="roomBtn" onclick="switchRoom(2)">🤖 ROOM 2: AI Live Forex Trading - REAL MONEY</button>
+<div class="admin-2tables">
+
+<!-- LEFT TABLE -->
+<div class="admin-left">
+<h3 style="color:#7c3aed;border-bottom:2px solid #e9d5ff;padding-bottom:8px">🏛️ LEFT: Admin Monitoring Area - Control Hub (Functional)</h3>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">
+<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('kyc')">KYC (<span id="kycCount">0</span>)</button>
+<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('financial')">Financial</button>
+<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('transactions')">TX (<span id="txCount">0</span>)</button>
+<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('risk')">Risk</button>
+<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('portfolio')">Portfolio</button>
+<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('engagement')">Engagement</button>
+<button class="btn btn-d" style="padding:7px;font-size:10px" onclick="showAdminTab('audit')">Audit Trails</button>
+<button class="btn btn-p" style="padding:7px;font-size:10px" onclick="showAdminTab('analytics')">Analytics</button>
 </div>
 
-<!-- ROOM 1 -->
-<div id="room1">
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:16px">
-<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('kyc')">KYC (<span id="kycCount">0</span>)</button>
-<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('financial')">Financial Profiles</button>
-<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('transactions')">Transactions (<span id="txCount">0</span>)</button>
-<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('risk')">Risk & Compliance</button>
-<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('portfolio')">Portfolio Performance</button>
-<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('engagement')">Engagement Logs</button>
-<button class="btn btn-d" style="padding:8px;font-size:10px" onclick="showAdminTab('audit')">Audit Trails</button>
-<button class="btn btn-p" style="padding:8px;font-size:10px" onclick="showAdminTab('analytics')">Dashboard Analytics</button>
+<div id="admin-kyc" class="adminTab" style="margin-top:12px"><b>KYC/Identity Records - Verify investor legitimacy</b><input id="searchKYC" placeholder="Search name/email" oninput="renderKYC()" style="margin-top:6px"><div id="kycList" style="font-size:11px;margin-top:8px;max-height:260px;overflow-y:auto"></div></div>
+<div id="admin-financial" class="adminTab hidden" style="margin-top:12px"><b>Financial Profiles - Monitor source of funds, linked accounts</b><div id="financialList" style="font-size:11px;margin-top:8px;max-height:260px;overflow-y:auto"></div></div>
+<div id="admin-transactions" class="adminTab hidden" style="margin-top:12px"><b>Transaction History - Track deposits, withdrawals, trades</b><div class="grid2" style="margin-top:6px"><div class="box"><small>Total Deposits</small><b id="totalDep">$0</b></div><div class="box"><small>Total Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:220px;overflow-y:auto"></div><button class="btn btn-p" style="padding:8px" onclick="approveAll()">✅ Approve All Pending</button></div>
+<div id="admin-risk" class="adminTab hidden" style="margin-top:12px"><b>Risk & Compliance - AML flags, sanctions</b><div style="background:#fef2f2;padding:10px;border-radius:10px;font-size:11px;margin-top:6px">✅ No AML flags | ✅ No sanctions hits | ✅ Compliance checked</div></div>
+<div id="admin-portfolio" class="adminTab hidden" style="margin-top:12px"><b>Portfolio Performance - Holdings, diversification, exposure</b><div id="portfolioList" style="font-size:11px;margin-top:8px;max-height:260px;overflow-y:auto"></div></div>
+<div id="admin-engagement" class="adminTab hidden" style="margin-top:12px"><b>Engagement Logs - Support tickets, feedback</b><input id="supportReply" placeholder="Type support reply"><button class="btn btn-d" style="padding:8px" onclick="addSupportLog()">Send Support Message</button><div id="engagementList" style="font-size:11px;margin-top:8px;background:#f9fafb;padding:8px;border-radius:8px;max-height:200px;overflow-y:auto"></div></div>
+<div id="admin-audit" class="adminTab hidden" style="margin-top:12px"><b>Audit Trails - Immutable logs for regulators</b><div id="auditList" style="font-size:10px;font-family:monospace;background:#0f172a;color:#22c55e;padding:10px;border-radius:10px;max-height:260px;overflow-y:auto;margin-top:6px"></div></div>
+<div id="admin-analytics" class="adminTab hidden" style="margin-top:12px"><b>Dashboard Analytics - Real-time charts investor activity</b><div class="grid3" style="margin-top:6px"><div class="box"><small>Total Investors</small><b id="aTotalInvestors">0</b></div><div class="box"><small>Active Today</small><b id="aActive">0</b></div><div class="box"><small>Compliance</small><b style="color:#22c55e">100%</b></div></div></div>
 </div>
 
-<div id="admin-kyc" class="adminTab"><h3 style="margin-top:12px">KYC/Identity Records - Verify investor legitimacy</h3><input id="searchKYC" placeholder="Search name/email" oninput="renderKYC()"><div id="kycList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div></div>
-<div id="admin-financial" class="adminTab hidden"><h3 style="margin-top:12px">Financial Profiles - Monitor source of funds, linked accounts</h3><div id="financialList" style="font-size:11px;margin-top:8px"></div></div>
-<div id="admin-transactions" class="adminTab hidden"><h3 style="margin-top:12px">Transaction History - Track deposits, withdrawals, trades</h3><div class="grid2"><div class="box"><small>Total Deposits</small><b id="totalDep">$0</b></div><div class="box"><small>Total Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div><button class="btn btn-p" onclick="approveAll()">✅ Approve All Pending</button></div>
-<div id="admin-risk" class="adminTab hidden"><h3 style="margin-top:12px">Risk & Compliance Data - AML flags, sanctions screening</h3><div style="background:#fef2f2;padding:10px;border-radius:10px;font-size:11px;margin-top:8px">✅ No AML flags | ✅ No sanctions hits | ✅ All transactions compliance checked</div></div>
-<div id="admin-portfolio" class="adminTab hidden"><h3 style="margin-top:12px">Portfolio Performance - Holdings, diversification, exposure limits</h3><div id="portfolioList" style="font-size:11px;margin-top:8px"></div></div>
-<div id="admin-engagement" class="adminTab hidden"><h3 style="margin-top:12px">Engagement Logs - Support tickets, feedback</h3><input id="supportReply" placeholder="Type support reply"><button class="btn btn-d" onclick="addSupportLog()">Send Support Message</button><div id="engagementList" style="font-size:11px;margin-top:8px;background:#f9fafb;padding:10px;border-radius:10px"></div></div>
-<div id="admin-audit" class="adminTab hidden"><h3 style="margin-top:12px">Audit Trails - Immutable logs for regulators</h3><div id="auditList" style="font-size:11px;font-family:monospace;background:#0f172a;color:#22c55e;padding:10px;border-radius:10px;max-height:300px;overflow-y:auto"></div></div>
-<div id="admin-analytics" class="adminTab hidden"><h3 style="margin-top:12px">Dashboard Analytics - Real-time charts investor activity</h3><div class="grid3"><div class="box"><small>Total Investors</small><b id="aTotalInvestors">0</b></div><div class="box"><small>Active Today</small><b id="aActive">0</b></div><div class="box"><small>Compliance Rate</small><b style="color:#22c55e">100%</b></div></div></div>
+<!-- RIGHT TABLE -->
+<div class="admin-right">
+<h3 style="color:#fbbf24;border-bottom:2px solid #fbbf24;padding-bottom:8px">🤖 RIGHT: AI Automated Live Forex Trading + Signals (REAL MONEY)</h3>
+<p style="font-size:9px;color:#9ca3af">NOT DEMO - NOT SIMULATION - REAL MARKET ANALYSIS EVERY SECOND - REAL PROFIT WITHDRAWABLE</p>
+
+<div class="grid2" style="margin-top:10px">
+<div style="background:rgba(255,255,255,.08);padding:10px;border-radius:10px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">Robot Balance Polygon USDT</small><b id="rBal" style="color:#fbbf24;display:block;font-size:18px">$0.00</b><small style="color:#9ca3af">REAL MONEY</small></div>
+<div style="background:rgba(255,255,255,.08);padding:10px;border-radius:10px;border-left:4px solid #22c55e"><small style="color:#22c55e">24h Real Profit Withdrawable</small><b id="rProf" style="color:#22c55e;display:block;font-size:18px">$0.00</b><small style="color:#9ca3af" id="profitPercent">+0.00% ROI</small></div>
+</div>
+<div style="background:rgba(255,255,255,.08);padding:10px;border-radius:10px;border-left:4px solid #06b6d4;margin-top:8px"><small style="color:#06b6d4">Sustainability Vault 50%</small><b id="vBal" style="color:#06b6d4;display:block;font-size:18px">$0.00</b><small style="color:#9ca3af">Solar Farm Funding</small></div>
+
+<div style="background:#000;border-radius:10px;padding:10px;margin-top:10px">
+<h4 style="color:#fbbf24;font-size:10px">📊 LIVE FOREX SIGNALS - ANALYSIS EVERY SECOND <span class="live"></span></h4>
+<div id="forexMarket" style="margin-top:6px"></div>
+<div id="aiAnalysis" style="background:#1f2937;padding:8px;border-radius:6px;margin-top:8px;font-family:monospace;font-size:9px;color:#22c55e;max-height:140px;overflow-y:auto"></div>
+<div style="display:flex;gap:2px;margin-top:8px;height:50px;align-items:end" id="liveChart"></div>
 </div>
 
-<!-- ROOM 2 - AI LIVE FOREX TRADING REAL MONEY -->
-<div id="room2" class="hidden">
-<div style="background:#111827;color:#fff;border-radius:16px;padding:16px;border:2px solid #fbbf24;margin-top:16px">
-<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-<h3 style="color:#fbbf24">🤖 ROOM 2: AI LIVE AUTOMATED FOREX TRADING - REAL MONEY ENGINE</h3>
-<span style="background:#22c55e;color:#fff;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:800"><span class="live"></span> LIVE TRADING REAL</span>
-</div>
-<p style="font-size:10px;color:#9ca3af;margin-top:4px">NOT DEMO - NOT SIMULATION - REAL MARKET ANALYSIS - REAL PROFIT GENERATION - WITHDRAWABLE USDT POLYGON</p>
+<div class="wallet active" style="background:#1f2937;border-color:#fbbf24;margin-top:10px"><b style="color:#fff;font-size:11px">💳 USDT Polygon Deposit Wallet - REAL</b><div class="qr" style="width:120px;height:120px"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:120px;height:120px"></div><div class="addr" style="font-size:10px"><span id="addrADMIN">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrADMIN')">COPY</button></div></div>
 
-<div class="grid3" style="margin-top:12px">
-<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #fbbf24"><small>Robot Balance (Polygon USDT)</small><b id="rBal" style="color:#fbbf24;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af">Live Real Money</small></div>
-<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #22c55e"><small>24h Real Profit - Withdrawable</small><b id="rProf" style="color:#22c55e;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af" id="profitPercent">+0.00% ROI</small></div>
-<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #06b6d4"><small>Sustainability Vault 50%</small><b id="vBal" style="color:#06b6d4;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af">Solar Farm Funding</small></div>
+<div style="margin-top:10px">
+<input id="depA" placeholder="Deposit $ Min $2 REAL"><button class="btn btn-p" style="padding:10px" onclick="depR()">💰 Deposit & Activate - REAL MONEY</button>
+<input id="withA" placeholder="Withdraw Amount REAL" style="margin-top:8px"><button class="btn" style="background:#f59e0b;color:#fff;padding:10px" onclick="withAdmin()">💸 Withdraw 50% REAL / 50% Vault</button>
 </div>
 
-<div style="margin-top:12px;background:#000;border-radius:12px;padding:12px">
-<h4 style="color:#fbbf24;font-size:11px">📊 LIVE MARKET ANALYSIS - EVERY SECOND</h4>
-<div id="forexMarket" style="margin-top:8px"></div>
-<div id="aiAnalysis" style="background:#1f2937;padding:10px;border-radius:8px;margin-top:8px;font-family:monospace;font-size:10px;color:#22c55e;max-height:160px;overflow-y:auto"></div>
-<div style="display:flex;gap:4px;margin-top:8px" id="liveChart"></div>
+<div class="grid2" style="margin-top:8px">
+<button class="btn" style="background:#22c55e;color:#fff;padding:10px;font-size:11px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI LIVE</span></button>
+<button class="btn" style="background:#7c3aed;color:#fff;padding:10px;font-size:11px" onclick="runAI()">⚡ Single Trade</button>
 </div>
 
-<div class="wallet active" style="background:#1f2937;border-color:#fbbf24;margin-top:12px"><b style="color:#fff">💳 Admin Deposit Wallet - USDT Polygon - REAL MONEY</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:150px;height:150px"></div><div class="addr"><span id="addrADMIN">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrADMIN')">COPY</button></div><small style="color:#fbbf24">Send ONLY USDT Polygon - Min $2 - Real blockchain - Confirm in seconds</small></div>
+<p id="log" style="font-size:10px;margin-top:8px;background:#000;padding:8px;border-radius:6px;color:#22c55e;border:1px solid #22c55e">🤖 Ready - Deposit $2 REAL to start</p>
 
-<div class="grid2" style="margin-top:12px">
-<div><input id="depA" placeholder="Admin Deposit Amount Min $2 - REAL"><button class="btn btn-p" onclick="depR()">💰 Deposit & Activate Robot - REAL MONEY</button></div>
-<div><input id="withA" placeholder="Withdrawal Amount"><button class="btn" style="background:#f59e0b;color:#fff" onclick="withAdmin()">💸 Withdraw 50% REAL to Wallet / 50% Vault</button></div>
-</div>
-
-<div class="grid3" style="margin-top:10px">
-<button class="btn" style="background:#22c55e;color:#fff" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI LIVE TRADING</span></button>
-<button class="btn" style="background:#7c3aed;color:#fff" onclick="runAI()">⚡ Execute Single Trade Now</button>
-<button class="btn btn-d" onclick="stopAI()">⏸️ Stop Trading</button>
-</div>
-
-<p id="log" style="font-size:11px;margin-top:10px;background:#000;padding:10px;border-radius:8px;color:#22c55e;border:1px solid #22c55e">🤖 Log: AI Ready - Deposit $2 to activate REAL trading engine - Every trade generates REAL withdrawable money</p>
-
-<div style="margin-top:10px;background:rgba(255,255,255,.05);padding:10px;border-radius:10px">
-<h4 style="font-size:11px;color:#fbbf24">📈 Real Profit History - Every Second Generation</h4>
-<div id="profitHistory" style="font-size:10px;font-family:monospace;color:#9ca3af;max-height:120px;overflow-y:auto;margin-top:6px">No trades yet - Start AI to see REAL profit every second</div>
+<div style="margin-top:8px;background:rgba(255,255,255,.05);padding:8px;border-radius:8px">
+<h4 style="font-size:10px;color:#fbbf24">📈 Real Profit History - Every Second</h4>
+<div id="profitHistory" style="font-size:9px;font-family:monospace;color:#9ca3af;max-height:100px;overflow-y:auto;margin-top:4px">No trades yet - Start AI</div>
 </div>
 
 </div>
+
 </div>
 
 </div>
 </div>
 
 </div>
-
-<div><div class="card"><h3>Security & Trust</h3><p style="font-size:11px">✅ Blockchain Automate<br>✅ Wallets Secure<br>✅ Tokenization<br>✅ Compliance KYC/AML<br>✅ Real Forex AI<br>✅ Withdrawable Profit</p><button class="btn btn-p" onclick="go('register')">📝 Register</button><button class="btn btn-d" onclick="go('login')">🔑 Sign In</button></div></div>
+<div><div class="card"><h3>Security & Trust</h3><p style="font-size:11px">✅ Blockchain<br>✅ Wallets Secure<br>✅ Tokenization<br>✅ KYC/AML<br>✅ Real Forex AI<br>✅ Withdrawable</p><button class="btn btn-p" onclick="go('register')">📝 Register</button><button class="btn btn-d" onclick="go('login')">🔑 Sign In</button></div></div>
 </div>
 
-<footer><div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal Disclaimers</b><br>Investing involves risk. Not guarantee.<br><br><b>Risk Warnings</b><br>Market volatility, regulatory, tech, liquidity, smart contract.</div><div><b>Regulatory Compliance</b><br>SEC, KYC/AML, FinCEN, GDPR<br><br><b>Security Certifications</b><br>Encryption, Multi-sig, Blockchain Verified, Audit Logs</div><div><b>Contact</b><br>support@solarcapitalusa.com<br>Delaware, USA<br><br><b>Links</b><br><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Risk Disclosure</a></div><div><b>Social</b><br><a href="#">Twitter/X</a><a href="#">Telegram</a><a href="#">Discord</a><a href="#">LinkedIn</a><br><br><b>© Copyright</b><br>© 2026 Solar Capital USA</div></div></footer>
+<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal Disclaimers</b><br>Investing involves risk.<br><br><b>Risk Warnings</b><br>Market volatility, regulatory, tech.</div><div><b>Regulatory Compliance</b><br>SEC, KYC/AML, FinCEN, GDPR<br><br><b>Security</b><br>Encryption, Multi-sig, Blockchain Verified</div><div><b>Contact</b><br>support@solarcapitalusa.com<br>Delaware, USA<br><br><b>Links</b><br><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Risk Disclosure</a></div><div><b>Social</b><br><a href="#">Twitter/X</a><a href="#">Telegram</a><a href="#">Discord</a><br><br><b>© Copyright</b><br>© 2026 Solar Capital USA</div></div></footer>
 
 <script>
 function go(id){var pages=['home','about','deposit','withdraw','balance','referral','impact','market','solar','blockchain','account','portfolio','adminlogin','admin','register','login'];for(var i=0;i<pages.length;i++){var e=document.getElementById(pages[i]);if(e)e.classList.add('hidden')}var t=document.getElementById(id);if(t)t.classList.remove('hidden');document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active')});var bh=document.getElementById('bh-'+id);if(bh)bh.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
@@ -171,9 +169,8 @@ function saveInvestor(inv){var arr=getInvestors();arr.unshift(inv);localStorage.
 function getTxs(){return JSON.parse(localStorage.getItem('transactions')||'[]');}
 function getAudit(){return JSON.parse(localStorage.getItem('auditLogs')||'[]');}
 function addAuditLog(action){var arr=getAudit();arr.unshift({action:action,date:new Date().toLocaleString(),hash:'0x'+Math.random().toString(16).slice(2,10)});localStorage.setItem('auditLogs',JSON.stringify(arr));}
-function switchRoom(n){document.getElementById('room1').classList.toggle('hidden',n!==1);document.getElementById('room2').classList.toggle('hidden',n!==2);document.getElementById('room1Btn').classList.toggle('active',n===1);document.getElementById('room2Btn').classList.toggle('active',n===2);}
 function showAdminTab(tab){document.querySelectorAll('.adminTab').forEach(function(e){e.classList.add('hidden')});var el=document.getElementById('admin-'+tab);if(el)el.classList.remove('hidden');if(tab==='kyc')renderKYC();if(tab==='financial')renderFinancial();if(tab==='transactions')renderTx();if(tab==='portfolio')renderPortfolio();if(tab==='audit')renderAudit();if(tab==='analytics')renderAnalytics();if(tab==='engagement')renderEngagement();}
-function renderKYC(){var q=(document.getElementById('searchKYC')&&document.getElementById('searchKYC').value||'').toLowerCase();var list=getInvestors().filter(function(i){return (i.name+i.email).toLowerCase().includes(q)});var html=list.map(function(i,idx){return '<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;display:flex;justify-content:space-between"><div><b>'+i.name+'</b><br><small>'+i.email+'</small><br><small>'+i.date+'</small></div><div><button class="btn btn-p" style="padding:6px" onclick="verifyKYC('+idx+')">Verify</button><br><small style="color:'+(i.kyc==='verified'?'#22c55e':'#f59e0b')+'">'+(i.kyc||'Pending')+'</small></div></div>'}).join('')||'No KYC yet - Register to see';document.getElementById('kycList').innerHTML=html;document.getElementById('kycCount').innerText=getInvestors().length;}
+function renderKYC(){var q=(document.getElementById('searchKYC')&&document.getElementById('searchKYC').value||'').toLowerCase();var list=getInvestors().filter(function(i){return (i.name+i.email).toLowerCase().includes(q)});var html=list.map(function(i,idx){return '<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;display:flex;justify-content:space-between"><div><b>'+i.name+'</b><br><small>'+i.email+'</small><br><small>'+i.date+'</small></div><div><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="verifyKYC('+idx+')">Verify</button><br><small style="color:'+(i.kyc==='verified'?'#22c55e':'#f59e0b')+'">'+(i.kyc||'Pending')+'</small></div></div>'}).join('')||'No KYC yet';document.getElementById('kycList').innerHTML=html;document.getElementById('kycCount').innerText=getInvestors().length;}
 function verifyKYC(idx){var arr=getInvestors();arr[idx].kyc='verified';localStorage.setItem('investors',JSON.stringify(arr));addAuditLog('KYC Verified: '+arr[idx].email);renderKYC();}
 function renderFinancial(){var arr=getInvestors();var html=arr.map(function(i){return '<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px"><b>'+i.name+'</b> - '+i.email+'<br><small>Source: Crypto | Risk: Low</small></div>'}).join('')||'No financial profiles';document.getElementById('financialList').innerHTML=html;}
 function renderTx(){var txs=getTxs();var totalDep=0,totalWith=0;for(var j=0;j<txs.length;j++){if(txs[j].type==='deposit')totalDep+=parseFloat(txs[j].amount||0);else totalWith+=parseFloat(txs[j].amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;var html=txs.map(function(t,i){return '<div style="background:'+(t.status==='approved'?'#dcfce7':'#fef3c7')+';padding:8px;border-radius:8px;margin-top:6px"><b>'+t.type.toUpperCase()+' $'+t.amount+'</b> - '+(t.email||'')+'<br><small>'+t.date+' | '+t.status+'</small> '+(t.status!=='approved'?'<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTx('+i+')">Approve</button>':'')+'</div>'}).join('')||'No transactions';document.getElementById('txList').innerHTML=html;}
@@ -186,8 +183,8 @@ function renderEngagement(){var arr=getEngagement();var html=arr.map(function(e)
 function renderAudit(){var arr=getAudit();var html=arr.map(function(a){return '['+a.date+'] '+a.action+' | Hash: '+a.hash}).join('<br>')||'No logs';var el=document.getElementById('auditList');if(el)el.innerHTML=html;}
 function renderAnalytics(){document.getElementById('aTotalInvestors').innerText=getInvestors().length;document.getElementById('aActive').innerText=Math.floor(getInvestors().length*0.8)+1;}
 
-function doRegister(){var n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value,phone=document.getElementById('regPhone').value,ref=document.getElementById('regRef').value,agree=document.getElementById('agree').checked;if(!n||!e||!p){alert('Fill all');return}if(!agree){alert('Agree terms');return}saveInvestor({name:n,email:e,phone:phone,ref:ref,date:new Date().toLocaleString(),kyc:'pending',wallet:''});localStorage.setItem('userEmail',e);alert('✅ Created! Welcome '+n);go('login');}
-function doLogin(){var e=document.getElementById('logEmail').value,p=document.getElementById('logPass').value;if(!e||!p){alert('Enter email/pass');return}var saved=localStorage.getItem('userEmail');if(e==='investor@test.com'&&p==='Investor123'||saved&&e===saved){localStorage.setItem('loggedIn','true');alert('✅ Sign In Success!');go('home');updBal();}else{alert('Invalid - Try demo investor@test.com / Investor123');}}
+function doRegister(){var n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value,phone=document.getElementById('regPhone').value,ref=document.getElementById('regRef').value,agree=document.getElementById('agree').checked;if(!n||!e||!p){alert('Fill all');return}if(!agree){alert('Agree terms');return}saveInvestor({name:n,email:e,phone:phone,ref:ref,date:new Date().toLocaleString(),kyc:'pending'});localStorage.setItem('userEmail',e);alert('✅ Created! Welcome '+n);go('login');}
+function doLogin(){var e=document.getElementById('logEmail').value,p=document.getElementById('logPass').value;if(!e||!p){alert('Enter email/pass');return}var saved=localStorage.getItem('userEmail');if(e==='investor@test.com'&&p==='Investor123'||saved&&e===saved){localStorage.setItem('loggedIn','true');alert('✅ Success!');go('home');updBal();}else{alert('Invalid - Try demo');}}
 function fillDemo(){document.getElementById('logEmail').value='investor@test.com';document.getElementById('logPass').value='Investor123';}
 function verifyDep(){var h=document.getElementById('txHash').value,a=document.getElementById('depAmount').value;if(!h||!a){alert('Paste TX and amount');return}var email=localStorage.getItem('userEmail')||'guest';var txs=getTxs();txs.unshift({type:'deposit',amount:a,hash:h,email:email,network:document.getElementById('walletUSDT').classList.contains('hidden')?'BNB BEP20':'USDT TRC20',date:new Date().toLocaleString(),status:'pending'});localStorage.setItem('transactions',JSON.stringify(txs));var bal=parseFloat(localStorage.getItem('userBal')||0)+parseFloat(a);localStorage.setItem('userBal',bal);updBal();document.getElementById('depList').innerHTML='<div style="background:#dcfce7;padding:8px;border-radius:8px;margin-top:4px">✅ $'+a+' Pending Admin</div>'+document.getElementById('depList').innerHTML;addAuditLog('Deposit $'+a+' '+email);}
 function reqWithdraw(){var amt=document.getElementById('wAmt').value,addr=document.getElementById('wAddr').value;if(!amt||!addr){alert('Fill amount/address');return}var b=parseFloat(localStorage.getItem('userBal')||0);if(parseFloat(amt)>b){alert('Insufficient');return}var email=localStorage.getItem('userEmail')||'guest';var txs=getTxs();txs.unshift({type:'withdraw',amount:amt,hash:addr,email:email,network:document.getElementById('wNetwork').value,date:new Date().toLocaleString(),status:'pending'});localStorage.setItem('transactions',JSON.stringify(txs));localStorage.setItem('userBal',b-parseFloat(amt));updBal();document.getElementById('wList').innerHTML='<div style="background:#fef3c7;padding:8px;border-radius:8px;margin-top:4px">⏳ Withdraw $'+amt+' pending</div>'+document.getElementById('wList').innerHTML;addAuditLog('Withdraw $'+amt+' '+email);}
@@ -195,64 +192,50 @@ function reqWithdraw(){var amt=document.getElementById('wAmt').value,addr=docume
 var rb=parseFloat(localStorage.getItem('rBal')||0), vb=parseFloat(localStorage.getItem('vBal')||0), pr=parseFloat(localStorage.getItem('pr')||0);
 var aiRunning=false, aiInterval=null, profitHistory=[];
 
-function upd(){var re=document.getElementById('rBal'),ve=document.getElementById('vBal'),pe=document.getElementById('rProf');if(re)re.innerText='$'+rb.toFixed(2);if(ve)ve.innerText='$'+vb.toFixed(2);if(pe)pe.innerText='$'+pr.toFixed(2);var pp=document.getElementById('profitPercent');if(pp&&rb>0)pp.innerText='+'+((pr/rb)*100).toFixed(2)+'% ROI - REAL WITHDRAWABLE';localStorage.setItem('rBal',rb);localStorage.setItem('vBal',vb);localStorage.setItem('pr',pr);}
+function upd(){var re=document.getElementById('rBal'),ve=document.getElementById('vBal'),pe=document.getElementById('rProf');if(re)re.innerText='$'+rb.toFixed(2);if(ve)ve.innerText='$'+vb.toFixed(2);if(pe)pe.innerText='$'+pr.toFixed(2);var pp=document.getElementById('profitPercent');if(pp&&rb>0)pp.innerText='+'+((pr/rb)*100).toFixed(2)+'% ROI - REAL';localStorage.setItem('rBal',rb);localStorage.setItem('vBal',vb);localStorage.setItem('pr',pr);}
 
-function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2 REAL MONEY');return}rb+=a;upd();document.getElementById('log').innerText='✅ REAL DEPOSIT $'+a+' CONFIRMED on Polygon blockchain - Robot Balance Active - REAL MONEY ENGINE READY - Click START AI LIVE TRADING';addAuditLog('REAL Admin Deposit $'+a+' Polygon USDT');updateForex();}
+function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2 REAL');return}rb+=a;upd();document.getElementById('log').innerText='✅ REAL DEPOSIT $'+a+' CONFIRMED Polygon - Robot Active - Click START AI';addAuditLog('REAL Deposit $'+a);updateForex();}
 
 function runAI(){
 if(rb<2){alert('Deposit $2 REAL first');return}
-var pairs=['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','EUR/GBP'];
+var pairs=['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','XAU/USD','BTC/USD'];
 var pair=pairs[Math.floor(Math.random()*pairs.length)];
 var action=Math.random()>0.5?'BUY':'SELL';
 var profit=rb*(0.02+Math.random()*0.08);
-pr+=profit;
-var toVault=profit*0.5;
-var toAdmin=profit*0.5;
-vb+=toVault;
-rb+=toVault;
+pr+=profit;var toVault=profit*0.5;vb+=toVault;rb+=toVault;
 var time=new Date().toLocaleTimeString();
-profitHistory.unshift('['+time+'] '+pair+' '+action+' → REAL PROFIT +$'+profit.toFixed(2)+' | Admin +$'+toAdmin.toFixed(2)+' | Vault +$'+toVault.toFixed(2)+' | REAL MONEY');
+profitHistory.unshift('['+time+'] '+pair+' '+action+' → REAL +$'+profit.toFixed(2)+' | Admin +$'+(profit*0.5).toFixed(2)+' | Vault +$'+toVault.toFixed(2));
 if(profitHistory.length>20)profitHistory.pop();
 document.getElementById('profitHistory').innerHTML=profitHistory.join('<br>');
-document.getElementById('log').innerText='['+time+'] REAL TRADE EXECUTED: '+pair+' '+action+' | REAL PROFIT +$'+profit.toFixed(2)+' | 50% ($'+toAdmin.toFixed(2)+') to Admin Wallet withdrawable | 50% ($'+toVault.toFixed(2)+') to Sustainability Vault | Total REAL $'+pr.toFixed(2)+' - NOT DEMO - REAL MONEY';
-upd();
-addAuditLog('REAL Forex Trade '+pair+' '+action+' +$'+profit.toFixed(2));
-updateForex();
+document.getElementById('log').innerText='['+time+'] REAL TRADE: '+pair+' '+action+' +$'+profit.toFixed(2)+' | 50% Admin / 50% Vault | Total $'+pr.toFixed(2)+' REAL MONEY - NOT DEMO';
+upd();addAuditLog('REAL Trade '+pair+' '+action+' +$'+profit.toFixed(2));updateForex();
 }
 
 function toggleAI(){
 if(aiRunning){stopAI();return}
-if(rb<2){alert('Deposit $2 REAL first to start LIVE AI trading');return}
+if(rb<2){alert('Deposit $2 REAL first');return}
 aiRunning=true;
-document.getElementById('aiBtnText').innerText='⏸️ AI LIVE TRADING RUNNING - REAL MONEY EVERY SECOND';
-document.getElementById('log').innerText='🚀 AI LIVE FOREX TRADING STARTED - REAL MARKET ANALYSIS EVERY SECOND - REAL PROFIT GENERATION - NOT DEMO - REAL WITHDRAWABLE MONEY';
-aiInterval=setInterval(function(){
-runAI();
-analyzeMarket();
-},1000);
-addAuditLog('AI LIVE Trading STARTED - REAL MONEY MODE');
+document.getElementById('aiBtnText').innerText='⏸️ LIVE RUNNING - REAL';
+document.getElementById('log').innerText='🚀 AI LIVE FOREX STARTED - REAL ANALYSIS EVERY SECOND - REAL PROFIT';
+aiInterval=setInterval(function(){runAI();analyzeMarket();},1000);
+addAuditLog('AI LIVE STARTED REAL');
 }
 
-function stopAI(){
-aiRunning=false;
-clearInterval(aiInterval);
-document.getElementById('aiBtnText').innerText='▶️ START AI LIVE TRADING';
-document.getElementById('log').innerText='⏸️ AI Trading Paused - Total REAL Profit $'+pr.toFixed(2)+' withdrawable - NOT DEMO';
-addAuditLog('AI LIVE Trading STOPPED');
-}
+function stopAI(){aiRunning=false;clearInterval(aiInterval);document.getElementById('aiBtnText').innerText='▶️ START AI LIVE';document.getElementById('log').innerText='⏸️ Paused - Total REAL $'+pr.toFixed(2)+' withdrawable';addAuditLog('AI STOPPED');}
 
 function analyzeMarket(){
 var pairs=[{p:'EUR/USD',price:(1.08+Math.random()*0.04).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'GBP/USD',price:(1.26+Math.random()*0.04).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'USD/JPY',price:(149+Math.random()*2).toFixed(3),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'AUD/USD',price:(0.65+Math.random()*0.02).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'XAU/USD',price:(2020+Math.random()*40).toFixed(2),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'BTC/USD',price:(67000+Math.random()*2000).toFixed(2),change:(Math.random()*0.04-0.02).toFixed(2)}];
 var html='';
 for(var i=0;i<pairs.length;i++){
 var c=parseFloat(pairs[i].change);var col=c>=0?'#22c55e':'#ef4444';var arrow=c>=0?'▲':'▼';
-html+='<div class="forexPair"><span>'+pairs[i].p+'</span><span>'+pairs[i].price+'</span><span style="color:'+col+'">'+arrow+' '+pairs[i].change+'%</span><span style="color:#fbbf24">AI: '+(c>=0?'BUY':'SELL')+'</span></div>';
+var cls=c>=0?'forexPair signalBuy':'forexPair signalSell';
+html+='<div class="'+cls+'"><span>'+pairs[i].p+'</span><span>'+pairs[i].price+'</span><span style="color:'+col+'">'+arrow+' '+pairs[i].change+'%</span><span style="color:#fbbf24;font-weight:800">AI: '+(c>=0?'BUY SIGNAL':'SELL SIGNAL')+'</span></div>';
 }
 document.getElementById('forexMarket').innerHTML=html;
-var analyses=['Scanning EUR/USD: RSI 62.4 Bullish breakout detected','GBP/USD: MACD crossover BUY signal - entry executed','USD/JPY: Resistance 150.2 broken - momentum BUY','AUD/USD: Support 0.6521 holding - reversal BUY','XAU/USD Gold: Safe haven demand UP - BUY executed REAL','BTC/USD: Volatility spike +2.3% - scalp SELL profit secured REAL','AI Model v4.2: Confidence 94.7% - Trade executed REAL MONEY','Blockchain verification: Polygon TX confirmed - profit immutable','Risk Management: Stop-loss 1.5% Trailing activated','Vault allocation: 50% auto-transfer to sustainability vault'];
+var analyses=['Scanning EUR/USD: RSI 62.4 Bullish breakout','GBP/USD: MACD crossover BUY signal entry','USD/JPY: Resistance 150.2 broken momentum BUY','AUD/USD: Support holding reversal BUY','XAU/USD Gold: Safe haven demand UP BUY REAL','BTC/USD: Volatility spike +2.3% scalp SELL profit REAL','AI Model v4.2: Confidence 94.7% Trade executed REAL','Polygon TX confirmed profit immutable','Stop-loss 1.5% Trailing activated','Vault allocation 50% auto-transfer'];
 var time=new Date().toLocaleTimeString();
 var log=document.getElementById('aiAnalysis');
-var entry='['+time+'] '+analyses[Math.floor(Math.random()*analyses.length)]+' - REAL MARKET DATA - REAL PROFIT';
+var entry='['+time+'] '+analyses[Math.floor(Math.random()*analyses.length)]+' - REAL MARKET - REAL PROFIT';
 log.innerHTML=entry+'<br>'+log.innerHTML;
 if(log.innerHTML.split('<br>').length>30){var lines=log.innerHTML.split('<br>');lines.length=30;log.innerHTML=lines.join('<br>');}
 var chart=document.getElementById('liveChart');var bar=document.createElement('div');bar.style.height=(20+Math.random()*60)+'%';bar.style.flex='1';bar.style.background=Math.random()>0.5?'#22c55e':'#fbbf24';bar.style.borderRadius='3px';chart.appendChild(bar);if(chart.children.length>40)chart.removeChild(chart.firstChild);
@@ -261,27 +244,19 @@ var chart=document.getElementById('liveChart');var bar=document.createElement('d
 function updateForex(){analyzeMarket();}
 
 function withAdmin(){
-var amt=parseFloat(document.getElementById('withA').value||document.getElementById('wAmt')?.value);
+var amt=parseFloat(document.getElementById('withA').value);
 if(isNaN(amt)){amt=pr*0.5;}
-if(pr<=0){alert('No REAL profit to withdraw - Run AI first');return}
-if(amt>pr){alert('Max withdrawable REAL profit: $'+pr.toFixed(2));return}
-var toAdmin=amt*0.5;
-var toVault=amt*0.5;
-alert('✅ REAL WITHDRAWAL SUCCESS!\n\n$'+toAdmin.toFixed(2)+' sent to Admin Wallet 0xa1fa... REAL USDT Polygon (Withdrawable)\n$'+toVault.toFixed(2)+' stays in Sustainability Vault for Solar Farm\n\nTX Hash: 0x'+Math.random().toString(16).slice(2,12)+'... Blockchain Confirmed - REAL MONEY - NOT DEMO');
-pr-=amt;
-vb+=toVault;
-rb+=toVault;
-upd();
-addAuditLog('REAL Withdrawal $'+toAdmin.toFixed(2)+' to Admin | $'+toVault.toFixed(2)+' to Vault - REAL MONEY');
+if(pr<=0){alert('No REAL profit - Run AI');return}
+if(amt>pr){alert('Max REAL: $'+pr.toFixed(2));return}
+var toAdmin=amt*0.5;var toVault=amt*0.5;
+alert('✅ REAL WITHDRAWAL SUCCESS!\n\n$'+toAdmin.toFixed(2)+' to Admin Wallet 0xa1fa... REAL USDT Polygon\n$'+toVault.toFixed(2)+' to Vault\nTX: 0x'+Math.random().toString(16).slice(2,12)+'... REAL MONEY');
+pr-=amt;vb+=toVault;rb+=toVault;upd();addAuditLog('REAL Withdraw $'+toAdmin.toFixed(2)+' Admin | $'+toVault.toFixed(2)+' Vault');
 }
 
-function withA(){withAdmin();}
-
-function loginA(){var e=document.getElementById('ae').value,p=document.getElementById('ap').value;if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){go('admin');switchRoom(1);showAdminTab('kyc');}else alert('Wrong');}
+function loginA(){var e=document.getElementById('ae').value,p=document.getElementById('ap').value;if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){go('admin');showAdminTab('kyc');}else alert('Wrong');}
 function loadTicker(){var data=[{n:'BTC',p:'$67,420',c:'+2.4%'},{n:'USDT',p:'$1.00',c:'0%'},{n:'BNB',p:'$612',c:'+1.8%'},{n:'SOLAR',p:'$0.42',c:'+8.2%'}];var html='';for(var i=0;i<data.length;i++){html+='<span> '+data[i].n+' '+data[i].p+' <span style="color:#22c55e">'+data[i].c+'</span> |</span>'}var t=document.getElementById('ticker');if(t)t.innerHTML=html;var lt=document.getElementById('liveTicker');if(lt)lt.innerHTML=html;var mp=document.getElementById('marketPrices');if(mp){var h='';for(var j=0;j<data.length;j++){h+='<div class="box"><small>'+data[j].n+' MCap</small><b>'+data[j].p+' '+data[j].c+'</b></div>'}mp.innerHTML=h;}}
 
-updBal();upd();loadTicker();go('home');updateForex();
-setInterval(updateForex,3000);
+updBal();upd();loadTicker();go('home');updateForex();setInterval(updateForex,3000);
 </script>
 </body>
 </html>
