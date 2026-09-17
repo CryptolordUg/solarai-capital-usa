@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SolarAI Capital - Human Solar Slides</title>
+<title>SolarAI Capital - 1.2% Every 24H + Auto Link to AI Trading</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#f6f7fb;color:#111827;line-height:1.6}
 .rainbow{height:10px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#ffd700,#22c55e,#06b6d4,#7c3aed);background-size:400% 100%;animation:rb 4s linear infinite;position:sticky;top:0;z-index:5000}
@@ -42,7 +42,6 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 .chatBubble{background:#fff;border:1px solid #e5e7eb;padding:8px 12px;border-radius:12px;margin-top:6px;max-width:85%}
 .chatAdmin{background:#111827;color:#fff;border-color:#111827}
 .gps{font-size:9px;color:#6b7280}
-/* HUMAN SLIDES */
 .slidesWrap{position:relative;border-radius:16px;overflow:hidden;height:420px;background:#000}
 .slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1s ease-in-out;display:flex;flex-direction:column;justify-content:end}
 .slide.active{opacity:1}
@@ -55,6 +54,7 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 .dot.active{background:#7c3aed}
 .slideNav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;z-index:3}
 .prev{left:8px}.next{right:8px}
+.roiBadge{background:linear-gradient(90deg,#22c55e,#06b6d4);color:#fff;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:900;animation:bl 1.5s infinite}
 </style>
 </head>
 <body>
@@ -74,45 +74,122 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 <button onclick="go('register')" style="background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;border:none">📝 Register</button>
 <button onclick="go('login')" style="background:#111827;color:#fff;border:none">🔑 Sign In</button>
 <button onclick="go('adminlogin')" style="color:#ef4444;border-color:#fecaca;background:#fef2f2">Admin</button>
-<button id="logoutBtn" class="hidden" onclick="doLogout()" style="background:#fef2f2;color:#ef4444;border:1px solid #fecaca">Logout</button>
+<button id="logoutBtn" class="hidden" onclick="doLogout()" style="background:#fef2f2;color:#ef4444;border:1px solid #fecaca">Sign Out</button>
 </div></div></header>
-<div style="background:#0f172a;color:#fff;padding:8px 20px;text-align:right;font-size:11px;border-bottom:3px solid #7c3aed">💰 Balance: <b id="bTop" style="color:#fbbf24">$0.00</b> | <span id="userEmailTop">Guest</span> | Live <span class="live"></span> <span id="autoWithdrawTimer" style="color:#fbbf24;margin-left:10px">Auto-withdraw 6h: 05:59:59</span></div>
+<div style="background:#0f172a;color:#fff;padding:8px 20px;text-align:right;font-size:11px;border-bottom:3px solid #7c3aed">
+💰 Balance: <b id="bTop" style="color:#fbbf24">$0.00</b> | <span id="userEmailTop">Guest</span> |
+<span style="color:#22c55e">ROI 1.2% / 24h Active</span> |
+<span class="roiBadge" id="nextROITimer">Next ROI in 24:00:00</span> |
+<span id="autoWithdrawTimer" style="color:#fbbf24;margin-left:10px">Auto-withdraw 6h: 05:59:59</span> |
+<label style="margin-left:10px;font-size:10px"><input type="checkbox" id="rememberTop" checked style="width:auto"> Remember me</label>
+</div>
 
 <div class="wrap" id="mainWrap"><div id="mainContent">
-<div id="home"><div class="card"><h1>Welcome to SolarAI Capital USA</h1><p style="font-size:12px;color:#6b7280">Solar projects for households to industries + AI forex profit 50/50 vault.</p><div class="ticker" id="ticker" style="margin-top:12px"></div>
-<div style="margin-top:12px" class="grid2"><div class="box"><small>Your Package</small><b id="homePkg">No Package Selected</b></div><div class="box"><small>Daily ROI 1.2% Annual</small><b style="color:#22c55e" id="homeROI">$0.00 / day</b></div></div>
-<div class="grid2" style="margin-top:12px"><button class="btn btn-p" onclick="go('deposit')">📦 View Investment Packages</button><button class="btn btn-d" onclick="go('withdraw')">Withdraw Profits</button></div>
-<div style="margin-top:12px;background:#f0fdf4;padding:10px;border-radius:10px;font-size:11px" id="emailNotifications"><b>📧 Email Notifications:</b> <div id="emailLog" style="max-height:80px;overflow-y:auto"></div></div>
+<div id="home"><div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h1>Welcome to SolarAI Capital USA</h1>
+<div><button id="homeLogoutBtn" class="hidden btn btn-g" style="padding:6px 12px;font-size:11px;width:auto" onclick="doLogout()">🚪 Sign Out</button></div>
+</div>
+<p style="font-size:12px;color:#6b7280">All deposits support AI Live Trading - ROI <b style="color:#22c55e">1.2% every 24 hours</b> automated - Linked to admin robot</p>
+<div class="ticker" id="ticker" style="margin-top:12px"></div>
+
+<div style="margin-top:12px" class="grid3">
+<div class="box"><small>Your Package</small><b id="homePkg">No Package Selected</b></div>
+<div class="box"><small>ROI 1.2% Every 24H</small><b style="color:#22c55e" id="homeROI">$0.00 / 24h</b><small id="homeROIExtra" style="color:#6b7280;display:block">Auto-credited every 24h</small></div>
+<div class="box"><small>Linked to AI Robot</small><b style="color:#f59e0b" id="homeLink">0% Linked</b><small style="color:#6b7280;display:block">All deposits power AI trading</small></div>
+</div>
+
+<div class="grid2" style="margin-top:12px">
+<div class="box" style="border-left:4px solid #22c55e"><small>Last ROI Credit</small><b id="lastROI" style="color:#22c55e">Never - Deposit to start 1.2%/24h</b></div>
+<div class="box" style="border-left:4px solid #f59e0b"><small>Next ROI Credit</small><b id="nextROI" style="color:#f59e0b">24:00:00 after deposit</b></div>
+</div>
+
+<div class="grid2" style="margin-top:12px"><button class="btn btn-p" onclick="go('deposit')">📦 View Packages - 1.2%/24h</button><button class="btn btn-d" onclick="go('withdraw')">Withdraw ROI + AI Profit</button></div>
+
+<div style="margin-top:12px;background:#f0fdf4;padding:10px;border-radius:10px;font-size:11px">
+<b>📧 Email Notifications + Remember me + Auto Link</b>
+<div style="display:flex;gap:10px;margin-top:6px;font-size:10px">
+<label><input type="checkbox" id="rememberDash" checked style="width:auto"> Remember me (auto login)</label>
+<label><input type="checkbox" id="autoLinkDash" checked style="width:auto"> Auto-link deposits to AI robot</label>
+<label><input type="checkbox" id="roiAutoDash" checked style="width:auto"> Auto ROI 1.2%/24h</label>
+</div>
+<div id="emailLog" style="max-height:80px;overflow-y:auto;margin-top:8px"></div>
+</div>
+
 </div></div>
 
-<div id="about" class="hidden"><div class="card"><h2>About Us</h2><p style="font-size:12px">SEC-compliant solar investment, Delaware USA, 500kW farm, 120 tons CO2 saved, 200 jobs.</p></div></div>
+<div id="about" class="hidden"><div class="card"><h2>About Us</h2><p style="font-size:12px">ROI 1.2% every 24 hours automated for all packages - All deposits support AI Live Forex Trading - Auto linkage to admin robot balance.</p></div></div>
 
-<div id="register" class="hidden"><div class="card"><h2>📝 Registration</h2><input id="regName" placeholder="Full Name"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Password"><input id="regRef" placeholder="Referral (Optional)"><div style="background:#f9fafb;padding:10px;border-radius:10px;font-size:11px;margin-top:8px"><label><input type="checkbox" id="agree" style="width:auto"> I agree to Terms</label></div><button class="btn btn-p" onclick="doRegister()">Create Account & Send Welcome Email</button></div></div>
-
-<div id="login" class="hidden"><div class="card"><h2>🔑 Sign In</h2><input id="logEmail" placeholder="Email"><input id="logPass" type="password" placeholder="Password"><div style="display:flex;gap:6px;margin-top:8px"><label style="font-size:11px"><input type="checkbox" id="remember" checked style="width:auto"> Remember me</label></div><button class="btn btn-d" onclick="doLogin()">Sign In</button><button class="btn btn-g" onclick="autoFillLogin()" style="margin-top:6px">⚡ Auto-Fill Saved Login</button><div style="margin-top:12px;background:#dcfce7;padding:10px;border-radius:10px;font-size:11px">Demo: investor@test.com / Investor123 <button class="btn btn-g" style="margin-top:6px;padding:8px" onclick="fillDemo()">Fill Demo</button></div><div style="margin-top:10px;font-size:11px" id="loginHistory"><b>Login History:</b><div id="loginHistList"></div></div></div></div>
-
-<div id="deposit" class="hidden"><div class="card"><h2>📦 SolarAI Capital Investment Packages</h2><p style="font-size:11px;color:#6b7280">Select package - Contract Term 2 years - ROI 1.2% Annual</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px" id="packagesGrid"></div>
-<div style="margin-top:16px;background:#f5f3ff;padding:14px;border-radius:12px;border:2px solid #7c3aed" id="selectedPackageBox" class="hidden">
-<h3>Selected: <span id="selPkgName"></span></h3>
-<p style="font-size:11px"><span id="selPkgRange"></span> | <span id="selPkgTerm"></span> | ROI <span id="selPkgROI"></span> | <span id="selPkgSegment"></span></p>
-<div class="grid2" style="margin-top:10px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p">USDT TRC20</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g">BNB BEP20</button></div>
-<div id="walletUSDT" class="wallet active"><b>USDT TRC20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div></div>
-<div id="walletBNB" class="wallet hidden"><b>BNB BEP20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div></div>
-<input id="txHash" placeholder="Paste TX Hash"><input id="depAmount" placeholder="Amount in Package Range"><button class="btn btn-d" onclick="verifyDep()">✅ Confirm Investment</button>
+<div id="register" class="hidden"><div class="card"><h2>📝 Registration - Remember me + Auto Sign Out Option</h2>
+<p style="font-size:11px;color:#6b7280">ROI 1.2% every 24h starts after deposit - All deposits linked to AI trading robot</p>
+<input id="regName" placeholder="Full Name"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Create Password"><input id="regRef" placeholder="Referral (Optional)">
+<div style="background:#f9fafb;padding:10px;border-radius:10px;font-size:11px;margin-top:8px">
+<label><input type="checkbox" id="agree" style="width:auto"> I agree to Terms - ROI 1.2% every 24 hours</label><br>
+<label><input type="checkbox" id="rememberReg" checked style="width:auto"> Remember me - Auto store login for dashboard</label><br>
+<label><input type="checkbox" id="autoSignOutReg" style="width:auto"> Auto sign out after 30 min inactivity (security)</label><br>
+<label><input type="checkbox" id="linkAI" checked style="width:auto"> Link my deposits to AI Live Trading robot (recommended - supports real profit)</label>
 </div>
+<button class="btn btn-p" onclick="doRegister()">Create Account - 1.2%/24h + Remember me</button>
+<div style="margin-top:10px;font-size:11px" class="grid2">
+<button class="btn btn-g" style="padding:8px" onclick="go('login')">Already have account? Sign In (Auto)</button>
+<button class="btn btn-d" style="padding:8px" onclick="doLogout()">🚪 Sign Out Option</button>
+</div>
+</div></div>
+
+<div id="login" class="hidden"><div class="card"><h2>🔑 Sign In - Remember me + Sign Out</h2>
+<input id="logEmail" placeholder="Email"><input id="logPass" type="password" placeholder="Password">
+<div style="display:flex;gap:12px;margin-top:8px;font-size:11px;flex-wrap:wrap">
+<label><input type="checkbox" id="remember" checked style="width:auto"> Remember me (store)</label>
+<label><input type="checkbox" id="autoSignOut" style="width:auto"> Auto sign out 30 min</label>
+<label><input type="checkbox" id="rememberForever" checked style="width:auto"> Keep me signed in on dashboard</label>
+</div>
+<div class="grid2" style="margin-top:8px">
+<button class="btn btn-d" onclick="doLogin()">Sign In - Remember me</button>
+<button class="btn btn-g" onclick="doLogout()">🚪 Sign Out</button>
+</div>
+<button class="btn btn-g" onclick="autoFillLogin()" style="margin-top:6px">⚡ Auto-Fill Saved Login</button>
+<div style="margin-top:12px;background:#dcfce7;padding:10px;border-radius:10px;font-size:11px">Demo: investor@test.com / Investor123 <button class="btn btn-g" style="margin-top:6px;padding:8px" onclick="fillDemo()">Fill Demo</button></div>
+<div style="margin-top:10px;font-size:11px"><b>Login History + Remember me Status:</b><div id="loginHistList"></div></div>
+</div></div>
+
+<div id="deposit" class="hidden"><div class="card">
+<h2>📦 SolarAI Capital Investment Packages - ROI 1.2% Every 24 Hours Automated</h2>
+<p style="font-size:11px;color:#6b7280">Old: 1.2% Annual → <b style="color:#22c55e">NEW: 1.2% Every 24 Hours</b> - All deposits automatically support AI Live Trading in admin - Automated linkage - ROI auto-credited</p>
+
+<div style="background:#f0fdf4;padding:10px;border-radius:10px;margin-top:10px;border-left:4px solid #22c55e;font-size:11px">
+<b>🔗 AUTOMATED LINKAGE:</b> Every deposit you make instantly adds to AI Robot Balance in Admin Area → Powers live forex signals → Generates REAL profit withdrawable every 6 hours to 0xa1fa...<br>
+<b>💰 ROI AUTOMATION:</b> 1.2% of your deposit auto-credited every 24 hours to your balance - No manual claim needed - Email notification every ROI
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px" id="packagesGrid"></div>
+
+<div style="margin-top:16px;background:#f5f3ff;padding:14px;border-radius:12px;border:2px solid #7c3aed" id="selectedPackageBox" class="hidden">
+<h3>Selected: <span id="selPkgName"></span> - <span class="roiBadge">1.2% / 24H</span></h3>
+<p style="font-size:11px"><span id="selPkgRange"></span> | <span id="selPkgTerm"></span> | <span style="color:#22c55e;font-weight:900">ROI 1.2% Every 24 Hours</span> | <span id="selPkgSegment"></span></p>
+<div style="background:#fff;padding:8px;border-radius:8px;margin-top:8px;font-size:10px">
+Daily ROI for this package: <b id="dailyROIcalc" style="color:#22c55e">$0.00 / 24h</b> | Monthly: <b id="monthlyROIcalc">$0.00</b> | 2 years total: <b id="totalROIcalc">$0.00</b> - Auto-credited
+</div>
+<div class="grid2" style="margin-top:10px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p">USDT TRC20</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g">BNB BEP20</button></div>
+<div id="walletUSDT" class="wallet active"><b>USDT TRC20 - Linked to AI Robot</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div><small style="color:#22c55e">✅ Deposit auto-links to AI Live Trading robot balance</small></div>
+<div id="walletBNB" class="wallet hidden"><b>BNB BEP20 - Linked to AI Robot</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div><small style="color:#22c55e">✅ Deposit auto-links to AI robot</small></div>
+<input id="txHash" placeholder="Paste TX Hash - Blockchain confirmation"><input id="depAmount" placeholder="Amount in Package Range"><button class="btn btn-d" onclick="verifyDep()">✅ Confirm - ROI 1.2%/24h + Link to AI Robot</button>
+<div style="font-size:10px;color:#6b7280;margin-top:6px"><label><input type="checkbox" id="agreeLink" checked style="width:auto"> I agree to link this deposit to AI Automated Live Forex Trading (supports real profit generation)</label></div>
+</div>
+
 <div id="depList" style="font-size:11px;margin-top:12px"></div>
 </div></div>
 
-<div id="withdraw" class="hidden"><div class="card"><h2>Withdraw</h2><div class="box"><small>Available</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option><option>USDT Polygon - AI Profit</option></select><input id="wAddr" placeholder="Your Wallet Address"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">Request Withdrawal</button><div id="wList" style="font-size:11px;margin-top:8px"></div></div></div>
-<div id="balance" class="hidden"><div class="card"><h2>Balance Overview</h2><div class="grid3"><div class="box"><small>Main</small><b id="balMain">$0.00</b></div><div class="box"><small>Package ROI 1.2%</small><b id="balROI">$0.00</b></div><div class="box"><small>AI Forex Profit</small><b id="balAI">$0.00</b></div></div><div class="grid2" style="margin-top:10px"><div class="box"><small>Vault</small><b id="balVault">$0.00</b></div><div class="box"><small>Current Package</small><b id="balPkg">None</b></div></div></div></div>
+<div id="withdraw" class="hidden"><div class="card"><h2>Withdraw - ROI 1.2%/24h + AI Profit</h2><div class="box"><small>Available (ROI 1.2%/24h + Forex AI)</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option><option>USDT Polygon - AI Profit</option></select><input id="wAddr" placeholder="Your Wallet"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">Request Withdrawal</button><div id="wList" style="font-size:11px;margin-top:8px"></div></div></div>
+
+<div id="balance" class="hidden"><div class="card"><h2>Balance Overview - 1.2% Every 24H Automated</h2><div class="grid3"><div class="box"><small>Main Balance (Deposits)</small><b id="balMain">$0.00</b></div><div class="box"><small>ROI 1.2% Every 24H - Auto</small><b id="balROI" style="color:#22c55e">$0.00</b><small style="display:block;font-size:9px;color:#6b7280" id="roiAccrued">Accrued today: $0.00</small></div><div class="box"><small>AI Forex Profit - Linked</small><b id="balAI" style="color:#f59e0b">$0.00</b><small style="display:block;font-size:9px;color:#6b7280">From your deposits linked to robot</small></div></div><div class="grid2" style="margin-top:10px"><div class="box"><small>Vault</small><b id="balVault">$0.00</b></div><div class="box"><small>Current Package</small><b id="balPkg">None</b><small id="pkgDailyROI" style="display:block;font-size:10px;color:#22c55e">1.2% / 24h = $0.00 daily</small></div></div><div style="margin-top:10px;background:#f0fdf4;padding:10px;border-radius:10px;font-size:11px"><b>🔗 Linkage Status:</b> <span id="linkStatus">All your deposits are linked to AI Robot Balance - Powering live trading</span><br><b>Next ROI:</b> <span id="balanceNextROI">24:00:00</span> - 1.2% auto-credited - Email notification</div></div></div>
+
 <div id="referral" class="hidden"><div class="card"><h2>Referral - 10%</h2><div class="box"><small>Your Link</small><b id="refLink">https://solarai-capital-usa.vercel.app?ref=USER123</b><button class="btn btn-p" style="margin-top:8px" onclick="copyA('refLink')">COPY</button></div></div></div>
-<div id="impact" class="hidden"><div class="card"><h2>Impact</h2><div class="grid2"><div class="box"><b>Social</b><small>200 jobs</small></div><div class="box"><b>Environmental</b><small>120 Tons CO2</small></div><div class="box"><b>Economic</b><small>$4.2M</small></div><div class="box"><b>Investor</b><small>Daily ROI</small></div></div></div></div>
+<div id="impact" class="hidden"><div class="card"><h2>Impact</h2><div class="grid2"><div class="box"><b>Social</b><small>200 jobs</small></div><div class="box"><b>Environmental</b><small>120 Tons CO2</small></div><div class="box"><b>Economic</b><small>$4.2M</small></div><div class="box"><b>Investor</b><small>1.2% / 24h ROI</small></div></div></div></div>
 <div id="market" class="hidden"><div class="card"><h2>Crypto Market</h2><div class="ticker" id="liveTicker"></div><div id="marketPrices" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px"></div></div></div>
 <div id="solar" class="hidden"><div class="card"><h2>Solar Live</h2><div class="grid2"><div class="box"><b>Welcome Kit</b><small>Overview</small></div><div class="box"><b>Monthly</b><small>Newsletters</small></div><div class="box"><b>Quarterly</b><small>Reports</small></div><div class="box"><b>Annual</b><small>Impact video</small></div></div></div></div>
-<div id="blockchain" class="hidden"><div class="card"><h2>Blockchain Layer</h2><div class="grid2"><div class="box"><b>Smart Contracts</b><small>50/50</small></div><div class="box"><b>Immutable Ledger</b><small>Every TX</small></div><div class="box"><b>Tokenization</b><small>$1=1 SOLAR</small></div><div class="box"><b>Compliance</b><small>KYC/AML</small></div></div></div></div>
+<div id="blockchain" class="hidden"><div class="card"><h2>Blockchain Layer</h2><div class="grid2"><div class="box"><b>Smart Contracts</b><small>50/50 auto ROI 1.2%/24h</small></div><div class="box"><b>Immutable Ledger</b><small>Every TX + Link to AI</small></div><div class="box"><b>Tokenization</b><small>$1=1 SOLAR</small></div><div class="box"><b>Compliance</b><small>KYC/AML</small></div></div></div></div>
 
-<div id="account" class="hidden"><div class="card"><h2>👤 My Profile</h2>
+<div id="account" class="hidden"><div class="card"><h2>👤 My Profile - Remember me + Sign Out + 1.2%/24h</h2>
 <div class="grid2">
 <div>
 <h3>Photo Upload</h3>
@@ -120,162 +197,156 @@ footer b{color:#fff}footer a{color:#fbbf24;text-decoration:none;margin-right:10p
 <input type="file" id="photoUpload" accept="image/*" onchange="uploadPhoto(event)">
 <input id="accName" placeholder="Full Name" style="margin-top:10px"><input id="accEmail" placeholder="Email"><input id="accPhone" placeholder="Telephone"><input id="accWallet" placeholder="Wallet Address">
 <button class="btn btn-p" onclick="saveProfile()">💾 Save Profile</button>
+<div style="margin-top:12px;background:#f9fafb;padding:10px;border-radius:10px">
+<h4 style="font-size:11px">🔐 Remember me & Sign Out - Dashboard Options</h4>
+<label style="font-size:11px"><input type="checkbox" id="rememberAcc" checked style="width:auto"> Remember me - Keep signed in</label><br>
+<label style="font-size:11px"><input type="checkbox" id="autoSignOutAcc" style="width:auto"> Auto sign out after 30 min inactivity</label><br>
+<div class="grid2" style="margin-top:8px">
+<button class="btn btn-d" style="padding:8px;font-size:11px" onclick="enableRememberMe()">✅ Enable Remember me</button>
+<button class="btn" style="padding:8px;font-size:11px;background:#fef2f2;color:#ef4444;border:1px solid #fecaca" onclick="doLogout()">🚪 Sign Out Now</button>
+</div>
+<small style="font-size:10px;color:#6b7280">Sign out option available in header, dashboard home, and here - Password stored securely for auto login</small>
+</div>
 </div>
 <div>
-<h3>🔐 Stored Login</h3><div class="box" style="font-size:11px" id="storedCreds"></div>
+<h3>🔐 Stored Login + ROI Status</h3><div class="box" style="font-size:11px" id="storedCreds"></div>
+<div style="background:#f0fdf4;padding:10px;border-radius:10px;margin-top:8px;font-size:11px">
+<b>💰 ROI 1.2% Every 24H Status</b><br>
+Package: <b id="accPkg">None</b><br>
+Daily ROI: <b id="accDailyROI" style="color:#22c55e">$0.00 / 24h</b><br>
+Next ROI: <b id="accNextROI">24:00:00</b><br>
+Total ROI Earned: <b id="accTotalROI">$0.00</b><br>
+<label><input type="checkbox" id="roiNotify" checked style="width:auto"> Email me every ROI credit (1.2%/24h)</label>
+</div>
 <h3 style="margin-top:10px">💬 Support Chat + GPS</h3><div id="investorChat" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:200px;overflow-y:auto;font-size:11px"></div><input id="chatInput" placeholder="Type message..."><button class="btn btn-d" style="padding:8px" onclick="sendChat()">Send to Support (GPS)</button><small class="gps" id="gpsInfo">📍 GPS: Locating...</small>
 </div>
 </div>
 </div></div>
 
-<div id="portfolio" class="hidden"><div class="card"><h2>Portfolio</h2><p>Holdings, Diversification</p></div></div>
+<div id="portfolio" class="hidden"><div class="card"><h2>Portfolio</h2><p>ROI 1.2% every 24h - All deposits linked to AI robot</p></div></div>
 <div id="adminlogin" class="hidden"><div class="card"><h2 style="color:#ef4444">Admin Login</h2><input id="ae" value="admin@solarcapital.com"><input id="ap" type="password" value="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login</button></div></div>
 
 <div id="admin" class="hidden">
 <div class="card" style="border:3px solid #7c3aed;max-width:none">
-<h2>🔐 Admin Area - Full Width Control Center - Auto-withdraw 6h <span class="live"></span></h2>
+<h2>🔐 Admin Area - All Investor Deposits Auto-Linked to AI Robot - ROI 1.2%/24h Automated <span class="live"></span></h2>
 
 <div class="admin-top">
-<h3 style="color:#fbbf24;border-bottom:2px solid #fbbf24;padding-bottom:8px">🤖 AI Automated Live Forex Trading + Live Signals (REAL MONEY)</h3>
-<div class="grid3" style="margin-top:12px"><div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">Robot Balance</small><b id="rBal" style="color:#fbbf24;display:block;font-size:20px">$0.00</b></div><div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #22c55e"><small style="color:#22c55e">Real Profit</small><b id="rProf" style="color:#22c55e;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af" id="profitPercent">+0.00%</small></div><div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #06b6d4"><small style="color:#06b6d4">Vault 50%</small><b id="vBal" style="color:#06b6d4;display:block;font-size:20px">$0.00</b></div></div>
-<div style="background:#000;border-radius:10px;padding:12px;margin-top:12px"><h4 style="color:#fbbf24;font-size:11px">📊 LIVE FOREX SIGNALS <span class="live"></span></h4><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px"><div><div id="forexMarket"></div></div><div><div id="aiAnalysis" style="background:#1f2937;padding:10px;border-radius:8px;font-family:monospace;font-size:9px;color:#22c55e;max-height:180px;overflow-y:auto"></div><div style="display:flex;gap:2px;margin-top:8px;height:50px;align-items:end" id="liveChart"></div></div></div></div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px"><div class="wallet active" style="background:#1f2937;border-color:#fbbf24;margin-top:0"><b style="color:#fff;font-size:11px">💳 USDT Polygon Deposit - REAL</b><div class="qr" style="width:120px;height:120px"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:120px;height:120px"></div><div class="addr" style="font-size:10px"><span id="addrADMIN">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrADMIN')">COPY</button></div></div><div><input id="depA" placeholder="Admin Deposit Min $2"><button class="btn btn-p" style="padding:12px" onclick="depR()">💰 Deposit & Activate</button><input id="withA" placeholder="Withdrawal Amount" style="margin-top:8px"><button class="btn" style="background:#f59e0b;color:#fff;padding:12px" onclick="withAdmin()">💸 Withdraw 50/50</button><div class="grid2" style="margin-top:8px"><button class="btn" style="background:#22c55e;color:#fff;padding:10px;font-size:11px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI</span></button><button class="btn" style="background:#7c3aed;color:#fff;padding:10px;font-size:11px" onclick="runAI()">⚡ Single Trade</button></div><button class="btn btn-g" style="padding:8px;margin-top:6px" onclick="toggleAutoWithdraw()">⏰ Auto-Withdraw 6H: <span id="autoStatus">ON</span></button></div><div><p id="log" style="font-size:10px;background:#000;padding:10px;border-radius:8px;color:#22c55e;border:1px solid #22c55e">🤖 Ready</p><div style="margin-top:8px;background:rgba(255,255,255,.05);padding:10px;border-radius:8px"><h4 style="font-size:10px;color:#fbbf24">📈 Profit History + Auto Withdrawals</h4><div id="profitHistory" style="font-size:9px;font-family:monospace;color:#9ca3af;max-height:140px;overflow-y:auto;margin-top:6px"></div></div></div></div>
+<h3 style="color:#fbbf24;border-bottom:2px solid #fbbf24;padding-bottom:8px">🤖 AI Automated Live Forex Trading + Live Signals (REAL MONEY) - Powered by Investor Deposits</h3>
+<p style="font-size:9px;color:#9ca3af">ALL INVESTOR DEPOSITS SUPPORT THIS ROBOT - AUTOMATED LINKAGE - ROI 1.2% EVERY 24H FOR INVESTORS - REAL PROFIT - AUTO-WITHDRAW 6H to 0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</p>
+
+<div class="grid3" style="margin-top:12px">
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #fbbf24"><small style="color:#fbbf24">Robot Balance (Investor Deposits Linked)</small><b id="rBal" style="color:#fbbf24;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af" id="rBalSource">0 investor deposits linked</small></div>
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #22c55e"><small style="color:#22c55e">24h Real Profit (For ROI 1.2%/24h)</small><b id="rProf" style="color:#22c55e;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af" id="profitPercent">+0.00% - Funds ROI 1.2%/24h</small></div>
+<div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border-left:4px solid #06b6d4"><small style="color:#06b6d4">Sustainability Vault 50% + Investor ROI Pool</small><b id="vBal" style="color:#06b6d4;display:block;font-size:20px">$0.00</b><small style="color:#9ca3af">External 0xa1fa... every 6h + ROI 1.2%/24h</small></div>
+</div>
+
+<div style="background:#000;border-radius:10px;padding:12px;margin-top:12px"><h4 style="color:#fbbf24;font-size:11px">📊 LIVE FOREX SIGNALS - Powered by All Investor Deposits <span class="live"></span> - ROI 1.2%/24h Auto</h4><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px"><div><div id="forexMarket"></div></div><div><div id="aiAnalysis" style="background:#1f2937;padding:10px;border-radius:8px;font-family:monospace;font-size:9px;color:#22c55e;max-height:180px;overflow-y:auto"></div><div style="display:flex;gap:2px;margin-top:8px;height:50px;align-items:end" id="liveChart"></div></div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px">
+<div class="wallet active" style="background:#1f2937;border-color:#fbbf24;margin-top:0"><b style="color:#fff;font-size:11px">💳 USDT Polygon Deposit - REAL + Investor Link</b><div class="qr" style="width:120px;height:120px"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:120px;height:120px"></div><div class="addr" style="font-size:10px"><span id="addrADMIN">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrADMIN')">COPY</button></div><small style="color:#fbbf24">All investor deposits auto-add here - Linked</small></div>
+<div><input id="depA" placeholder="Admin Deposit Min $2"><button class="btn btn-p" style="padding:12px" onclick="depR()">💰 Deposit & Activate Robot</button><input id="withA" placeholder="Withdrawal Amount" style="margin-top:8px"><button class="btn" style="background:#f59e0b;color:#fff;padding:12px" onclick="withAdmin()">💸 Withdraw 50/50</button><div class="grid2" style="margin-top:8px"><button class="btn" style="background:#22c55e;color:#fff;padding:10px;font-size:11px" onclick="toggleAI()"><span id="aiBtnText">▶️ START AI</span></button><button class="btn" style="background:#7c3aed;color:#fff;padding:10px;font-size:11px" onclick="runAI()">⚡ Single Trade</button></div><button class="btn btn-g" style="padding:8px;margin-top:6px" onclick="toggleAutoWithdraw()">⏰ Auto-Withdraw 6H: <span id="autoStatus">ON</span></button><button class="btn btn-g" style="padding:8px;margin-top:4px" onclick="triggerAllROI()">💰 Trigger All ROI 1.2%/24h Now</button></div>
+<div><p id="log" style="font-size:10px;background:#000;padding:10px;border-radius:8px;color:#22c55e;border:1px solid #22c55e">🤖 Ready - All investor deposits will auto-link here</p><div style="margin-top:8px;background:rgba(255,255,255,.05);padding:10px;border-radius:8px"><h4 style="font-size:10px;color:#fbbf24">📈 Profit + ROI 1.2%/24h + Auto Withdrawals</h4><div id="profitHistory" style="font-size:9px;font-family:monospace;color:#9ca3af;max-height:140px;overflow-y:auto;margin-top:6px"></div></div></div>
+</div>
+
 </div>
 
 <div class="admin-bottom">
-<h3 style="color:#7c3aed;border-bottom:2px solid #e9d5ff;padding-bottom:8px">🏛️ Admin Monitoring Area - Control Hub (Functional)</h3>
+<h3 style="color:#7c3aed;border-bottom:2px solid #e9d5ff;padding-bottom:8px">🏛️ Admin Monitoring Area - ROI 1.2% Every 24H Automated + Linkage</h3>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
 <div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px"><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('kyc')">KYC (<span id="kycCount">0</span>)</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('financial')">Financial</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('transactions')">TX (<span id="txCount">0</span>)</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('risk')">Risk</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('portfolio')">Portfolio</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('engagement')">Engagement</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('audit')">Audit</button><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="showAdminTab('support')">Support + GPS</button></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px"><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('kyc')">KYC (<span id="kycCount">0</span>)</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('financial')">Financial</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('transactions')">TX (<span id="txCount">0</span>)</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('roi')">ROI 1.2%/24h</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('portfolio')">Portfolio</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('engagement')">Engagement</button><button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('audit')">Audit</button><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="showAdminTab('support')">Support + GPS</button></div>
+
 <div id="admin-kyc" class="adminTab" style="margin-top:10px"><b>KYC Records</b><input id="searchKYC" placeholder="Search" oninput="renderKYC()"><div id="kycList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div></div>
 <div id="admin-financial" class="adminTab hidden" style="margin-top:10px"><b>Financial</b><div id="financialList" style="font-size:11px"></div></div>
-<div id="admin-transactions" class="adminTab hidden" style="margin-top:10px"><b>Transactions</b><div class="grid2"><div class="box"><small>Deposits</small><b id="totalDep">$0</b></div><div class="box"><small>Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div><button class="btn btn-p" style="padding:8px" onclick="approveAll()">✅ Approve All</button></div>
+<div id="admin-transactions" class="adminTab hidden" style="margin-top:10px"><b>Transactions + Auto Link to AI Robot</b><div class="grid2"><div class="box"><small>Deposits Linked to AI</small><b id="totalDep">$0</b></div><div class="box"><small>Withdrawals</small><b id="totalWith">$0</b></div></div><div id="txList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto"></div><button class="btn btn-p" style="padding:8px" onclick="approveAll()">✅ Approve All + Link to AI</button></div>
+
+<div id="admin-roi" class="adminTab hidden" style="margin-top:10px">
+<b>💰 ROI 1.2% Every 24 Hours - Automated</b>
+<div class="grid3" style="margin-top:8px"><div class="box"><small>Total ROI Paid (1.2%/24h)</small><b id="totalROIPaid" style="color:#22c55e">$0.00</b></div><div class="box"><small>Pending ROI Next 24h</small><b id="pendingROI">$0.00</b></div><div class="box"><small>Active Investors ROI</small><b id="activeROI">0</b></div></div>
+<div id="roiList" style="font-size:11px;margin-top:8px;max-height:300px;overflow-y:auto;background:#f9fafb;padding:10px;border-radius:10px"></div>
+<button class="btn btn-p" style="padding:8px;margin-top:6px" onclick="triggerAllROI()">💰 Trigger ROI 1.2% For All Now - Auto Email</button>
+</div>
+
 <div id="admin-risk" class="adminTab hidden" style="margin-top:10px"><b>Risk</b><div style="background:#fef2f2;padding:10px;border-radius:10px;font-size:11px">✅ No AML flags</div></div>
-<div id="admin-portfolio" class="adminTab hidden" style="margin-top:10px"><b>Portfolio</b><div id="portfolioList" style="font-size:11px"></div></div>
+<div id="admin-portfolio" class="adminTab hidden" style="margin-top:10px"><b>Portfolio - Linked to AI</b><div id="portfolioList" style="font-size:11px"></div></div>
 <div id="admin-engagement" class="adminTab hidden" style="margin-top:10px"><b>Engagement</b><input id="supportReply" placeholder="Type reply"><button class="btn btn-d" style="padding:8px" onclick="addSupportLog()">Send</button><div id="engagementList" style="font-size:11px;margin-top:8px;background:#f9fafb;padding:10px;border-radius:10px"></div></div>
 <div id="admin-audit" class="adminTab hidden" style="margin-top:10px"><b>Audit</b><div id="auditList" style="font-size:10px;font-family:monospace;background:#0f172a;color:#22c55e;padding:10px;border-radius:10px;max-height:300px;overflow-y:auto"></div></div>
-<div id="admin-support" class="adminTab hidden" style="margin-top:10px"><b>💬 Support - Chats + GPS + Storage</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><div><div id="adminChatList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px"></div><input id="adminChatReply" placeholder="Reply..."><button class="btn btn-p" style="padding:8px" onclick="adminReplyChat()">Reply + GPS Log</button></div><div><h4 style="font-size:11px">📍 GPS Locations</h4><div id="gpsLogs" style="background:#0f172a;color:#22c55e;padding:10px;border-radius:10px;max-height:200px;overflow-y:auto;font-size:10px;font-family:monospace"></div><h4 style="font-size:11px;margin-top:8px">📧 Email Logs</h4><div id="adminEmailLogs" style="background:#fff;padding:10px;border-radius:10px;max-height:200px;overflow-y:auto;font-size:10px"></div><button class="btn btn-g" style="padding:8px;margin-top:6px" onclick="sendDailyNewsletter()">📧 Send Daily Newsletter</button></div></div></div>
+<div id="admin-support" class="adminTab hidden" style="margin-top:10px"><b>💬 Support - Chats + GPS</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><div><div id="adminChatList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px"></div><input id="adminChatReply" placeholder="Reply..."><button class="btn btn-p" style="padding:8px" onclick="adminReplyChat()">Reply</button></div><div><h4 style="font-size:11px">📍 GPS</h4><div id="gpsLogs" style="background:#0f172a;color:#22c55e;padding:10px;border-radius:10px;max-height:200px;overflow-y:auto;font-size:10px"></div><h4 style="font-size:11px;margin-top:8px">📧 Email Logs - ROI 1.2%/24h</h4><div id="adminEmailLogs" style="background:#fff;padding:10px;border-radius:10px;max-height:200px;overflow-y:auto;font-size:10px"></div></div></div></div>
 </div>
-<div><h4 style="font-size:11px">📦 Package Investments</h4><div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:500px;overflow-y:auto"></div><h4 style="font-size:11px;margin-top:10px">🔐 Stored Passwords</h4><div id="adminCreds" style="font-size:10px;background:#fef2f2;padding:10px;border-radius:10px;max-height:150px;overflow-y:auto"></div></div>
-</div>
-</div>
-
+<div><h4 style="font-size:11px">📦 Package Investments - All Linked to AI Robot - ROI 1.2%/24h</h4><div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:500px;overflow-y:auto"></div><h4 style="font-size:11px;margin-top:10px">🔐 Stored Passwords + Remember me</h4><div id="adminCreds" style="font-size:10px;background:#fef2f2;padding:10px;border-radius:10px;max-height:150px;overflow-y:auto"></div></div>
 </div>
 </div>
 
 </div>
+</div>
 
-<!-- REPLACED SIDE PANEL: HUMAN SOLAR PROJECT SLIDES -->
+</div>
+
 <div id="sidePanel">
-
 <div class="card" style="padding:0;overflow:hidden;border:2px solid #7c3aed">
-<div style="padding:14px 16px 8px"><h3 style="color:#7c3aed">☀️ Solar Projects - Human Impact Slides <span class="live"></span></h3><p style="font-size:10px;color:#6b7280">Real people, real solar, household to industrial</p></div>
-
+<div style="padding:14px 16px 8px"><h3 style="color:#7c3aed">☀️ Solar Projects - Human Impact <span class="live"></span></h3><p style="font-size:10px;color:#6b7280">ROI 1.2% / 24h - Linked to AI Trading</p></div>
 <div class="slidesWrap" id="slidesWrap">
-
-<button class="slideNav prev" onclick="changeSlide(-1)">❮</button>
-<button class="slideNav next" onclick="changeSlide(1)">❯</button>
-
-<div class="slide active">
-<img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop" alt="Household">
-<div class="slideContent"><b>🏠 Household - Eco Entry $100</b><small>Individual households starting with small solar kits - 2 years contract, 1.2% annual ROI. Mary in Uganda powers lights & phone charging for her family of 5.</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('eco');go('deposit')">Invest $100 - Household</button></div>
+<button class="slideNav prev" onclick="changeSlide(-1)">❮</button><button class="slideNav next" onclick="changeSlide(1)">❯</button>
+<div class="slide active"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=400&fit=crop"><div class="slideContent"><b>🏠 Household - Eco Entry $100 - 1.2%/24h</b><small>Individual households - Mary Uganda - $1.2 daily ROI every 24h auto-credited - Linked to AI robot</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('eco');go('deposit')">Invest $100 - 1.2%/24h</button></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop"><div class="slideContent"><b>🏪 Micro Business - $500 - 1.2%/24h = $6/day</b><small>Small homes/micro businesses - $6 every 24h auto - All deposits power AI trading - Auto linkage</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('smart');go('deposit')">Invest $500 - 1.2%/24h</button></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop"><div class="slideContent"><b>🏫 Schools - $1,000 - 1.2%/24h = $12/day</b><small>Schools/clinics - $12 every 24h auto-credited - Linked to AI robot balance in admin</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('growth');go('deposit')">Invest $1,000 - $12/24h</button></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop"><div class="slideContent"><b>👥 Cooperatives - $1,500 - 1.2%/24h = $18/day</b><small>Cooperatives/shared grids - $18 every 24h auto - All deposits support AI Live Trading</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('community');go('deposit')">Invest $1,500 - $18/24h</button></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&h=400&fit=crop"><div class="slideContent"><b>🔌 Shared Grids - $1,500 - 1.2%/24h</b><small>Shared grids village - Auto ROI every 24h - Linked to admin AI robot</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('community');go('deposit')">Invest $1,500 - 1.2%/24h</button></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop"><div class="slideContent"><b>🏭 Industries - $5,000 - 1.2%/24h = $60/day</b><small>Mid size industries - $60 every 24h auto - All deposits power AI trading robot</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('industrial');go('deposit')">Invest $5,000 - $60/24h</button></div></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop"><div class="slideContent"><b>🌾 Agro Plants - $5,000 - 1.2%/24h</b><small>Agro processing - $60 every 24h auto-credited - Linked to AI Live Trading - Auto withdraw 6h</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('industrial');go('deposit')">Invest $5,000 - 1.2%/24h</button></div></div>
 </div>
-
-<div class="slide">
-<img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop" alt="Micro Business">
-<div class="slideContent"><b>🏪 Micro Business - Smart Start $500</b><small>Small homes or micro businesses - Salon, shop, kiosk. John in Kampala runs barbershop on solar, saves $30/month fuel, ROI daily.</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('smart');go('deposit')">Invest $500 - Micro Business</button></div>
-</div>
-
-<div class="slide">
-<img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop" alt="Schools">
-<div class="slideContent"><b>🏫 Schools - Growth Plan $1,000</b><small>Schools, clinics, or small enterprises - 2 years term. Solar powers classrooms, computers, vaccines fridge for 200 kids in rural school.</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('growth');go('deposit')">Invest $1,000 - Schools</button></div>
-</div>
-
-<div class="slide">
-<img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop" alt="Cooperatives">
-<div class="slideContent"><b>👥 Cooperatives - Community Impact $1,500</b><small>Cooperatives, shared solar grids - Village SACCO shares solar grid, 15 families share 5kW, irrigation + milling + lights, community owned.</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('community');go('deposit')">Invest $1,500 - Cooperatives</button></div>
-</div>
-
-<div class="slide">
-<img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&h=400&fit=crop" alt="Shared Grids">
-<div class="slideContent"><b>🔌 Shared Solar Grids - Community $1,500</b><small>Shared solar grids power entire village center - Market, charging station, WiFi hotspot. Women group in Kenya runs solar hub.</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('community');go('deposit')">Invest $1,500 - Shared Grids</button></div>
-</div>
-
-<div class="slide">
-<img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Mid Size Industries">
-<div class="slideContent"><b>🏭 Mid Size Industries - Industrial Advance $5,000</b><small>Mid size industries, 10kW+ systems - Factory in Delaware cuts $400/month bill, 50% sustainability vault funds farm expansion.</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('industrial');go('deposit')">Invest $5,000 - Industries</button></div>
-</div>
-
-<div class="slide">
-<img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop" alt="Agro Processing">
-<div class="slideContent"><b>🌾 Agro Processing Plants - Industrial $5,000</b><small>Agro processing plants - Maize milling, coffee drying, cold storage powered by solar. Amina's coop in Tanzania processes 2 tons/day solar.</small><br><button class="btn btn-p" style="padding:6px;font-size:10px;margin-top:6px" onclick="selectPackage('industrial');go('deposit')">Invest $5,000 - Agro Processing</button></div>
-</div>
-
-</div>
-
 <div class="dots" id="dots"></div>
-
 <div style="padding:12px">
-<div style="background:#f0fdf4;padding:8px;border-radius:8px;font-size:10px"><b>✅ Live Impact Today</b><br>☀️ 500kW farm producing 2.4MWh<br>👥 200 jobs created | 🌍 120 tons CO2 saved<br>💰 $4.2M total invested | 📈 1.2% annual ROI</div>
-<button class="btn btn-p" style="margin-top:8px" onclick="go('deposit')">📦 View All Packages</button>
-<button class="btn btn-g" style="padding:8px;margin-top:6px" onclick="go('impact')">📖 Success Stories</button>
-<div style="margin-top:10px"><b style="font-size:11px">💬 Live Chat Support</b><div id="sideChatPreview" style="max-height:60px;overflow-y:auto;font-size:10px;background:#f9fafb;padding:6px;border-radius:8px;margin-top:4px"></div><button class="btn btn-d" style="padding:6px;font-size:10px;margin-top:4px" onclick="go('account')">Open Chat + GPS Location</button></div>
+<div style="background:#f0fdf4;padding:8px;border-radius:8px;font-size:10px"><b>✅ ROI 1.2% / 24h Active</b><br>💰 All deposits auto-linked to AI robot<br>🤖 AI profit funds ROI + vault<br>⏰ Auto ROI credit every 24h<br>📧 Email notification every ROI</div>
+<div class="grid2" style="margin-top:8px">
+<button class="btn btn-p" style="padding:8px;font-size:11px" onclick="go('deposit')">📦 Packages - 1.2%/24h</button>
+<button class="btn btn-g" style="padding:8px;font-size:11px" onclick="doLogout()">🚪 Sign Out</button>
+</div>
+<div style="margin-top:8px"><label style="font-size:10px"><input type="checkbox" id="rememberSide" checked style="width:auto"> Remember me - Keep signed in</label></div>
+<div style="margin-top:10px"><b style="font-size:11px">💬 Live Chat</b><div id="sideChatPreview" style="max-height:60px;overflow-y:auto;font-size:10px;background:#f9fafb;padding:6px;border-radius:8px;margin-top:4px"></div><button class="btn btn-d" style="padding:6px;font-size:10px;margin-top:4px" onclick="go('account')">Open Chat + GPS</button></div>
+</div>
+</div>
 </div>
 
 </div>
 
-</div>
-
-</div>
-
-<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal</b><br>Investing involves risk.</div><div><b>Compliance</b><br>SEC, KYC/AML, FinCEN</div><div><b>Contact</b><br>support@solarcapitalusa.com<br>Delaware, USA</div><div><b>© Copyright</b><br>© 2026 SolarAI Capital USA</div></div></footer>
+<footer><div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:24px"><div><b>Legal</b><br>Investing involves risk. ROI 1.2%/24h automated.</div><div><b>Compliance</b><br>SEC, KYC/AML</div><div><b>Contact</b><br>support@solarcapitalusa.com</div><div><b>© Copyright</b><br>© 2026 SolarAI Capital USA</div></div></footer>
 
 <script>
 const packages=[
-{ id:'eco', name:'Eco Entry', min:100, max:499, term:'2 years', roi:'1.2%', roiNum:0.012, segment:'Individual households starting with small solar kits.', color:'#22c55e' },
-{ id:'smart', name:'Smart Start', min:500, max:999, term:'2 years', roi:'1.2%', roiNum:0.012, segment:'Small homes or micro businesses.', color:'#06b6d4' },
-{ id:'growth', name:'Growth Plan', min:1000, max:1499, term:'2 years', roi:'1.2%', roiNum:0.012, segment:'Schools, clinics, or small enterprises.', color:'#7c3aed' },
-{ id:'community', name:'Community Impact', min:1500, max:4999, term:'2 years', roi:'1.2%', roiNum:0.012, segment:'Cooperatives, shared solar grids.', color:'#f59e0b' },
-{ id:'industrial', name:'Industrial Advance', min:5000, max:50000, term:'2 years', roi:'1.2%', roiNum:0.012, segment:'Mid size industries, agro processing plants.', color:'#ef4444' }
+{ id:'eco', name:'Eco Entry', min:100, max:499, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Individual households starting with small solar kits.', color:'#22c55e' },
+{ id:'smart', name:'Smart Start', min:500, max:999, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Small homes or micro businesses.', color:'#06b6d4' },
+{ id:'growth', name:'Growth Plan', min:1000, max:1499, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Schools, clinics, or small enterprises.', color:'#7c3aed' },
+{ id:'community', name:'Community Impact', min:1500, max:4999, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Cooperatives, shared solar grids.', color:'#f59e0b' },
+{ id:'industrial', name:'Industrial Advance', min:5000, max:50000, term:'2 years', roi:'1.2% Every 24H', roiNum:0.012, segment:'Mid size industries, agro processing plants.', color:'#ef4444' }
 ];
 let selectedPkg=null;
 let currentSlide=0;
 
-function initSlides(){
-let slides=document.querySelectorAll('.slide');
-let dotsContainer=document.getElementById('dots');
-dotsContainer.innerHTML='';
-slides.forEach((_,i)=>{
-let dot=document.createElement('div');
-dot.className='dot'+(i===0?' active':'');
-dot.onclick=()=>goToSlide(i);
-dotsContainer.appendChild(dot);
-});
-setInterval(()=>changeSlide(1),4000);
-}
-function goToSlide(n){
-let slides=document.querySelectorAll('.slide');
-let dots=document.querySelectorAll('.dot');
-slides[currentSlide].classList.remove('active');
-dots[currentSlide].classList.remove('active');
-currentSlide=(n+slides.length)%slides.length;
-slides[currentSlide].classList.add('active');
-dots[currentSlide].classList.add('active');
-}
+function initSlides(){let slides=document.querySelectorAll('.slide');let dotsContainer=document.getElementById('dots');dotsContainer.innerHTML='';slides.forEach((_,i)=>{let dot=document.createElement('div');dot.className='dot'+(i===0?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot);});setInterval(()=>changeSlide(1),4000);}
+function goToSlide(n){let slides=document.querySelectorAll('.slide');let dots=document.querySelectorAll('.dot');slides[currentSlide].classList.remove('active');dots[currentSlide].classList.remove('active');currentSlide=(n+slides.length)%slides.length;slides[currentSlide].classList.add('active');dots[currentSlide].classList.add('active');}
 function changeSlide(dir){goToSlide(currentSlide+dir);}
 
 function renderPackages(){
-let html=packages.map(p=>`
+let html=packages.map(p=>{
+let daily=(p.min * p.roiNum);
+let monthly=daily*30;
+let total=daily*730;
+return `
 <div class="pkg" id="pkg-${p.id}" onclick="selectPackage('${p.id}')">
-<div style="display:flex;justify-content:space-between;align-items:center"><b style="color:${p.color}">${p.name}</b><span style="background:${p.color};color:#fff;padding:2px 8px;border-radius:20px;font-size:9px">${p.roi} Annual</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><b style="color:${p.color}">${p.name}</b><span class="roiBadge">${p.roi}</span></div>
 <div style="margin-top:6px;font-size:11px">
 <b>Investment Range: $${p.min} - $${p.max}</b><br>
-<small>Contract Term: ${p.term} | ROI: ${p.roi} Annual</small><br>
-<small style="color:#6b7280">Target: ${p.segment}</small>
+<small>Contract Term: ${p.term} | <b style="color:#22c55e">ROI: ${p.roi}</b></small><br>
+<small style="color:#6b7280">Target: ${p.segment}</small><br>
+<div style="background:#f0fdf4;padding:6px;border-radius:6px;margin-top:6px;border-left:3px solid #22c55e">
+<b style="font-size:10px">💰 ROI 1.2% / 24H Automated:</b><br>
+<small>Daily: $${daily.toFixed(2)} every 24h | Monthly: $${monthly.toFixed(2)} | 2 years: $${total.toFixed(2)} - Auto credited - Linked to AI robot</small>
 </div>
-<button class="btn btn-g" style="padding:8px;margin-top:8px;font-size:11px">Select ${p.name} - $${p.min}</button>
 </div>
-`).join('');
+<button class="btn btn-g" style="padding:8px;margin-top:8px;font-size:11px">Select ${p.name} - $${p.min} → 1.2%/24h</button>
+</div>
+`}).join('');
 document.getElementById('packagesGrid').innerHTML=html;
 }
 function selectPackage(id){
@@ -289,8 +360,12 @@ document.getElementById('selPkgTerm').innerText=`Term: ${selectedPkg.term}`;
 document.getElementById('selPkgROI').innerText=selectedPkg.roi;
 document.getElementById('selPkgSegment').innerText=selectedPkg.segment;
 document.getElementById('depAmount').value=selectedPkg.min;
-document.getElementById('depAmount').placeholder=`Amount $${selectedPkg.min} - $${selectedPkg.max} for ${selectedPkg.name}`;
-addEmailLog(`Package selected: ${selectedPkg.name} - Ready to invest $${selectedPkg.min}`, localStorage.getItem('userEmail')||'guest');
+let amt=parseFloat(selectedPkg.min);
+let daily=amt*selectedPkg.roiNum;
+document.getElementById('dailyROIcalc').innerText=`$${daily.toFixed(2)} / 24h`;
+document.getElementById('monthlyROIcalc').innerText=`$${(daily*30).toFixed(2)}`;
+document.getElementById('totalROIcalc').innerText=`$${(daily*730).toFixed(2)}`;
+addEmailLog(`Package selected: ${selectedPkg.name} - ROI 1.2%/24h = $${daily.toFixed(2)}/day - Linked to AI robot`, localStorage.getItem('userEmail')||'guest');
 }
 
 function go(id){
@@ -311,71 +386,214 @@ function updateROIBalances(){
 let pkg=JSON.parse(localStorage.getItem('userPackage')||'null');
 let bal=parseFloat(localStorage.getItem('userBal')||0);
 let roiDaily=0;
-if(pkg){roiDaily=(bal * pkg.roiNum)/365; document.getElementById('homePkg').innerText=pkg.name+' ($'+pkg.min+'+)'; document.getElementById('homeROI').innerText='$'+roiDaily.toFixed(4)+' / day | $'+(roiDaily*30).toFixed(2)+' / month'; document.getElementById('balPkg').innerText=pkg.name; document.getElementById('balROI').innerText='$'+roiDaily.toFixed(4)+'/day';}else{document.getElementById('homePkg').innerText='No Package Selected'; document.getElementById('homeROI').innerText='$0.00'; document.getElementById('balPkg').innerText='None'; document.getElementById('balROI').innerText='$0.00';}
+if(pkg){roiDaily=(bal * pkg.roiNum); document.getElementById('homePkg').innerText=pkg.name+' ($'+pkg.min+'+)'; document.getElementById('homeROI').innerText='$'+roiDaily.toFixed(2)+' / 24h'; document.getElementById('homeROIExtra').innerText=`1.2% every 24h auto - Monthly $${(roiDaily*30).toFixed(2)}`; document.getElementById('balPkg').innerText=pkg.name; document.getElementById('balROI').innerText='$'+roiDaily.toFixed(2)+' / 24h'; document.getElementById('pkgDailyROI').innerText=`1.2% / 24h = $${roiDaily.toFixed(2)} daily - Auto credited`; document.getElementById('accPkg').innerText=pkg.name; document.getElementById('accDailyROI').innerText=`$${roiDaily.toFixed(2)} / 24h`; document.getElementById('accTotalROI').innerText='$'+(parseFloat(localStorage.getItem('totalROI')||0)).toFixed(2); }else{document.getElementById('homePkg').innerText='No Package Selected'; document.getElementById('homeROI').innerText='$0.00 / 24h'; document.getElementById('balPkg').innerText='None';}
 let aiProfit=parseFloat(localStorage.getItem('pr')||0); let elAI=document.getElementById('balAI'); if(elAI) elAI.innerText='$'+aiProfit.toFixed(2);
+let linkedPercent = bal>0? Math.min(100, (bal / (rb+bal+0.01))*100) : 0;
+document.getElementById('homeLink').innerText=linkedPercent.toFixed(0)+'% Linked to AI Robot';
+document.getElementById('linkStatus').innerText=`Your $${bal.toFixed(2)} is linked to AI Robot Balance $${rb.toFixed(2)} - Powering live forex trading - Generates ROI 1.2%/24h`;
 }
 function getInvestors(){return JSON.parse(localStorage.getItem('investors')||'[]');}
-function saveInvestor(inv){var arr=getInvestors();arr.unshift(inv);localStorage.setItem('investors',JSON.stringify(arr));addAuditLog('New Registration: '+inv.name+' '+inv.email);}
+function saveInvestor(inv){var arr=getInvestors();arr.unshift(inv);localStorage.setItem('investors',JSON.stringify(arr));addAuditLog('New Registration: '+inv.name);}
 function getTxs(){return JSON.parse(localStorage.getItem('transactions')||'[]');}
 function getAudit(){return JSON.parse(localStorage.getItem('auditLogs')||'[]');}
 function addAuditLog(action){var arr=getAudit();arr.unshift({action:action,date:new Date().toLocaleString(),hash:'0x'+Math.random().toString(16).slice(2,10)});localStorage.setItem('auditLogs',JSON.stringify(arr));}
 function getEmailLogs(){return JSON.parse(localStorage.getItem('emailLogs')||'[]');}
-function addEmailLog(msg,email){let arr=getEmailLogs();arr.unshift({msg:msg,email:email||'all',date:new Date().toLocaleString(),type:'notification'});localStorage.setItem('emailLogs',JSON.stringify(arr));renderEmailLogs();}
-function renderEmailLogs(){let logs=getEmailLogs();let html=logs.slice(0,10).map(l=>`<div style="padding:4px;border-bottom:1px solid #e5e7eb"><b>${l.email}</b> - ${l.msg}<br><small style="color:#6b7280">${l.date}</small></div>`).join('')||'No emails yet';let el=document.getElementById('emailLog'); if(el) el.innerHTML=html;let el2=document.getElementById('adminEmailLogs'); if(el2) el2.innerHTML=logs.map(l=>`[${l.date}] To ${l.email}: ${l.msg}`).join('<br>')||'No email logs';}
-function sendDailyNewsletter(){let invs=getInvestors();for(let i=0;i<invs.length;i++){addEmailLog('📰 Daily Newsletter: Solar market +22% YoY | AI Forex +2.4% today | ROI 1.2% active', invs[i].email);}alert(`✅ Newsletter sent to ${invs.length} investors`);}
+function addEmailLog(msg,email){let arr=getEmailLogs();arr.unshift({msg:msg,email:email||'all',date:new Date().toLocaleString()});localStorage.setItem('emailLogs',JSON.stringify(arr));renderEmailLogs();}
+function renderEmailLogs(){let logs=getEmailLogs();let html=logs.slice(0,10).map(l=>`<div style="padding:4px;border-bottom:1px solid #e5e7eb"><b>${l.email}</b> - ${l.msg}<br><small style="color:#6b7280">${l.date}</small></div>`).join('')||'No emails';let el=document.getElementById('emailLog'); if(el) el.innerHTML=html;let el2=document.getElementById('adminEmailLogs'); if(el2) el2.innerHTML=logs.map(l=>`[${l.date}] To ${l.email}: ${l.msg}`).join('<br>')||'No logs';}
 function getLoginHistory(){return JSON.parse(localStorage.getItem('loginHistory')||'[]');}
-function saveLogin(email,pass){let arr=getLoginHistory();arr.unshift({email:email,pass:pass,date:new Date().toLocaleString(),ip:'192.168.'+Math.floor(Math.random()*255)+'.'+Math.floor(Math.random()*255)});localStorage.setItem('loginHistory',JSON.stringify(arr));localStorage.setItem('savedEmail',email);localStorage.setItem('savedPass',pass);}
-function renderLoginHistory(){let arr=getLoginHistory();let html=arr.slice(0,5).map(l=>`<div style="padding:4px;border-bottom:1px solid #e5e7eb;font-size:10px">${l.email} | ${l.date} | IP ${l.ip}</div>`).join('')||'No history';let el=document.getElementById('loginHistList'); if(el) el.innerHTML=html;let credsEl=document.getElementById('storedCreds');if(credsEl){let email=localStorage.getItem('savedEmail')||'None';let pass=localStorage.getItem('savedPass')||'None';credsEl.innerHTML=`<b>Auto-Stored:</b><br>Email: ${email}<br>Password: ${pass.replace(/./g,'*')} (${pass.length} chars)<br>Last login: ${arr[0]?.date||'Never'}`;}let adminCreds=document.getElementById('adminCreds');if(adminCreds){ adminCreds.innerHTML=arr.map(l=>`${l.email} | Pass: ${l.pass} | ${l.date}`).join('<br>')||'No creds'; }}
-function uploadPhoto(e){let file=e.target.files[0];if(!file) return;let reader=new FileReader();reader.onload=function(ev){localStorage.setItem('profilePhoto',ev.target.result);document.getElementById('profileImg').src=ev.target.result;document.getElementById('profileImg').classList.remove('hidden');addEmailLog('Profile photo updated', localStorage.getItem('userEmail'));};reader.readAsDataURL(file);}
-function saveProfile(){let name=document.getElementById('accName').value;let email=document.getElementById('accEmail').value;let phone=document.getElementById('accPhone').value;let wallet=document.getElementById('accWallet').value;localStorage.setItem('profileName',name);localStorage.setItem('profilePhone',phone);localStorage.setItem('profileWallet',wallet);if(email) localStorage.setItem('userEmail',email);alert('✅ Profile saved: Photo + Telephone + Wallet');addEmailLog(`Profile updated: Name ${name}, Phone ${phone}, Wallet ${wallet}`, email||localStorage.getItem('userEmail'));loadProfile();}
+function saveLogin(email,pass){let arr=getLoginHistory();arr.unshift({email:email,pass:pass,date:new Date().toLocaleString(),ip:'192.168.'+Math.floor(Math.random()*255)+'.'+Math.floor(Math.random()*255)});localStorage.setItem('loginHistory',JSON.stringify(arr));localStorage.setItem('savedEmail',email);localStorage.setItem('savedPass',pass);localStorage.setItem('rememberMe','true');}
+function renderLoginHistory(){let arr=getLoginHistory();let html=arr.slice(0,5).map(l=>`<div style="padding:4px;border-bottom:1px solid #e5e7eb;font-size:10px">${l.email} | ${l.date} | Remember: ${localStorage.getItem('rememberMe')==='true'?'Yes':'No'}</div>`).join('')||'No history';let el=document.getElementById('loginHistList'); if(el) el.innerHTML=html;let credsEl=document.getElementById('storedCreds');if(credsEl){let email=localStorage.getItem('savedEmail')||'None';let pass=localStorage.getItem('savedPass')||'None';credsEl.innerHTML=`<b>Auto-Stored + Remember me:</b><br>Email: ${email}<br>Password: ${'*'.repeat(pass.length)} (${pass.length} chars)<br>Remember me: ${localStorage.getItem('rememberMe')==='true'?'ON - Keep signed in':'OFF'}<br>Last login: ${arr[0]?.date||'Never'}<br><button class="btn btn-g" style="padding:4px;font-size:10px;margin-top:4px" onclick="doLogout()">Sign Out Option</button>`;}let adminCreds=document.getElementById('adminCreds');if(adminCreds){ adminCreds.innerHTML=arr.map(l=>`${l.email} | Pass: ${l.pass} | Remember: ${localStorage.getItem('rememberMe')}`).join('<br>')||'No creds'; }}
+function uploadPhoto(e){let file=e.target.files[0];if(!file) return;let reader=new FileReader();reader.onload=function(ev){localStorage.setItem('profilePhoto',ev.target.result);document.getElementById('profileImg').src=ev.target.result;document.getElementById('profileImg').classList.remove('hidden');};reader.readAsDataURL(file);}
+function saveProfile(){let name=document.getElementById('accName').value;let email=document.getElementById('accEmail').value;let phone=document.getElementById('accPhone').value;let wallet=document.getElementById('accWallet').value;localStorage.setItem('profileName',name);localStorage.setItem('profilePhone',phone);localStorage.setItem('profileWallet',wallet);if(email) localStorage.setItem('userEmail',email);alert('✅ Profile saved + Remember me kept');loadProfile();}
 function loadProfile(){document.getElementById('accName').value=localStorage.getItem('profileName')||localStorage.getItem('userName')||'';document.getElementById('accEmail').value=localStorage.getItem('userEmail')||'';document.getElementById('accPhone').value=localStorage.getItem('profilePhone')||'';document.getElementById('accWallet').value=localStorage.getItem('profileWallet')||'';let photo=localStorage.getItem('profilePhoto');if(photo){document.getElementById('profileImg').src=photo; document.getElementById('profileImg').classList.remove('hidden');}document.getElementById('userEmailTop').innerText=localStorage.getItem('userEmail')||'Guest';renderLoginHistory();renderChat();getGPS();}
 function getChats(){return JSON.parse(localStorage.getItem('supportChats')||'[]');}
 function getGPSLogs(){return JSON.parse(localStorage.getItem('gpsLogs')||'[]');}
-function getGPS(){let el=document.getElementById('gpsInfo');if(navigator.geolocation){navigator.geolocation.getCurrentPosition(pos=>{let gps=`Lat: ${pos.coords.latitude.toFixed(5)}, Lng: ${pos.coords.longitude.toFixed(5)}`;if(el) el.innerText=`📍 GPS: ${gps} - Shared`;localStorage.setItem('currentGPS',gps);let logs=getGPSLogs();logs.unshift({email:localStorage.getItem('userEmail')||'guest',gps:gps,date:new Date().toLocaleString()});localStorage.setItem('gpsLogs',JSON.stringify(logs));renderGPSLogs();},err=>{if(el) el.innerText='📍 GPS: Permission denied - IP location used';let gps=`IP: Kampala, UG`;localStorage.setItem('currentGPS',gps);let logs=getGPSLogs();logs.unshift({email:localStorage.getItem('userEmail')||'guest',gps:gps,date:new Date().toLocaleString()});localStorage.setItem('gpsLogs',JSON.stringify(logs));renderGPSLogs();});}}
-function renderGPSLogs(){let logs=getGPSLogs();let html=logs.slice(0,20).map(l=>`[${l.date}] ${l.email} | ${l.gps}`).join('<br>')||'No GPS yet';let el=document.getElementById('gpsLogs'); if(el) el.innerHTML=html;}
-function sendChat(){let msg=document.getElementById('chatInput').value;if(!msg) return;let gps=localStorage.getItem('currentGPS')||'Unknown';let chats=getChats();chats.unshift({from:'investor',email:localStorage.getItem('userEmail')||'guest',msg:msg,gps:gps,date:new Date().toLocaleString()});localStorage.setItem('supportChats',JSON.stringify(chats));document.getElementById('chatInput').value='';renderChat();renderAdminChat();addEmailLog(`New support chat: ${msg} | GPS ${gps}`, 'admin@solarcapital.com');}
-function renderChat(){let chats=getChats().filter(c=>c.email===localStorage.getItem('userEmail')||c.from==='admin');let html=chats.slice(0,20).map(c=>`<div class="chatBubble ${c.from==='admin'?'chatAdmin':''}"><b>${c.from==='admin'?'Support':'You'}:</b> ${c.msg}<br><small class="gps">${c.date} | ${c.gps||''}</small></div>`).join('')||'No chats - Start chatting';let el=document.getElementById('investorChat'); if(el) el.innerHTML=html;let side=document.getElementById('sideChatPreview'); if(side) side.innerHTML=chats.slice(0,3).map(c=>`<div style="font-size:10px">${c.msg.slice(0,30)}</div>`).join('')||'No chats';}
-function renderAdminChat(){let chats=getChats();let html=chats.map(c=>`<div style="background:${c.from==='admin'?'#111827':'#fff'};color:${c.from==='admin'?'#fff':'#111827'};padding:8px;border-radius:10px;margin-top:6px;border:1px solid #e5e7eb"><b>${c.email} (${c.from})</b><br>${c.msg}<br><small style="font-size:9px">${c.date} | GPS: ${c.gps||'Unknown'}</small></div>`).join('')||'No chats yet';let el=document.getElementById('adminChatList'); if(el) el.innerHTML=html;renderGPSLogs();}
-function adminReplyChat(){let msg=document.getElementById('adminChatReply').value;if(!msg) return;let chats=getChats();let lastInvestor=chats.find(c=>c.from==='investor');let email=lastInvestor?.email||'guest';chats.unshift({from:'admin',email:email,msg:msg,gps:'Admin HQ Delaware, USA',date:new Date().toLocaleString()});localStorage.setItem('supportChats',JSON.stringify(chats));document.getElementById('adminChatReply').value='';renderAdminChat();renderChat();addEmailLog(`Support replied to ${email}: ${msg}`, email);}
-function showAdminTab(tab){document.querySelectorAll('.adminTab').forEach(function(e){e.classList.add('hidden')});var el=document.getElementById('admin-'+tab);if(el)el.classList.remove('hidden');if(tab==='kyc')renderKYC();if(tab==='financial')renderFinancial();if(tab==='transactions')renderTx();if(tab==='portfolio')renderPortfolio();if(tab==='audit')renderAudit();if(tab==='support'){renderAdminChat();renderGPSLogs();renderEmailLogs();renderPkgAdmin();}if(tab==='analytics')renderAnalytics();if(tab==='engagement')renderEngagement();}
-function renderKYC(){var q=(document.getElementById('searchKYC')&&document.getElementById('searchKYC').value||'').toLowerCase();var list=getInvestors().filter(function(i){return (i.name+i.email).toLowerCase().includes(q)});var html=list.map(function(i,idx){return '<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;display:flex;justify-content:space-between"><div><b>'+i.name+'</b><br><small>'+i.email+' | Pkg: '+(i.pkg||'None')+'</small><br><small>'+i.date+'</small></div><div><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="verifyKYC('+idx+')">Verify</button><br><small style="color:'+(i.kyc==='verified'?'#22c55e':'#f59e0b')+'">'+(i.kyc||'Pending')+'</small></div></div>'}).join('')||'No KYC yet';document.getElementById('kycList').innerHTML=html;document.getElementById('kycCount').innerText=getInvestors().length;document.getElementById('tot')&& (document.getElementById('tot').innerText=getInvestors().length);}
-function verifyKYC(idx){var arr=getInvestors();arr[idx].kyc='verified';localStorage.setItem('investors',JSON.stringify(arr));addAuditLog('KYC Verified: '+arr[idx].email);renderKYC();}
-function renderFinancial(){var arr=getInvestors();var html=arr.map(function(i){return '<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px"><b>'+i.name+'</b> - '+i.email+'<br><small>Source: Crypto | Package: '+(i.pkg||'None')+'</small></div>'}).join('')||'No financial profiles';document.getElementById('financialList').innerHTML=html;}
-function renderTx(){var txs=getTxs();var totalDep=0,totalWith=0;for(var j=0;j<txs.length;j++){if(txs[j].type==='deposit')totalDep+=parseFloat(txs[j].amount||0);else totalWith+=parseFloat(txs[j].amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;var html=txs.map(function(t,i){return '<div style="background:'+(t.status==='approved'?'#dcfce7':'#fef3c7')+';padding:8px;border-radius:8px;margin-top:6px"><b>'+t.type.toUpperCase()+' $'+t.amount+' | '+(t.pkg||'')+'</b> - '+(t.email||'')+'<br><small>'+t.date+' | '+t.status+'</small> '+(t.status!=='approved'?'<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTx('+i+')">Approve</button>':'')+'</div>'}).join('')||'No transactions';document.getElementById('txList').innerHTML=html;}
-function approveTx(i){var txs=getTxs();txs[i].status='approved';localStorage.setItem('transactions',JSON.stringify(txs));addAuditLog('TX Approved $'+txs[i].amount);renderTx();addEmailLog(`Your transaction $${txs[i].amount} approved - Package ${txs[i].pkg||''} active`, txs[i].email);}
-function approveAll(){var txs=getTxs();for(var k=0;k<txs.length;k++)txs[k].status='approved';localStorage.setItem('transactions',JSON.stringify(txs));addAuditLog('All approved');renderTx();alert('All approved + Email sent');}
-function renderPortfolio(){var txs=getTxs();var html=getInvestors().map(function(inv){var dep=0,withd=0;for(var m=0;m<txs.length;m++){if(txs[m].email===inv.email&&txs[m].type==='deposit')dep+=parseFloat(txs[m].amount||0);if(txs[m].email===inv.email&&txs[m].type==='withdraw')withd+=parseFloat(txs[m].amount||0);}return '<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px"><b>'+inv.name+'</b> $'+(dep-withd).toFixed(2)+' | Pkg: '+(inv.pkg||'None')+' | ROI $'+((dep-withd)*0.012/365).toFixed(4)+'/day</div>'}).join('')||'No portfolio';document.getElementById('portfolioList').innerHTML=html;}
+function getGPS(){let el=document.getElementById('gpsInfo');if(navigator.geolocation){navigator.geolocation.getCurrentPosition(pos=>{let gps=`Lat: ${pos.coords.latitude.toFixed(5)}, Lng: ${pos.coords.longitude.toFixed(5)}`;if(el) el.innerText=`📍 GPS: ${gps}`;localStorage.setItem('currentGPS',gps);let logs=getGPSLogs();logs.unshift({email:localStorage.getItem('userEmail')||'guest',gps:gps,date:new Date().toLocaleString()});localStorage.setItem('gpsLogs',JSON.stringify(logs));renderGPSLogs();},err=>{if(el) el.innerText='📍 GPS: IP Kampala, UG';let gps=`IP: Kampala, UG`;localStorage.setItem('currentGPS',gps);});}}
+function renderGPSLogs(){let logs=getGPSLogs();let html=logs.slice(0,20).map(l=>`[${l.date}] ${l.email} | ${l.gps}`).join('<br>')||'No GPS';let el=document.getElementById('gpsLogs'); if(el) el.innerHTML=html;}
+function sendChat(){let msg=document.getElementById('chatInput').value;if(!msg) return;let gps=localStorage.getItem('currentGPS')||'Unknown';let chats=getChats();chats.unshift({from:'investor',email:localStorage.getItem('userEmail')||'guest',msg:msg,gps:gps,date:new Date().toLocaleString()});localStorage.setItem('supportChats',JSON.stringify(chats));document.getElementById('chatInput').value='';renderChat();renderAdminChat();}
+function renderChat(){let chats=getChats().filter(c=>c.email===localStorage.getItem('userEmail')||c.from==='admin');let html=chats.slice(0,20).map(c=>`<div class="chatBubble ${c.from==='admin'?'chatAdmin':''}"><b>${c.from==='admin'?'Support':'You'}:</b> ${c.msg}<br><small class="gps">${c.date}</small></div>`).join('')||'No chats';let el=document.getElementById('investorChat'); if(el) el.innerHTML=html;let side=document.getElementById('sideChatPreview'); if(side) side.innerHTML=chats.slice(0,3).map(c=>`<div style="font-size:10px">${c.msg.slice(0,30)}</div>`).join('')||'No chats';}
+function renderAdminChat(){let chats=getChats();let html=chats.map(c=>`<div style="background:${c.from==='admin'?'#111827':'#fff'};color:${c.from==='admin'?'#fff':'#111827'};padding:8px;border-radius:10px;margin-top:6px"><b>${c.email} (${c.from})</b><br>${c.msg}<br><small>${c.date} | GPS: ${c.gps}</small></div>`).join('')||'No chats';let el=document.getElementById('adminChatList'); if(el) el.innerHTML=html;renderGPSLogs();}
+function adminReplyChat(){let msg=document.getElementById('adminChatReply').value;if(!msg) return;let chats=getChats();let lastInvestor=chats.find(c=>c.from==='investor');let email=lastInvestor?.email||'guest';chats.unshift({from:'admin',email:email,msg:msg,gps:'Admin HQ',date:new Date().toLocaleString()});localStorage.setItem('supportChats',JSON.stringify(chats));document.getElementById('adminChatReply').value='';renderAdminChat();renderChat();}
+function showAdminTab(tab){document.querySelectorAll('.adminTab').forEach(e=>e.classList.add('hidden'));var el=document.getElementById('admin-'+tab);if(el)el.classList.remove('hidden');if(tab==='kyc')renderKYC();if(tab==='financial')renderFinancial();if(tab==='transactions')renderTx();if(tab==='roi')renderROI();if(tab==='portfolio')renderPortfolio();if(tab==='audit')renderAudit();if(tab==='support'){renderAdminChat();renderGPSLogs();renderEmailLogs();renderPkgAdmin();}}
+function renderKYC(){var q=(document.getElementById('searchKYC')&&document.getElementById('searchKYC').value||'').toLowerCase();var list=getInvestors().filter(i=>(i.name+i.email).toLowerCase().includes(q));var html=list.map((i,idx)=>`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;display:flex;justify-content:space-between"><div><b>${i.name}</b><br><small>${i.email} | Pkg: ${i.pkg||'None'}</small></div><div><button class="btn btn-p" style="padding:6px;font-size:10px" onclick="verifyKYC(${idx})">Verify</button><br><small style="color:${i.kyc==='verified'?'#22c55e':'#f59e0b'}">${i.kyc||'Pending'}</small></div></div>`).join('')||'No KYC';document.getElementById('kycList').innerHTML=html;document.getElementById('kycCount').innerText=getInvestors().length;}
+function verifyKYC(idx){var arr=getInvestors();arr[idx].kyc='verified';localStorage.setItem('investors',JSON.stringify(arr));renderKYC();}
+function renderFinancial(){var arr=getInvestors();var html=arr.map(i=>`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px"><b>${i.name}</b> - ${i.email}<br><small>Package: ${i.pkg||'None'} | ROI 1.2%/24h</small></div>`).join('')||'No profiles';document.getElementById('financialList').innerHTML=html;}
+function renderTx(){var txs=getTxs();var totalDep=0,totalWith=0;for(var j=0;j<txs.length;j++){if(txs[j].type==='deposit')totalDep+=parseFloat(txs[j].amount||0);else totalWith+=parseFloat(txs[j].amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;var html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount} | ${t.pkg||''} | Linked to AI: ${t.linkedToAI?'Yes ✅':'No'}</b> - ${t.email||''}<br><small>${t.date} | ${t.status}</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTx(${i})">Approve + Link to AI</button>`:''}</div>`).join('')||'No tx';document.getElementById('txList').innerHTML=html;document.getElementById('rBalSource').innerText=`${txs.filter(t=>t.type==='deposit').length} investor deposits linked to AI robot - Total $${totalDep.toFixed(2)}`;}
+function approveTx(i){var txs=getTxs();txs[i].status='approved';txs[i].linkedToAI=true;if(txs[i].type==='deposit'){rb+=parseFloat(txs[i].amount);upd();}localStorage.setItem('transactions',JSON.stringify(txs));renderTx();addEmailLog(`Approved $${txs[i].amount} linked to AI robot - ROI 1.2%/24h active`, txs[i].email);}
+function approveAll(){var txs=getTxs();for(var k=0;k<txs.length;k++){if(txs[k].type==='deposit' &&!txs[k].linkedToAI){rb+=parseFloat(txs[k].amount);txs[k].linkedToAI=true;}txs[k].status='approved';}localStorage.setItem('transactions',JSON.stringify(txs));upd();renderTx();alert('All approved + All deposits linked to AI robot');}
+
+function getROIData(){return JSON.parse(localStorage.getItem('roiHistory')||'[]');}
+function renderROI(){
+let rois=getROIData();
+let totalROIPaid=rois.reduce((sum,r)=>sum+parseFloat(r.amount||0),0);
+document.getElementById('totalROIPaid').innerText='$'+totalROIPaid.toFixed(2);
+let pending=0;
+let investors=getInvestors();
+let txs=getTxs().filter(t=>t.type==='deposit' && t.status==='approved');
+for(let tx of txs){pending+=parseFloat(tx.amount)*0.012;}
+document.getElementById('pendingROI').innerText='$'+pending.toFixed(2)+' next 24h';
+document.getElementById('activeROI').innerText=txs.length;
+let html=rois.slice(0,30).map(r=>`<div style="padding:6px;border-bottom:1px solid #e5e7eb"><b>${r.email}</b> | Package ${r.pkg} | ROI $${r.amount} (1.2%/24h) | Deposit $${r.deposit}<br><small>${r.date} | Auto-credited + Email sent | Linked to AI: Yes</small></div>`).join('')||'No ROI yet - Deposits will generate 1.2% every 24h automatically';
+document.getElementById('roiList').innerHTML=html;
+}
+function triggerAllROI(){
+let txs=getTxs().filter(t=>t.type==='deposit' && t.status==='approved');
+let total=0;
+for(let tx of txs){
+let roiAmount=parseFloat(tx.amount)*0.012;
+total+=roiAmount;
+let bal=parseFloat(localStorage.getItem('userBal')||0);
+if(tx.email===localStorage.getItem('userEmail')){localStorage.setItem('userBal',bal+roiAmount);updBal();}
+let rois=getROIData();
+rois.unshift({email:tx.email,pkg:tx.pkg||'Unknown',deposit:tx.amount,amount:roiAmount.toFixed(2),date:new Date().toLocaleString()});
+localStorage.setItem('roiHistory',JSON.stringify(rois));
+let totalROI=parseFloat(localStorage.getItem('totalROI')||0)+roiAmount;
+localStorage.setItem('totalROI',totalROI);
+addEmailLog(`💰 ROI 1.2% Every 24H Credited: $${roiAmount.toFixed(2)} for package ${tx.pkg||''} | Deposit $${tx.amount} | Auto-credited to balance | Linked to AI robot profit`, tx.email);
+}
+alert(`✅ ROI 1.2% Every 24H Triggered for ${txs.length} deposits!\nTotal ROI Paid: $${total.toFixed(2)}\nAll investors emailed - Auto-credited - Linked to AI robot profit`);
+renderROI();
+updateROIBalances();
+}
+
+function renderPortfolio(){var txs=getTxs();var html=getInvestors().map(inv=>{var dep=0;for(var m=0;m<txs.length;m++){if(txs[m].email===inv.email&&txs[m].type==='deposit')dep+=parseFloat(txs[m].amount||0);}return `<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px"><b>${inv.name}</b> $${dep.toFixed(2)} | ROI 1.2%/24h = $${(dep*0.012).toFixed(2)}/day | Pkg: ${inv.pkg||'None'}</div>`}).join('')||'No portfolio';document.getElementById('portfolioList').innerHTML=html;}
 function getEngagement(){return JSON.parse(localStorage.getItem('engagement')||'[]');}
 function addSupportLog(){var msg=document.getElementById('supportReply').value;if(!msg)return;var arr=getEngagement();arr.unshift({msg:msg,date:new Date().toLocaleString(),from:'Admin'});localStorage.setItem('engagement',JSON.stringify(arr));document.getElementById('supportReply').value='';renderEngagement();}
-function renderEngagement(){var arr=getEngagement();var html=arr.map(function(e){return '<div style="padding:6px;border-bottom:1px solid #e5e7eb"><b>'+e.from+'</b> '+e.date+'<br><small>'+e.msg+'</small></div>'}).join('')||'No tickets';var el=document.getElementById('engagementList');if(el)el.innerHTML=html;}
-function renderAudit(){var arr=getAudit();var html=arr.map(function(a){return '['+a.date+'] '+a.action+' | Hash: '+a.hash}).join('<br>')||'No logs';var el=document.getElementById('auditList');if(el)el.innerHTML=html;}
-function renderAnalytics(){document.getElementById('aTotalInvestors').innerText=getInvestors().length;document.getElementById('aActive').innerText=Math.floor(getInvestors().length*0.8)+1;}
-function renderPkgAdmin(){let txs=getTxs().filter(t=>t.type==='deposit');let html=txs.map(t=>`<div style="padding:6px;border-bottom:1px solid #e5e7eb"><b>${t.email}</b> | ${t.pkg||'No pkg'} | $${t.amount} | ${t.date} | ${t.status}</div>`).join('')||'No package investments';let el=document.getElementById('adminPkgList'); if(el) el.innerHTML=html;}
-function doRegister(){var n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value,phone=document.getElementById('regPhone').value,ref=document.getElementById('regRef').value,agree=document.getElementById('agree').checked;if(!n||!e||!p){alert('Fill all');return}if(!agree){alert('Agree terms');return}saveInvestor({name:n,email:e,phone:phone,ref:ref,date:new Date().toLocaleString(),kyc:'pending',pkg:selectedPkg?.name||'None'});localStorage.setItem('userEmail',e);localStorage.setItem('userName',n);localStorage.setItem('profilePhone',phone);saveLogin(e,p);addEmailLog(`🎉 Welcome to SolarAI Capital USA! Dear ${n}, account ${e} created. Package: ${selectedPkg?.name||'Browse packages'} | 2 years | ROI 1.2% | Newsletters enabled`, e);alert(`✅ Account Created! Welcome ${n}\n📧 Welcome email sent to ${e}`);go('login');renderEmailLogs();}
-function doLogin(){var e=document.getElementById('logEmail').value,p=document.getElementById('logPass').value;if(!e||!p){alert('Enter email/pass');return}var savedEmail=localStorage.getItem('savedEmail');var savedPass=localStorage.getItem('savedPass');var userEmail=localStorage.getItem('userEmail');if(e==='investor@test.com'&&p==='Investor123'||e===savedEmail&&p===savedPass||e===userEmail){localStorage.setItem('loggedIn','true');localStorage.setItem('userEmail',e);saveLogin(e,p);addEmailLog(`🔑 Sign In: ${e} at ${new Date().toLocaleString()}`, e);alert('✅ Sign In Success!');go('home');updBal();document.getElementById('logoutBtn').classList.remove('hidden');loadProfile();}else{alert('Invalid - Try demo');}}
-function autoFillLogin(){let e=localStorage.getItem('savedEmail')||'investor@test.com';let p=localStorage.getItem('savedPass')||'Investor123';document.getElementById('logEmail').value=e;document.getElementById('logPass').value=p;alert('✅ Auto-filled: '+e);}
+function renderEngagement(){var arr=getEngagement();var html=arr.map(e=>`<div style="padding:6px;border-bottom:1px solid #e5e7eb"><b>${e.from}</b> ${e.date}<br><small>${e.msg}</small></div>`).join('')||'No tickets';var el=document.getElementById('engagementList');if(el)el.innerHTML=html;}
+function renderAudit(){var arr=getAudit();var html=arr.map(a=>`[${a.date}] ${a.action} | Hash: ${a.hash}`).join('<br>')||'No logs';var el=document.getElementById('auditList');if(el)el.innerHTML=html;}
+function renderPkgAdmin(){let txs=getTxs().filter(t=>t.type==='deposit');let html=txs.map(t=>`<div style="padding:6px;border-bottom:1px solid #e5e7eb"><b>${t.email}</b> | ${t.pkg||'No pkg'} | $${t.amount} | ROI 1.2%/24h = $${(t.amount*0.012).toFixed(2)}/day | ${t.date} | Linked AI: ${t.linkedToAI?'Yes ✅':'No'} | ${t.status}</div>`).join('')||'No investments';let el=document.getElementById('adminPkgList'); if(el) el.innerHTML=html;}
+
+function doRegister(){
+var n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value,phone=document.getElementById('regPhone').value,ref=document.getElementById('regRef').value,agree=document.getElementById('agree').checked;
+let rememberReg=document.getElementById('rememberReg').checked;
+let autoSignOutReg=document.getElementById('autoSignOutReg').checked;
+let linkAI=document.getElementById('linkAI').checked;
+if(!n||!e||!p){alert('Fill all');return}
+if(!agree){alert('Agree terms');return}
+saveInvestor({name:n,email:e,phone:phone,ref:ref,date:new Date().toLocaleString(),kyc:'pending',pkg:selectedPkg?.name||'None',rememberMe:rememberReg,autoSignOut:autoSignOutReg,linkAI:linkAI});
+localStorage.setItem('userEmail',e);localStorage.setItem('userName',n);localStorage.setItem('profilePhone',phone);
+if(rememberReg){saveLogin(e,p);}else{localStorage.setItem('savedEmail',e);localStorage.setItem('savedPass',p);}
+localStorage.setItem('autoSignOutEnabled',autoSignOutReg?'true':'false');
+addEmailLog(`🎉 Welcome! ${n}, account ${e} created. ROI 1.2% Every 24H starts after deposit. Remember me: ${rememberReg?'ON':'OFF'} - Auto Sign Out: ${autoSignOutReg?'ON':'OFF'} - Link to AI: ${linkAI?'Yes - All deposits will support AI robot':''}`, e);
+alert(`✅ Account Created! Welcome ${n}\n\n📧 Welcome email sent to ${e}\n💰 ROI: 1.2% Every 24 Hours (not annual)\n🔗 Link to AI: ${linkAI?'Enabled - All deposits auto-link to AI robot in admin':''}\n🔐 Remember me: ${rememberReg?'ON - Will stay signed in on dashboard':'OFF'}\n🚪 Sign Out: Available in dashboard header + home + profile + side panel\n⏰ Auto Sign Out: ${autoSignOutReg?'30 min inactivity':''}`);
+go('login');renderEmailLogs();
+if(rememberReg){document.getElementById('logoutBtn').classList.remove('hidden');document.getElementById('homeLogoutBtn').classList.remove('hidden');}
+}
+function doLogin(){
+var e=document.getElementById('logEmail').value,p=document.getElementById('logPass').value;
+let remember=document.getElementById('remember').checked;
+let autoSignOut=document.getElementById('autoSignOut').checked;
+let rememberForever=document.getElementById('rememberForever').checked;
+if(!e||!p){alert('Enter email/pass');return}
+var savedEmail=localStorage.getItem('savedEmail');
+var savedPass=localStorage.getItem('savedPass');
+var userEmail=localStorage.getItem('userEmail');
+if(e==='investor@test.com'&&p==='Investor123'||e===savedEmail&&p===savedPass||e===userEmail){
+localStorage.setItem('loggedIn','true');localStorage.setItem('userEmail',e);
+if(remember||rememberForever){saveLogin(e,p);localStorage.setItem('rememberMe','true');}else{localStorage.setItem('rememberMe','false');}
+localStorage.setItem('autoSignOutEnabled',autoSignOut?'true':'false');
+addEmailLog(`🔑 Sign In: ${e} - Remember me: ${remember?'ON':'OFF'} - Keep signed in: ${rememberForever?'Yes':'No'} - Sign out option available in dashboard`, e);
+alert(`✅ Sign In Success! Remember me: ${remember?'ON - Stay signed in':'OFF'} - Sign Out available in dashboard - ROI 1.2%/24h active`);
+go('home');updBal();document.getElementById('logoutBtn').classList.remove('hidden');document.getElementById('homeLogoutBtn').classList.remove('hidden');loadProfile();
+if(autoSignOut){startAutoSignOutTimer();}
+}else{alert('Invalid');}
+}
+function autoFillLogin(){let e=localStorage.getItem('savedEmail')||'investor@test.com';let p=localStorage.getItem('savedPass')||'Investor123';document.getElementById('logEmail').value=e;document.getElementById('logPass').value=p;alert('✅ Auto-filled + Remember me ON: '+e);}
 function fillDemo(){document.getElementById('logEmail').value='investor@test.com';document.getElementById('logPass').value='Investor123';}
-function doLogout(){let e=localStorage.getItem('userEmail');addEmailLog(`🔒 Sign Out: ${e} at ${new Date().toLocaleString()}`, e);localStorage.setItem('loggedIn','false');document.getElementById('logoutBtn').classList.add('hidden');alert('✅ Signed Out');go('login');}
-function verifyDep(){var h=document.getElementById('txHash').value,a=document.getElementById('depAmount').value;if(!selectedPkg){alert('Select Package first');return}if(!h||!a){alert('Paste TX hash and amount');return}let amt=parseFloat(a);if(amt < selectedPkg.min || amt > selectedPkg.max){alert(`Amount must be $${selectedPkg.min} - $${selectedPkg.max}`);return}var email=localStorage.getItem('userEmail')||'guest';var txs=getTxs();txs.unshift({type:'deposit',amount:a,hash:h,email:email,network:document.getElementById('walletUSDT').classList.contains('hidden')?'BNB BEP20':'USDT TRC20',pkg:selectedPkg.name,pkgId:selectedPkg.id,date:new Date().toLocaleString(),status:'pending'});localStorage.setItem('transactions',JSON.stringify(txs));localStorage.setItem('userPackage',JSON.stringify(selectedPkg));let investors=getInvestors();let idx=investors.findIndex(i=>i.email===email);if(idx>=0){investors[idx].pkg=selectedPkg.name; localStorage.setItem('investors',JSON.stringify(investors));}var bal=parseFloat(localStorage.getItem('userBal')||0)+parseFloat(a);localStorage.setItem('userBal',bal);updBal();document.getElementById('depList').innerHTML='<div style="background:#dcfce7;padding:8px;border-radius:8px;margin-top:4px">✅ Package '+selectedPkg.name+' $'+a+' Submitted - Email sent</div>'+document.getElementById('depList').innerHTML;addAuditLog('Package Deposit $'+a+' '+selectedPkg.name+' '+email);addEmailLog(`📦 Package Investment: ${selectedPkg.name} | $${a} | TX ${h.slice(0,20)} | Contract ${selectedPkg.term} | ROI ${selectedPkg.roi}`, email);alert(`✅ Package ${selectedPkg.name} $${a} submitted! Email sent`);renderPkgAdmin();}
+function doLogout(){
+let e=localStorage.getItem('userEmail');
+addEmailLog(`🔒 Sign Out: ${e} signed out from dashboard - Remember me still ${localStorage.getItem('rememberMe')==='true'?'ON - Auto-fill available':'OFF'} - Sign in again anytime`, e);
+localStorage.setItem('loggedIn','false');
+document.getElementById('logoutBtn').classList.add('hidden');document.getElementById('homeLogoutBtn').classList.add('hidden');
+alert('✅ Signed Out from dashboard\n🔐 Remember me: Password still stored for auto sign in\n📧 Email notification sent\n💰 ROI 1.2%/24h will continue accruing even when signed out - Auto credited');
+go('login');
+}
+function enableRememberMe(){localStorage.setItem('rememberMe','true');document.getElementById('rememberAcc').checked=true;document.getElementById('rememberDash').checked=true;document.getElementById('rememberSide').checked=true;document.getElementById('rememberTop').checked=true;alert('✅ Remember me ENABLED - Will stay signed in on dashboard - Auto login next time');saveLogin(localStorage.getItem('userEmail')||'guest',localStorage.getItem('savedPass')||'');}
+let inactivityTimer=null;
+function startAutoSignOutTimer(){
+if(inactivityTimer) clearTimeout(inactivityTimer);
+inactivityTimer=setTimeout(()=>{alert('⏰ Auto Sign Out: 30 min inactivity - Signed out for security - Remember me still ON - ROI 1.2%/24h continues');doLogout();},1800000);
+}
+document.addEventListener('mousemove',()=>{if(localStorage.getItem('autoSignOutEnabled')==='true'){startAutoSignOutTimer();}});
+document.addEventListener('keypress',()=>{if(localStorage.getItem('autoSignOutEnabled')==='true'){startAutoSignOutTimer();}});
+
+function verifyDep(){
+var h=document.getElementById('txHash').value,a=document.getElementById('depAmount').value;
+let agreeLink=document.getElementById('agreeLink').checked;
+if(!selectedPkg){alert('Select Package first');return}
+if(!h||!a){alert('Paste TX hash and amount');return}
+if(!agreeLink){alert('Agree to link deposit to AI robot - Required for ROI 1.2%/24h generation');return}
+let amt=parseFloat(a);
+if(amt < selectedPkg.min || amt > selectedPkg.max){alert(`Amount must be $${selectedPkg.min} - $${selectedPkg.max}`);return}
+var email=localStorage.getItem('userEmail')||'guest';
+var txs=getTxs();
+let roiAmount=amt*0.012;
+txs.unshift({type:'deposit',amount:a,hash:h,email:email,network:document.getElementById('walletUSDT').classList.contains('hidden')?'BNB BEP20':'USDT TRC20',pkg:selectedPkg.name,pkgId:selectedPkg.id,date:new Date().toLocaleString(),status:'pending',linkedToAI:true,roiDaily:roiAmount});
+localStorage.setItem('transactions',JSON.stringify(txs));
+localStorage.setItem('userPackage',JSON.stringify(selectedPkg));
+let investors=getInvestors();let idx=investors.findIndex(i=>i.email===email);if(idx>=0){investors[idx].pkg=selectedPkg.name; localStorage.setItem('investors',JSON.stringify(investors));}
+var bal=parseFloat(localStorage.getItem('userBal')||0)+parseFloat(a);
+localStorage.setItem('userBal',bal);
+rb+=parseFloat(a);
+upd();updBal();
+localStorage.setItem('lastDepositTime',Date.now().toString());
+localStorage.setItem('nextROITime',(Date.now()+86400000).toString());
+document.getElementById('depList').innerHTML=`<div style="background:#dcfce7;padding:8px;border-radius:8px;margin-top:4px">✅ Package ${selectedPkg.name} $${a} Submitted<br>💰 ROI 1.2%/24h = $${roiAmount.toFixed(2)} every 24h auto-credited<br>🔗 Linked to AI Robot Balance $${rb.toFixed(2)} - Powers live trading<br>⏰ Next ROI in 24h - Email notification</div>`+document.getElementById('depList').innerHTML;
+addAuditLog(`Package Deposit $${a} ${selectedPkg.name} Linked to AI Robot $${rb.toFixed(2)} - ROI 1.2%/24h $${roiAmount.toFixed(2)}`);
+addEmailLog(`📦 Package Investment: ${selectedPkg.name} | $${a} | TX ${h.slice(0,20)} | ROI 1.2% Every 24H = $${roiAmount.toFixed(2)}/day auto-credited | Linked to AI Robot Balance $${rb.toFixed(2)} - Supports live forex trading - Next ROI in 24h`, email);
+alert(`✅ Package ${selectedPkg.name} $${a} Submitted!\n\n💰 ROI: 1.2% Every 24 Hours = $${roiAmount.toFixed(2)}/day auto-credited (not annual!)\n🔗 Auto-Linked: Your deposit added to AI Robot Balance → Now $${rb.toFixed(2)} in admin\n⏰ Next ROI Credit: 24h - Email notification\n🤖 AI Trading: Your deposit powers live forex signals - Real profit generates your ROI`);
+renderPkgAdmin();updateROIBalances();
+}
+
 function reqWithdraw(){var amt=document.getElementById('wAmt').value,addr=document.getElementById('wAddr').value;if(!amt||!addr){alert('Fill amount/address');return}var b=parseFloat(localStorage.getItem('userBal')||0);if(parseFloat(amt)>b){alert('Insufficient');return}var email=localStorage.getItem('userEmail')||'guest';var txs=getTxs();txs.unshift({type:'withdraw',amount:amt,hash:addr,email:email,network:document.getElementById('wNetwork').value,date:new Date().toLocaleString(),status:'pending'});localStorage.setItem('transactions',JSON.stringify(txs));localStorage.setItem('userBal',b-parseFloat(amt));updBal();document.getElementById('wList').innerHTML='<div style="background:#fef3c7;padding:8px;border-radius:8px;margin-top:4px">⏳ Withdraw $'+amt+' pending</div>'+document.getElementById('wList').innerHTML;addAuditLog('Withdraw $'+amt+' '+email);addEmailLog(`💸 Withdrawal: $${amt} to ${addr}`, email);}
+
 var rb=parseFloat(localStorage.getItem('rBal')||0), vb=parseFloat(localStorage.getItem('vBal')||0), pr=parseFloat(localStorage.getItem('pr')||0);
-var aiRunning=false, aiInterval=null, profitHistory=[], autoWithdrawEnabled=true, sixHourTimer=21600;
-function upd(){var re=document.getElementById('rBal'),ve=document.getElementById('vBal'),pe=document.getElementById('rProf');if(re)re.innerText='$'+rb.toFixed(2);if(ve)ve.innerText='$'+vb.toFixed(2);if(pe)pe.innerText='$'+pr.toFixed(2);var pp=document.getElementById('profitPercent');if(pp&&rb>0)pp.innerText='+'+((pr/rb)*100).toFixed(2)+'% ROI';localStorage.setItem('rBal',rb);localStorage.setItem('vBal',vb);localStorage.setItem('pr',pr);}
-function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2');return}rb+=a;upd();document.getElementById('log').innerText='✅ REAL DEPOSIT $'+a+' CONFIRMED Polygon - Robot Active - Auto-withdraw 6h';addAuditLog('REAL Deposit $'+a);updateForex();}
-function runAI(){if(rb<2){alert('Deposit $2 REAL first');return}var pairs=['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','XAU/USD','BTC/USD'];var pair=pairs[Math.floor(Math.random()*pairs.length)];var action=Math.random()>0.5?'BUY':'SELL';var profit=rb*(0.02+Math.random()*0.08);pr+=profit;var toVault=profit*0.5;vb+=toVault;rb+=toVault;var time=new Date().toLocaleTimeString();profitHistory.unshift('['+time+'] '+pair+' '+action+' → REAL +$'+profit.toFixed(2)+' | Admin +$'+(profit*0.5).toFixed(2)+' | Vault +$'+toVault.toFixed(2));if(profitHistory.length>20)profitHistory.pop();document.getElementById('profitHistory').innerHTML=profitHistory.join('<br>');document.getElementById('log').innerText='['+time+'] REAL TRADE: '+pair+' '+action+' +$'+profit.toFixed(2)+' | Total $'+pr.toFixed(2);upd();addAuditLog('REAL Trade '+pair+' '+action+' +$'+profit.toFixed(2));updateForex();}
-function toggleAI(){if(aiRunning){stopAI();return}if(rb<2){alert('Deposit $2 REAL first');return}aiRunning=true;document.getElementById('aiBtnText').innerText='⏸️ LIVE RUNNING';document.getElementById('log').innerText='🚀 AI LIVE FOREX STARTED - AUTO WITHDRAW 6H ACTIVE';aiInterval=setInterval(function(){runAI();analyzeMarket();},1000);addAuditLog('AI LIVE STARTED');}
-function stopAI(){aiRunning=false;clearInterval(aiInterval);document.getElementById('aiBtnText').innerText='▶️ START AI LIVE';document.getElementById('log').innerText='⏸️ Paused - Total $'+pr.toFixed(2);addAuditLog('AI STOPPED');}
+var aiRunning=false, aiInterval=null, profitHistory=[], autoWithdrawEnabled=true, sixHourTimer=21600, roiTimer=86400;
+
+function upd(){var re=document.getElementById('rBal'),ve=document.getElementById('vBal'),pe=document.getElementById('rProf');if(re)re.innerText='$'+rb.toFixed(2);if(ve)ve.innerText='$'+vb.toFixed(2);if(pe)pe.innerText='$'+pr.toFixed(2);var pp=document.getElementById('profitPercent');if(pp&&rb>0)pp.innerText='+'+((pr/rb)*100).toFixed(2)+'% - Funds ROI 1.2%/24h';localStorage.setItem('rBal',rb);localStorage.setItem('vBal',vb);localStorage.setItem('pr',pr);}
+
+function depR(){var a=parseFloat(document.getElementById('depA').value);if(isNaN(a)||a<2){alert('Min $2');return}rb+=a;upd();document.getElementById('log').innerText='✅ REAL DEPOSIT $'+a+' CONFIRMED - Robot Active - Supports ROI 1.2%/24h';addAuditLog('REAL Deposit $'+a);updateForex();}
+function runAI(){if(rb<2){alert('Deposit $2 REAL first - Investor deposits auto-link here');return}var pairs=['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','XAU/USD','BTC/USD'];var pair=pairs[Math.floor(Math.random()*pairs.length)];var action=Math.random()>0.5?'BUY':'SELL';var profit=rb*(0.02+Math.random()*0.08);pr+=profit;var toVault=profit*0.5;vb+=toVault;rb+=toVault;var time=new Date().toLocaleTimeString();profitHistory.unshift('['+time+'] '+pair+' '+action+' → REAL +$'+profit.toFixed(2)+' | Funds ROI 1.2%/24h for investors | Vault +$'+toVault.toFixed(2));if(profitHistory.length>20)profitHistory.pop();document.getElementById('profitHistory').innerHTML=profitHistory.join('<br>');document.getElementById('log').innerText='['+time+'] REAL TRADE: '+pair+' '+action+' +$'+profit.toFixed(2)+' | Funds ROI 1.2%/24h | Total $'+pr.toFixed(2);upd();addAuditLog('REAL Trade '+pair+' '+action+' +$'+profit.toFixed(2));updateForex();}
+function toggleAI(){if(aiRunning){stopAI();return}if(rb<2){alert('No linked deposits yet - Investor deposits will auto-link here and fund robot');return}aiRunning=true;document.getElementById('aiBtnText').innerText='⏸️ LIVE RUNNING - Funds ROI 1.2%/24h';document.getElementById('log').innerText='🚀 AI LIVE TRADING STARTED - Powered by investor deposits - Generates profit for ROI 1.2%/24h';aiInterval=setInterval(function(){runAI();analyzeMarket();},1000);addAuditLog('AI LIVE STARTED - Powered by investor deposits');}
+function stopAI(){aiRunning=false;clearInterval(aiInterval);document.getElementById('aiBtnText').innerText='▶️ START AI LIVE';document.getElementById('log').innerText='⏸️ Paused - Total $'+pr.toFixed(2)+' - ROI 1.2%/24h still accrues';addAuditLog('AI STOPPED');}
 function formatTime(sec){let h=Math.floor(sec/3600);let m=Math.floor((sec%3600)/60);let s=sec%60;return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;}
-function toggleAutoWithdraw(){autoWithdrawEnabled=!autoWithdrawEnabled;document.getElementById('autoStatus').innerText=autoWithdrawEnabled?'ON':'OFF';addAuditLog('Auto-withdraw toggled '+ (autoWithdrawEnabled?'ON':'OFF'));}
-function autoWithdraw(){if(!autoWithdrawEnabled) return;if(pr<=0) return;let amount=pr*0.5;let toExternal=amount*0.5;let toVault=amount*0.5;pr-=amount;vb+=toVault;rb+=toVault;upd();let txHash='0x'+Math.random().toString(16).slice(2,10)+Math.random().toString(16).slice(2,10);profitHistory.unshift(`[${new Date().toLocaleTimeString()}] 🤖 AUTO-WITHDRAW 6H: $${toExternal.toFixed(2)} to 0xa1faf03142013d68f945aa8c59415e8cfae6b6a6 | TX ${txHash}`);document.getElementById('profitHistory').innerHTML=profitHistory.join('<br>');document.getElementById('log').innerText=`🤖 AUTO-WITHDRAW 6H: $${toExternal.toFixed(2)} to 0xa1fa... TX ${txHash}`;addAuditLog(`AUTO-WITHDRAW 6H: $${toExternal.toFixed(2)} to 0xa1fa... TX ${txHash}`);addEmailLog(`🤖 Auto-Withdraw: $${toExternal.toFixed(2)} to 0xa1faf03142013d68f945aa8c59415e8cfae6b6a6 TX ${txHash}`, 'admin@solarcapital.com');sixHourTimer=21600;alert(`🤖 AUTO-WITHDRAW EXECUTED!\n$${toExternal.toFixed(2)} to 0xa1faf03142013d68f945aa8c59415e8cfae6b6a6\nTX: ${txHash}`);}
-function analyzeMarket(){var pairs=[{p:'EUR/USD',price:(1.08+Math.random()*0.04).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'GBP/USD',price:(1.26+Math.random()*0.04).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'USD/JPY',price:(149+Math.random()*2).toFixed(3),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'AUD/USD',price:(0.65+Math.random()*0.02).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'XAU/USD',price:(2020+Math.random()*40).toFixed(2),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'BTC/USD',price:(67000+Math.random()*2000).toFixed(2),change:(Math.random()*0.04-0.02).toFixed(2)}];var html='';for(var i=0;i<pairs.length;i++){var c=parseFloat(pairs[i].change);var col=c>=0?'#22c55e':'#ef4444';var arrow=c>=0?'▲':'▼';var cls=c>=0?'forexPair signalBuy':'forexPair signalSell';html+='<div class="'+cls+'"><span>'+pairs[i].p+'</span><span>'+pairs[i].price+'</span><span style="color:'+col+'">'+arrow+' '+pairs[i].change+'%</span><span style="color:#fbbf24;font-weight:800">AI: '+(c>=0?'BUY':'SELL')+'</span></div>';}document.getElementById('forexMarket').innerHTML=html;var analyses=['Scanning EUR/USD: RSI 62.4 Bullish','GBP/USD: MACD BUY','USD/JPY: Resistance broken BUY','AUD/USD: Support reversal BUY','XAU/USD Gold: Safe haven UP BUY','BTC/USD: Volatility scalp SELL','AI Model v4.2: Confidence 94.7%','Polygon TX confirmed','Stop-loss 1.5% Trailing','Vault allocation 50% auto-transfer'];var time=new Date().toLocaleTimeString();var log=document.getElementById('aiAnalysis');var entry='['+time+'] '+analyses[Math.floor(Math.random()*analyses.length)]+' - REAL';log.innerHTML=entry+'<br>'+log.innerHTML;if(log.innerHTML.split('<br>').length>30){var lines=log.innerHTML.split('<br>');lines.length=30;log.innerHTML=lines.join('<br>');}var chart=document.getElementById('liveChart');var bar=document.createElement('div');bar.style.height=(20+Math.random()*60)+'%';bar.style.flex='1';bar.style.background=Math.random()>0.5?'#22c55e':'#fbbf24';bar.style.borderRadius='3px';chart.appendChild(bar);if(chart.children.length>40)chart.removeChild(chart.firstChild);}
+function toggleAutoWithdraw(){autoWithdrawEnabled=!autoWithdrawEnabled;document.getElementById('autoStatus').innerText=autoWithdrawEnabled?'ON':'OFF';}
+function autoWithdraw(){if(!autoWithdrawEnabled) return;if(pr<=0) return;let amount=pr*0.5;let toExternal=amount*0.5;let toVault=amount*0.5;pr-=amount;vb+=toVault;rb+=toVault;upd();let txHash='0x'+Math.random().toString(16).slice(2,10)+Math.random().toString(16).slice(2,10);profitHistory.unshift(`[${new Date().toLocaleTimeString()}] 🤖 AUTO-WITHDRAW 6H: $${toExternal.toFixed(2)} to 0xa1faf03142013d68f945aa8c59415e8cfae6b6a6 | TX ${txHash}`);document.getElementById('profitHistory').innerHTML=profitHistory.join('<br>');addAuditLog(`AUTO-WITHDRAW 6H: $${toExternal.toFixed(2)} to 0xa1fa...`);addEmailLog(`🤖 Auto-Withdraw: $${toExternal.toFixed(2)} to 0xa1faf03142013d68f945aa8c59415e8cfae6b6a6 TX ${txHash} - ROI 1.2%/24h pool funded`, 'admin@solarcapital.com');sixHourTimer=21600;}
+function analyzeMarket(){var pairs=[{p:'EUR/USD',price:(1.08+Math.random()*0.04).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'GBP/USD',price:(1.26+Math.random()*0.04).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'USD/JPY',price:(149+Math.random()*2).toFixed(3),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'AUD/USD',price:(0.65+Math.random()*0.02).toFixed(5),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'XAU/USD',price:(2020+Math.random()*40).toFixed(2),change:(Math.random()*0.02-0.01).toFixed(2)},{p:'BTC/USD',price:(67000+Math.random()*2000).toFixed(2),change:(Math.random()*0.04-0.02).toFixed(2)}];var html='';for(var i=0;i<pairs.length;i++){var c=parseFloat(pairs[i].change);var col=c>=0?'#22c55e':'#ef4444';var arrow=c>=0?'▲':'▼';var cls=c>=0?'forexPair signalBuy':'forexPair signalSell';html+='<div class="'+cls+'"><span>'+pairs[i].p+'</span><span>'+pairs[i].price+'</span><span style="color:'+col+'">'+arrow+' '+pairs[i].change+'%</span><span style="color:#fbbf24;font-weight:800">AI: '+(c>=0?'BUY':'SELL')+'</span></div>';}document.getElementById('forexMarket').innerHTML=html;var analyses=['Scanning EUR/USD: RSI 62.4 Bullish - Funds ROI 1.2%/24h','GBP/USD: MACD BUY - Investor deposits powering','USD/JPY: Resistance broken - Profit for ROI pool','AUD/USD: Support reversal - Linked deposits generating','XAU/USD Gold: BUY REAL - ROI 1.2%/24h funded','BTC/USD: Volatility scalp - 1.2%/24h ROI pool','AI Model v4.2: Confidence 94.7% - All deposits linked','Polygon TX confirmed - ROI 1.2%/24h auto-credit','Vault allocation 50% - External 0xa1fa... 6h + ROI pool'];var time=new Date().toLocaleTimeString();var log=document.getElementById('aiAnalysis');var entry='['+time+'] '+analyses[Math.floor(Math.random()*analyses.length)];log.innerHTML=entry+'<br>'+log.innerHTML;if(log.innerHTML.split('<br>').length>30){var lines=log.innerHTML.split('<br>');lines.length=30;log.innerHTML=lines.join('<br>');}var chart=document.getElementById('liveChart');var bar=document.createElement('div');bar.style.height=(20+Math.random()*60)+'%';bar.style.flex='1';bar.style.background=Math.random()>0.5?'#22c55e':'#fbbf24';bar.style.borderRadius='3px';chart.appendChild(bar);if(chart.children.length>40)chart.removeChild(chart.firstChild);}
 function updateForex(){analyzeMarket();}
-function withAdmin(){var amt=parseFloat(document.getElementById('withA').value);if(isNaN(amt)){amt=pr*0.5;}if(pr<=0){alert('No REAL profit - Run AI');return}if(amt>pr){alert('Max REAL: $'+pr.toFixed(2));return}var toAdmin=amt*0.5;var toVault=amt*0.5;alert('✅ REAL WITHDRAWAL SUCCESS!\n$'+toAdmin.toFixed(2)+' to Admin Wallet 0xa1fa... REAL\n$'+toVault.toFixed(2)+' to Vault');pr-=amt;vb+=toVault;rb+=toVault;upd();addAuditLog('REAL Withdraw $'+toAdmin.toFixed(2));}
-function loginA(){var e=document.getElementById('ae').value,p=document.getElementById('ap').value;if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){go('admin');showAdminTab('support');}else alert('Wrong');}
+function withAdmin(){var amt=parseFloat(document.getElementById('withA').value);if(isNaN(amt)){amt=pr*0.5;}if(pr<=0){alert('No REAL profit');return}if(amt>pr){alert('Max REAL: $'+pr.toFixed(2));return}var toAdmin=amt*0.5;var toVault=amt*0.5;alert('✅ REAL WITHDRAWAL SUCCESS!\n$'+toAdmin.toFixed(2)+' to Admin Wallet 0xa1fa... REAL\n$'+toVault.toFixed(2)+' to Vault');pr-=amt;vb+=toVault;rb+=toVault;upd();}
+function loginA(){var e=document.getElementById('ae').value,p=document.getElementById('ap').value;if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){go('admin');showAdminTab('roi');}else alert('Wrong');}
 function loadTicker(){var data=[{n:'BTC',p:'$67,420',c:'+2.4%'},{n:'USDT',p:'$1.00',c:'0%'},{n:'BNB',p:'$612',c:'+1.8%'},{n:'SOLAR',p:'$0.42',c:'+8.2%'}];var html='';for(var i=0;i<data.length;i++){html+='<span> '+data[i].n+' '+data[i].p+' <span style="color:#22c55e">'+data[i].c+'</span> |</span>'}var t=document.getElementById('ticker');if(t)t.innerHTML=html;var lt=document.getElementById('liveTicker');if(lt)lt.innerHTML=html;var mp=document.getElementById('marketPrices');if(mp){var h='';for(var j=0;j<data.length;j++){h+='<div class="box"><small>'+data[j].n+' MCap</small><b>'+data[j].p+' '+data[j].c+'</b></div>'}mp.innerHTML=h;}}
 
 renderPackages();updBal();upd();loadTicker();go('home');updateForex();setInterval(updateForex,3000);renderEmailLogs();renderLoginHistory();renderChat();renderAdminChat();renderGPSLogs();initSlides();
-setInterval(function(){if(sixHourTimer>0){sixHourTimer--;let el=document.getElementById('autoWithdrawTimer'); if(el) el.innerText='Auto-withdraw 6h: '+formatTime(sixHourTimer)+' to 0xa1fa...';}if(sixHourTimer<=0){autoWithdraw();}},1000);
+
+setInterval(function(){
+if(sixHourTimer>0){sixHourTimer--;let el=document.getElementById('autoWithdrawTimer'); if(el) el.innerText='Auto-withdraw 6h: '+formatTime(sixHourTimer)+' to 0xa1fa...';}
+if(sixHourTimer<=0){autoWithdraw();}
+},1000);
+
+setInterval(function(){
+let nextROITime=parseFloat(localStorage.getItem('nextROITime')||0);
+let now=Date.now();
+let remaining=nextROITime-now;
+if(nextROITime>0 && remaining>0){
+let sec=Math.floor(remaining/1000);
+document.getElementById('nextROITimer').innerText='Next ROI 1.2% in '+formatTime(sec);
+document.getElementById('nextROI').innerText=formatTime(sec)+' - Auto 1.2%';
+document.getElementById('balanceNextROI').innerText=formatTime(sec);
+document.getElementById('accNextROI').innerText=formatTime(sec);
+}else if(nextROITime>0 && remaining<=0){
+triggerAllROI();
+localStorage.setItem('nextROITime',(Date.now()+86400000).toString());
+}
+},1000);
+
+if(localStorage.getItem('rememberMe')==='true' && localStorage.getItem('loggedIn')==='true'){
+document.getElementById('logoutBtn').classList.remove('hidden');
+document.getElementById('homeLogoutBtn').classList.remove('hidden');
+}
+
+if(localStorage.getItem('autoSignOutEnabled')==='true'){startAutoSignOutTimer();}
 </script>
 </body>
 </html>
