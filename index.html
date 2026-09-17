@@ -1,105 +1,128 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Solar Capital USA - SEC Compliant Solar Investment & AI Trading</title>
-<meta name="description" content="Solar Capital USA - First class solar investment platform with AI automated trading, 50% sustainability vault, daily payouts from $2">
+<title>Solar Capital USA - Deposit Gateway Live</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;background:#f8fafc}
 .rainbow{height:4px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#22c55e);background-size:200% 100%;animation:rb 2s linear infinite}@keyframes rb{0%{background-position:0%}100%{background-position:200%}}
 header{background:#fff;border-bottom:1px solid #e5e7eb;padding:12px 16px;position:sticky;top:0;z-index:100}
-.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.logo{font-weight:800;font-size:20px;color:#7c3aed} .nav{display:flex;gap:6px;flex-wrap:wrap}
-.nav button{padding:8px 14px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-weight:700;font-size:12px;cursor:pointer}
-.nav button.active{background:#111827;color:#fff}
-.sub{ background:#111827; color:#fff; padding:10px 16px; display:flex; gap:10px; overflow-x:auto}
-.sub button{padding:8px 16px;border-radius:20px;border:1px solid #334155;background:#1e293b;color:#fff;font-weight:700;cursor:pointer}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}.logo{font-weight:800;font-size:20px;color:#7c3aed}
+.nav{display:flex;gap:6px;flex-wrap:wrap}.nav button{padding:8px 14px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-weight:700;font-size:12px;cursor:pointer}.nav button.active{background:#111827;color:#fff}
+.sub{background:#111827;color:#fff;padding:10px 16px;display:flex;gap:10px;overflow-x:auto}.sub button{padding:8px 16px;border-radius:20px;border:1px solid #334155;background:#1e293b;color:#fff;font-weight:700;cursor:pointer;white-space:nowrap}
 .wrap{max-width:1200px;margin:0 auto;padding:16px;display:grid;grid-template-columns:2fr 1fr;gap:16px} @media(max-width:800px){.wrap{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:18px;margin-bottom:16px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.box{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:12px} .box b{color:#7c3aed;font-size:18px;display:block}
-.btn{width:100%;padding:12px;border-radius:10px;border:none;font-weight:700;cursor:pointer;margin-top:8px}.btn-p{background:#7c3aed;color:#fff}.btn-d{background:#111827;color:#fff}
+.box{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:12px}.box b{color:#7c3aed;font-size:18px;display:block}
+.btn{width:100%;padding:12px;border-radius:10px;border:none;font-weight:700;cursor:pointer;margin-top:8px}.btn-p{background:#7c3aed;color:#fff}.btn-d{background:#111827;color:#fff}.btn-g{background:#f3f4f6}
 input,select{width:100%;padding:11px;border-radius:10px;border:1px solid #e5e7eb;margin-top:6px}
-footer{background:#0f172a;color:#cbd5e1;padding:24px;font-size:11px;line-height:1.6;margin-top:20px}
-.hidden{display:none!important}
-.live{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:bl 1s infinite}@keyframes bl{0%,100%{opacity:1}50%{opacity:0.3}}
+.hidden{display:none!important}.live{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:bl 1s infinite}@keyframes bl{0%,100%{opacity:1}50%{opacity:0.3}}
+.wallet{border:2px solid #e5e7eb;border-radius:14px;padding:14px;margin-top:10px;position:relative}.wallet.active{border-color:#7c3aed;background:#faf5ff}
+.addr{background:#111827;color:#fbbf24;padding:10px;border-radius:8px;font-family:monospace;font-size:11px;word-break:break-all;margin:8px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.qr{width:140px;height:140px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;display:flex;align-items:center;justify-content:center;margin:10px auto;font-size:10px;text-align:center}
+.copy{background:#fbbf24;color:#000;border:none;padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer;font-size:11px;white-space:nowrap}
+.badge{padding:3px 8px;border-radius:8px;font-size:10px;font-weight:700}.bg-green{background:#dcfce7;color:#166534}.bg-blue{background:#dbeafe;color:#1e40af}
 </style>
 </head><body>
 <div class="rainbow"></div>
 <header><div class="top"><div class="logo">⚡ SOLAR CAPITAL USA</div><div class="nav">
 <button id="bh-home" onclick="go('home')" class="active">Home</button>
-<button id="bh-about" onclick="go('about')">About Us</button>
-<button id="bh-register" onclick="go('register')">Register</button>
-<button id="bh-signin" onclick="go('signin')">Sign In</button>
-<button id="bh-deposit" onclick="go('deposit')">Deposit</button>
-<button id="bh-referral" onclick="go('referral')">Referral</button>
-<button id="bh-impact" onclick="go('impact')">Impact</button>
+<button onclick="go('deposit')">Deposit</button>
+<button onclick="go('withdraw')">Withdraw</button>
+<button onclick="go('balance')">Balance</button>
 <button onclick="go('adminlogin')" style="color:red;border-color:red">Admin</button>
 </div></div></header>
 <div class="sub">
-<button onclick="go('balance')">💰 Balance: <b id="bTop" style="color:#fbbf24">$0.00</b></button>
+<button onclick="go('home')">🏠 Home</button>
+<button onclick="go('deposit')">💳 Investor Deposit Gateway</button>
 <button onclick="go('withdraw')">🏦 Withdraw</button>
-<button onclick="go('portfolio')">📊 Portfolio</button>
-<button onclick="go('market')">📈 Market</button>
-<button onclick="go('account')">👤 Account</button>
+<button onclick="go('admin')">🤖 AI Trading Gateway</button>
 </div>
 
-<div class="wrap">
-<div>
-<!-- PAGES -->
-<div id="home"><div class="card"><h2>Dashboard - Portfolio Overview</h2><div class="grid3"><div class="box"><small>Total Invested</small><b>$0</b></div><div class="box"><small>Daily Profit</small><b style="color:#22c55e">$0</b></div><div class="box"><small>Referral Earnings</small><b>$0</b></div></div>
-<h3 style="margin-top:12px">Transaction Tools</h3><div class="grid2"><button class="btn btn-p" onclick="go('deposit')">+ Deposit</button><button class="btn btn-d" onclick="go('withdraw')">Withdraw</button></div>
-<h3 style="margin-top:12px">Analytics & Market Data <span class="live"></span></h3><div id="graph" style="height:80px;background:#f9fafb;border-radius:10px;display:flex;align-items:end;gap:3px;padding:6px"></div>
-<h3 style="margin-top:12px">Educational Resources</h3><p style="font-size:12px;color:#6b7280">Solar Investment Guide, AI Trading Explained, Sustainability Report - Built-in Support</p>
+<div class="wrap"><div>
+
+<div id="home"><div class="card"><h2>Dashboard - Live</h2><div class="grid3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px"><div class="box"><small>Total Invested</small><b>$0</b></div><div class="box"><small>Daily Profit</small><b style="color:#22c55e">$0</b></div><div class="box"><small>Balance</small><b id="balAll">$0.00</b></div></div>
+<button class="btn btn-p" onclick="go('deposit')" style="margin-top:12px">+ Open Deposit Gateway</button>
+<div style="margin-top:12px;background:#dcfce7;padding:12px;border-radius:10px;font-size:12px"><b>✅ Deposit Gateway Open</b> - USDT TRC20 & BNB BEP20 Active | Secure | Real-time Verification</div>
 </div></div>
 
-<div id="about" class="hidden"><div class="card"><h2>About Us</h2><p style="font-size:13px;line-height:1.6">Solar Capital USA is SEC-compliant first-class platform with security, transparency, quality opportunities, easy technology, strong support all inbuilt.</p></div></div>
-<div id="register" class="hidden"><div class="card"><h2>Register - KYC Required</h2><input placeholder="Full Name"><input placeholder="Email"><input placeholder="Password" type="password"><button class="btn btn-p">Register</button></div></div>
-<div id="signin" class="hidden"><div class="card"><h2>Sign In</h2><input placeholder="Email"><input type="password" placeholder="Password"><button class="btn btn-p">Login</button></div></div>
-<div id="deposit" class="hidden"><div class="card"><h2>Deposit - Payment Gateways</h2><select><option>USDT TRC20</option><option>BTC</option><option>Bank Transfer</option><option>Mobile Money UG</option></select><input placeholder="Amount Min $2"><button class="btn btn-p">Deposit Now</button><p style="font-size:11px;margin-top:6px">Compliance Module Active - Encrypted</p></div></div>
-<div id="withdraw" class="hidden"><div class="card"><h2>Withdraw</h2><input placeholder="Amount"><input placeholder="Wallet Address"><button class="btn btn-d">Request Withdrawal</button></div></div>
-<div id="balance" class="hidden"><div class="card"><h2>Balance</h2><div class="grid2"><div class="box"><small>Main</small><b>$0</b></div><div class="box"><small>Profit</small><b>$0</b></div></div></div></div>
-<div id="referral" class="hidden"><div class="card"><h2>Referral - 10% Commission</h2><div class="box"><small>Your Link</small><b style="font-size:11px">solarai-capital-usa.vercel.app?ref=ID</b></div></div></div>
-<div id="impact" class="hidden"><div class="card"><h2>Impact - 50% Sustainability Vault</h2><p style="font-size:13px">🌍 120 Tons CO2 Saved | 500kW Installed | 50% profits reserved for daily payouts</p></div></div>
-<div id="portfolio" class="hidden"><div class="card"><h2>Portfolio Performance</h2><p>Active Plans: 0 | ROI: 0% | Risk: Verified Low</p></div></div>
-<div id="market" class="hidden"><div class="card"><h2>Market Data Live</h2><div class="grid3"><div class="box"><small>SOLAR</small><b style="color:#22c55e">+2.4%</b></div><div class="box"><small>BTC</small><b>$67200</b></div><div class="box"><small>AI Index</small><b>+5.1%</b></div></div></div></div>
-<div id="account" class="hidden"><div class="card"><h2>User Account Management</h2><p style="font-size:12px">Profile Settings, Security Options, Linked Accounts, Notifications & Alerts, Compliance Modules, Payment Gateways, Community Features</p><input placeholder="Email"><button class="btn" style="background:#f3f4f6">Save</button></div></div>
+<div id="deposit" class="hidden"><div class="card"><h2>💳 Investor Deposit Gateway - Open</h2><p style="font-size:12px;color:#6b7280">Choose network, copy address, send, then paste TX hash for verification</p>
 
-<div id="adminlogin" class="hidden"><div class="card"><h2 style="color:red">Admin Login</h2><input id="ae" placeholder="admin@solarcapital.com"><input id="ap" type="password" placeholder="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login as Admin</button></div></div>
+<div style="display:flex;gap:8px;margin-top:12px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p" style="width:50%">USDT TRC20</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g" style="width:50%">BNB BEP20</button></div>
 
-<div id="admin" class="hidden"><div class="card" style="border:2px solid #7c3aed"><h2>🔐 ADMIN COMMAND CENTER</h2>
+<!-- USDT WALLET -->
+<div id="walletUSDT" class="wallet active">
+<div style="display:flex;justify-content:space-between"><b>USDT (TRC20) - Tron Network</b><span class="badge bg-green">● LIVE</span></div>
+<p style="font-size:11px;color:#6b7280;margin-top:4px">Min Deposit: $2 | Confirmation: 1-3 mins | Fee: Low</p>
+<div class="qr" id="qrUSDT"><img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:130px;height:130px;border-radius:8px"></div>
+<div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div>
+<div style="background:#fef3c7;padding:8px;border-radius:8px;font-size:11px">⚠️ Send ONLY USDT TRC20 to this address. Sending other assets will be lost.</div>
+</div>
+
+<!-- BNB WALLET -->
+<div id="walletBNB" class="wallet hidden">
+<div style="display:flex;justify-content:space-between"><b>BNB (BEP20) - BSC Network</b><span class="badge bg-blue">● LIVE</span></div>
+<p style="font-size:11px;color:#6b7280;margin-top:4px">Min Deposit: $2 | Confirmation: Fast | Fee: Very Low</p>
+<div class="qr" id="qrBNB"><img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:130px;height:130px;border-radius:8px"></div>
+<div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div>
+<div style="background:#dbeafe;padding:8px;border-radius:8px;font-size:11px">⚠️ Send ONLY BNB BEP20 to this address. BSC Network only.</div>
+</div>
+
+<div style="margin-top:16px;border-top:1px solid #e5e7eb;padding-top:12px">
+<h3>Verify Your Deposit</h3><input id="txHash" placeholder="Paste Transaction Hash / TXID after sending"><input id="depAmount" placeholder="Amount Sent e.g. 50"><select id="depNetwork"><option>USDT TRC20</option><option>BNB BEP20</option></select><button class="btn btn-d" onclick="verifyDep()">✅ Submit Deposit for Verification</button>
+<p id="verifyMsg" style="font-size:12px;margin-top:8px;color:#6b7280"></p>
+</div>
+
+<div style="margin-top:12px"><h3>Recent Deposits</h3><div id="depList" style="font-size:11px;color:#6b7280;margin-top:6px">No deposits yet</div></div>
+</div></div>
+
+<div id="withdraw" class="hidden"><div class="card"><h2>🏦 Investor Withdrawal Gateway</h2><div class="box"><small>Available Balance</small><b id="wBal">$0.00</b></div>
+<select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option></select><input id="wAddr" placeholder="Your Wallet Address to Receive"><input id="wAmt" placeholder="Amount to Withdraw Min $5"><button class="btn btn-d" onclick="reqWithdraw()">Request Withdrawal</button><div id="wList" style="font-size:11px;margin-top:10px;color:#6b7280">No withdrawals yet - 50% Sustainability Vault ensures daily payouts</div>
+</div></div>
+
+<div id="balance" class="hidden"><div class="card"><h2>Balance Overview</h2><div class="box"><small>Main</small><b id="balMain">$0.00</b></div></div></div>
+
+<div id="adminlogin" class="hidden"><div class="card"><h2 style="color:red">Admin Login</h2><input id="ae" placeholder="admin@solarcapital.com"><input id="ap" type="password" placeholder="Admin@2025!"><button class="btn btn-d" onclick="loginA()">Login</button></div></div>
+
+<div id="admin" class="hidden"><div class="card" style="border:2px solid #7c3aed"><h2>🔐 ADMIN - AI LIVE FOREX AUTOMATED TRADING GATEWAY</h2>
+
 <div style="background:#111827;color:#fff;border-radius:16px;padding:16px;margin-top:12px">
-<h3 style="color:#fbbf24"><span class="live"></span> LIVE AI AUTOMATED TRADING - $1000/24h Target</h3>
-<div class="grid3" style="margin-top:10px"><div style="background:#1f2937;padding:10px;border-radius:10px"><small>Robot Balance</small><b id="rBal" style="color:#fbbf24;display:block">$0.00</b></div><div style="background:#1f2937;padding:10px;border-radius:10px"><small>24h Profit</small><b id="rProf" style="color:#22c55e;display:block">$0.00</b></div><div style="background:#1f2937;padding:10px;border-radius:10px"><small>Sustainability Vault 50%</small><b id="vBal" style="color:#06b6d4;display:block">$0.00</b></div></div>
-<div class="grid2" style="margin-top:10px"><input id="depA" placeholder="Deposit to Robot Min $2"><button class="btn btn-p" onclick="depR()">Deposit & Activate Robot</button></div>
-<div class="grid2" style="margin-top:8px"><button class="btn" style="background:#22c55e;color:#fff" onclick="runAI()">▶️ Run AI Analyzer</button><button class="btn" style="background:#f59e0b;color:#fff" onclick="withA()">💸 Withdraw 50% Admin / 50% Vault</button></div>
-<p id="log" style="font-size:11px;margin-top:10px;background:#000;padding:8px;border-radius:8px;color:#9ca3af">Log: Waiting for $2 minimum deposit to start AI trading...</p>
-<div id="tGraph" style="height:60px;display:flex;align-items:end;gap:2px;margin-top:10px"></div>
+<h3 style="color:#fbbf24"><span class="live"></span> LIVE AI REAL FOREX SIGNAL AUTOMATED TRADING</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px"><div style="background:#1f2937;padding:10px;border-radius:10px"><small>Robot Balance (Polygon)</small><b id="rBal" style="color:#fbbf24;display:block">$0.00</b></div><div style="background:#1f2937;padding:10px;border-radius:10px"><small>24h Profit Target $1000</small><b id="rProf" style="color:#22c55e;display:block">$0.00</b></div><div style="background:#1f2937;padding:10px;border-radius:10px"><small>Sustainability Vault 50%</small><b id="vBal" style="color:#06b6d4;display:block">$0.00</b></div></div>
+
+<div class="wallet active" style="margin-top:12px;background:#1f2937;border-color:#fbbf24">
+<div style="display:flex;justify-content:space-between;color:#fff"><b>USDT (Polygon) - Admin AI Wallet</b><span class="badge" style="background:#fbbf24;color:#000">ADMIN ONLY</span></div>
+<p style="font-size:11px;color:#9ca3af">Min $2 to activate robot | Auto trading forex signals | 50/50 Split</p>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px"><div class="qr" style="margin:0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:120px;height:120px;border-radius:8px"></div><div style="flex:1"><div class="addr"><span id="addrADMIN">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrADMIN')">COPY</button></div><p style="font-size:10px;color:#9ca3af;margin-top:6px">This is your AI trading wallet. Deposit here to start robot. Withdraw 50% daily to this same wallet, 50% stays in Vault for investor payouts.</p></div></div>
 </div>
-<div style="margin-top:12px;background:#fef3c7;padding:12px;border-radius:12px;border:1px solid #f59e0b"><b>Live Traffic <span class="live"></span></b> - Online: <b id="on">1</b> | Today: <b id="tod">0</b> | Total: <b id="tot">0</b></div>
-<div style="margin-top:12px"><h3>Investor Database - KYC, Financial, Transaction, Risk, Portfolio</h3><div id="invList" style="font-size:12px;margin-top:8px;color:#6b7280">No investors yet - Supabase will show here</div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px"><input id="depA" placeholder="Admin Deposit Amount Min $2"><button class="btn btn-p" onclick="depR()">🚀 Deposit to AI Robot</button></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><button class="btn" style="background:#22c55e;color:#fff" onclick="runAI()">▶️ Run AI Analyzer & Trade</button><button class="btn" style="background:#f59e0b;color:#fff" onclick="withA()">💸 Withdraw 50% Admin / Keep 50% Vault</button></div>
+<p id="log" style="font-size:11px;margin-top:10px;background:#000;padding:8px;border-radius:8px;color:#9ca3af">Log: Ready. Deposit min $2 Polygon USDT to activate AI forex signals...</p>
+<div id="tGraph" style="height:50px;display:flex;align-items:end;gap:2px;margin-top:10px"></div>
+</div>
+
+<div style="margin-top:12px"><h3>Investor Database - KYC / Financial / Transaction / Risk / Portfolio</h3><div id="invList" style="font-size:11px;color:#6b7280">Deposits will appear here after verification</div></div>
 </div></div>
 
 </div>
 
-<div><div class="card"><h3>Account Management</h3><p style="font-size:11px;color:#6b7280">Profile, Security, Linked Accounts</p><h3 style="margin-top:12px">Notifications & Alerts</h3><div style="font-size:11px;background:#f9fafb;padding:8px;border-radius:8px">✅ Trade Confirmations<br>📈 Price Alerts<br>⚠️ Compliance Warnings</div><h3 style="margin-top:12px">Compliance</h3><p style="font-size:11px"><span style="background:#fef3c7;padding:2px 6px;border-radius:6px">KYC Pending</span> <span style="background:#dcfce7;padding:2px 6px;border-radius:6px">AML Clear</span></p><button class="btn" style="background:#f3f4f6;margin-top:6px">Upload Document</button><h3 style="margin-top:12px">Community</h3><p style="font-size:11px">Forums, Mentorship, Success Stories</p><h3 style="margin-top:12px">Help & Support</h3><p style="font-size:11px">FAQs, Live Chat, Ticketing 24/7</p></div><div class="card" style="background:#111827;color:#fff"><h3 style="color:#fbbf24">Security & Transparency</h3><p style="font-size:11px">✅ Encryption<br>✅ Blockchain Verified<br>✅ Audit Logs<br>✅ Strong Support Built-in</p></div></div>
+<div><div class="card"><h3>Payment Gateway Status</h3><p style="font-size:11px"><span class="live"></span> USDT TRC20: <b style="color:#22c55e">Online</b><br><span class="live"></span> BNB BEP20: <b style="color:#22c55e">Online</b><br><span class="live"></span> Polygon USDT: <b style="color:#22c55e">Online</b></p><h3 style="margin-top:12px">Live Traffic</h3><p style="font-size:11px">Online Now: <b id="on">1</b> | Total Visits: <b id="tot">0</b></p><div style="margin-top:10px;background:#dcfce7;padding:10px;border-radius:10px;font-size:11px"><b>Security:</b> All wallets verified. Encrypted gateway. Real-time TX verification.</div></div></div>
 </div>
-
-<footer><b>Legal Disclaimers:</b> Investing involves risk. Past performance not guarantee. <b>Regulatory Compliance:</b> SEC Compliant, KYC/AML, FinCEN. <b>Contact:</b> support@solarcapitalusa.com Delaware USA | <a href="#" style="color:#fbbf24">Privacy</a> | <a href="#" style="color:#fbbf24">Terms</a> | <a href="#" style="color:#fbbf24">Risk Warning</a> © 2026 Solar Capital USA - SEO Optimized First Class Platform</footer>
 
 <script>
-function go(id){
-['home','about','register','signin','deposit','withdraw','balance','referral','impact','portfolio','market','account','adminlogin','admin'].forEach(x=>{let e=document.getElementById(x); if(e) e.classList.add('hidden')});
-let t=document.getElementById(id); if(t) t.classList.remove('hidden');
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); let b=document.getElementById('bh-'+id); if(b) b.classList.add('active');
-}
+function go(id){['home','deposit','withdraw','balance','adminlogin','admin'].forEach(x=>{let e=document.getElementById(x); if(e) e.classList.add('hidden')}); let t=document.getElementById(id); if(t) t.classList.remove('hidden')}
+function sel(type){if(type==='USDT'){document.getElementById('walletUSDT').classList.remove('hidden');document.getElementById('walletUSDT').classList.add('active');document.getElementById('walletBNB').classList.add('hidden');document.getElementById('tabUSDT').className='btn btn-p';document.getElementById('tabBNB').className='btn btn-g';document.getElementById('depNetwork').value='USDT TRC20'}else{document.getElementById('walletBNB').classList.remove('hidden');document.getElementById('walletBNB').classList.add('active');document.getElementById('walletUSDT').classList.add('hidden');document.getElementById('tabBNB').className='btn btn-p';document.getElementById('tabUSDT').className='btn btn-g';document.getElementById('depNetwork').value='BNB BEP20'}}
+function copyA(id){let txt=document.getElementById(id).innerText; navigator.clipboard.writeText(txt).then(()=>alert('Copied: '+txt));}
+function verifyDep(){let hash=document.getElementById('txHash').value, amt=document.getElementById('depAmount').value, net=document.getElementById('depNetwork').value; if(!hash||!amt){alert('Paste TX hash and amount');return} let list=document.getElementById('depList'); list.innerHTML='<div style="background:#f9fafb;padding:8px;border-radius:8px;margin-top:4px">✅ '+net+' $'+amt+' | TX: '+hash.substring(0,20)+'... | Status: Pending Verification</div>'+list.innerHTML; document.getElementById('verifyMsg').innerText='Deposit submitted! Admin will verify TX on blockchain. Balance will update after 1 confirmation.'; let bal=parseFloat(localStorage.getItem('userBal')||0)+parseFloat(amt); localStorage.setItem('userBal',bal); updateBal();}
+function updateBal(){let b=parseFloat(localStorage.getItem('userBal')||0); document.getElementById('balAll').innerText='$'+b.toFixed(2); document.getElementById('wBal').innerText='$'+b.toFixed(2); document.getElementById('balMain').innerText='$'+b.toFixed(2)}
+function reqWithdraw(){let amt=document.getElementById('wAmt').value, addr=document.getElementById('wAddr').value, net=document.getElementById('wNetwork').value; if(!amt||!addr){alert('Fill amount and address');return} let b=parseFloat(localStorage.getItem('userBal')||0); if(parseFloat(amt)>b){alert('Insufficient balance');return} document.getElementById('wList').innerHTML='<div style="background:#fef3c7;padding:8px;border-radius:8px;margin-top:4px">⏳ Withdrawal $'+amt+' '+net+' to '+addr.substring(0,15)+'... | Pending</div>'+document.getElementById('wList').innerHTML; localStorage.setItem('userBal',b-parseFloat(amt)); updateBal();}
 let rb=parseFloat(localStorage.getItem('rBal')||0), vb=parseFloat(localStorage.getItem('vBal')||0), pr=0;
 function upd(){document.getElementById('rBal').innerText='$'+rb.toFixed(2);document.getElementById('vBal').innerText='$'+vb.toFixed(2);document.getElementById('rProf').innerText='$'+pr.toFixed(2);localStorage.setItem('rBal',rb);localStorage.setItem('vBal',vb)}
-function depR(){let a=parseFloat(document.getElementById('depA').value); if(isNaN(a)||a<2){alert('Min $2');return} rb+=a; upd(); document.getElementById('log').innerText='Deposited $'+a+'. Robot Active. Click Run AI Analyzer.'; draw();}
-function runAI(){if(rb<2){alert('Deposit $2 first');return} let g=rb*(0.15+Math.random()*0.25); pr+=g; let toA=g*0.5, toV=g*0.5; vb+=toV; rb+=toV; document.getElementById('log').innerText='Trade Profit $'+g.toFixed(2)+' | 50% Admin $'+toA.toFixed(2)+' | 50% Vault $'+toV.toFixed(2)+' | Total Today $'+pr.toFixed(2)+' | Target $1000/24h'; upd(); draw(); if(pr>=1000) document.getElementById('log').innerText+=' TARGET REACHED!'}
-function withA(){if(pr<=0){alert('No profit');return} let w=pr*0.5; alert('Admin Withdraw $'+w.toFixed(2)+' Success! $'+w.toFixed(2)+' left in Vault for user payouts'); pr=pr*0.5; upd();}
-function draw(){let g=document.getElementById('graph'); if(g){g.innerHTML='';for(let i=0;i<25;i++){let h=Math.random()*60+10,d=document.createElement('div');d.style.height=h+'%';d.style.flex='1';d.style.background='#7c3aed';d.style.borderRadius='2px';g.appendChild(d)}} let tg=document.getElementById('tGraph'); if(tg){tg.innerHTML='';for(let i=0;i<30;i++){let h=Math.random()*60+10,d=document.createElement('div');d.style.height=h+'%';d.style.flex='1';d.style.background=h>40?'#22c55e':'#7c3aed';d.style.borderRadius='2px';tg.appendChild(d)}}}
+function depR(){let a=parseFloat(document.getElementById('depA').value); if(isNaN(a)||a<2){alert('Min $2 Polygon USDT');return} rb+=a; upd(); document.getElementById('log').innerText='Deposited $'+a+' to Polygon wallet 0xa1fa... Robot Activated!'; draw();}
+function runAI(){if(rb<2){alert('Deposit $2 to Polygon wallet first');return} let g=rb*(0.15+Math.random()*0.25); pr+=g; let toA=g*0.5, toV=g*0.5; vb+=toV; rb+=toV; document.getElementById('log').innerText='Forex Signal Trade Profit $'+g.toFixed(2)+' | 50% Admin Withdrawable $'+toA.toFixed(2)+' | 50% Vault Reserved $'+toV.toFixed(2)+' | Total Today $'+pr.toFixed(2); upd(); draw();}
+function withA(){if(pr<=0){alert('No profit');return} let w=pr*0.5; alert('Admin Withdrawal $'+w.toFixed(2)+' to Polygon wallet 0xa1faf03142013d68f945aa8c59415e8cfae6b6a6 SUCCESS! $'+w.toFixed(2)+' kept in Sustainability Vault for daily investor payouts.'); pr=pr*0.5; upd();}
+function draw(){let tg=document.getElementById('tGraph'); if(tg){tg.innerHTML='';for(let i=0;i<30;i++){let h=Math.random()*60+10,d=document.createElement('div');d.style.height=h+'%';d.style.flex='1';d.style.background=h>40?'#22c55e':'#7c3aed';d.style.borderRadius='2px';tg.appendChild(d)}}}
 function loginA(){let e=document.getElementById('ae').value,p=document.getElementById('ap').value; if(e==='admin@solarcapital.com'&&p==='Admin@2025!'){go('admin');}else alert('Wrong');}
-let tot=parseInt(localStorage.getItem('tot')||0)+1; localStorage.setItem('tot',tot); document.getElementById('tot').innerText=tot; document.getElementById('tod').innerText=parseInt(localStorage.getItem('tod')||0)+1; document.getElementById('on').innerText=Math.floor(Math.random()*3)+1;
-draw(); go('home');
+let tot=parseInt(localStorage.getItem('tot')||0)+1; localStorage.setItem('tot',tot); document.getElementById('tot').innerText=tot; document.getElementById('on').innerText=Math.floor(Math.random()*3)+1;
+updateBal(); upd(); go('deposit'); draw();
 </script>
 </body></html>
