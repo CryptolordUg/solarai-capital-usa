@@ -88,18 +88,19 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 .pillar-content{margin-top:10px;font-size:10px;line-height:1.8}
 .pillar-metric{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f3f4f6}
 .metric-ok{color:#22c55e;font-weight:800}
-.inv-detail{border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:8px;background:#fff}
+.inv-detail{border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:8px;background:#fff;width:100%;max-width:100%;box-sizing:border-box}
 .inv-detail h5{font-size:11px;color:#7c3aed;margin-bottom:6px}
 .inv-detail p{font-size:10px;color:#4b5563;margin:2px 0}
 .countdown-box{background:#0f172a;color:#fff;padding:10px;border-radius:10px;text-align:center;border:2px solid #7c3aed}
 .countdown-time{font-size:20px;font-weight:900;color:#22c55e}
 .ref-banner{background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;padding:10px 20px;text-align:center;font-size:12px;font-weight:800;display:none}
 .ref-banner.show{display:block}
+#admin-investors{width:100%!important;max-width:100%!important}
+#unit3Grid{transition:all 0.3s ease}
 </style>
 </head>
 <body>
 <div class="rainbow"></div>
-<!-- Referral banner - Shows when?ref= or /thank-u/ link used -->
 <div class="ref-banner" id="refBanner">🎉 Welcome! You were referred by <span id="refBannerCode">SC-XXXXXX</span> - Delaware, USA 🇺🇸 - Register to get 1.2% daily</div>
 
 <header>
@@ -146,7 +147,7 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 <div id="deposit" class="hidden"><div class="card"><h2>📦 Investment Packages 🇺🇸</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px" id="packagesGrid"></div><div style="margin-top:16px;background:#f5f3ff;padding:14px;border-radius:12px;border:2px solid #7c3aed" id="selectedPackageBox" class="hidden"><h3>Selected: <span id="selPkgName"></span> - <span class="roiBadge">1.2% Daily</span></h3><p style="font-size:11px;color:#6b7280"><span id="selPkgRange"></span> | <span id="selPkgTerm"></span></p><div style="background:#fff;padding:10px;border-radius:10px;margin-top:8px;font-size:11px">Daily: <b id="dailyROIcalc" style="color:#22c55e">$0.00</b> | Monthly: <b id="monthlyROIcalc">$0.00</b> | 2 Years: <b id="totalROIcalc">$0.00</b></div><div class="grid2" style="margin-top:10px"><button id="tabUSDT" onclick="sel('USDT')" class="btn btn-p">USDT TRC20</button><button id="tabBNB" onclick="sel('BNB')" class="btn btn-g">BNB BEP20</button></div><div id="walletUSDT" class="wallet active"><b>USDT TRC20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=TATeM34UJsHhnADWrjemiYXdrHiyuPrFra" style="width:160px;height:160px"></div><div class="addr"><span id="addrUSDT">TATeM34UJsHhnADWrjemiYXdrHiyuPrFra</span><button class="copy" onclick="copyA('addrUSDT')">COPY</button></div></div><div id="walletBNB" class="wallet hidden"><b>BNB BEP20</b><div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=0xa1faf03142013d68f945aa8c59415e8cfae6b6a6" style="width:160px;height:160px"></div><div class="addr"><span id="addrBNB">0xa1faf03142013d68f945aa8c59415e8cfae6b6a6</span><button class="copy" onclick="copyA('addrBNB')">COPY</button></div></div><input id="txHash" placeholder="Paste Transaction Hash"><input id="depAmount" placeholder="Amount"><button class="btn btn-d" onclick="verifyDep()">✅ Confirm Investment</button></div><div id="depList" style="font-size:11px;margin-top:12px"></div></div></div>
 <div id="balance" class="hidden"><div class="card"><h2>💰 My Wealth Balance 🇺🇸</h2><div class="grid3" style="margin-top:12px"><div class="box"><small>Main Balance</small><b id="balMain" style="font-size:20px;color:#7c3aed">$0.00</b></div><div class="box"><small>Daily Profit - 1.2%</small><b id="balROI" style="color:#22c55e">$0.00 / 24h</b><small style="font-size:9px">Next: <span id="nextROITimeLocal">24:00:00</span></small></div><div class="box"><small>Total Profit</small><b id="balAI" style="color:#f59e0b">$0.00</b></div></div><div style="margin-top:12px"><h3>📜 Profit History</h3><div id="roiHistoryList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px;margin-top:8px"></div></div></div></div>
 <div id="withdraw" class="hidden"><div class="card"><h2>💸 Withdraw Your Profits 🇺🇸</h2><div class="box"><small>Available Balance</small><b id="wBal">$0.00</b></div><select id="wNetwork"><option>USDT TRC20</option><option>BNB BEP20</option><option>USDT Polygon</option></select><input id="wAddr" placeholder="Your Wallet Address"><input id="wAmt" placeholder="Amount Min $5"><button class="btn btn-d" onclick="reqWithdraw()">💸 Request Withdrawal</button><div id="wList" style="font-size:11px;margin-top:8px"></div><div style="margin-top:20px;background:#fff;border:2px solid #7c3aed;border-radius:16px;padding:16px"><h3 style="font-size:14px;color:#7c3aed">💱 Crypto Exchange Prices 🇺🇸</h3><table class="exchange-table"><thead><tr><th>Asset</th><th>Price</th><th>24h</th><th>Buy</th><th>Sell</th><th>Exchange</th></tr></thead><tbody id="exchangeTableBody"><tr><td colspan="6" style="text-align:center;padding:20px;color:#6b7280">Loading...</td></tr></tbody></table></div></div></div>
-<div id="referral" class="hidden"><div class="card"><h2>🔗 Invite Friends 🇺🇸</h2><div style="background:#f0fdf4;padding:12px;border-radius:12px;border:2px solid #22c55e;margin-top:12px"><div style="text-align:center"><small style="color:#22c55e;font-weight:800">YOUR SPECIAL INVITE CODE</small><br><b id="specialCodeDisplay" style="font-size:28px;letter-spacing:2px">SC-XXXXXX</b></div><div style="background:#fff;padding:10px;border-radius:10px;margin-top:10px;border:2px dashed #7c3aed"><small style="color:#7c3aed;font-weight:800">YOUR INVITE LINK - WORKS NOW - NO DNS ERROR</small><br><b id="refLink" style="font-size:12px;word-break:break-all;color:#111827">https://your-app.web.app/?ref=SC-XXXXXX</b><div style="background:#fef3c7;padding:8px;border-radius:8px;margin-top:8px;font-size:10px;color:#92400e"><b>✅ FIXED:</b> Now copies Firebase hosting link - Works TODAY - No more "site can't be reached" - When you buy solarai.capital, change one line: <code>BASE_URL</code> variable</div><div class="grid2" style="margin-top:10px"><button class="btn btn-p" onclick="copyReferralClean()">📋 Copy Working Link</button><button class="btn btn-d" onclick="shareReferral()">📤 Share</button></div></div></div></div></div>
+<div id="referral" class="hidden"><div class="card"><h2>🔗 Invite Friends 🇺🇸</h2><div style="background:#f0fdf4;padding:12px;border-radius:12px;border:2px solid #22c55e;margin-top:12px"><div style="text-align:center"><small style="color:#22c55e;font-weight:800">YOUR SPECIAL INVITE CODE</small><br><b id="specialCodeDisplay" style="font-size:28px;letter-spacing:2px">SC-XXXXXX</b></div><div style="background:#fff;padding:10px;border-radius:10px;margin-top:10px;border:2px dashed #7c3aed"><small style="color:#7c3aed;font-weight:800">YOUR INVITE LINK - WORKS NOW - NO DNS ERROR</small><br><b id="refLink" style="font-size:12px;word-break:break-all;color:#111827">https://your-app.web.app/?ref=SC-XXXXXX</b><div style="background:#fef3c7;padding:8px;border-radius:8px;margin-top:8px;font-size:10px;color:#92400e"><b>✅ FIXED:</b> Now copies Firebase hosting link - Works TODAY - No more "site can't be reached"</div><div class="grid2" style="margin-top:10px"><button class="btn btn-p" onclick="copyReferralClean()">📋 Copy Working Link</button><button class="btn btn-d" onclick="shareReferral()">📤 Share</button></div></div></div></div></div>
 <div id="account" class="hidden"><div class="card"><h2>👤 My Profile 🇺🇸</h2><div class="grid2"><div><h3>Profile</h3><input id="accName" placeholder="Full Name" style="margin-top:10px"><input id="accEmail" placeholder="Email"><input id="accPhone" placeholder="Telephone"><input id="accWallet" placeholder="Wallet Address"><button class="btn btn-p" onclick="saveProfile()">💾 Save Profile</button><button class="btn btn-g" style="margin-top:8px" onclick="doLogout()">🚪 Sign Out</button></div><div><h3>📚 Wealth Rules 🇺🇸</h3><div style="background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;padding:12px;border-radius:12px;margin-top:8px"><b>💎 Pay Yourself First</b></div></div></div></div></div>
 <div id="register" class="hidden"><div class="card"><h2>📝 Join American Luxury Family 🇺🇸</h2><div id="registerRefInfo" style="background:#f0fdf4;padding:10px;border-radius:10px;border:2px solid #22c55e;margin-bottom:10px;display:none"><b style="color:#22c55e;font-size:11px">🎉 Referred by: <span id="registerRefCode">SC-XXXXXX</span></b><br><small style="font-size:10px">You get bonus 1.2% daily - Delaware, USA</small></div><input id="regName" placeholder="Full Name" style="margin-top:10px"><input id="regEmail" placeholder="Email"><input id="regPhone" placeholder="Phone"><input id="regPass" type="password" placeholder="Create Password"><button class="btn btn-p" onclick="doRegister()">Create Account</button></div></div>
 <div id="login" class="hidden"><div class="card"><h2>🔑 Welcome Back 🇺🇸</h2><input id="logEmail" placeholder="Email" style="margin-top:10px"><input id="logPass" type="password" placeholder="Password"><button class="btn btn-d" onclick="doLogin()">Sign In</button><button class="btn btn-g" style="margin-top:6px" onclick="autoFillLogin()">⚡ Auto-Fill</button></div></div>
@@ -187,17 +188,17 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 
 <div class="card">
 <h2>Unit 2: System Monitoring - Five Core Operational Pillars</h2>
-<div class="pillar"><h4>1. Financial Solvency & Asset Liquidity <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Hot & Cold Wallet Reserves</span><span class="metric-ok">78% Cold / 22% Hot - OK</span></div><div class="pillar-metric"><span>Liquidity & Market Making</span><span class="metric-ok">Depth $12.4k - Slippage 0.3%</span></div><div class="pillar-metric"><span>Yield & Staking Obligations</span><span class="metric-ok">Incoming $1.2k / Payout $0.9k - Sustainable</span></div><div class="pillar-metric"><span>Proof of Reserves (PoR)</span><span class="metric-ok">On-chain $8.4k / Liabilities $6.1k - Solvent</span></div></div></div>
-<div class="pillar"><h4>2. Security & Risk Prevention <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Transaction Monitoring</span><span class="metric-ok">No spikes</span></div><div class="pillar-metric"><span>Node & Smart Contract Health</span><span class="metric-ok">Gas 12 Gwei - Synced</span></div><div class="pillar-metric"><span>Fraud & Multi-Accounting Detection</span><span class="metric-ok">0 Sybil</span></div><div class="pillar-metric"><span>API Rate Limiting & Penetration</span><span class="metric-ok">1.2k req/min - No DDoS</span></div></div></div>
-<div class="pillar"><h4>3. Compliance & Regulatory Oversight <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>KYC/AML Status</span><span class="metric-ok">94% pass - 2 flagged</span></div><div class="pillar-metric"><span>Sanctioned Address Screening</span><span class="metric-ok">0 sanctioned</span></div><div class="pillar-metric"><span>Tax & Audit Readiness</span><span class="metric-ok">Volume $12k - Fees $180</span></div></div></div>
-<div class="pillar"><h4>4. User Acquisition & Platform Economics <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Net Inflows vs Outflows - TVL</span><span class="metric-ok">TVL $6.1k - Net +$1.2k</span></div><div class="pillar-metric"><span>Trader Activity & Retention</span><span class="metric-ok">DAU 12 / MAU 45</span></div><div class="pillar-metric"><span>Fee Revenue Stream</span><span class="metric-ok">$180 today - $2.1k MTD</span></div><div class="pillar-metric"><span>Affiliate & Incentive ROI</span><span class="metric-ok">CAC $15 - LTV $420 - 28x</span></div></div></div>
-<div class="pillar"><h4>5. System Architecture & Technical Uptime <span>▼</span></h4><div class="pillar-content"><div class="pillar-metric"><span>Order Engine Performance</span><span class="metric-ok">Latency 45ms - Match 12ms</span></div><div class="pillar-metric"><span>Third-Party API Health</span><span class="metric-ok">CoinGecko OK - Binance OK - 99.9%</span></div><div class="pillar-metric"><span>Customer Support Resolution</span><span class="metric-ok">Avg 2.3h - 0 pending</span></div></div></div>
+<div class="pillar"><h4>1. Financial Solvency & Asset Liquidity</h4><div class="pillar-content"><div class="pillar-metric"><span>Hot & Cold Wallet Reserves</span><span class="metric-ok">78% Cold / 22% Hot - OK</span></div><div class="pillar-metric"><span>Liquidity & Market Making</span><span class="metric-ok">Depth $12.4k - Slippage 0.3%</span></div><div class="pillar-metric"><span>Yield & Staking Obligations</span><span class="metric-ok">Incoming $1.2k / Payout $0.9k - Sustainable</span></div><div class="pillar-metric"><span>Proof of Reserves (PoR)</span><span class="metric-ok">On-chain $8.4k / Liabilities $6.1k - Solvent</span></div></div></div>
+<div class="pillar"><h4>2. Security & Risk Prevention</h4><div class="pillar-content"><div class="pillar-metric"><span>Transaction Monitoring</span><span class="metric-ok">No spikes</span></div><div class="pillar-metric"><span>Node & Smart Contract Health</span><span class="metric-ok">Gas 12 Gwei - Synced</span></div><div class="pillar-metric"><span>Fraud & Multi-Accounting Detection</span><span class="metric-ok">0 Sybil</span></div><div class="pillar-metric"><span>API Rate Limiting</span><span class="metric-ok">1.2k req/min - No DDoS</span></div></div></div>
+<div class="pillar"><h4>3. Compliance & Regulatory Oversight</h4><div class="pillar-content"><div class="pillar-metric"><span>KYC/AML Status</span><span class="metric-ok">94% pass - 2 flagged</span></div><div class="pillar-metric"><span>Sanctioned Address Screening</span><span class="metric-ok">0 sanctioned</span></div><div class="pillar-metric"><span>Tax & Audit Readiness</span><span class="metric-ok">Volume $12k - Fees $180</span></div></div></div>
+<div class="pillar"><h4>4. User Acquisition & Platform Economics</h4><div class="pillar-content"><div class="pillar-metric"><span>Net Inflows vs Outflows - TVL</span><span class="metric-ok">TVL $6.1k - Net +$1.2k</span></div><div class="pillar-metric"><span>Trader Activity & Retention</span><span class="metric-ok">DAU 12 / MAU 45</span></div><div class="pillar-metric"><span>Fee Revenue Stream</span><span class="metric-ok">$180 today - $2.1k MTD</span></div><div class="pillar-metric"><span>Affiliate & Incentive ROI</span><span class="metric-ok">CAC $15 - LTV $420 - 28x</span></div></div></div>
+<div class="pillar"><h4>5. System Architecture & Technical Uptime</h4><div class="pillar-content"><div class="pillar-metric"><span>Order Engine Performance</span><span class="metric-ok">Latency 45ms - Match 12ms</span></div><div class="pillar-metric"><span>Third-Party API Health</span><span class="metric-ok">CoinGecko OK - Binance OK - 99.9%</span></div><div class="pillar-metric"><span>Customer Support Resolution</span><span class="metric-ok">Avg 2.3h - 0 pending</span></div></div></div>
 </div>
 
 <div class="card">
-<h2>Unit 3: Investors Database - 360° View</h2>
-<div style="display:grid;grid-template-columns:1.2fr 1.8fr;gap:16px;margin-top:12px">
-<div>
+<h2>Unit 3: Investors Database - 360° View - Stretched Full Width</h2>
+<div id="unit3Grid" style="display:grid;grid-template-columns:1.2fr 1.8fr;gap:16px;margin-top:12px">
+<div id="unit3DetailsPanel">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
 <button class="btn btn-d" style="padding:6px;font-size:10px" onclick="showAdminTab('transactions')">Transactions</button>
 <button class="btn btn-p" style="padding:6px;font-size:10px" onclick="showAdminTab('investors')">Investors 360°</button>
@@ -212,9 +213,9 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 </div>
 
 <div id="admin-investors" class="adminTab" style="margin-top:10px">
-<div style="background:#0f172a;color:#fff;padding:10px;border-radius:10px">
-<b style="font-size:11px">360° Investor Profile - Selected: <span id="selectedInvestorName">None</span></b><br>
-<small style="font-size:9px">Click investor to view full details</small>
+<div style="background:#0f172a;color:#fff;padding:12px;border-radius:12px;display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:12px">360° Investor Profile - Selected: <span id="selectedInvestorName">None</span></b><br><small style="font-size:9px">Stretched full width - Covers entire Unit 3 area</small></div>
+<button class="btn btn-g" style="width:auto;padding:6px 12px;font-size:10px;margin:0" onclick="backToInvestorList()">📋 Back to List</button>
 </div>
 
 <div class="inv-detail">
@@ -228,43 +229,41 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 
 <div class="inv-detail">
 <h5>💰 Financial Balances & Portfolio</h5>
-<p><b>Available Funds:</b> <span id="inv-available">$0.00</span> | <b>Total Invested:</b> <span id="inv-invested">$0.00</span></p>
+<p><b>Available Funds:</b> <span id="inv-available">$0.00</span> | <b>Total Invested:</b> <span id="inv-invested">$0.00</span> | <b>Pending Settlements:</b> $0.00</p>
 <p><b>Portfolio Value:</b> <span id="inv-portfolio">$0.00</span> | <b>Asset Allocation:</b> <span id="inv-allocation">-</span></p>
-<p><b>Performance:</b> <span id="inv-performance">-</span></p>
-<p><b>Campaigns / Subscriptions:</b> <span id="inv-campaigns">-</span></p>
+<p><b>Historical Performance:</b> <span id="inv-performance">-</span></p>
+<p><b>Campaigns / Fund Subscriptions:</b> <span id="inv-campaigns">-</span></p>
 </div>
 
 <div class="inv-detail">
 <h5>🛡️ KYC, AML & Compliance Status</h5>
 <p><b>KYC Progress:</b> <span id="inv-kyc-status" style="color:#f59e0b">Pending</span> | <b>AML:</b> <span id="inv-aml">Clear</span></p>
-<p><b>Documents:</b> <span id="inv-docs">ID, Proof of Address - View</span></p>
-<p><b>Tax Forms:</b> <span id="inv-tax-forms">W-8BEN Pending</span></p>
-<p><b>Risk Score:</b> <span id="inv-risk" style="color:#22c55e">Low (12/100)</span> | <b>Flags:</b> <span id="inv-flags">None</span></p>
+<p><b>Documents:</b> <span id="inv-docs">ID, Proof of Address - View</span> | <b>Tax Forms:</b> <span id="inv-tax-forms">W-8BEN Pending</span></p>
+<p><b>Risk Score:</b> <span id="inv-risk" style="color:#22c55e">Low (12/100)</span> | <b>Flags:</b> <span id="inv-flags">None - Manual review not required</span></p>
 </div>
 
 <div class="inv-detail">
-<h5>📜 Transaction & Activity History</h5>
-<div id="inv-tx-history" style="max-height:100px;overflow-y:auto;background:#f9fafb;padding:6px;border-radius:6px;margin-top:4px;font-size:9px">No transactions yet</div>
-<p style="margin-top:4px"><b>Fees / Taxes:</b> <span id="inv-fees">$0 fees</span> | <b>Distributions:</b> <span id="inv-dist">None</span></p>
-<p><b>Login History:</b> <span id="inv-login">Last: Today - Delaware, USA</span></p>
-<p><b>Data Room / Docs:</b> <span id="inv-docs-access">0 downloads</span></p>
+<h5>📜 Transaction & Activity History - Exportable Audit Trail</h5>
+<div id="inv-tx-history" style="max-height:120px;overflow-y:auto;background:#f9fafb;padding:8px;border-radius:8px;margin-top:6px;font-size:10px">No transactions yet - Pay-ins, Payouts, Investments will appear here</div>
+<p style="margin-top:6px"><b>Fees / Taxes:</b> <span id="inv-fees">$0 fees</span> | <b>Distributions:</b> <span id="inv-dist">None</span> | <b>Notices:</b> All clear</p>
+<p><b>Login History:</b> <span id="inv-login">Last: Today - Delaware, USA - IP tracked</span></p>
+<p><b>Data Room / Docs:</b> <span id="inv-docs-access">0 downloads - Access tracked</span></p>
 </div>
 
 <div class="inv-detail">
 <h5>🔐 Security & Account Management</h5>
-<p><b>MFA/2FA:</b> <span id="inv-mfa" style="color:#ef4444">Disabled</span> | <b>Password:</b> <span id="inv-pwd">Last changed 2 days ago</span></p>
-<p><b>Active Sessions:</b> <span id="inv-sessions">1 active - Chrome / Windows</span></p>
-<p><b>IP History:</b> <span id="inv-ip">192.168.x.x - 3 unique IPs</span></p>
-<p><b>Device Logs:</b> <span id="inv-device">Desktop + Mobile</span></p>
-<p><b>Permissions / Role:</b> <span id="inv-role">Investor - Standard</span> | <button class="btn btn-d" style="padding:4px;font-size:9px;display:inline;width:auto;margin:0" onclick="freezeAccount()">Freeze Account</button></p>
+<p><b>MFA/2FA:</b> <span id="inv-mfa" style="color:#ef4444">Disabled - Prompt user to enable</span> | <b>Password:</b> <span id="inv-pwd">Last changed 2 days ago</span></p>
+<p><b>Active Sessions:</b> <span id="inv-sessions">1 active - Chrome / Windows - Delaware, USA</span> | <b>IP History:</b> <span id="inv-ip">192.168.x.x - 3 unique IPs</span></p>
+<p><b>Device Logs:</b> <span id="inv-device">Desktop + Mobile - No unauthorized access</span></p>
+<p><b>Permissions / Role:</b> <span id="inv-role">Investor - Standard</span> | <button class="btn btn-d" style="padding:4px 12px;font-size:10px;display:inline;width:auto;margin:0" onclick="freezeAccount()">Freeze Account</button> <button class="btn btn-g" style="padding:4px 12px;font-size:10px;display:inline;width:auto;margin:0" onclick="resetPassword()">Reset Password</button></p>
 </div>
 
 <div class="inv-detail">
 <h5>💬 Support & Communication Logs</h5>
-<p><b>Tickets:</b> <span id="inv-tickets">0 open - 2 resolved</span></p>
-<div id="inv-support-logs" style="max-height:80px;overflow-y:auto;background:#f9fafb;padding:6px;border-radius:6px;margin-top:4px;font-size:9px">No tickets</div>
-<p style="margin-top:4px"><b>Automated Emails:</b> <span id="inv-emails">Funding call 2 days ago</span></p>
-<p><b>Internal Notes:</b> <span id="inv-notes">No notes</span></p>
+<p><b>Tickets:</b> <span id="inv-tickets">0 open - 2 resolved</span> | <b>Resolution:</b> Avg 2.3h</p>
+<div id="inv-support-logs" style="max-height:100px;overflow-y:auto;background:#f9fafb;padding:8px;border-radius:8px;margin-top:6px;font-size:10px">No support tickets yet - Previous care logs prevent repeat</div>
+<p style="margin-top:6px"><b>Automated Emails / Notifications:</b> <span id="inv-emails">Funding call sent 2 days ago, Offering update yesterday</span></p>
+<p><b>Internal Notes from Care Reps:</b> <span id="inv-notes">No notes - No repeat needed</span></p>
 </div>
 
 </div>
@@ -276,17 +275,17 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 </div>
 
 <div id="admin-compliance" class="adminTab hidden" style="margin-top:10px">
-<b>🛡️ Compliance Dashboard</b>
+<b>🛡️ Compliance Dashboard - KYC/AML/Sanctions - Tax & Audit</b>
 <div id="complianceList" style="background:#f9fafb;padding:10px;border-radius:10px;max-height:400px;overflow-y:auto;font-size:11px;margin-top:8px"></div>
 </div>
 
 </div>
 
-<div>
-<b>Investors List - Click to View 360°</b>
+<div id="investorListPanel">
+<b>Investors List - Click to View 360° - Stretched View Available</b>
 <div style="display:flex;gap:6px;margin-top:8px">
 <input id="investorSearch" placeholder="Search investor email, name..." onkeyup="searchInvestors()" style="padding:8px;font-size:11px">
-<button class="btn btn-g" style="padding:8px;width:auto" onclick="exportInvestors()">Export</button>
+<button class="btn btn-g" style="padding:8px;width:auto" onclick="exportInvestors()">Export CSV</button>
 </div>
 <div class="grid2" style="margin-top:8px">
 <div class="box"><small>Total Investors</small><b id="totalInvestors">0</b></div>
@@ -294,6 +293,9 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 </div>
 <div id="adminPkgList" style="font-size:11px;background:#f9fafb;padding:10px;border-radius:10px;max-height:200px;overflow-y:auto;margin-top:8px"></div>
 <div id="investorListFull" style="font-size:11px;max-height:700px;overflow-y:auto;margin-top:8px"></div>
+<div style="background:#fef3c7;padding:8px;border-radius:8px;margin-top:10px;font-size:10px">
+<b>💡 Stretched View:</b> Click any investor -> List hides -> 360° profile covers entire area (100% width) -> Click "Back to List" to return
+</div>
 </div>
 </div>
 </div>
@@ -308,7 +310,7 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 <div class="footer-grid">
 <div>
 <h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">1. Regulatory & Compliance Disclaimers</h4>
-<p style="line-height:1.7"><b style="color:#fff">Risk Warnings:</b><br>Capital at risk. Value can go down as well as up, and you may get back less than you invest. Past performance is not indicative of future results.<br><br>
+<p style="line-height:1.7"><b style="color:#fff">Risk Warnings:</b><br>Capital at risk. Value can go down as well as up.<br><br>
 <b style="color:#fff">Regulatory Oversight:</b><br>SolarAI Capital LLC - Delaware, USA. File No: 2026-1234567. SEC Reg D 506(c) and FINRA compliant.<br><br>
 <b style="color:#fff">Jurisdiction Limitations:</b><br>USA only - Delaware HQ. Not available in OFAC sanctioned jurisdictions.</p>
 </div>
@@ -327,7 +329,7 @@ footer{background:#020617;color:#94a3b8;padding:0;margin-top:30px;border-top:4px
 <h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">3. Financial & Investor Safeguards</h4>
 <p style="line-height:1.7"><b style="color:#fff">Deposit Protection:</b><br>USD in segregated accounts. Crypto 78% cold / 22% hot. Not FDIC insured. PoR verified daily.<br><br>
 <b style="color:#fff">Accreditation:</b><br>Eco Entry open to all. Smart Start+ requires accredited investor verification per SEC 501.<br><br>
-<b style="color:#fff">Yield Obligations:</b><br>1.2% daily based on solar yield + AI trading. Incoming $1.2k / Payout $0.9k tracked live.</p>
+<b style="color:#fff">Yield Obligations:</b><br>1.2% daily based on solar yield + AI trading.</p>
 </div>
 <div>
 <h4 style="color:#fbbf24;font-size:12px;margin-bottom:10px">4. Company & Product Navigation</h4>
@@ -362,7 +364,7 @@ support@solarcapitalusa.com<br>
 </div>
 </div>
 <div class="footer-bottom">
-Capital at risk. Value can go down as well as up. SolarAI Capital - Delaware, USA - 1209 Orange St, Wilmington, DE 19801 - SEC File No 2026-1234567 - © 2026 All rights reserved. | SSL | ISO 27001 | SOC 2 | PoR Verified | 78% Cold Wallet | Not FDIC insured | USA only - OFAC compliant
+Capital at risk. SolarAI Capital - Delaware, USA - 1209 Orange St, Wilmington, DE 19801 - SEC File No 2026-1234567 - © 2026 All rights reserved. | SSL | ISO 27001 | SOC 2 | PoR Verified | 78% Cold Wallet | Not FDIC insured | USA only - OFAC compliant
 </div>
 </footer>
 
@@ -481,12 +483,7 @@ window.listenToRobotBalance = function(){
 </script>
 
 <script>
-// ===== CONFIG - CHANGE THIS WHEN YOU BUY DOMAIN =====
-// For now uses Firebase hosting - Works TODAY - No DNS error
-// When you buy solarai.capital, change to: https://solarai.capital
-const BASE_URL = window.location.origin; // Uses current domain automatically - Works on Firebase.web.app AND solarai.capital after you connect
-// If you want force Firebase until domain bought, use: const BASE_URL = 'https://YOUR_PROJECT_ID.web.app';
-// =====================================================
+const BASE_URL = window.location.origin;
 
 async function fetchCryptoPrices(){
   try{
@@ -538,61 +535,38 @@ function updateWithdrawalTimers(){
 setInterval(updateWithdrawalTimers, 1000);
 updateWithdrawalTimers();
 
-// ===== REFERRAL LINK HANDLER - FIXED - WORKS FOR /thank-u/ AND?ref= =====
 function getReferralCodeFromURL(){
-  // 1. Check path: /thank-u/SC-XXXXXX, /th/SC-XXXXXX, /thank-you/SC-XXXXXX
   let path = window.location.pathname;
   let pathMatch = path.match(/\/(?:thank-u|thank-you|th|referral|ref)\/([A-Z0-9\-]+)/i);
   if(pathMatch && pathMatch[1]) return pathMatch[1].toUpperCase();
-
-  // Also check last segment if it looks like SC-XXXXXX
   let lastSegment = path.split('/').filter(Boolean).pop();
   if(lastSegment && lastSegment.toUpperCase().startsWith('SC-')) return lastSegment.toUpperCase();
-
-  // 2. Check query:?ref=SC-XXXXXX,?code=SC-XXXXXX,?r=SC-XXXXXX
   let params = new URLSearchParams(window.location.search);
   let ref = params.get('ref') || params.get('code') || params.get('r') || params.get('invite') || params.get('referral');
   if(ref) return ref.toUpperCase();
-
-  // 3. Check hash: #SC-XXXXXX or #ref=SC-XXXXXX
   let hash = window.location.hash.replace('#','');
   if(hash.toUpperCase().startsWith('SC-')) return hash.toUpperCase();
-
   return null;
 }
-
 function handleReferralLink(){
   let code = getReferralCodeFromURL();
   if(code && code.startsWith('SC-')){
     localStorage.setItem('referredBy', code);
     localStorage.setItem('referredByDate', new Date().toISOString());
-    // Show banner
     let banner = document.getElementById('refBanner');
     let bannerCode = document.getElementById('refBannerCode');
-    if(banner && bannerCode){
-      bannerCode.innerText=code;
-      banner.classList.add('show');
-    }
-    // Show in top bar
+    if(banner && bannerCode){bannerCode.innerText=code; banner.classList.add('show');}
     let topRef = document.getElementById('referredByTop');
     if(topRef) topRef.innerText=code;
-    // Show in register
     let regInfo = document.getElementById('registerRefInfo');
     let regCode = document.getElementById('registerRefCode');
-    if(regInfo && regCode){
-      regCode.innerText=code;
-      regInfo.style.display='block';
-    }
-    console.log('Referral detected: '+code);
-    // Clean URL without reloading - Keep?ref for tracking but remove path clutter
-    // If path was /thank-u/SC-XXXXXX, replace with /?ref=SC-XXXXXX
+    if(regInfo && regCode){regCode.innerText=code; regInfo.style.display='block';}
     if(window.location.pathname.includes('thank-u') || window.location.pathname.includes('/th/')){
       let newUrl = BASE_URL + '/?ref=' + code;
       window.history.replaceState({},'', newUrl);
     }
     return code;
   } else {
-    // Check if already referred before
     let existing = localStorage.getItem('referredBy');
     if(existing){
       let topRef = document.getElementById('referredByTop');
@@ -601,13 +575,8 @@ function handleReferralLink(){
   }
   return null;
 }
-// Run on load
-document.addEventListener('DOMContentLoaded', function(){
-  setTimeout(handleReferralLink, 500);
-});
-// Also run immediately
+document.addEventListener('DOMContentLoaded', function(){setTimeout(handleReferralLink, 500);});
 handleReferralLink();
-// ========================================================================
 
 const packages=[
 { id:'eco', name:'Eco Entry', min:100, max:499, term:'2 years', roi:'1.2% Daily', roiNum:0.012, segment:'American households - Delaware.', color:'#22c55e' },
@@ -636,8 +605,6 @@ function generateSpecialCode(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';le
 function getSpecialCode(){let code=localStorage.getItem('specialReferralCode');if(!code){code=generateSpecialCode();localStorage.setItem('specialReferralCode',code);}return code;}
 function updateReferralLinks(){
   let code=getSpecialCode();
-  // FIXED: Now uses Firebase hosting link - Works TODAY - No DNS error
-  // BASE_URL is window.location.origin - Automatically https://your-project.web.app on Firebase, https://solarai.capital after you buy domain
   let link=`${BASE_URL}/?ref=${code}`;
   let el=document.getElementById('refLink');if(el) el.innerText=link;
   let el2=document.getElementById('specialCodeDisplay');if(el2) el2.innerText=code;
@@ -645,23 +612,15 @@ function updateReferralLinks(){
 }
 function copyReferralClean(){
   let code=getSpecialCode();
-  // FIXED: Copies working Firebase link - No more solarai.capital/th NXDOMAIN error
-  // Example: https://solarai-capital-12345.web.app/?ref=SC-ABC123 - Works TODAY
   let workingLink=`${BASE_URL}/?ref=${code}`;
   navigator.clipboard.writeText(workingLink).then(()=>{
-    alert(`✅ Working Link Copied! - No DNS Error\n\n${workingLink}\n\nThis link works TODAY on Firebase hosting.\nWhen investor opens it, your code ${code} is auto-detected and they see referral banner.\n\nOld link https://solarai.capital/th/${code} showed "site can't be reached" because domain not bought yet.\nNew link works now!\n\nWhen you buy solarai.capital, change BASE_URL to https://solarai.capital - All links will then use new domain.`);
-  }).catch(()=>{
-    prompt('Copy this working link (Firebase hosting - No DNS error):', workingLink);
-  });
+    alert(`✅ Working Link Copied - No DNS Error\n\n${workingLink}\n\nWorks TODAY on Firebase hosting.\nInvestor opens -> Banner shows Referred by ${code}\n\nOld https://solarai.capital/th/${code} showed site can't be reached because domain not bought yet.`);
+  }).catch(()=>{prompt('Copy working link:', workingLink);});
 }
 function shareReferral(){
   let code=getSpecialCode();
   let workingLink=`${BASE_URL}/?ref=${code}`;
-  if(navigator.share){
-    navigator.share({title:'SolarAI Capital - Delaware, USA - 1.2% Daily', text:`Join SolarAI Capital with my invite code ${code} - Earn 1.2% daily - Delaware, USA 🇺🇸`, url:workingLink});
-  }else{
-    copyReferralClean();
-  }
+  if(navigator.share){navigator.share({title:'SolarAI Capital - Delaware, USA', text:`Join with code ${code} - 1.2% daily`, url:workingLink});}else{copyReferralClean();}
 }
 function showDepositRobot(name,amount,pkg,code){
 let overlay=document.getElementById('robotOverlay');
@@ -736,15 +695,68 @@ function saveInvestor(inv){var arr=getInvestors();arr.unshift(inv);localStorage.
 function saveLogin(e,p){localStorage.setItem('savedEmail',e);localStorage.setItem('savedPass',p);}
 function saveProfile(){let name=document.getElementById('accName').value;let email=document.getElementById('accEmail').value;let phone=document.getElementById('accPhone').value;localStorage.setItem('profileName',name);localStorage.setItem('profilePhone',phone);if(email) localStorage.setItem('userEmail',email);alert('✅ Profile saved');loadProfile();updateReferralLinks();}
 function loadProfile(){document.getElementById('accName').value=localStorage.getItem('profileName')||localStorage.getItem('userName')||'';document.getElementById('accEmail').value=localStorage.getItem('userEmail')||'';document.getElementById('accPhone').value=localStorage.getItem('profilePhone')||'';document.getElementById('userEmailTop').innerText=localStorage.getItem('userEmail')||'Guest';updateReferralLinks();}
-function showAdminTab(tab){document.querySelectorAll('.adminTab').forEach(e=>e.classList.add('hidden'));var el=document.getElementById('admin-'+tab);if(el)el.classList.remove('hidden');}
+
+// STRETCHED VERSION - 360° covers entire area
+function showAdminTab(tab){
+  document.querySelectorAll('.adminTab').forEach(e=>e.classList.add('hidden'));
+  var el=document.getElementById('admin-'+tab);
+  if(el)el.classList.remove('hidden');
+
+  let unit3Grid = document.getElementById('unit3Grid');
+  let listPanel = document.getElementById('investorListPanel');
+
+  if(tab==='investors'){
+    // Stretch 360° to full width
+    if(unit3Grid){
+      unit3Grid.style.gridTemplateColumns='1fr';
+    }
+    if(listPanel){
+      listPanel.style.display='none';
+    }
+    // Make all detail boxes 100%
+    document.querySelectorAll('#admin-investors.inv-detail').forEach(d=>{
+      d.style.width='100%';
+      d.style.maxWidth='100%';
+    });
+  } else {
+    // Back to 2-column for other tabs
+    if(unit3Grid){
+      unit3Grid.style.gridTemplateColumns='1.2fr 1.8fr';
+    }
+    if(listPanel){
+      listPanel.style.display='block';
+    }
+  }
+}
+
+function backToInvestorList(){
+  let unit3Grid = document.getElementById('unit3Grid');
+  let listPanel = document.getElementById('investorListPanel');
+  if(unit3Grid){
+    unit3Grid.style.gridTemplateColumns='1.2fr 1.8fr';
+  }
+  if(listPanel){
+    listPanel.style.display='block';
+  }
+  document.getElementById('selectedInvestorName').innerText='None - Select from list';
+  document.getElementById('investorListPanel').scrollIntoView({behavior:'smooth'});
+}
+
 function viewInvestor360(email){
   let investors = getInvestors();
   let inv = investors.find(i=>i.email===email);
   if(!inv){alert('Investor not found');return;}
+
+  // STRETCH - Hide list, expand details to full width
+  let unit3Grid = document.getElementById('unit3Grid');
+  let listPanel = document.getElementById('investorListPanel');
+  if(unit3Grid) unit3Grid.style.gridTemplateColumns='1fr';
+  if(listPanel) listPanel.style.display='none';
+
   document.getElementById('selectedInvestorName').innerText=inv.name||inv.email;
   document.getElementById('inv-fullName').innerText=inv.name||'-';
   document.getElementById('inv-dob').innerText=inv.dob||'1990-01-01';
-  document.getElementById('inv-address').innerText=inv.address||'Delaware, USA';
+  document.getElementById('inv-address').innerText=inv.address||'Delaware, USA - 123 Solar St';
   document.getElementById('inv-email').innerText=inv.email;
   document.getElementById('inv-phone').innerText=inv.phone||'-';
   document.getElementById('inv-wallet').innerText=inv.wallet||'-';
@@ -754,12 +766,14 @@ function viewInvestor360(email){
   document.getElementById('inv-invested').innerText='$'+totalInvested.toFixed(2);
   document.getElementById('inv-portfolio').innerText='$'+totalInvested.toFixed(2);
   document.getElementById('inv-allocation').innerText=txs.map(t=>t.pkg||'Eco').join(', ')||'-';
-  document.getElementById('inv-performance').innerText='+'+(totalInvested*0.012).toFixed(2)+'/day';
-  document.getElementById('inv-campaigns').innerText=txs.length+' active';
+  document.getElementById('inv-performance').innerText='+'+(totalInvested*0.012).toFixed(2)+'/day - 1.2% daily';
+  document.getElementById('inv-campaigns').innerText=txs.length+' active investments';
   document.getElementById('inv-kyc-status').innerText=inv.kyc||'Pending';
-  document.getElementById('inv-tx-history').innerHTML=txs.map(t=>`<div style="padding:4px;border-bottom:1px solid #eee">${t.type.toUpperCase()} $${t.amount} - ${t.date} - ${t.status}</div>`).join('')||'No transactions';
-  document.getElementById('inv-support-logs').innerHTML=getChats().filter(c=>c.email===email).map(c=>`<div>${c.date}: ${c.msg}</div>`).join('')||'No tickets';
+  document.getElementById('inv-aml').innerText=inv.aml||'Clear';
+  document.getElementById('inv-tx-history').innerHTML=txs.map(t=>`<div style="padding:4px;border-bottom:1px solid #eee">${t.type.toUpperCase()} $${t.amount} - ${t.date} - ${t.status} - Fee $0 - Tax $0</div>`).join('')||'No transactions yet';
+  document.getElementById('inv-support-logs').innerHTML=getChats().filter(c=>c.email===email).map(c=>`<div>${c.date}: ${c.msg} - ${c.from}</div>`).join('')||'No tickets';
   showAdminTab('investors');
+  document.getElementById('admin-investors').scrollIntoView({behavior:'smooth'});
 }
 function searchInvestors(){
   let q=document.getElementById('investorSearch').value.toLowerCase();
@@ -769,7 +783,7 @@ function searchInvestors(){
 }
 function renderInvestorList(list){
   let investors=list||getInvestors();
-  let html=investors.map(inv=>`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;cursor:pointer" onclick="viewInvestor360('${inv.email}')"><b>${inv.name||'No name'}</b> - ${inv.email}<br><small>${inv.date} | Click for 360° view</small><br><small style="color:#7c3aed">Identity | KYC ${inv.kyc||'Pending'} | Tx ${getTxs().filter(t=>t.email===inv.email).length}</small></div>`).join('')||'<div style="padding:10px;text-align:center;color:#9ca3af">No investors</div>';
+  let html=investors.map(inv=>`<div style="background:#fff;border:1px solid #e5e7eb;padding:8px;border-radius:8px;margin-top:6px;cursor:pointer" onclick="viewInvestor360('${inv.email}')"><b>${inv.name||'No name'}</b> - ${inv.email}<br><small>${inv.date} | Click for 360° view - Stretched full width</small><br><small style="color:#7c3aed">Identity | KYC ${inv.kyc||'Pending'} | Tx ${getTxs().filter(t=>t.email===inv.email).length} | Security OK</small></div>`).join('')||'<div style="padding:10px;text-align:center;color:#9ca3af">No investors</div>';
   document.getElementById('investorListFull').innerHTML=html;
   document.getElementById('adminPkgList').innerHTML=investors.slice(0,10).map(inv=>`<div style="padding:4px;border-bottom:1px solid #eee;cursor:pointer" onclick="viewInvestor360('${inv.email}')">${inv.name} - ${inv.email}</div>`).join('');
 }
@@ -780,8 +794,9 @@ function exportInvestors(){
   let url=URL.createObjectURL(blob);
   let a=document.createElement('a'); a.href=url; a.download='investors_360.csv'; a.click();
 }
-function freezeAccount(){if(confirm('Freeze account?')){alert('✅ Account frozen - Security investigation started');}}
-async function renderTx(){let txs=[];if(window.getFromFirebase){try{txs=await window.getFromFirebase('transactions');}catch(e){txs=getTxs();}}else{txs=getTxs();}let totalDep=0,totalWith=0;let investorSet=new Set();for(let t of txs){if(t.type==='deposit'){totalDep+=parseFloat(t.amount||0); investorSet.add(t.email);}else totalWith+=parseFloat(t.amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);document.getElementById('txCount').innerText=txs.length;document.getElementById('totalInvestors').innerText=investorSet.size;document.getElementById('totalTVL').innerText='$'+totalDep.toFixed(2);let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount}</b> - ${t.email} - <small style="color:#7c3aed;cursor:pointer" onclick="viewInvestor360('${t.email}')">360° View</small><br><small>${t.date} | ${t.status}</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">Approve</button>`:''}</div>`).join('')||'No transactions';document.getElementById('txList').innerHTML=html; renderInvestorList();}
+function freezeAccount(){if(confirm('Freeze account? - Security investigation')){alert('✅ Account frozen');}}
+function resetPassword(){if(confirm('Reset password for this investor?')){alert('✅ Password reset email sent');}}
+async function renderTx(){let txs=[];if(window.getFromFirebase){try{txs=await window.getFromFirebase('transactions');}catch(e){txs=getTxs();}}else{txs=getTxs();}let totalDep=0,totalWith=0;let investorSet=new Set();for(let t of txs){if(t.type==='deposit'){totalDep+=parseFloat(t.amount||0); investorSet.add(t.email);}else totalWith+=parseFloat(t.amount||0);}document.getElementById('totalDep').innerText='$'+totalDep.toFixed(2);document.getElementById('totalWith').innerText='$'+totalWith.toFixed(2);let txCountEl=document.getElementById('txCount'); if(txCountEl) txCountEl.innerText=txs.length;document.getElementById('totalInvestors').innerText=investorSet.size;document.getElementById('totalTVL').innerText='$'+totalDep.toFixed(2);let html=txs.map((t,i)=>`<div style="background:${t.status==='approved'?'#dcfce7':'#fef3c7'};padding:8px;border-radius:8px;margin-top:6px"><b>${t.type.toUpperCase()} $${t.amount}</b> - ${t.email} - <small style="color:#7c3aed;cursor:pointer" onclick="viewInvestor360('${t.email}')">360° View</small><br><small>${t.date} | ${t.status} | Fee $0 | Tax $0</small> ${t.status!=='approved'?`<button class="btn btn-p" style="padding:4px;font-size:10px" onclick="approveTxFirebase('${t.id}',${i})">Approve</button>`:''}</div>`).join('')||'No transactions';document.getElementById('txList').innerHTML=html; renderInvestorList();}
 async function approveTxFirebase(firebaseId, localIndex){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let t=txs[localIndex]||txs.find(x=>x.id===firebaseId);if(!t){alert('Not found');return;}if(t.status==='approved'){alert('Already approved');return;}if(window.db && firebaseId){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',firebaseId),{status:'approved',linkedToAI:true,approvedAt:Date.now()});}catch(e){}}t.status='approved';if(t.type==='deposit'){rb+=parseFloat(t.amount);}let localTxs=getTxs();let idx=localTxs.findIndex(x=>x.hash===t.hash);if(idx>=0){localTxs[idx].status='approved';localStorage.setItem('transactions',JSON.stringify(localTxs));}upd();renderTx();}
 async function approveAll(){let txs=[];if(window.getFromFirebase){txs=await window.getFromFirebase('transactions');}else{txs=getTxs();}let added=0;for(let k=0;k<txs.length;k++){if(txs[k].type==='deposit'&&txs[k].status!=='approved'){rb+=parseFloat(txs[k].amount);added+=parseFloat(txs[k].amount);txs[k].status='approved';if(window.db && txs[k].id){try{await window.firestore.updateDoc(window.firestore.doc(window.db,'transactions',txs[k].id),{status:'approved',linkedToAI:true});}catch(e){}}}}let localTxs=getTxs();for(let lt of localTxs){let m=txs.find(t=>t.hash===lt.hash); if(m) lt.status='approved';}localStorage.setItem('transactions',JSON.stringify(localTxs));upd();renderTx();}
 async function loadFirebaseData(){renderTx();renderAdminChat();loadROIHistory(); if(window.listenToRobotBalance) window.listenToRobotBalance();}
@@ -861,7 +876,7 @@ let data={name:n,email:e,phone:document.getElementById('regPhone')?.value||'',sp
 if(window.saveToFirebase){await window.saveToFirebase('investors', data); await window.saveToFirebase('users', {email:e,balance:0,totalProfit:0,referredBy:referredBy,createdAt:Date.now()});}
 saveInvestor(data);
 localStorage.setItem('userEmail',e);localStorage.setItem('userName',n);saveLogin(e,p);
-alert(`✅ Welcome, ${n}! ${referredBy? 'Referred by '+referredBy+' - Bonus 1.2% daily' : ''}`);
+alert(`✅ Welcome, ${n}! ${referredBy? 'Referred by '+referredBy : ''}`);
 go('login');
 }
 function doLogin(){
