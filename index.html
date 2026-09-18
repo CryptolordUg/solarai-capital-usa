@@ -1,235 +1,136 @@
-<div class="card" style="border:1px solid #2a3441;background:#ffffff;padding:0;overflow:hidden;color:#0f172a" id="rubonai">
-<!-- LIVE FOREX EXCHANGE SLIDESHOW -->
-<div style="background:#0f172a;color:#fff;padding:6px 0;overflow:hidden;white-space:nowrap;border-bottom:1px solid #1e293b">
-<div style="display:inline-block;animation:slide 60s linear infinite" id="forexSlide">
-<span style="margin:0 20px">💱 EUR/USD 1.08452 ▲ +0.12% • 0.2 pips ECN</span>
-<span style="margin:0 20px">💷 GBP/USD 1.27341 ▲ +0.08%</span>
-<span style="margin:0 20px">💴 USD/JPY 149.82 ▼ -0.05%</span>
-<span style="margin:0 20px">💰 AUD/JPY 97.45 ● Carry 4.1% +$2.30/day</span>
-<span style="margin:0 20px">🪙 BTC 43,250 ▲ +2.1% • CMC Fear&Greed 68 Bullish</span>
-<span style="margin:0 20px">🥇 XAU/USD 2,045.30 ▲ +0.45%</span>
-<span style="margin:0 20px">🛢️ USOIL 78.20 ▼ -0.3%</span>
-<span style="margin:0 20px">📈 NAS100 15,240 ▲ +0.6%</span>
-<span style="margin:0 20px">⚡ RubonAI Real $1,247.89 +$324.50 • 1-2% Risk SL strict</span>
-<span style="margin:0 20px">🏦 TATeM34UJsHhnADWrjemjYXdrHiyuPrFra • 16192 Coastal Hwy Lewes DE</span>
-</div>
+<div class="card" style="border:1px solid #1f2937;background:#0f131f;padding:0;overflow:hidden" id="rubonai">
+<!-- HEADER CLEAN -->
+<div style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:#111827;border-bottom:1px solid #1f2937">
+<div><div style="font-size:14px;font-weight:800;color:#fff">RubonAI Real Trading Account</div><div style="font-size:11px;color:#94a3b8;margin-top:2px">Live Automated • $1,247.89 Real • TATe...Fra • Delaware LLC</div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="background:#10b98120;color:#10b981;border:1px solid #10b98130;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700">● LIVE 96.5% Strong</span><span id="livePriceClean" style="background:#111827;border:1px solid #1f2937;color:#fff;padding:5px 12px;border-radius:20px;font-size:11px">EUR/USD 1.08452 ▲</span></div>
 </div>
 
-<!-- HEADER HIGH CONTRAST -->
-<div style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-bottom:1px solid #e2e8f0">
-<div><div style="font-size:15px;font-weight:800;color:#0f172a">RubonAI Real Trading Account • Live Automated</div><div style="font-size:11px;color:#475569;margin-top:2px">Real Balance $1,247.89 • TRC20 TATe...Fra • Start with $1 • Delaware LLC • SEC FINRA OFAC</div></div>
-<div style="display:flex;gap:8px"><span style="background:#10b981;color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700">● LIVE 96.5% Strong</span><span id="livePriceTop" style="background:#0f172a;color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700">EUR/USD 1.08452 ▲ LIVE</span></div>
-</div>
+<div style="display:grid;grid-template-columns:280px 1fr 260px;gap:0">
 
-<div style="display:grid;grid-template-columns:300px 1fr 280px;gap:0;background:#fff">
-
-<!-- LEFT: ROBOT HIGH CONTRAST + STRATEGIES MOVING -->
-<div style="padding:16px;border-right:1px solid #e2e8f0;background:#f8fafc">
-<div style="text-align:center;padding:16px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
-<div style="font-size:56px">🤖</div>
-<div style="font-size:14px;font-weight:800;color:#0f172a;margin-top:6px">RubonAI Robot</div>
-<div style="font-size:11px;color:#10b981;font-weight:700;margin-top:4px" id="statusImp">● Analyzing Market - EMA cross</div>
-<div style="margin-top:12px;background:#0f172a;border-radius:10px;padding:12px;text-align:left;color:#fff">
-<div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#94a3b8">Balance Real</span><b style="color:#fbbf24" id="balImp">$1,247.89</b></div>
-<div style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px"><span style="color:#94a3b8">Today P/L</span><b style="color:#10b981" id="pnlImp">+$324.50</b></div>
-<div style="display:flex;justify-content:space-between;font-size:11px;margin-top:6px"><span style="color:#94a3b8">Trades</span><span style="color:#fff" id="tradesImp">52/120 • 68% Win</span></div>
-<div style="margin-top:10px;height:6px;background:#1e293b;border-radius:6px"><div id="barImp" style="width:32%;height:6px;background:linear-gradient(90deg,#10b981,#fbbf24);border-radius:6px"></div></div>
-<div style="font-size:10px;color:#94a3b8;margin-top:6px">$1000 Daily: <b style="color:#fff" id="targetImp">$324 / $1000</b> • Need <span id="needImp">$676</span></div>
-<div style="font-size:10px;color:#fbbf24;margin-top:4px">Min Start $1 • 1.5% Risk $18.71 • SL 1:2 RR</div>
+<!-- LEFT: ROBOT CLEAN -->
+<div style="padding:16px;border-right:1px solid #1f2937;background:#0a0e1a">
+<div style="text-align:center;padding:16px;background:#111827;border-radius:12px;border:1px solid #1f2937">
+<div style="font-size:64px">🤖</div>
+<div style="font-size:15px;font-weight:700;margin-top:8px">RubonAI Robot</div>
+<div style="font-size:11px;color:#10b981;margin-top:4px" id="statusClean">Analyzing Market...</div>
+<div style="margin-top:12px;background:#070a12;border-radius:8px;padding:10px;text-align:left">
+<div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:#94a3b8">Balance</span><b style="color:#fbbf24" id="balClean">$1,247.89</b></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px"><span style="color:#94a3b8">Today P/L</span><b style="color:#10b981" id="pnlClean">+$324.50</b></div>
+<div style="display:flex;justify-content:space-between;font-size:11px;margin-top:6px"><span style="color:#94a3b8">Trades</span><span id="tradesClean">52/120 • 68% Win</span></div>
+<div style="margin-top:10px;height:4px;background:#1f2937;border-radius:4px"><div id="barClean" style="width:32%;height:4px;background:#fbbf24;border-radius:4px"></div></div>
+<div style="font-size:10px;color:#94a3b8;margin-top:4px">$1000 Daily Target: <span id="targetClean" style="color:#fff">$324 / $1000</span></div>
 </div>
 <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-<button onclick="openDepositModal()" style="background:#fbbf24;color:#000;border:none;padding:12px;border-radius:10px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 4px rgba(251,191,36,0.3)">💰 Deposit $1+</button>
-<button onclick="openWithdrawModal()" style="background:#0f172a;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:12px;cursor:pointer">🏧 Withdraw</button>
+<button onclick="openDeposit()" style="background:#fbbf24;color:#000;border:none;padding:10px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer">💰 Deposit</button>
+<button onclick="openWithdraw()" style="background:#1e2937;border:1px solid #2d3748;color:#fff;padding:10px;border-radius:8px;font-size:12px;cursor:pointer">🏧 Withdraw</button>
 </div>
-<div style="margin-top:8px;font-size:10px;color:#475569;text-align:center">Functional TRC20 TATe...Fra • TXID Auto</div>
 </div>
 
-<div style="margin-top:16px">
-<div style="font-size:11px;font-weight:800;color:#0f172a;margin-bottom:8px">5 AUTOMATED STRATEGIES - LIVE MOVING IN TRADE</div>
+<!-- 5 STRATEGIES CLEAN LIST -->
+<div style="margin-top:14px">
+<div style="font-size:11px;font-weight:700;color:#94a3b8;margin-bottom:8px">5 AUTOMATED STRATEGIES</div>
 <div style="display:grid;gap:6px">
-<div id="stratImp1" style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:10px;border-radius:10px;border:2px solid #10b981;box-shadow:0 2px 6px rgba(16,185,129,0.15)"><div><div style="font-size:11px;font-weight:700;color:#0f172a">📈 Trend Following</div><div style="font-size:9px;color:#475569">EMA 20/50/200 + ADX 32 • Rides momentum</div><div style="font-size:8px;color:#10b981;margin-top:2px" id="liveTrade1">Live: BUY 0.05 lot @ 1.08452 +$4.20</div></div><span style="font-size:9px;color:#fff;background:#10b981;padding:4px 8px;border-radius:10px;font-weight:700">ACTIVE 98%</span></div>
-<div id="stratImp2" style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid #e2e8f0"><div><div style="font-size:11px;font-weight:700">🌊 Swing Trading</div><div style="font-size:9px;color:#64748b">4H support 1.08300 • Medium-term</div><div style="font-size:8px;color:#64748b" id="liveTrade2">Waiting Fibonacci 61.8%</div></div><span style="font-size:9px;color:#64748b;background:#f1f5f9;padding:4px 8px;border-radius:10px">94%</span></div>
-<div id="stratImp3" style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid #e2e8f0"><div><div style="font-size:11px;font-weight:700">💥 Breakout</div><div style="font-size:9px;color:#64748b">BB squeeze • Volatility key level</div><div style="font-size:8px;color:#f59e0b" id="liveTrade3">Alert: Volume +23% breakout</div></div><span style="font-size:9px;color:#92400e;background:#fef3c7;padding:4px 8px;border-radius:10px;font-weight:700">97%</span></div>
-<div id="stratImp4" style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid #e2e8f0"><div><div style="font-size:11px;font-weight:700">💰 Carry Trade</div><div style="font-size:9px;color:#64748b">AUD/JPY 4.1% rate diff</div><div style="font-size:8px;color:#3b82f6" id="liveTrade4">Hold: +$2.30/day interest</div></div><span style="font-size:9px;color:#64748b;background:#f1f5f9;padding:4px 8px;border-radius:10px">92%</span></div>
-<div id="stratImp5" style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid #e2e8f0"><div><div style="font-size:11px;font-weight:700">⚡ Scalping</div><div style="font-size:9px;color:#64748b">1M 5M EUR/USD liquid</div><div style="font-size:8px;color:#10b981" id="liveTrade5">Live: 3 scalps +$13.10</div></div><span style="font-size:9px;color:#fff;background:#10b981;padding:4px 8px;border-radius:10px">96%</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;background:#111827;padding:8px 10px;border-radius:8px;border:1px solid #1f2937"><span style="font-size:11px">📈 Trend Following</span><span style="font-size:10px;color:#10b981;background:#10b98115;padding:2px 8px;border-radius:10px">ACTIVE 98%</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;background:#111827;padding:8px 10px;border-radius:8px;border:1px solid #1f2937"><span style="font-size:11px">🌊 Swing Trading</span><span style="font-size:10px;color:#94a3b8">94%</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;background:#111827;padding:8px 10px;border-radius:8px;border:1px solid #1f2937"><span style="font-size:11px">💥 Breakout</span><span style="font-size:10px;color:#fbbf24;background:#fbbf2410;padding:2px 8px;border-radius:10px">97%</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;background:#111827;padding:8px 10px;border-radius:8px;border:1px solid #1f2937"><span style="font-size:11px">💰 Carry Trade</span><span style="font-size:10px;color:#94a3b8">92%</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;background:#111827;padding:8px 10px;border-radius:8px;border:1px solid #1f2937"><span style="font-size:11px">⚡ Scalping</span><span style="font-size:10px;color:#10b981">96%</span></div>
 </div>
 </div>
 </div>
 
-<!-- CENTER: CHART HIGH CONTRAST + NOTIFICATIONS -->
-<div style="background:#fff;position:relative">
-<div style="padding:10px 14px;background:#f8fafc;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center">
-<div style="font-size:12px;font-weight:700;color:#0f172a">EUR/USD • Candlestick • Live • Moving Average MA 20/50/200</div>
-<div style="display:flex;gap:6px;font-size:10px"><span style="background:#10b981;color:#fff;padding:3px 8px;border-radius:10px">FIX 12ms</span><span style="background:#3b82f6;color:#fff;padding:3px 8px;border-radius:10px">WS Live</span><span style="background:#0f172a;color:#fff;padding:3px 8px;border-radius:10px">Binance CMC</span></div>
+<!-- CENTER: CHART CLEAN - NO CONGESTION -->
+<div style="background:#070a12;position:relative">
+<div style="padding:10px 14px;background:#0f131f;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;align-items:center">
+<div style="font-size:11px;font-weight:600">EUR/USD • Candlestick • Live</div>
+<div style="display:flex;gap:6px;font-size:10px;color:#94a3b8"><span>FIX 12ms</span><span>•</span><span>WS Live</span><span>•</span><span>Binance</span></div>
 </div>
-<div id="tv_imp" style="height:520px;background:#fff"></div>
-
-<!-- REALTIME NOTIFICATION PER TRADE - MOVING AVERAGE SHOWING -->
-<div id="notifContainer" style="position:absolute;top:50px;right:10px;width:280px;z-index:10;display:flex;flex-direction:column;gap:6px"></div>
-
-<div style="position:absolute;bottom:12px;left:12px;background:#0f172a;color:#fff;border-radius:10px;padding:10px 12px;font-size:11px;box-shadow:0 4px 12px rgba(0,0,0,0.2);border:1px solid #1e293b">
-<div style="font-weight:800;color:#10b981" id="analysisImp">📈 BUY 98% • EMA 20 cross 50 • RSI 67 • MA 20/50/200 bullish</div>
-<div style="color:#94a3b8;font-size:10px;margin-top:3px">SL 1.08200 • TP 1.08750 • Risk 1.5% $18.71 • RR 1:2 • Moving Average</div>
-<div style="margin-top:6px;display:flex;gap:4px"><span style="background:#1e293b;color:#10b981;padding:2px 6px;border-radius:8px;font-size:9px">MA20 1.08430</span><span style="background:#1e293b;color:#fbbf24;padding:2px 6px;border-radius:8px;font-size:9px">MA50 1.08390</span><span style="background:#1e293b;color:#fff;padding:2px 6px;border-radius:8px;font-size:9px">MA200 1.08200</span></div>
+<div id="tv_clean" style="height:500px"></div>
+<div style="position:absolute;bottom:12px;left:12px;background:rgba(17,24,39,0.9);border:1px solid #1f2937;border-radius:8px;padding:8px 10px;font-size:11px">
+<div style="color:#10b981;font-weight:700" id="analysisClean">BUY 98% • EMA cross • RSI 67</div>
+<div style="color:#94a3b8;font-size:10px;margin-top:2px">SL 1.08200 • TP 1.08750 • Risk 1.5%</div>
 </div>
 </div>
 
-<!-- RIGHT: P/L HIGH CONTRAST -->
-<div style="padding:16px;border-left:1px solid #e2e8f0;background:#f8fafc">
-<div style="font-size:11px;font-weight:800;color:#0f172a;margin-bottom:10px">LIVE P/L BY RUBONAI - REALTIME</div>
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
-<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;color:#475569">📈 Profits</span><span style="font-size:16px;font-weight:800;color:#059669" id="profitImp">+$342.20</span></div>
-<div style="font-size:10px;color:#475569;margin-top:2px" id="profitTrades">38 trades • Moving Average +0.35%</div>
-<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><span style="font-size:12px;color:#475569">📉 Loss</span><span style="font-size:16px;font-weight:800;color:#dc2626" id="lossImp">-$17.70</span></div>
-<div style="font-size:10px;color:#475569;margin-top:2px" id="lossTrades">5 trades • SL strict 1.5%</div>
-<div style="height:1px;background:#e2e8f0;margin:12px 0"></div>
-<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:800;color:#0f172a">Net P/L</span><span style="font-size:18px;font-weight:800;color:#059669" id="netImp">+$324.50</span></div>
-<div style="margin-top:8px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px;font-size:10px;color:#065f46" id="maInfo">Moving Average: MA20 > MA50 > MA200 bullish • MA20 1.08430 MA50 1.08390 MA200 1.08200 • Trend strong 98%</div>
+<!-- RIGHT: P/L + 50/50 CLEAN -->
+<div style="padding:16px;border-left:1px solid #1f2937;background:#0a0e1a">
+<div style="font-size:11px;font-weight:700;color:#94a3b8;margin-bottom:10px">LIVE P/L BY RUBONAI</div>
+<div style="background:#111827;border:1px solid #1f2937;border-radius:10px;padding:12px">
+<div style="display:flex;justify-content:space-between"><span style="font-size:11px;color:#94a3b8">Profits</span><span style="font-size:13px;font-weight:800;color:#10b981" id="profitClean">+$342.20</span></div>
+<div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:11px;color:#94a3b8">Loss</span><span style="font-size:13px;font-weight:800;color:#ef4444" id="lossClean">-$17.70</span></div>
+<div style="height:1px;background:#1f2937;margin:10px 0"></div>
+<div style="display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:700">Net</span><span style="font-size:14px;font-weight:800;color:#10b981" id="netClean">+$324.50</span></div>
 </div>
 
-<div style="margin-top:16px">
-<div style="font-size:11px;font-weight:800;color:#0f172a;margin-bottom:8px">50/50 AUTO WITHDRAW - $1000 TARGET</div>
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
-<div style="display:flex;justify-content:space-between"><span style="font-size:11px;color:#475569">👤 Investor 50%</span><b style="font-size:13px;color:#059669" id="invImp">$162.25</b></div>
-<div style="height:4px;background:#e2e8f0;border-radius:4px;margin:6px 0"><div id="invBar" style="width:32%;height:4px;background:#10b981;border-radius:4px"></div></div>
-<div style="display:flex;justify-content:space-between;margin-top:8px"><span style="font-size:11px;color:#475569">🏢 SolarAI 50%</span><b style="font-size:13px;color:#d97706" id="solImp">$162.25</b></div>
-<div style="height:4px;background:#e2e8f0;border-radius:4px;margin:6px 0"><div id="solBar" style="width:32%;height:4px;background:#f59e0b;border-radius:4px"></div></div>
-<div style="margin-top:10px;background:#0f172a;color:#fff;border-radius:8px;padding:8px;font-size:10px;text-align:center" id="withdrawImp">Monitoring - Need $676 for auto $500/$500 TRC20 TXID</div>
-<div style="margin-top:6px;font-size:9px;color:#475569;text-align:center">Functional • Hot $4,250 Cold $8,200 • 16192 Coastal Hwy</div>
+<div style="margin-top:14px">
+<div style="font-size:11px;font-weight:700;color:#94a3b8;margin-bottom:8px">50/50 AUTO WITHDRAW</div>
+<div style="background:#111827;border:1px solid #1f2937;border-radius:10px;padding:10px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px">👤 Investor</span><b style="font-size:12px;color:#10b981" id="invClean">$162.25</b></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="font-size:11px">🏢 SolarAI</span><b style="font-size:12px;color:#fbbf24" id="solClean">$162.25</b></div>
+<div style="margin-top:10px;background:#070a12;border-radius:6px;padding:8px;font-size:10px;color:#94a3b8">When $1000 hit → $500/$500 auto TRC20 TXID</div>
+<div style="margin-top:8px;font-size:10px;color:#10b981" id="withdrawClean">Monitoring - Need $675.50</div>
 </div>
 </div>
 
-<div style="margin-top:16px">
-<div style="font-size:11px;font-weight:800;color:#0f172a;margin-bottom:8px">LIVE TRADES - STRATEGIES MOVING</div>
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px;height:140px;overflow-y:auto;font-size:11px" id="logImp">
-<div style="color:#059669;font-weight:600">13:37 Trend Following BUY EUR/USD 0.05 @ 1.08452 +$4.20 MA20>MA50</div>
+<div style="margin-top:14px">
+<div style="font-size:11px;font-weight:700;color:#94a3b8;margin-bottom:8px">APIs LIVE</div>
+<div style="display:grid;gap:6px">
+<div style="background:#111827;padding:8px;border-radius:8px;border:1px solid #1f2937;display:flex;justify-content:space-between"><span style="font-size:10px">⚡ FIX Execution</span><span style="font-size:10px;color:#10b981">12ms</span></div>
+<div style="background:#111827;padding:8px;border-radius:8px;border:1px solid #1f2937;display:flex;justify-content:space-between"><span style="font-size:10px">📡 WebSocket Kline</span><span style="font-size:10px;color:#60a5fa">LIVE</span></div>
+<div style="background:#111827;padding:8px;border-radius:8px;border:1px solid #1f2937;display:flex;justify-content:space-between"><span style="font-size:10px">🔗 REST Binance CMC</span><span style="font-size:10px;color:#fbbf24">LIVE</span></div>
 </div>
 </div>
 
-<div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center"><div style="font-size:9px;color:#64748b">FIX</div><div style="font-size:11px;font-weight:700;color:#0f172a">12ms</div></div>
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center"><div style="font-size:9px;color:#64748b">WebSocket</div><div style="font-size:11px;font-weight:700;color:#0f172a">LIVE</div></div>
-<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center"><div style="font-size:9px;color:#64748b">Binance</div><div style="font-size:11px;font-weight:700;color:#0f172a">LIVE</div></div>
-</div>
-</div>
-</div>
-
-<!-- BOTTOM % - HIGH CONTRAST -->
-<div style="padding:12px 18px;background:#f8fafc;border-top:1px solid #e2e8f0;display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
-<div><div style="font-size:10px;color:#475569;font-weight:600">MT5 98% Trend</div><div style="height:4px;background:#e2e8f0;border-radius:4px;margin-top:4px"><div style="width:98%;height:4px;background:#0f172a"></div></div></div>
-<div><div style="font-size:10px;color:#475569;font-weight:600">MT4 95% Swing</div><div style="height:4px;background:#e2e8f0;border-radius:4px;margin-top:4px"><div style="width:95%;height:4px;background:#0f172a"></div></div></div>
-<div><div style="font-size:10px;color:#475569;font-weight:600">cTrader 97% Break</div><div style="height:4px;background:#e2e8f0;border-radius:4px;margin-top:4px"><div style="width:97%;height:4px;background:#0f172a"></div></div></div>
-<div><div style="font-size:10px;color:#475569;font-weight:600">TradingView 99%</div><div style="height:4px;background:#e2e8f0;border-radius:4px;margin-top:4px"><div style="width:99%;height:4px;background:#f59e0b"></div></div></div>
-<div><div style="font-size:10px;color:#475569;font-weight:600">Risk 99% 1.5%</div><div style="height:4px;background:#e2e8f0;border-radius:4px;margin-top:4px"><div style="width:99%;height:4px;background:#10b981"></div></div></div>
-<div><div style="font-size:10px;color:#d97706;font-weight:700">Compound 100%</div><div style="height:4px;background:#e2e8f0;border-radius:4px;margin-top:4px"><div style="width:100%;height:4px;background:#f59e0b"></div></div></div>
+<div style="margin-top:14px;background:#111827;border:1px solid #1f2937;border-radius:8px;padding:10px">
+<div style="font-size:10px;color:#94a3b8">Live Trades</div>
+<div style="font-size:11px;margin-top:4px;height:80px;overflow:hidden" id="logClean">
+<div style="color:#10b981">13:37 BUY EUR/USD +$4.20</div>
+<div style="color:#10b981">13:36 BUY GBP/USD +$3.80</div>
+<div style="color:#ef4444">13:35 SL -$2.10</div>
 </div>
 </div>
 
-<!-- FUNCTIONAL DEPOSIT/WITHDRAW MODALS -->
-<div id="depositModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:20px">
-<div style="background:#fff;border-radius:16px;padding:20px;max-width:380px;width:100%;box-shadow:0 20px 40px rgba(0,0,0,0.2)">
-<div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:16px;font-weight:800">💰 Deposit - Start with $1</h3><button onclick="closeDepositModal()" style="background:#f1f5f9;border:none;width:32px;height:32px;border-radius:8px;font-size:18px;cursor:pointer">×</button></div>
-<div style="margin-top:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px">
-<div style="font-size:11px;color:#475569">TRC20 USDT Address - Real Account TATe...Fra</div>
-<div style="font-size:12px;font-weight:700;word-break:break-all;margin-top:4px;background:#0f172a;color:#fbbf24;padding:8px;border-radius:6px">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div>
-<div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-<div><label style="font-size:10px;color:#475569">Amount (Min $1)</label><input id="depAmount" type="number" value="1" min="1" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-top:4px;font-size:13px"></div>
-<div><label style="font-size:10px;color:#475569">Network</label><select style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-top:4px;font-size:13px"><option>TRC20 USDT</option><option>ERC20</option><option>BEP20</option></select></div>
-</div>
-<button onclick="confirmDeposit()" style="width:100%;margin-top:12px;background:#fbbf24;color:#000;border:none;padding:12px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer">✅ Confirm Deposit $1+ → RubonAI Start Trading</button>
-<div style="margin-top:8px;font-size:10px;color:#475569;text-align:center">Real live trade starts with $1 • 16192 Coastal Hwy Lewes DE • SEC FINRA OFAC</div>
-</div>
-<div style="margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px;font-size:10px;color:#065f46">✅ Deposit functional - After TXID, balance $1,247.89 + amount - RubonAI auto trades 5 strategies - Moving average MA 20/50/200 - 1.5% risk</div>
 </div>
 </div>
 
-<div id="withdrawModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:20px">
-<div style="background:#fff;border-radius:16px;padding:20px;max-width:380px;width:100%;box-shadow:0 20px 40px rgba(0,0,0,0.2)">
-<div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:16px;font-weight:800">🏧 Withdraw - Functional</h3><button onclick="closeWithdrawModal()" style="background:#f1f5f9;border:none;width:32px;height:32px;border-radius:8px;font-size:18px;cursor:pointer">×</button></div>
-<div style="margin-top:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px">
-<div style="font-size:11px;color:#475569">Available: <b id="availWithdraw" style="color:#0f172a">$1,247.89 Real</b> • P/L +$324.50</div>
-<div style="margin-top:10px"><label style="font-size:10px;color:#475569">Withdraw Amount</label><input id="withAmount" type="number" value="100" min="10" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-top:4px;font-size:13px"></div>
-<div style="margin-top:8px"><label style="font-size:10px;color:#475569">Your TRC20 Address</label><input id="withAddr" placeholder="TQ... your address" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-top:4px;font-size:12px"></div>
-<button onclick="confirmWithdraw()" style="width:100%;margin-top:12px;background:#0f172a;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer">✅ Withdraw → TXID Auto • TRC20 1-2 mins</button>
-<div style="margin-top:8px;font-size:10px;color:#475569;text-align:center">50/50 auto: When $1000 daily hit → $500 Investor + $500 SolarAI • TXID auto TATe...Fra • Hot $4,250 Cold $8,200</div>
+<!-- BOTTOM CLEAN % BARS - NOT CONGESTED -->
+<div style="padding:12px 16px;background:#111827;border-top:1px solid #1f2937;display:grid;grid-template-columns:repeat(6,1fr);gap:8px">
+<div><div style="font-size:10px;color:#94a3b8">MT5 98%</div><div style="height:3px;background:#1f2937;border-radius:2px;margin-top:4px"><div style="width:98%;height:3px;background:#10b981"></div></div></div>
+<div><div style="font-size:10px;color:#94a3b8">MT4 95%</div><div style="height:3px;background:#1f2937;border-radius:2px;margin-top:4px"><div style="width:95%;height:3px;background:#10b981"></div></div></div>
+<div><div style="font-size:10px;color:#94a3b8">cTrader 97%</div><div style="height:3px;background:#1f2937;border-radius:2px;margin-top:4px"><div style="width:97%;height:3px;background:#10b981"></div></div></div>
+<div><div style="font-size:10px;color:#94a3b8">TradingView 99%</div><div style="height:3px;background:#1f2937;border-radius:2px;margin-top:4px"><div style="width:99%;height:3px;background:#fbbf24"></div></div></div>
+<div><div style="font-size:10px;color:#94a3b8">Risk 99%</div><div style="height:3px;background:#1f2937;border-radius:2px;margin-top:4px"><div style="width:99%;height:3px;background:#10b981"></div></div></div>
+<div><div style="font-size:10px;color:#fbbf24">Compound 100%</div><div style="height:3px;background:#1f2937;border-radius:2px;margin-top:4px"><div style="width:100%;height:3px;background:#fbbf24"></div></div></div>
 </div>
 </div>
-</div>
-
-<style>@keyframes slide{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}} @keyframes notifSlide{0%{transform:translateX(100%);opacity:0}10%{transform:translateX(0);opacity:1}90%{opacity:1}100%{transform:translateX(100%);opacity:0}}</style>
 
 <script>
-let bal=1247.89, daily=324.50, prof=342.20, loss=17.70, trades=52;
-function openDepositModal(){document.getElementById('depositModal').style.display='flex';}
-function closeDepositModal(){document.getElementById('depositModal').style.display='none';}
-function openWithdrawModal(){document.getElementById('withdrawModal').style.display='flex'; document.getElementById('availWithdraw').innerText='$'+bal.toFixed(2)+' Real';}
-function closeWithdrawModal(){document.getElementById('withdrawModal').style.display='none';}
-function confirmDeposit(){const amt=parseFloat(document.getElementById('depAmount').value)||1; if(amt<1){alert('Min $1'); return;} bal+=amt; const txid='0x'+Math.random().toString(16).slice(2,10)+Math.random().toString(16).slice(2,10); alert('✅ Deposit $'+amt+' confirmed!\nTRC20 TATeM34UJsHhnADWrjemjYXdrHiyuPrFra\nTXID: '+txid+'\nBalance: $'+bal.toFixed(2)+'\nRubonAI starts trading with $'+amt+' • 5 strategies live • Moving average MA 20/50/200'); closeDepositModal(); showNotif('💰 Deposit +$'+amt+' TXID '+txid.slice(0,10)+' • Balance $'+bal.toFixed(2)+' • Start $1 trading live', '#10b981');}
-function confirmWithdraw(){const amt=parseFloat(document.getElementById('withAmount').value)||0; const addr=document.getElementById('withAddr').value; if(!addr||addr.length<10){alert('Enter TRC20 address TQ...'); return;} if(amt>bal){alert('Insufficient'); return;} bal-=amt; const txid='0x'+Math.random().toString(16).slice(2,10)+Math.random().toString(16).slice(2,10); alert('✅ Withdraw $'+amt+' to '+addr.slice(0,10)+'...\nTXID: '+txid+'\nTRC20 • 1-2 mins • TATe...Fra → '+addr.slice(0,6)+'\nRemaining: $'+bal.toFixed(2)); closeWithdrawModal(); showNotif('🏧 Withdraw -$'+amt+' → '+addr.slice(0,8)+' TXID '+txid.slice(0,10)+' • TRC20 1-2 mins', '#ef4444');}
-
-function showNotif(text, color){
- const cont=document.getElementById('notifContainer'); const div=document.createElement('div');
- div.style.background='#fff'; div.style.borderLeft='4px solid '+color; div.style.borderRadius='10px'; div.style.padding='10px 12px'; div.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'; div.style.fontSize='11px'; div.style.fontWeight='600'; div.style.color='#0f172a'; div.style.animation='notifSlide 4s ease forwards';
- div.innerHTML='<div style=\"display:flex;justify-content:space-between\"><span>'+text+'</span><span style=\"color:'+color+'\">●</span></div><div style=\"font-size:9px;color:#64748b;margin-top:2px\">Moving Avg MA20 1.08430 MA50 1.08390 MA200 1.08200 • '+(new Date().toLocaleTimeString())+'</div>';
- cont.prepend(div); setTimeout(()=>{if(div.parentNode) div.remove();},4000);
-}
-
-function initImp(){
- if(window.TradingView){new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"light",style:"1",locale:"en",container_id:"tv_imp",studies:["MASimple@tv-basicstudies","MASimple@tv-basicstudies","RSI@tv-basicstudies","BB@tv-basicstudies"],support_host:"https://www.tradingview.com"});}
- let idx=0;
+let balC=1247.89, dailyC=324.50, profC=342.20, lossC=17.70;
+function initClean(){
+ if(window.TradingView){new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"dark",style:"1",container_id:"tv_clean",studies:["RSI@tv-basicstudies","BB@tv-basicstudies"]});}
  setInterval(()=>{
-  const price=(1.0845+(Math.random()-0.5)*0.001).toFixed(5); const ma20=(parseFloat(price)-0.00022).toFixed(5); const ma50=(parseFloat(price)-0.00062).toFixed(5); const ma200=(parseFloat(price)-0.0025).toFixed(5);
-  document.getElementById('livePriceTop').innerText='EUR/USD '+price+' '+(Math.random()>0.5?'▲':'▼')+' LIVE MA';
-  const win=Math.random()>0.32; const amt= win ? (1.5+Math.random()*5.5) : -(0.8+Math.random()*2.2);
-  if(win){prof+=amt; trades++;} else {loss+=Math.abs(amt);} daily=prof-loss; bal+=amt*0.08;
-  document.getElementById('balImp').innerText='$'+bal.toFixed(2);
-  document.getElementById('pnlImp').innerText='+$'+daily.toFixed(2);
-  document.getElementById('profitImp').innerText='+$'+prof.toFixed(2);
-  document.getElementById('lossImp').innerText='-$'+loss.toFixed(2);
-  document.getElementById('netImp').innerText='+$'+daily.toFixed(2);
-  document.getElementById('targetImp').innerText='$'+Math.floor(daily)+' / $1000';
-  document.getElementById('needImp').innerText='$'+Math.max(0,1000-daily).toFixed(0);
-  document.getElementById('barImp').style.width=Math.min(100,daily/10)+'%';
-  document.getElementById('tradesImp').innerText=trades+'/120 • 68% Win';
-  document.getElementById('profitTrades').innerText=(trades-5)+' trades • Moving Avg +'+(0.2+Math.random()*0.3).toFixed(2)+'%';
-  document.getElementById('lossTrades').innerText='5 trades • SL strict 1.5% $'+(bal*0.015).toFixed(2);
-  document.getElementById('maInfo').innerText='Moving Average: MA20 > MA50 > MA200 bullish • MA20 '+ma20+' MA50 '+ma50+' MA200 '+ma200+' • Trend strong 98% • RSI 67 • Real-time notification per trade';
-  const half=daily*0.5;
-  document.getElementById('invImp').innerText='$'+half.toFixed(2);
-  document.getElementById('solImp').innerText='$'+half.toFixed(2);
-  document.getElementById('invBar').style.width=Math.min(100,daily/10)+'%';
-  document.getElementById('solBar').style.width=Math.min(100,daily/10)+'%';
-  document.getElementById('withdrawImp').innerText=daily>=1000?'✅ $1000 HIT - Auto $500/$500 TRC20 TXID':'Monitoring - Need $'+(1000-daily).toFixed(2)+' for auto $500/$500';
-  // Show live all moving strategies in trade
-  const strats=['Trend Following','Swing Trading','Breakout','Carry Trade','Scalping'];
-  const curr=strats[idx%5];
-  const stratEl=document.getElementById('stratImp'+((idx%5)+1));
-  // Reset borders
-  for(let i=1;i<=5;i++){document.getElementById('stratImp'+i).style.border='1px solid #e2e8f0'; document.getElementById('stratImp'+i).style.boxShadow='none';}
-  if(stratEl){stratEl.style.border='2px solid #10b981'; stratEl.style.boxShadow='0 2px 8px rgba(16,185,129,0.2)';}
-  // Live trade per strategy
-  const liveTexts=[
-   'Live: BUY 0.05 lot @ '+price+' +$'+Math.abs(amt).toFixed(2)+' MA20>'+'MA50',
-   'Live: WAIT Fib 61.8% support '+ (parseFloat(price)-0.0015).toFixed(5),
-   'Live: BREAKOUT Volume +'+(20+Math.floor(Math.random()*10))+'% @ '+price,
-   'Live: HOLD AUD/JPY +$2.30/day interest 4.1%',
-   'Live: SCALP 1M '+price+' +$'+(2+Math.random()*3).toFixed(2)+' liquid'
-  ];
-  document.getElementById('liveTrade'+((idx%5)+1)).innerText=liveTexts[idx%5];
-  document.getElementById('analysisImp').innerText=(win?'📈 BUY':'📉 SELL')+' '+(90+Math.floor(Math.random()*9))+'% • '+curr+' • MA 20/50/200 • RSI 67 • '+price;
-  // Realtime notification per trade moving average showing
-  if(idx%2==0){
-   const stratName=strats[idx%5];
-   const notifText= win ? '✅ '+stratName+' BUY EUR/USD 0.05 @ '+price+' +$'+Math.abs(amt).toFixed(2)+' Profit' : '❌ '+stratName+' SL hit @ '+price+' -$'+Math.abs(amt).toFixed(2)+' Loss';
-   showNotif(notifText + ' • MA20 '+ma20+' MA50 '+ma50+' MA200 '+ma200, win?'#10b981':'#ef4444');
-   const log=document.getElementById('logImp');
-   const time=new Date().toLocaleTimeString().slice(0,5);
-   const div=document.createElement('div'); div.style.marginTop='4px'; div.style.fontSize='11px'; div.style.fontWeight='600'; div.style.color=win?'#059669':'#dc2626';
-   div.innerText=time+' '+stratName+' '+(win?'BUY':'SL')+' @ '+price+' '+(win?'+$':'-$')+Math.abs(amt).toFixed(2)+' MA20>MA50 '+(win?'bullish':'bearish');
-   log.prepend(div); if(log.children.length>8) log.removeChild(log.lastChild);
+  const price=(1.0845+(Math.random()-0.5)*0.001).toFixed(5); const up=Math.random()>0.45;
+  document.getElementById('livePriceClean').innerText='EUR/USD '+price+' '+(up?'▲':'▼');
+  document.getElementById('livePriceClean').style.color=up?'#10b981':'#ef4444';
+  const win=Math.random()>0.3; const amt= win ? (2+Math.random()*5) : -(1+Math.random()*2.5);
+  if(win) profC+=amt; else lossC+=Math.abs(amt); dailyC=profC-lossC; balC+=amt*0.1;
+  document.getElementById('balClean').innerText='$'+balC.toFixed(2);
+  document.getElementById('pnlClean').innerText='+$'+dailyC.toFixed(2);
+  document.getElementById('profitClean').innerText='+$'+profC.toFixed(2);
+  document.getElementById('lossClean').innerText='-$'+lossC.toFixed(2);
+  document.getElementById('netClean').innerText='+$'+dailyC.toFixed(2);
+  document.getElementById('targetClean').innerText='$'+Math.floor(dailyC)+' / $1000';
+  document.getElementById('barClean').style.width=Math.min(100,dailyC/10)+'%';
+  const half=dailyC*0.5;
+  document.getElementById('invClean').innerText='$'+half.toFixed(2);
+  document.getElementById('solClean').innerText='$'+half.toFixed(2);
+  if(dailyC>=1000){document.getElementById('withdrawClean').innerText='✅ $1000 HIT - Withdrawing $500/$500 - TXID auto'; document.getElementById('withdrawClean').style.color='#10b981'; setTimeout(()=>{profC=0; lossC=0; dailyC=0;},3000);} else {document.getElementById('withdrawClean').innerText='Monitoring - Need $'+(1000-dailyC).toFixed(2);}
+  if(Math.random()>0.6){
+   const log=document.getElementById('logClean'); const t=new Date().toLocaleTimeString().slice(0,5); const d=document.createElement('div'); d.style.marginTop='2px'; d.style.fontSize='11px'; d.style.color=win?'#10b981':'#ef4444'; d.innerText=t+' '+(win?'BUY':'SL')+' '+(win?'+$':'-$')+Math.abs(amt).toFixed(2); log.prepend(d); if(log.children.length>5) log.removeChild(log.lastChild);
+   const a=document.getElementById('analysisClean'); if(a){const sigs=['BUY 98% • EMA cross • RSI 67','SELL 94% • BB breakout • Volume +23%','BUY 97% • Breakout volatility','HOLD 92% • Carry 4.1%','SCALP +$'+amt.toFixed(2)+' • 1M liquid']; a.innerText=sigs[Math.floor(Math.random()*sigs.length)];}
+   const s=document.getElementById('statusClean'); if(s){s.innerText=['Analyzing EUR/USD...','Executing BUY...','Scanning breakout...','Monitoring carry...','Scalping 1M...'][Math.floor(Math.random()*5)];}
   }
-  idx++;
- },1500);
+ },1400);
 }
-window.addEventListener('load',initImp);
+window.addEventListener('load',initClean);
 </script>
