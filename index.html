@@ -1,80 +1,105 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SolarAI Capital | Delaware HQ - White Pro + Notifications</title>
+<title>SolarAI Capital - Trading Dashboard - Delaware HQ</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="https://s3.tradingview.com/tv.js"></script>
+<script src="https://s3.tradingview.com/tv.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#ffffff;color:#0f172a;font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif}
-header{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e2e8f0;background:#fffffff0;backdrop-filter:blur(20px);position:sticky;top:0;z-index:20}
-.card{background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px #00000008}
-.btn{padding:10px 16px;border-radius:8px;border:none;font-weight:600;cursor:pointer;font-size:13px}
-.btn-black{background:#0f172a;color:#fff}.btn-outline{background:#fff;border:1px solid #e2e8f0}
-.page{display:none;max-width:1200px;margin:0 auto;padding:24px}.page.active{display:block}
-input,select{width:100%;padding:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;margin-top:6px}
-.badge{font-size:10px;padding:4px 8px;border-radius:20px;background:#f1f5f9;border:1px solid #e2e8f0;color:#475569}
-.badge-green{background:#dcfce7;border-color:#bbf7d0;color:#166534}
-.stat{font-size:36px;font-weight:700;letter-spacing:-1px}
-.notif{position:fixed;top:70px;right:16px;width:360px;max-width:90vw;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 10px 30px #00000018;z-index:30;display:none;max-height:80vh;overflow:auto}
-.notif.show{display:block}
-.notif-item{padding:12px 14px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;gap:8px}
-.notif-item:last-child{border:none}
+body{background:#070a12;color:#e5e7eb;font-family:Inter,system-ui}
+.topbar{padding:10px 16px;display:flex;justify-content:space-between;align-items:center;background:#0a0d1a;border-bottom:1px solid #1e293b}
+.logo{color:#fbbf24;font-weight:800;letter-spacing:0.5px}
+.top-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:12px}
+.stat-card{background:#111827;border:1px solid #1f2937;border-radius:10px;padding:12px;text-align:center;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:#334155;border-radius:2px}
+.stat-label{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;display:flex;align-items:center;justify-content:center;gap:4px}
+.stat-value{font-size:16px;font-weight:800;margin-top:4px}
+.stat-change{font-size:10px;color:#10b981;margin-top:2px}
+.stat-profit{color:#fbbf24}.stat-robot{color:#e5e7eb}
+.stat-sub{font-size:9px;color:#64748b;margin-top:2px}
+.main{display:grid;grid-template-columns:1fr 300px;gap:10px;padding:0 12px 12px}
+.chart-wrap{background:#0f121e;border:1px solid #1e2937;border-radius:10px;overflow:hidden}
+.chart-header{padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e2937;background:#0f121e}
+.chart-header-left{font-size:12px;display:flex;gap:10px;align-items:center}
+.timeframes{display:flex;gap:4px}
+.tf{padding:3px 8px;border-radius:4px;font-size:11px;background:#1e2937;color:#94a3b8;cursor:pointer;border:none}
+.tf.active{background:#fbbf24;color:#000;font-weight:700}
+.right-panel{background:#0f121e;border:1px solid #1e2937;border-radius:10px;overflow:hidden}
+.panel-header{padding:10px 12px;border-bottom:1px solid #1e2937;display:flex;justify-content:space-between;align-items:center}
+.signal-count{font-size:10px;background:#1e2937;padding:2px 6px;border-radius:10px;color:#94a3b8}
+.mode-box{background:#0a0d1a;margin:10px;border:1px solid #1e2937;border-radius:8px;padding:8px}
+.mode-label{font-size:9px;color:#64748b}
+.mode-val{font-size:11px;color:#10b981;margin-top:2px;background:#10b98118;padding:4px 8px;border-radius:12px;display:inline-block}
+.countdown{font-size:18px;font-weight:800;color:#fbbf24;text-align:right}
+.signal-item{margin:8px 10px;padding:8px;background:#111827;border:1px solid #1f2937;border-radius:8px;border-left:3px solid #10b981;display:flex;justify-content:space-between;align-items:center}
+.signal-title{font-size:11px;font-weight:700}
+.signal-meta{font-size:9px;color:#64748b;margin-top:2px}
+.btn-buy{background:#fbbf24;color:#000;border:none;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:800;cursor:pointer}
+.badge-hq{font-size:8px;color:#10b981;border:1px solid #10b98130;padding:3px 6px;border-radius:10px}
+@media(max-width:900px){.top-stats{grid-template-columns:repeat(3,1fr)}.main{grid-template-columns:1fr}.right-panel{order:-1}}
 </style>
 <script>
 const firebaseConfig={apiKey:"AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko",authDomain:"solarai-capital.firebaseapp.com",projectId:"solarai-capital",storageBucket:"solarai-capital.firebasestorage.app",messagingSenderId:"722787765054",appId:"1:722787765054:web:68ff0eac7bd505c077fa6f"};
 firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
-function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function toggleNotif(){document.getElementById('notifBox').classList.toggle('show');}
-function clearNotifs(){document.getElementById('notifList').innerHTML='<div style="padding:30px;text-align:center;color:#64748b;font-size:13px">✅ All cleared<br>Dashboard clean</div>';document.getElementById('notifCount').style.display='none';setTimeout(()=>{document.getElementById('notifBox').classList.remove('show');},600);}
 </script></head><body>
-<header>
-<div><b>SolarAI Capital</b> <span style="font-size:10px;color:#64748b;background:#f1f5f9;border:1px solid #e2e8f0;padding:4px 10px;border-radius:20px;margin-left:8px">HQ: Lewes, DE 19958 • Delaware LLC • NOT Africa</span></div>
-<div style="display:flex;align-items:center;gap:12px">
-<nav style="font-size:13px;display:flex;gap:14px;align-items:center"><a href="#" onclick="show('portfolio')" style="color:#0f172a;text-decoration:none;font-weight:600;border-bottom:2px solid #0f172a;padding-bottom:2px">Portfolio</a><a href="#" onclick="show('packages')" style="color:#64748b;text-decoration:none">Packages</a><a href="#" onclick="show('transactions')" style="color:#64748b;text-decoration:none">Transactions</a><a href="admin.html" style="background:#0f172a;color:#fff;padding:6px 12px;border-radius:6px;text-decoration:none">Admin</a></nav>
-<div style="position:relative"><button onclick="toggleNotif()" style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 12px;cursor:pointer;position:relative">🔔 <span id="notifCount" style="position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:9px;padding:2px 5px;border-radius:10px">4</span></button>
-<div id="notifBox" class="notif">
-<div style="padding:14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e2e8f0"><b style="font-size:14px">Dashboard Notifications</b><button onclick="clearNotifs()" class="btn" style="background:#f1f5f9;border:1px solid #e2e8f0;padding:4px 8px;font-size:11px">Clear All</button></div>
-<div id="notifList">
-<div class="notif-item"><div><b style="font-size:12px">Total Balance $18.17</b><p style="font-size:11px;color:#64748b">Risk: 22/100 LOW • +12% Above Market</p></div><span class="badge-green">LIVE</span></div>
-<div class="notif-item"><div><b style="font-size:12px">Risk Score: LOW</b><p style="font-size:11px;color:#64748b">AI Conservative • KYC Verified</p></div><span class="badge">Trust High</span></div>
-<div class="notif-item"><div><b style="font-size:12px">ESG Score A+ • Delaware Verified</b><p style="font-size:11px;color:#64748b">Homes Impact: 3 • Solar Powered</p></div><span class="badge-green">Verified</span></div>
-<div class="notif-item"><div><b style="font-size:12px">Balance + Contract: $18.17 • 30 days</b><p style="font-size:11px;color:#64748b">Delaware Treasury: TATe...Fra • Benchmark vs Market: +12%</p><p style="font-size:10px;color:#0f172a;margin-top:2px">HQ: Delaware, USA • NOT Africa • Lewes, DE 19958</p></div><button onclick="this.parentElement.remove()" style="background:none;border:none;cursor:pointer;color:#94a3b8">✕</button></div>
-</div>
-</div>
-</div>
-</div>
-</header>
-
-<div id="portfolio" class="page active">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h1 style="font-size:26px;font-weight:700;letter-spacing:-0.8px">Portfolio Overview</h1><button onclick="clearNotifs()" class="btn btn-outline" style="font-size:12px">🧹 Clear Dashboard</button></div>
-
-<div class="card" style="padding:24px">
-<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px">
-<div><small style="color:#64748b;text-transform:uppercase;font-size:11px;letter-spacing:1px">Total Balance</small><div class="stat" id="pb">$18.17</div><div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap"><span class="badge-green">Risk: 22/100 LOW</span><span class="badge" style="background:#dbeafe;border-color:#bfdbfe;color:#1e40af">+12% Above Market Avg</span><span class="badge">30 Days Contract</span></div><p style="font-size:12px;color:#475569;margin-top:10px">ROI: <b>247%</b> • Benchmark: Market 5.2% vs You 8% • Impact: 3 homes powered • Delaware LLC #2026-12345</p></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center"><small style="color:#64748b">Risk Score</small><h3>LOW</h3><small style="color:#166534">AI Conservative</small></div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center"><small style="color:#64748b">Trust Level</small><h3>High</h3><small>KYC Verified</small></div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center"><small style="color:#64748b">ESG Score</small><h3>A+</h3><small>Delaware Verified</small></div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center"><small style="color:#64748b">Homes Impact</small><h3>3</h3><small>Solar Powered</small></div></div>
-</div>
+<div class="topbar">
+<div><span class="logo">☀️ SOLARAI CAPITAL</span> <span class="badge-hq">HQ: 16192 Coastal Hwy, Lewes, DE 19958 • Delaware LLC • NOT Africa</span></div>
+<div style="display:flex;gap:8px;align-items:center;font-size:12px"><a href="#" style="background:#fbbf24;color:#000;padding:5px 12px;border-radius:6px;text-decoration:none;font-weight:700">🔑 Sign In</a><a href="#" style="color:#94a3b8;text-decoration:none">Sign Out</a><a href="admin.html" style="background:#1e2937;color:#fff;padding:5px 10px;border-radius:6px;text-decoration:none;border:1px solid #334155">Admin</a></div>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:14px">
-<div class="card"><small style="color:#64748b">Balance + Contract</small><h3 style="margin-top:4px">$18.17 • 30 days</h3><small style="color:#64748b">Delaware Treasury: TATe...Fra</small></div>
-<div class="card"><small style="color:#64748b">Personalized Risk Scoring</small><h3 style="margin-top:4px;color:#166534">22/100 LOW</h3><small>Builds investor trust with clarity</small></div>
-<div class="card"><small style="color:#64748b">Benchmark vs Market</small><h3 style="margin-top:4px">+12% Above Avg</h3><small>Comparative insights</small></div>
-<div class="card"><small style="color:#64748b">HQ Location</small><h3 style="margin-top:4px">Delaware, USA</h3><small>NOT Africa • Lewes, DE 19958</small></div>
+<div class="top-stats">
+<div class="stat-card"><div class="stat-label">₿ BTC</div><div class="stat-value" style="color:#fbbf24">$76,670</div><div class="stat-change">▲ 0.89%</div></div>
+<div class="stat-card"><div class="stat-label">Ξ ETH</div><div class="stat-value" style="color:#fff">$2,457.43</div><div class="stat-change">▲ 1.06%</div></div>
+<div class="stat-card"><div class="stat-label">◆ BNB</div><div class="stat-value">$728.16</div><div class="stat-change">▲ 1.30%</div></div>
+<div class="stat-card"><div class="stat-label">◎ SOL</div><div class="stat-value">$101.25</div><div class="stat-change">▲ 2.09%</div></div>
+<div class="stat-card" style="border-color:#fbbf2430"><div class="stat-label">🤖 ROBOT</div><div class="stat-value stat-robot" id="robotBal">$18.17</div><div class="stat-sub">BALANCE<br>LIVE TRADING</div></div>
+<div class="stat-card" style="border-color:#10b98130"><div class="stat-label">💰 PROFIT</div><div class="stat-value stat-profit" id="profitBal">$8.60</div><div class="stat-sub">Vault: $9.65<br>0 trades</div></div>
 </div>
 
-<div class="card" style="margin-top:14px;height:340px;padding:0;overflow:hidden"><div id="tv" style="height:100%"></div></div>
+<div class="main">
+<div class="chart-wrap">
+<div class="chart-header">
+<div class="chart-header-left"><span style="font-weight:700">₿ BTCUSDT</span><span style="color:#64748b">5m</span><span style="color:#fbbf24;font-weight:700">$76,670</span><div class="timeframes" style="margin-left:10px"><button class="tf">1m</button><button class="tf">30m</button><button class="tf">1h</button><button class="tf active">5m</button></div><span style="margin-left:10px;color:#64748b;font-size:11px">Indicators</span></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="width:8px;height:8px;background:#10b981;border-radius:50%;display:inline-block"></span><span style="font-size:10px;background:#0f172a;border:1px solid #1e2937;padding:3px 8px;border-radius:12px">● LIVE 24H</span></div>
+</div>
+<div style="padding:8px;background:#0a0d1a;border-bottom:1px solid #1e2937;display:flex;gap:12px;font-size:11px;flex-wrap:wrap"><span>1m</span><span>30m</span><span>1h</span><span style="background:#1e2937;padding:2px 6px;border-radius:4px">5m</span><span>⚙️</span><span>📊</span><span style="margin-left:10px">⊕ Indicators</span></div>
+<div id="tv_chart" style="height:520px"></div>
 </div>
 
-<div id="packages" class="page"><h1 style="font-size:22px">Investment Packages - Dynamic Customization</h1><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px"><div class="card"><h3>$100 Starter - 3.3% daily</h3><select style="margin-top:8px"><option>30 days</option><option>90 days</option></select><button onclick="show('transactions')" class="btn btn-outline" style="width:100%;margin-top:8px">Invest</button></div><div class="card" style="border-color:#0f172a"><h3>$500 Pro - 5% daily</h3><button onclick="show('transactions')" class="btn btn-black" style="width:100%;margin-top:8px">Invest - Delaware LLC</button></div><div class="card"><h3>$1000 VIP - 8% daily</h3><button onclick="show('transactions')" class="btn btn-outline" style="width:100%;margin-top:8px">Invest</button></div></div></div>
-<div id="transactions" class="page"><h1 style="font-size:22px">Transactions - Multi-currency</h1><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;max-width:800px"><div class="card"><h4>Deposit</h4><input id="depAmt" type="number" placeholder="Amount"><p style="font-size:11px;background:#f8fafc;border:1px solid #e2e8f0;padding:6px;border-radius:6px;margin-top:6px;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</p><button onclick="doDep()" class="btn btn-black" style="width:100%;margin-top:8px">Deposit to Delaware HQ</button></div><div class="card"><h4>Withdraw</h4><input id="wAmt" type="number" placeholder="Amount"><input id="wAddr" placeholder="Address"><button onclick="doWit()" class="btn btn-black" style="width:100%;margin-top:8px">Withdraw</button></div></div></div>
+<div class="right-panel">
+<div class="panel-header"><div style="font-size:11px;font-weight:700;display:flex;align-items:center;gap:6px">🤖 AI SIGNALS - ADMIN ONLY</div><span class="signal-count">60 signals</span></div>
+
+<div class="mode-box"><div style="display:flex;justify-content:space-between"><div><div class="mode-label">TRADING MODE</div><div class="mode-val">🟢 ROBOT - LIVE 24H</div></div><div style="text-align:right"><div class="mode-label">COUNTDOWN 4H</div><div class="countdown" id="countdown">02:13:48</div><div style="font-size:9px;color:#64748b">52 / 120 trades</div></div></div></div>
+
+<div style="padding:0 10px;display:flex;gap:8px"><div style="flex:1;background:#1e2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:18px;font-weight:800">2</div><div style="font-size:9px;color:#64748b">Active</div></div><div style="flex:1;display:flex;gap:6px"><button style="flex:1;background:#1e2937;border:1px solid #334155;color:#94a3b8;border-radius:6px;padding:6px;font-size:10px">Reset S2</button><button style="flex:1;background:#fbbf24;color:#000;border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:800">Trade</button></div></div>
+
+<div id="signalsList" style="margin-top:10px">
+<div class="signal-item"><div><div class="signal-title">BUY SOL</div><div class="signal-meta">2:48:02 PM | RSI Breakout | Conf 73%</div></div><button class="btn-buy">BUY</button></div>
+<div class="signal-item"><div><div class="signal-title">BUY SOL</div><div class="signal-meta">2:48:23 PM | MACD Cross | Conf 81%</div></div><button class="btn-buy">BUY</button></div>
+<div class="signal-item"><div><div class="signal-title">BUY SOL</div><div class="signal-meta">2:49:02 PM | Volume Spike | Conf 69%</div></div><button class="btn-buy">BUY</button></div>
+<div class="signal-item"><div><div class="signal-title">BUY SOL</div><div class="signal-meta">2:49:45 PM | Bollinger | Conf 77%</div></div><button class="btn-buy">BUY</button></div>
+<div class="signal-item"><div><div class="signal-title">BUY BTC</div><div class="signal-meta">2:50:12 PM | Delaware Model | Conf 89%</div></div><button class="btn-buy">BUY</button></div>
+</div>
+
+<div style="padding:10px"><button onclick="clearSignals()" style="width:100%;background:#0a0d1a;border:1px solid #1e2937;color:#64748b;padding:8px;border-radius:6px;font-size:11px;cursor:pointer">🧹 Clear Signals - Clear Dashboard Notifications</button><p style="font-size:9px;color:#475569;margin-top:8px;text-align:center">HQ: 16192 Coastal Hwy, Lewes, DE 19958 • Delaware LLC #2026-12345 • NOT Africa • Delaware Treasury: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</p></div>
+</div>
+</div>
 
 <script>
 auth.onAuthStateChanged(async u=>{
- if(u){try{const d=await db.collection('users').doc(u.email).get();if(d.exists)document.getElementById('pb').innerText='$'+(d.data().robotBalance||18.17);}catch(e){}}
- if(window.TradingView){new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",theme:"light",style:"1",container_id:"tv"});}
+ if(u){try{const d=await db.collection('users').doc(u.email).get();if(d.exists){const data=d.data();document.getElementById('robotBal').innerText='$'+(data.robotBalance||18.17);document.getElementById('profitBal').innerText='$'+(data.profit||8.60);}}catch(e){}}
 });
-async function doDep(){const u=auth.currentUser;if(!u)return alert('Login first');await db.collection('deposits').add({email:u.email,amount:parseFloat(document.getElementById('depAmt').value),hq:'Delaware',status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Deposit to Delaware HQ');clearNotifs();}
-async function doWit(){const u=auth.currentUser;if(!u)return alert('Login first');await db.collection('withdrawals').add({email:u.email,amount:parseFloat(document.getElementById('wAmt').value),address:document.getElementById('wAddr').value,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Withdraw sent');clearNotifs();}
+
+new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",timezone:"Etc/UTC",theme:"dark",style:"1",locale:"en",toolbar_bg:"#0f121e",enable_publishing:false,hide_top_toolbar:false,hide_legend:false,container_id:"tv_chart"});
+
+function clearSignals(){document.getElementById('signalsList').innerHTML='<div style="padding:30px;text-align:center;color:#64748b;font-size:12px">✅ Cleared<br>Dashboard notifications cleared<br>No active signals</div>';}
+
+setInterval(()=>{
+ const el=document.getElementById('countdown');
+ if(!el)return;
+ let [h,m,s]=el.innerText.split(':').map(Number);
+ s--; if(s<0){s=59;m--;} if(m<0){m=59;h--;} if(h<0){h=2;m=13;s=48;}
+ el.innerText=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+},1000);
 </script>
 </body></html>
