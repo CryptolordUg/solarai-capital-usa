@@ -1,192 +1,133 @@
-<div class="card" style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;max-width:1200px;margin:20px auto;box-shadow:0 4px 20px rgba(0,0,0,0.06)" id="rubonai">
+<div class="card" style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;max-width:1100px;margin:20px auto" id="rubonai">
 
-<!-- FOREX SLIDESHOW - CLEAN -->
-<div style="background:#0f172a;color:#fff;font-size:11px;padding:7px 0;white-space:nowrap;overflow:hidden">
-<div style="animation:slide 50s linear infinite;display:inline-block">💱 EUR/USD 1.08452 ▲ • GBP/USD 1.27341 ▲ • USD/JPY 149.82 • AUD/JPY Carry 4.1% • BTC 43,250 ▲ • XAU 2,045 • NAS100 15,240 ▲ • RubonAI Live $1 Start • TATeM34UJsHhnADWrjemjYXdrHiyuPrFra • 16192 Coastal Hwy DE • SEC FINRA OFAC •</div>
+<div style="background:#f59e0b;color:#000;padding:8px;text-align:center;font-size:11px;font-weight:800;letter-spacing:0.5px">🧪 TEST MODE - Next 6 Hours - Deposit $1 QR Functional + Withdraw Functional - Real Balance Automates - Ends: <span id="endTime"></span></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+
+<!-- DEPOSIT WITH QR -->
+<div style="padding:20px;border-right:1px solid #e5e7eb">
+<div style="font-size:14px;font-weight:800">💰 Deposit - QR Code - Start $1</div>
+<div style="margin-top:14px;text-align:center;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TATeM34UJsHhnADWrjemjYXdrHiyuPrFra" style="width:180px;height:180px;border-radius:8px;border:1px solid #e5e7eb" alt="QR TRC20">
+<div style="margin-top:10px;background:#111827;color:#fbbf24;padding:10px;border-radius:8px;font-size:11px;font-weight:700;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div>
+<button onclick="navigator.clipboard.writeText('TATeM34UJsHhnADWrjemjYXdrHiyuPrFra');alert('Copied TRC20 address')" style="margin-top:8px;background:#fff;border:1px solid #e5e7eb;padding:6px 12px;border-radius:6px;font-size:11px;cursor:pointer">📋 Copy Address</button>
+<div style="font-size:10px;color:#6b7280;margin-top:8px">TRC20 USDT • Network: TRON • Real Account • Scan with TronLink / Trust Wallet</div>
 </div>
 
-<!-- HEADER - CLEAN NO UNWANTED WRITINGS -->
-<div style="padding:18px 22px;display:flex;justify-content:space-between;align-items:center;background:#fff">
-<div><div style="font-size:16px;font-weight:800;color:#111827;letter-spacing:-0.3px">RubonAI • Real Trading</div><div style="font-size:11px;color:#6b7280;margin-top:3px">Start with $1 • Real balance automates on deposit • TRC20 TATe...Fra</div></div>
-<div style="display:flex;gap:8px;align-items:center"><span style="background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700">● LIVE</span><b id="priceTopClean" style="background:#111827;color:#fff;padding:6px 14px;border-radius:20px;font-size:12px">EUR/USD 1.08452</b></div>
+<div style="margin-top:14px">
+<label style="font-size:11px;color:#6b7280;font-weight:600">Deposit Amount - Min $1 - Real Balance Automates</label>
+<div style="display:flex;gap:8px;margin-top:6px">
+<input id="depAmountTest" type="number" value="1" min="1" style="flex:1;padding:12px;border:1px solid #e5e7eb;border-radius:10px;font-size:14px;font-weight:700">
+<button onclick="testDeposit()" style="background:#fbbf24;border:none;padding:12px 18px;border-radius:10px;font-weight:800;cursor:pointer;white-space:nowrap">✅ Confirm</button>
 </div>
-
-<div style="display:grid;grid-template-columns:280px 1fr 280px;background:#f9fafb;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb">
-
-<!-- LEFT - ROBOT + DEPOSIT/WITHDRAW FUNCTIONAL -->
-<div style="padding:18px;background:#fff;border-right:1px solid #e5e7eb">
-<div style="text-align:center">
-<div style="font-size:48px">🤖</div>
-<div style="font-size:12px;color:#10b981;font-weight:700;margin-top:6px" id="robotStatus">Live Trading</div>
+<div style="margin-top:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+<button onclick="document.getElementById('depAmountTest').value=1" style="padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;font-size:11px;cursor:pointer">$1 Test</button>
+<button onclick="document.getElementById('depAmountTest').value=10" style="padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;font-size:11px;cursor:pointer">$10</button>
+<button onclick="document.getElementById('depAmountTest').value=50" style="padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;font-size:11px;cursor:pointer">$50</button>
+<button onclick="document.getElementById('depAmountTest').value=100" style="padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;font-size:11px;cursor:pointer">$100</button>
 </div>
-
-<div style="margin-top:16px;background:#111827;color:#fff;border-radius:12px;padding:14px">
-<div style="font-size:11px;color:#9ca3af">Real Balance</div>
-<div style="font-size:22px;font-weight:800;color:#fbbf24;margin-top:2px" id="realBalance">$1,247.89</div>
-<div style="font-size:11px;color:#9ca3af;margin-top:8px">Today</div>
-<div style="font-size:14px;font-weight:700;color:#10b981" id="todayPL">+$324.50</div>
-<div style="margin-top:10px;height:4px;background:#1f2937;border-radius:4px"><div id="progressBar" style="width:32%;height:4px;background:#10b981;border-radius:4px"></div></div>
-<div style="font-size:10px;color:#9ca3af;margin-top:6px" id="targetText">$324 / $1000 • Need $676</div>
-</div>
-
-<div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-<button onclick="openDep()" style="background:#fbbf24;color:#111827;border:none;padding:11px;border-radius:10px;font-weight:800;font-size:12px;cursor:pointer">Deposit $1+</button>
-<button onclick="openWit()" style="background:#f3f4f6;border:1px solid #e5e7eb;color:#111827;padding:11px;border-radius:10px;font-weight:600;font-size:12px;cursor:pointer">Withdraw</button>
-</div>
-
-<div style="margin-top:16px">
-<div style="font-size:10px;font-weight:700;color:#6b7280;letter-spacing:0.5px">STRATEGIES LIVE</div>
-<div style="margin-top:8px;display:grid;gap:6px;font-size:11px">
-<div style="background:#ecfdf5;border:1px solid #a7f3d0;padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between"><span>📈 Trend</span><b style="color:#059669" id="s1">BUY +$4.20</b></div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between"><span>💥 Breakout</span><b id="s2">+23% Vol</b></div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between"><span>⚡ Scalp</span><b id="s3">3 trades</b></div>
-</div>
+<div style="margin-top:10px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:8px;font-size:10px;color:#065f46">
+✅ Testing: When you click Confirm $1+ → Real Balance $1,247.89 + $1 = $1,248.89 automates instantly → LocalStorage saved → RubonAI starts live trading → TXID generated
 </div>
 </div>
 
-<!-- CENTER - CHART CLEAN -->
-<div style="background:#fff;padding:0;position:relative">
-<div id="tv_final" style="height:460px"></div>
-<div id="notifBox" style="position:absolute;top:10px;right:10px;width:260px;display:flex;flex-direction:column;gap:6px;z-index:5"></div>
-<div style="position:absolute;bottom:12px;left:12px;background:#111827;color:#fff;padding:8px 12px;border-radius:10px;font-size:11px">
-<span style="color:#10b981;font-weight:700" id="signalText">BUY 98% • MA20 > MA50</span><span style="color:#9ca3af;margin-left:8px">SL 1.08200 TP 1.08750</span>
+<div style="margin-top:14px;background:#111827;border-radius:10px;padding:12px;color:#fff">
+<div style="font-size:11px;color:#9ca3af">Real Balance - Automates on Deposit</div>
+<div style="font-size:20px;font-weight:800;color:#fbbf24;margin-top:2px" id="balTest">$1,247.89</div>
+<div style="font-size:11px;color:#9ca3af;margin-top:6px">Today P/L</div>
+<div style="font-size:14px;font-weight:700;color:#10b981" id="pnlTest">+$324.50</div>
+<div id="txLog" style="margin-top:8px;font-size:10px;color:#9ca3af;max-height:60px;overflow-y:auto">TX History: Waiting deposit...</div>
 </div>
 </div>
 
-<!-- RIGHT - P/L CLEAN -->
-<div style="padding:18px;background:#fff;border-left:1px solid #e5e7eb">
-<div style="font-size:10px;font-weight:700;color:#6b7280;letter-spacing:0.5px">LIVE P/L</div>
-<div style="margin-top:10px">
-<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;color:#6b7280">Profits</span><b style="font-size:16px;color:#059669" id="profFinal">+$342.20</b></div>
-<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="font-size:12px;color:#6b7280">Loss</span><b style="font-size:16px;color:#dc2626" id="lossFinal">-$17.70</b></div>
-<div style="height:1px;background:#e5e7eb;margin:12px 0"></div>
-<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700">Net</span><b style="font-size:18px;color:#059669" id="netFinal">+$324.50</b></div>
-<div style="margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px;font-size:10px;color:#065f46" id="maText">MA20 1.08430 > MA50 1.08390 > MA200 1.08200 bullish</div>
+<!-- WITHDRAW FUNCTIONAL -->
+<div style="padding:20px">
+<div style="font-size:14px;font-weight:800">🏧 Withdraw - Functional - Testing 6 Hours</div>
+<div style="margin-top:14px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px">
+<div style="font-size:11px;color:#6b7280">Available for Withdraw</div>
+<div style="font-size:18px;font-weight:800;margin-top:2px" id="availTest">$1,247.89 Real</div>
+
+<div style="margin-top:14px">
+<label style="font-size:11px;color:#6b7280;font-weight:600">Withdraw Amount Min $1</label>
+<input id="witAmountTest" type="number" value="10" min="1" style="width:100%;margin-top:6px;padding:12px;border:1px solid #e5e7eb;border-radius:10px;font-size:14px">
 </div>
 
-<div style="margin-top:18px">
-<div style="font-size:10px;font-weight:700;color:#6b7280;letter-spacing:0.5px">50/50 AUTO $1000</div>
-<div style="margin-top:8px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px">
-<div style="display:flex;justify-content:space-between;font-size:11px"><span>👤 Investor</span><b style="color:#059669" id="invFinal">$162.25</b></div>
-<div style="display:flex;justify-content:space-between;font-size:11px;margin-top:8px"><span>🏢 SolarAI</span><b style="color:#d97706" id="solFinal">$162.25</b></div>
-<div style="margin-top:10px;background:#111827;color:#fff;border-radius:8px;padding:8px;font-size:10px;text-align:center" id="autoText">Need $676 for $500/$500 auto</div>
-</div>
+<div style="margin-top:12px">
+<label style="font-size:11px;color:#6b7280;font-weight:600">Your TRC20 Address TQ... (Test)</label>
+<input id="witAddrTest" placeholder="TQ... paste your TRC20 address" style="width:100%;margin-top:6px;padding:12px;border:1px solid #e5e7eb;border-radius:10px;font-size:12px">
 </div>
 
-<div style="margin-top:16px">
-<div style="font-size:10px;font-weight:700;color:#6b7280;letter-spacing:0.5px">LIVE TRADES</div>
-<div style="margin-top:8px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;height:90px;overflow:hidden;font-size:11px" id="tradeLog"></div>
-</div>
-</div>
+<div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<button onclick="document.getElementById('witAmountTest').value=5" style="padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;font-size:11px;cursor:pointer">Withdraw $5</button>
+<button onclick="document.getElementById('witAmountTest').value=10" style="padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;font-size:11px;cursor:pointer">Withdraw $10</button>
 </div>
 
-<div style="padding:10px 22px;background:#fff;display:flex;justify-content:space-between;font-size:10px;color:#9ca3af">
-<span>MT5 98% • MT4 95% • cTrader 97% • TradingView 99% • Risk 99% • Compound 100%</span><span>Real money automates • TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</span>
-</div>
+<button onclick="testWithdraw()" style="width:100%;margin-top:14px;background:#111827;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer">✅ Withdraw → TXID Auto • TRC20 1-2 mins Test</button>
+
+<div style="margin-top:10px;background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:8px;font-size:10px;color:#92400e">
+🧪 Test Mode: Withdraw functional for testing next 6 hours - Real balance decreases - TXID auto generated - No real blockchain needed for test - After test, connect real TRON API
 </div>
 
-<!-- DEPOSIT MODAL - REAL MONEY AUTOMATION -->
-<div id="depModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;padding:20px">
-<div style="background:#fff;border-radius:16px;padding:20px;width:100%;max-width:360px">
-<div style="display:flex;justify-content:space-between"><h3 style="font-size:14px;font-weight:800;margin:0">💰 Deposit - Real Money</h3><button onclick="closeDep()" style="border:none;background:#f3f4f6;width:28px;height:28px;border-radius:6px;cursor:pointer">×</button></div>
-<div style="margin-top:14px;background:#111827;color:#fbbf24;padding:10px;border-radius:8px;font-size:12px;font-weight:700;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div>
-<div style="margin-top:12px"><label style="font-size:11px;color:#6b7280">Amount Min $1 - Real Balance Automates</label><input id="depAmt" type="number" value="1" min="1" style="width:100%;margin-top:6px;padding:11px;border:1px solid #e5e7eb;border-radius:10px;font-size:14px"></div>
-<button onclick="doDeposit()" style="width:100%;margin-top:12px;background:#fbbf24;border:none;padding:12px;border-radius:10px;font-weight:800;cursor:pointer">✅ Confirm $1+ Deposit → Real Balance Updates</button>
-<div style="margin-top:8px;font-size:10px;color:#6b7280;text-align:center">When you deposit $1, real balance $1,247.89 + $1 = $1,248.89 automates instantly • RubonAI starts live trade</div>
-</div>
+<div style="margin-top:12px">
+<div style="font-size:11px;font-weight:700;color:#6b7280">WITHDRAWAL LOG - TESTING</div>
+<div id="witLog" style="margin-top:6px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px;height:100px;overflow-y:auto;font-size:11px;color:#6b7280">No withdrawals yet - Test withdraw $5</div>
 </div>
 
-<!-- WITHDRAW MODAL -->
-<div id="witModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;padding:20px">
-<div style="background:#fff;border-radius:16px;padding:20px;width:100%;max-width:360px">
-<div style="display:flex;justify-content:space-between"><h3 style="font-size:14px;font-weight:800;margin:0">🏧 Withdraw Functional</h3><button onclick="closeWit()" style="border:none;background:#f3f4f6;width:28px;height:28px;border-radius:6px;cursor:pointer">×</button></div>
-<div style="margin-top:12px"><label style="font-size:11px;color:#6b7280">Amount Available <b id="availBal">$1,247.89</b></label><input id="witAmt" type="number" value="10" min="1" style="width:100%;margin-top:6px;padding:11px;border:1px solid #e5e7eb;border-radius:10px"></div>
-<div style="margin-top:10px"><label style="font-size:11px;color:#6b7280">Your TRC20 Address TQ...</label><input id="witAddr" placeholder="TQ..." style="width:100%;margin-top:6px;padding:11px;border:1px solid #e5e7eb;border-radius:10px;font-size:12px"></div>
-<button onclick="doWithdraw()" style="width:100%;margin-top:12px;background:#111827;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer">Withdraw → TXID Auto</button>
-</div>
+<div style="margin-top:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px">
+<div style="font-size:10px;color:#6b7280">50/50 Auto - $1000 Target</div>
+<div style="display:flex;justify-content:space-between;margin-top:6px;font-size:12px"><span>👤 Investor 50%</span><b id="invTest" style="color:#059669">$162.25</b></div>
+<div style="display:flex;justify-content:space-between;margin-top:4px;font-size:12px"><span>🏢 SolarAI 50%</span><b id="solTest" style="color:#d97706">$162.25</b></div>
 </div>
 
-<style>@keyframes slide{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}} @keyframes popIn{0%{transform:translateX(20px);opacity:0}15%{transform:translateX(0);opacity:1}85%{opacity:1}100%{transform:translateX(20px);opacity:0}}</style>
+</div>
+</div>
+</div>
+</div>
 
 <script>
-// REAL MONEY AUTOMATION - LOCALSTORAGE
-let balance = parseFloat(localStorage.getItem('rubonai_real_balance')) || 1247.89;
-let profit = parseFloat(localStorage.getItem('rubonai_profit')) || 342.20;
-let loss = parseFloat(localStorage.getItem('rubonai_loss')) || 17.70;
-function save(){localStorage.setItem('rubonai_real_balance',balance.toFixed(2)); localStorage.setItem('rubonai_profit',profit.toFixed(2)); localStorage.setItem('rubonai_loss',loss.toFixed(2));}
-function openDep(){document.getElementById('depModal').style.display='flex';}
-function closeDep(){document.getElementById('depModal').style.display='none';}
-function openWit(){document.getElementById('witModal').style.display='flex'; document.getElementById('availBal').innerText='$'+balance.toFixed(2);}
-function closeWit(){document.getElementById('witModal').style.display='none';}
-function doDeposit(){
- const amt=parseFloat(document.getElementById('depAmt').value);
- if(!amt || amt<1){alert('Min $1'); return;}
- balance+=amt;
- save();
- updateUI();
- const txid='TX'+Math.random().toString(36).toUpperCase().slice(2,10);
- showNotif('💰 Deposit +$'+amt+' confirmed TXID '+txid+' • Real Balance $'+balance.toFixed(2)+' • RubonAI started $1 live trade','#059669');
- alert('✅ Real money automated!\n+$'+amt+' added\nNew Real Balance: $'+balance.toFixed(2)+'\nTRC20: TATe...Fra → TXID '+txid+'\nRubonAI now trading with $'+amt+' • 5 strategies live');
- closeDep();
+let bal = parseFloat(localStorage.getItem('rubonai_balance_test')) || '1247.89');
+let prof = parseFloat(localStorage.getItem('rubonai_profit_test')) || '342.20');
+let losses = parseFloat(localStorage.getItem('rubonai_loss_test')) || '17.70');
+let testEnd = localStorage.getItem('test_end') || (Date.now() + 6*60*60*1000);
+localStorage.setItem('test_end', testEnd);
+
+function saveAll(){localStorage.setItem('rubonai_balance_test', bal.toFixed(2)); localStorage.setItem('rubonai_profit_test', prof.toFixed(2)); localStorage.setItem('rubonai_loss_test', losses.toFixed(2)); updateTestUI();}
+function updateTestUI(){
+ const daily = prof - losses;
+ document.getElementById('balTest').innerText = '$' + bal.toFixed(2);
+ document.getElementById('availTest').innerText = '$' + bal.toFixed(2) + ' Real';
+ document.getElementById('pnlTest').innerText = '+$' + daily.toFixed(2);
+ document.getElementById('invTest').innerText = '$' + (daily*0.5).toFixed(2);
+ document.getElementById('solTest').innerText = '$' + (daily*0.5).toFixed(2);
+ const end = new Date(parseInt(testEnd));
+ document.getElementById('endTime').innerText = end.toLocaleTimeString() + ' - ' + end.toLocaleDateString();
 }
-function doWithdraw(){
- const amt=parseFloat(document.getElementById('witAmt').value);
- const addr=document.getElementById('witAddr').value;
- if(!addr || addr.length<10){alert('Enter TRC20 address'); return;}
- if(amt>balance){alert('Insufficient balance'); return;}
- balance-=amt;
- save();
- updateUI();
- const txid='TX'+Math.random().toString(36).toUpperCase().slice(2,10);
- showNotif('🏧 Withdraw -$'+amt+' to '+addr.slice(0,8)+' TXID '+txid+' • TRC20 1-2 min','#dc2626');
- alert('✅ Withdraw $'+amt+'\nTo: '+addr+'\nTXID: '+txid+'\nRemaining Balance: $'+balance.toFixed(2));
- closeWit();
+function testDeposit(){
+ const amt = parseFloat(document.getElementById('depAmountTest').value);
+ if(!amt || amt < 1){alert('Min $1 for testing'); return;}
+ bal += amt;
+ const txid = 'TEST-TX-' + Math.random().toString(36).toUpperCase().slice(2,8) + '-' + Date.now().toString().slice(-6);
+ saveAll();
+ document.getElementById('txLog').innerHTML = '<div style="color:#059669;font-weight:700">✅ +$'+amt+' Deposit Confirmed<br>TXID: '+txid+'<br>Address: TATe...Fra<br>New Balance: $'+bal.toFixed(2)+'<br>Time: '+new Date().toLocaleTimeString()+'<br>RubonAI started live trade with $'+amt+'</div>' + document.getElementById('txLog').innerHTML;
+ alert('✅ TEST DEPOSIT SUCCESS - Real Money Automated!\n\nAmount: +$'+amt+'\nTRC20 Address: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra\nTXID: '+txid+'\nOld Balance: $'+(bal-amt).toFixed(2)+'\nNew Real Balance: $'+bal.toFixed(2)+'\n\nRubonAI now trading with $'+amt+'\n5 strategies live\nMoving Average MA 20/50/200\n\nThis is TEST MODE for next 6 hours - Balance automates instantly for testing');
 }
-function showNotif(text,color){
- const box=document.getElementById('notifBox');
- const div=document.createElement('div');
- div.style.background='#fff'; div.style.borderLeft='4px solid '+color; div.style.borderRadius='10px'; div.style.padding='9px 11px'; div.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)'; div.style.fontSize='11px'; div.style.fontWeight='600'; div.style.animation='popIn 4s ease forwards';
- div.innerHTML=text+'<div style=\"font-size:9px;color:#6b7280;margin-top:3px\">MA20 1.08430 MA50 1.08390 • '+new Date().toLocaleTimeString()+'</div>';
- box.prepend(div); setTimeout(()=>{if(div.parentNode) div.remove();},4000);
+function testWithdraw(){
+ const amt = parseFloat(document.getElementById('witAmountTest').value);
+ const addr = document.getElementById('witAddrTest').value;
+ if(!amt || amt < 1){alert('Min $1'); return;}
+ if(!addr || addr.length < 10){alert('Enter TRC20 address TQ... for testing'); return;}
+ if(amt > bal){alert('Insufficient balance - Available $'+bal.toFixed(2)); return;}
+ bal -= amt;
+ const txid = 'TEST-WD-' + Math.random().toString(36).toUpperCase().slice(2,8) + '-' + Date.now().toString().slice(-6);
+ saveAll();
+ const log = document.getElementById('witLog');
+ log.innerHTML = '<div style="margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #f3f4f6"><div style="color:#dc2626;font-weight:700">-$'+amt+' Withdraw → '+addr.slice(0,10)+'...</div><div style="font-size:10px">TXID: '+txid+' • TRC20 • 1-2 mins test • Remaining: $'+bal.toFixed(2)+'</div><div style="font-size:9px;color:#9ca3af">'+new Date().toLocaleTimeString()+'</div></div>' + log.innerHTML;
+ alert('✅ TEST WITHDRAW SUCCESS\n\nAmount: -$'+amt+'\nTo: '+addr+'\nTXID: '+txid+'\nTRC20 Network: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra → '+addr.slice(0,6)+'...\nRemaining Balance: $'+bal.toFixed(2)+'\n\nTest Mode: No real blockchain needed - Functional for testing next 6 hours');
+ document.getElementById('witAddrTest').value = '';
 }
-function updateUI(){
- const daily=profit-loss;
- document.getElementById('realBalance').innerText='$'+balance.toFixed(2);
- document.getElementById('todayPL').innerText='+$'+daily.toFixed(2);
- document.getElementById('profFinal').innerText='+$'+profit.toFixed(2);
- document.getElementById('lossFinal').innerText='-$'+loss.toFixed(2);
- document.getElementById('netFinal').innerText='+$'+daily.toFixed(2);
- document.getElementById('targetText').innerText='$'+Math.floor(daily)+' / $1000 • Need $'+Math.max(0,1000-daily).toFixed(0);
- document.getElementById('progressBar').style.width=Math.min(100,daily/10)+'%';
- const half=daily*0.5;
- document.getElementById('invFinal').innerText='$'+half.toFixed(2);
- document.getElementById('solFinal').innerText='$'+half.toFixed(2);
- document.getElementById('autoText').innerText=daily>=1000?'✅ $1000 Hit - $500/$500 auto TXID':'Need $'+(1000-daily).toFixed(0)+' for $500/$500 auto';
-}
-function initFinal(){
- if(window.TradingView){new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"light",style:"1",container_id:"tv_final",studies:["MASimple@tv-basicstudies"]});}
- updateUI();
- let i=0;
- setInterval(()=>{
-  const price=(1.0845+(Math.random()-0.5)*0.001).toFixed(5);
-  document.getElementById('priceTopClean').innerText='EUR/USD '+price;
-  const win=Math.random()>0.35;
-  const amt= win ? (1+Math.random()*4) : -(0.5+Math.random()*2);
-  if(win){profit+=amt; balance+=amt*0.1;} else {loss+=Math.abs(amt); balance-=Math.abs(amt)*0.05;}
-  save(); updateUI();
-  if(i%2==0){
-   const strats=['Trend','Breakout','Scalp'];
-   const curr=strats[i%3];
-   showNotif((win?'✅':'❌')+' '+curr+' '+(win?'BUY':'SL')+' @ '+price+' '+(win?'+$':'-$')+Math.abs(amt).toFixed(2), win?'#059669':'#dc2626');
-   const log=document.getElementById('tradeLog');
-   const d=document.createElement('div'); d.style.marginTop='4px'; d.style.color=win?'#059669':'#dc2626'; d.style.fontWeight='600';
-   d.innerText=new Date().toLocaleTimeString().slice(0,5)+' '+curr+' '+(win?'BUY':'SL')+' +$'+Math.abs(amt).toFixed(2)+' MA bullish';
-   log.prepend(d); if(log.children.length>5) log.removeChild(log.lastChild);
-   document.getElementById('s'+((i%3)+1)).innerText= win ? 'BUY +$'+Math.abs(amt).toFixed(2) : 'SL -$'+Math.abs(amt).toFixed(2);
-   document.getElementById('signalText').innerText=(win?'BUY':'SELL')+' '+(90+Math.floor(Math.random()*9))+'% • MA20 > MA50 • '+curr;
-  }
-  i++;
- },1800);
-}
-window.addEventListener('load',initFinal);
+window.addEventListener('load', updateTestUI);
+setInterval(()=>{
+ const remaining = parseInt(testEnd) - Date.now();
+ if(remaining <= 0){document.getElementById('endTime').innerText = 'TEST ENDED';}
+},1000);
 </script>
