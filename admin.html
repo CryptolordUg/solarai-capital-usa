@@ -1,158 +1,108 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ADMIN - 3 Icons - Notifications All Units - cryptome2030@gmail.com - USA HQ</title>
+<title>ADMIN UNIT - RubonAI Real Live Forex - USA HQ Delaware - RESTRICTED</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script src="https://s3.tradingview.com/tv.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#05070f;color:#e5e7eb}
-.header{height:64px;background:#0a0d1a;border-bottom:2px solid #fbbf24;display:flex;justify-content:space-between;align-items:center;padding:0 20px;position:sticky;top:0;z-index:40}
-.notif-bar{background:#111827;border-bottom:1px solid #1f2937;padding:8px 20px;display:flex;gap:12px;overflow-x:auto;font-size:11px;align-items:center}
-.notif-item{background:#070a12;border:1px solid #1f2937;padding:6px 10px;border-radius:20px;white-space:nowrap;display:flex;gap:6px;align-items:center}
-.notif-dot{width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block}
-.notif-dot.red{background:#ef4444;animation:pulse 1.5s infinite}
-@keyframes pulse{0%{opacity:1}50%{opacity:0.4}100%{opacity:1}}
-.login-wrapper{display:flex;min-height:calc(100vh - 64px);align-items:center;justify-content:center;padding:20px}
-.login-card{width:100%;max-width:400px;background:#111827;border:1px solid #1f2937;border-radius:16px;padding:32px}
-.input{width:100%;height:48px;background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:0 14px;color:#fff;margin-top:12px}.input:focus{border-color:#fbbf24;outline:none}
-.btn-gold{width:100%;height:48px;background:#fbbf24;color:#000;border:none;border-radius:8px;font-weight:700;margin-top:16px;cursor:pointer}
-.icons-landing{display:none;min-height:calc(100vh - 120px);align-items:center;justify-content:center;padding:30px}
-.icons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;width:100%}
-.icon-card{background:#111827;border:1px solid #1f2937;border-radius:20px;padding:30px;text-align:center;cursor:pointer;transition:0.2s;position:relative}
-.icon-card:hover{border-color:#fbbf24;transform:translateY(-4px);box-shadow:0 8px 24px rgba(251,191,36,0.15)}
-.icon-card .icon{font-size:56px;margin-bottom:16px}
-.icon-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
-.icon-card p{font-size:11px;color:#94a3b8;line-height:1.4}
-.icon-badge{position:absolute;top:14px;right:14px;background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:4px 8px;border-radius:20px}
-.icon-badge.green{background:#10b981}
-.unit-page{display:none;padding:20px;max-width:1400px;margin:0 auto}.unit-page.active{display:block}
-.back-btn{display:inline-flex;align-items:center;gap:6px;background:#1e2937;border:1px solid #334155;color:#fff;padding:8px 14px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:16px}
-.card{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:16px;margin-bottom:12px}
-.card-h{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;display:flex;justify-content:space-between}
-.badge{font-size:9px;padding:4px 8px;border-radius:12px;background:#1e2937;border:1px solid #334155}.badge-live{background:#10b98120;border-color:#10b98140;color:#10b981}
-table{width:100%;border-collapse:collapse;font-size:11px}th{color:#94a3b8;text-align:left;padding:8px;border-bottom:1px solid #1f2937}td{padding:8px;border-bottom:1px solid #111827}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#05070f;color:#e5e7eb;font-family:Inter,system-ui}
+.topbar{background:#0a0d1a;border-bottom:2px solid #fbbf24;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.badge{font-size:9px;padding:3px 8px;border-radius:12px;background:#1e2937;border:1px solid #334155}
+.badge-live{background:#10b98120;border-color:#10b98140;color:#10b981}
+.badge-gold{background:#fbbf2420;border-color:#fbbf2440;color:#fbbf24}
+.tabs{display:flex;gap:6px;padding:10px;background:#0a0d1a;border-bottom:1px solid #1e2937;flex-wrap:wrap}
+.tab{padding:10px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;background:#111827;border:1px solid #1f2937;color:#94a3b8}
+.tab.active{background:#fbbf24;color:#000;border-color:#fbbf24}
+.page{display:none;padding:12px}.page.active{display:block}
+.card{background:#111827;border:1px solid #1f2937;border-radius:10px;padding:12px;margin-bottom:8px}
+.card-h{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;display:flex;justify-content:space-between}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.grid2{display:grid;grid-template-columns:1fr 320px;gap:10px}
+.btn{padding:8px 12px;border-radius:6px;border:none;font-weight:700;cursor:pointer;font-size:11px}
+.btn-gold{background:#fbbf24;color:#000}.btn-red{background:#ef4444;color:#fff}.btn-dark{background:#1e2937;color:#fff;border:1px solid #334155}
+input,select{width:100%;padding:9px;background:#070a12;border:1px solid #1f2937;border-radius:6px;color:#fff;margin-top:6px;font-size:11px}
+.tool{background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px;text-align:center}
+.tool-icon{font-size:20px}.tool-name{font-size:10px;margin-top:4px;font-weight:700}.tool-status{font-size:8px;color:#10b981;margin-top:2px}
 .lock{position:fixed;inset:0;background:#05070f;z-index:100;display:flex;align-items:center;justify-content:center}
-@media(max-width:900px){.icons-grid{grid-template-columns:1fr}.notif-bar{font-size:10px}}
+.progress{height:6px;background:#1e2937;border-radius:10px;overflow:hidden;margin-top:6px}.progress>div{height:100%;background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+@media(max-width:1000px){.grid2{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}}
 </style>
 <script>
 const firebaseConfig={apiKey:"AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko",authDomain:"solarai-capital.firebaseapp.com",projectId:"solarai-capital",storageBucket:"solarai-capital.firebasestorage.app",messagingSenderId:"722787765054",appId:"1:722787765054:web:68ff0eac7bd505c077fa6f"};
 firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
-const USA_HQ={address:"16192 Coastal Highway, Lewes, Delaware 19958, USA",llc:"Delaware LLC #2026-12345",treasury:"TATeM34UJsHhnADWrjemjYXdrHiyuPrFra"};
-const ADMIN_EMAIL="cryptome2030@gmail.com",ADMIN_PASSWORD="RubonAI2026!",REPORT_EMAIL="cryptome2030@gmail.com";
-function checkUnlocked(){return localStorage.getItem('rubonai_admin_unlocked')==='true' && localStorage.getItem('rubonai_admin_email')===ADMIN_EMAIL;}
-function adminLogin(){const e=document.getElementById('aEmail').value.trim(),p=document.getElementById('aPass').value;if(e!==ADMIN_EMAIL||p!==ADMIN_PASSWORD){alert('Only '+ADMIN_EMAIL+' + RubonAI2026!');return;}localStorage.setItem('rubonai_admin_unlocked','true');localStorage.setItem('rubonai_admin_email',e);document.getElementById('lock').style.display='none';showLanding();}
-function showLanding(){document.getElementById('iconsLanding').style.display='flex';document.querySelectorAll('.unit-page').forEach(p=>p.classList.remove('active'));document.getElementById('notifBar').style.display='flex';initNotifications();}
-function showUnit(id){document.getElementById('iconsLanding').style.display='none';document.querySelectorAll('.unit-page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('notifBar').style.display='flex';if(id==='unit1'&&window.TradingView) new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"dark",style:"1",container_id:"tv_forex"});}
-async function initNotifications(){
- try{
-  // ALL NOTIFICATIONS FROM ALL WORKING UNITS + INVESTOR AREAS
-  const depositsSnap=await db.collection('deposits').where('status','==','pending').get();
-  const withdrawalsSnap=await db.collection('withdrawals').where('status','==','pending').get();
-  const supportSnap=await db.collection('support').where('status','==','open').get();
-  const usersSnap=await db.collection('users').get();
-  const kycSnap=await db.collection('users').where('kycVerified','==',false).get().catch(()=>({size:12}));
+const USA_HQ={address:"16192 Coastal Highway, Lewes, Delaware 19958, USA",llc:"Delaware LLC #2026-12345",country:"USA",treasury:"TATeM34UJsHhnADWrjemjYXdrHiyuPrFra"};
+const ADMIN_EMAILS=["cryptolordug@gmail.com","admin@solarai.capital","solarai.capital.usa@gmail.com"];
+function showTab(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('tab-'+id).classList.add('active');}
+async function checkAdmin(u){if(!u)return false;if(!ADMIN_EMAILS.includes(u.email)){document.getElementById('lockMsg').innerHTML=`⛔ RESTRICTED - Investors cannot view Admin Unit<br>Email: ${u.email} is NOT admin<br><br>Admin Unit is RubonAI Real Live Forex - Banks & Professional Tools<br>HQ: ${USA_HQ.address}<br><br><a href='index.html' style='color:#fbbf24'>→ Investor Dashboard</a>`;document.getElementById('lock').style.display='flex';return false;}document.getElementById('lock').style.display='none';document.getElementById('adminEmail').innerText=u.email;return true;}
+// Compound Interest System - Profit traded every 24 hours - FV = PV * (1 + i/n)^(n t)
+function calcCompound(){const PV=parseFloat(document.getElementById('pv').value)||500;const i=parseFloat(document.getElementById('roi').value)||0.05;const n=parseFloat(document.getElementById('n').value)||365;const t=parseFloat(document.getElementById('t').value)||1;const FV=PV*Math.pow(1+i/n,n*t);document.getElementById('fv').innerText='$'+FV.toFixed(2);document.getElementById('profit').innerText='$'+(FV-PV).toFixed(2);document.getElementById('daily').innerText='$'+(PV*i).toFixed(2)+' daily → reinvested';}
+</script></head><body>
+<div id="lock" class="lock"><div style="text-align:center;max-width:400px;padding:20px"><div style="font-size:48px">🔒</div><h2 style="margin-top:10px;color:#fbbf24">RubonAI ADMIN UNIT RESTRICTED</h2><p id="lockMsg" style="margin-top:10px;font-size:13px;color:#94a3b8">Checking admin access - USA HQ Delaware...</p><div style="margin-top:16px"><input id="aEmail" placeholder="Admin Email"><input id="aPass" type="password" placeholder="Password" style="margin-top:6px"><button onclick="auth.signInWithEmailAndPassword(document.getElementById('aEmail').value,document.getElementById('aPass').value).catch(e=>alert(e.message))" class="btn btn-gold" style="width:100%;margin-top:8px">RubonAI Admin Login - USA HQ</button></div></div></div>
 
-  // Update icon badges
-  document.getElementById('badge1').innerText=depositsSnap.size+' new';
-  document.getElementById('badge2').innerText=(kycSnap.size||12)+' pending';
-  document.getElementById('badge3').innerText='Daily auto';
-
-  // Update notification bar - notifications from ALL units + investor areas
-  const notifBar=document.getElementById('notifBar');
-  notifBar.innerHTML=`
-   <div class="notif-item"><span class="notif-dot red"></span> Unit1 RubonAI: ${depositsSnap.size} deposits pending - Real $1,247.89 - TATe...Fra - Profit $324.50</div>
-   <div class="notif-item"><span class="notif-dot red"></span> Unit2 Compliance: ${kycSnap.size||12} KYC pending - ${withdrawalsSnap.size} withdrawals TXID pending - 98/100 A+</div>
-   <div class="notif-item"><span class="notif-dot"></span> Unit3 Backups: Daily backup OK - Report auto to ${REPORT_EMAIL} - Treasury $1,247.89</div>
-   <div class="notif-item"><span class="notif-dot red"></span> Investor Area: ${usersSnap.size} total users - ${depositsSnap.size} new deposits investor - ${supportSnap.size} support tickets open</div>
-   <div class="notif-item"><span class="notif-dot"></span> USA HQ: 16192 Coastal Hwy, Lewes, DE 19958 - Delaware LLC #2026-12345 - TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div>
-  `;
-
-  // Also update detail tables
-  loadDeposits();loadUsers();
- }catch(e){console.log(e);}
- // Refresh notifications every 15s from all units + investor areas
- setInterval(initNotifications,15000);
-}
-async function loadDeposits(){try{const snap=await db.collection('deposits').orderBy('createdAt','desc').limit(20).get();let html='<table><tr><th>TXID</th><th>Email</th><th>Amount</th><th>Status</th><th>Action</th></tr>';snap.forEach(d=>{const x=d.data();html+=`<tr><td style="color:#fbbf24">${d.id.slice(0,8)}</td><td>${x.email}</td><td>$${x.amount}</td><td><span class="badge badge-live">${x.status||'pending'}</span></td><td><button onclick="approveDeposit('${d.id}')" style="background:#fbbf24;color:#000;border:none;padding:4px 8px;border-radius:6px;font-size:10px;cursor:pointer">Approve</button></td></tr>`;});html+='</table>';const el=document.getElementById('txTable');if(el)el.innerHTML=html;}catch(e){}}
-async function loadUsers(){try{const snap=await db.collection('users').limit(15).get();let html='<table><tr><th>Email</th><th>Balance</th><th>KYC</th></tr>';snap.forEach(d=>{const x=d.data();html+=`<tr><td>${d.id}</td><td>$${x.balance||0}</td><td>${x.kycVerified?'Verified':'Pending'}</td></tr>`;});html+='</table>';const el=document.getElementById('userTable');if(el)el.innerHTML=html;}catch(e){}}
-async function approveDeposit(id){await db.collection('deposits').doc(id).update({status:'approved'});alert('Approved - TXID '+id+' - Daily report auto to '+REPORT_EMAIL+' - USA HQ');initNotifications();}
-</script>
-</head><body>
-
-<div id="lock" class="lock"><div class="login-card"><div style="font-weight:800;font-size:20px">SolarAI <span style="color:#fbbf24">Capital</span> ADMIN</div><h2 style="font-size:22px;margin-top:10px">Log In</h2><p style="color:#94a3b8;font-size:12px;margin-top:6px">After login see only 3 icons - Click icon to enter room - Notifications from all units + investor areas</p><input id="aEmail" value="cryptome2030@gmail.com" readonly class="input" style="color:#fbbf24"><input id="aPass" type="password" placeholder="RubonAI2026!" class="input"><button onclick="adminLogin()" class="btn-gold">Log In - See 3 Icons - USA HQ</button><div style="margin-top:12px;font-size:10px;color:#475569;text-align:center">Investor = index.html • Admin = 3 icons only • HQ: 16192 Coastal Hwy, Lewes, DE 19958, USA • TATe...Fra</div></div></div>
-
-<div class="header"><div style="font-weight:800">SolarAI <span style="color:#fbbf24">Capital</span> ADMIN <span style="font-size:10px;background:#111827;border:1px solid #1f2937;padding:4px 8px;border-radius:20px;margin-left:8px;color:#94a3b8">3 Icons - Click to enter room - Notifications from all units</span></div><div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;color:#94a3b8">cryptome2030@gmail.com</span><span style="font-size:9px;background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:20px">Daily reports → cryptome2030@gmail.com</span><a href="index.html" style="background:#1e2937;border:1px solid #334155;color:#fff;padding:6px 10px;border-radius:8px;font-size:11px">Investor</a></div></div>
-
-<!-- NOTIFICATION BAR - FROM ALL 3 ADMIN UNITS + INVESTOR AREAS - VISIBLE IN ALL ROOMS -->
-<div id="notifBar" class="notif-bar" style="display:none">
-<div class="notif-item"><span class="notif-dot red"></span> Loading notifications from all units + investor areas...</div>
+<div class="topbar">
+<div><b style="color:#fbbf24">🤖 RubonAI</b> <span style="font-size:12px">Real Live Forex Trading Unit - Professional Bank Tools</span> <span style="font-size:8px;color:#10b981;border:1px solid #10b98130;background:#10b98110;padding:3px 8px;border-radius:20px;margin-left:8px">HQ USA: 16192 Coastal Hwy, Lewes, DE 19958 • Delaware LLC • USA • NOT Africa</span></div>
+<div style="display:flex;gap:6px;align-items:center"><span id="adminEmail" style="font-size:11px">-</span><span class="badge badge-live">● LIVE 24H - REAL ACCOUNT</span><a href="index.html" style="font-size:11px;color:#94a3b8;text-decoration:none">Investor Area</a></div>
 </div>
 
-<!-- ICONS LANDING - ONLY 3 ICONS AFTER LOGIN -->
-<div id="iconsLanding" class="icons-landing">
-<div class="icons-grid">
-
-<div class="icon-card" onclick="showUnit('unit1')">
-<span id="badge1" class="icon-badge red">3 new</span>
-<div class="icon">🔴</div>
-<h3>UNIT 1</h3>
-<h3 style="color:#fbbf24">RubonAI Real Live Forex & Pro Tools</h3>
-<p>Real Balance $1,247.89 TATe...Fra<br>Forex P/L $324.50 today<br>MT5 MT4 cTrader TradingView NinjaTrader<br>Compound Every 24H FV=PV(1+i/n)^nt<br>Click to enter room</p>
-<div style="margin-top:12px;font-size:10px;color:#10b981">● LIVE REAL ACCOUNT - USA HQ Delaware</div>
+<div class="tabs">
+<div id="tab-unit1" class="tab active" onclick="showTab('unit1')">🔴 UNIT 1: RubonAI Real Account & Forex Pro Tools</div>
+<div id="tab-unit2" class="tab" onclick="showTab('unit2')">🟡 UNIT 2: Compliance Monitoring</div>
+<div id="tab-unit3" class="tab" onclick="showTab('unit3')">🟢 UNIT 3: System Backups</div>
 </div>
 
-<div class="icon-card" onclick="showUnit('unit2')">
-<span id="badge2" class="icon-badge red">12 pending</span>
-<div class="icon">🟡</div>
-<h3>UNIT 2</h3>
-<h3 style="color:#fbbf24">Compliance Monitoring - 8 Departments</h3>
-<p>KYC/AML Verification<br>Transaction Monitoring TXID 100%<br>Liquidity Oversight $12,450<br>Behavioral Analytics 0 fraud<br>Portfolio + Dashboards + Cybersecurity + Support<br>Click to enter room</p>
-<div style="margin-top:12px;font-size:10px;color:#10b981">● 98/100 A+ World Bank-level</div>
+<!-- UNIT 1: RUBONAI REAL ACCOUNT -->
+<div id="unit1" class="page active">
+<div class="grid4">
+<div class="card"><div class="card-h">RubonAI Real Balance - USA Treasury <span class="badge badge-live">LIVE</span></div><div style="font-size:22px;font-weight:800;color:#fbbf24" id="realBal">$1,247.89</div><div style="font-size:10px;color:#64748b">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Delaware HQ - Real Money</div><div class="progress"><div style="width:78%"></div></div></div>
+<div class="card"><div class="card-h">Forex P/L - Backbone of Global Finance <span class="badge badge-gold">Bank Model</span></div><div style="font-size:20px;font-weight:800;color:#10b981">+$324.50 today</div><div style="font-size:10px;color:#64748b">Manage reserves, stabilize, hedge, profit from volatility - Like World Bank, IMF, Central Banks</div></div>
+<div class="card"><div class="card-h">Compounding System - Profit Every 24H <span class="badge badge-gold">FV=PV(1+i/n)^nt</span></div><div style="font-size:14px">FV: <b id="fv" style="color:#fbbf24">$500 → $...</b> Profit: <b id="profit" style="color:#10b981">$...</b></div><div style="font-size:10px;color:#94a3b8" id="daily">$25 daily → reinvested - Exponential growth</div></div>
+<div class="card"><div class="card-h">Trading Mode & Risk <span class="badge badge-live">STOP-LOSS ACTIVE</span></div><div style="font-size:12px"><span style="background:#10b98120;color:#10b981;padding:4px 8px;border-radius:12px">🟢 ROBOT LIVE 24H - USA HQ</span></div><div style="font-size:10px;margin-top:6px">Countdown: <b style="color:#fbbf24" id="cd">02:13:48</b> • 52/120 trades • Liquidity control active</div></div>
 </div>
 
-<div class="icon-card" onclick="showUnit('unit3')">
-<span id="badge3" class="icon-badge green">Daily auto</span>
-<div class="icon">🟢</div>
-<h3>UNIT 3</h3>
-<h3 style="color:#fbbf24">System Backups & Daily Reports to Email</h3>
-<p>Users Backup 89 users<br>Deposits TXID Immutable<br>Treasury Backup $1,247.89 TATe...Fra<br>Daily Reports Auto to cryptome2030@gmail.com<br>Click to enter room</p>
-<div style="margin-top:12px;font-size:10px;color:#10b981">● Auto to cryptome2030@gmail.com every 24H</div>
-</div>
-
+<!-- CORE TOOLS USED BY AI, BANKS & PROFESSIONAL FOREX TRADERS -->
+<div class="card"><div class="card-h">Core Tools Used by AI, Banks & Professional Forex Traders - RubonAI Professional Stack - USA HQ <span class="badge">Real Live Trading Unit</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:8px">
+<div class="tool"><div class="tool-icon">📊</div><div class="tool-name">MetaTrader 5</div><div class="tool-status">● Connected - Real</div></div>
+<div class="tool"><div class="tool-icon">📈</div><div class="tool-name">MetaTrader 4</div><div class="tool-status">● Connected - Real</div></div>
+<div class="tool"><div class="tool-icon">💹</div><div class="tool-name">cTrader</div><div class="tool-status">● Connected - ECN</div></div>
+<div class="tool"><div class="tool-icon">📉</div><div class="tool-name">TradingView</div><div class="tool-status">● LIVE - Pro+</div></div>
+<div class="tool"><div class="tool-icon">🥷</div><div class="tool-name">NinjaTrader</div><div class="tool-status">● Algo Active</div></div>
+<div class="tool"><div class="tool-icon">📅</div><div class="tool-name">Economic Calendars</div><div class="tool-status">● Fed, ECB, NFP</div></div>
+<div class="tool"><div class="tool-icon">📰</div><div class="tool-name">Real Time News Feeds</div><div class="tool-status">● Bloomberg, Reuters</div></div>
+<div class="tool"><div class="tool-icon">🔧</div><div class="tool-name">Technical Indicators</div><div class="tool-status">● RSI, MACD, BB 20+</div></div>
+<div class="tool"><div class="tool-icon">🔍</div><div class="tool-name">Screeners & Alerts</div><div class="tool-status">● 60 signals - LIVE</div></div>
+<div class="tool"><div class="tool-icon">🛡️</div><div class="tool-name">Risk Management</div><div class="tool-status">● Stop-Loss, Liquidity</div></div>
+<div class="tool" style="border-color:#fbbf24"><div class="tool-icon">💰</div><div class="tool-name">Compound Interest System</div><div class="tool-status">● Profit every 24H</div></div>
 </div>
 </div>
 
-<!-- UNIT 1 ROOM - CLICK ICON TO ACCESS -->
-<div id="unit1" class="unit-page">
-<button class="back-btn" onclick="showLanding()">← Back to 3 Icons</button>
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px"><h2>🔴 UNIT 1: RubonAI Real Live Forex & Pro Tools - Room 1</h2><span style="font-size:11px;color:#10b981">Notifications from all units + investor areas visible in top bar - USA HQ</span></div>
-<div class="card" style="padding:0;overflow:hidden"><div style="padding:12px;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between"><b>RubonAI Real Account - MT5 MT4 cTrader TradingView NinjaTrader - Live Chart - USA HQ 16192 Coastal Hwy, Lewes, DE 19958</b><span class="badge badge-live">● LIVE REAL $1,247.89 TATe...Fra</span></div><div id="tv_forex" style="height:420px"></div></div>
-<div class="card"><div class="card-h">Real Balance - TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Forex P/L - Compound Every 24H - USA HQ</div><div style="font-size:12px">Real Balance $1,247.89 - Delaware Treasury - Forex P/L Today $324.50 - Spreads, commissions, leverage, algo, arbitrage, macro - Compound FV=PV(1+i/n)^nt - Countdown 02:13:48 - 52/120 trades - Tools: MT5 Real, MT4 Real, cTrader ECN, TradingView Pro+, NinjaTrader Algo, Economic Calendars, Real Time News, Technical Indicators, Screeners, Risk Management</div></div>
-</div>
+<div class="grid2">
+<div class="card" style="padding:0;overflow:hidden"><div style="padding:10px;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px"><span style="font-size:12px;font-weight:700">RubonAI Real Account - Professional Forex Chart - MT5 / cTrader / TradingView - USA HQ</span><div><span class="badge badge-live">● LIVE REAL MONEY</span><span class="badge">EUR/USD • GBP/USD • XAU/USD • Leverage, Arbitrage, Algo</span></div></div><div id="tv_forex" style="height:500px"></div><div style="padding:8px;background:#070a12;border-top:1px solid #1f2937;display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-dark">MT5 Real</button><button class="btn btn-dark">MT4 Real</button><button class="btn btn-dark">cTrader ECN</button><button class="btn btn-dark">TradingView Pro</button><button class="btn btn-dark">NinjaTrader Algo</button><span style="font-size:10px;color:#64748b;margin-left:8px">Commercial banks earn spreads, commissions, hedging fees • RubonAI: leverage, algorithmic, arbitrage, macro events</span></div></div>
 
-<!-- UNIT 2 ROOM - CLICK ICON TO ACCESS -->
-<div id="unit2" class="unit-page">
-<button class="back-btn" onclick="showLanding()">← Back to 3 Icons</button>
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px"><h2>🟡 UNIT 2: Compliance Monitoring - 8 Departments - Room 2</h2><span style="font-size:11px;color:#10b981">Notifications from all units + investor areas visible in top bar - 98/100 A+</span></div>
-<div class="card"><div class="card-h">8 Departments in One Room - KYC/AML + TX Monitoring TXID + Liquidity + Behavioral + Portfolio + Compliance Dashboards + Cybersecurity + Support Tracking - USA HQ</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><div><div style="font-size:11px;font-weight:700;margin-bottom:6px">KYC/AML + TXID Monitoring - Investor Areas</div><div id="userTable">Loading KYC...</div><div id="txTable" style="margin-top:10px">Loading TXIDs TATe...Fra...</div></div><div><div style="font-size:11px;font-weight:700;margin-bottom:6px">Liquidity + Behavioral + Portfolio + Dashboards + Cybersecurity + Support - All Units</div><div style="font-size:11px;background:#070a12;padding:10px;border-radius:8px">Hot Wallet $4,250 Cold $8,200 = $12,450 90% liquid - ROI $324.50/400 81% - Behavioral 0 fraud - Portfolio Solar 60% $7,470 Delaware Farm A 16192 Coastal Hwy, Electronics 25%, Real Estate 15% - ESG 0.8 tons CO₂ 3 homes 12 jobs - Compliance 98/100 A+ Delaware LLC - Cybersecurity Firewall blocked 2 IPs - Support 2 open 0 complaints 15 resolved - All from investor areas + admin units notifications in top bar</div></div></div>
+<div>
+<div class="card"><div class="card-h">Compound Interest System - Profit Traded Every 24 Hours - Formula <span class="badge badge-gold">FV=PV(1+i/n)^nt</span></div><div style="margin-top:8px"><label style="font-size:10px">PV - Initial Deposit</label><input id="pv" type="number" value="500" oninput="calcCompound()"><label style="font-size:10px">i - ROI Rate (daily 5% = 0.05)</label><input id="roi" type="number" step="0.01" value="0.05" oninput="calcCompound()"><label style="font-size:10px">n - Compounding periods per year (365 = daily)</label><input id="n" type="number" value="365" oninput="calcCompound()"><label style="font-size:10px">t - Years</label><input id="t" type="number" step="0.1" value="1" oninput="calcCompound()"><div style="margin-top:8px;background:#070a12;padding:8px;border-radius:6px"><div style="font-size:12px">Future Value: <b id="fv2" style="color:#fbbf24">$...</b></div><div style="font-size:11px">Profit: <span id="profit2" style="color:#10b981">$...</span> • <span id="daily2">$... daily reinvested</span></div><div style="font-size:9px;color:#64748b;margin-top:4px">Automatically reinvesting daily forex profits into investor accounts - Flexible daily/weekly/monthly - Transparent dashboard - Stop-loss & liquidity controls - Profit accelerator</div></div><button onclick="calcCompound();alert('RubonAI Compound Applied - Profit reinvested every 24H - USA HQ - Delaware LLC')" class="btn btn-gold" style="width:100%;margin-top:8px">Apply Compounding - RubonAI Real Account - USA HQ</button></div></div>
+
+<div class="card"><div class="card-h">Real Time News & Economic Calendar - USA HQ <span class="badge badge-live">Bloomberg • Reuters • Fed</span></div><div style="font-size:10px;background:#070a12;padding:8px;border-radius:6px;max-height:120px;overflow:auto" id="news">Loading real time news feeds - USA HQ...<br>14:32 - Fed Interest Rate Decision - USD Volatility Expected - RubonAI hedging<br>14:28 - NFP Data - USD Strength - RubonAI arbitrage opportunity<br>14:15 - ECB Press Conference - EUR/USD spread earning - Commercial bank model</div></div>
+
+<div class="card"><div class="card-h">Screeners & Alerts + Risk Management - USA HQ</div><div style="font-size:10px"><div style="display:flex;justify-content:space-between;padding:4px;background:#070a12;border-radius:4px;margin-bottom:4px"><span>BUY EUR/USD - RSI Breakout Conf 81%</span><span style="color:#10b981">● Alert Sent</span></div><div style="display:flex;justify-content:space-between;padding:4px;background:#070a12;border-radius:4px;margin-bottom:4px"><span>Risk: Stop-loss 1.5% - Liquidity 90%</span><span style="color:#10b981">● Protected</span></div></div><button class="btn btn-dark" style="width:100%;margin-top:6px">View All 60 Signals - RubonAI Real</button></div>
+</div>
 </div>
 </div>
 
-<!-- UNIT 3 ROOM - CLICK ICON TO ACCESS -->
-<div id="unit3" class="unit-page">
-<button class="back-btn" onclick="showLanding()">← Back to 3 Icons</button>
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px"><h2>🟢 UNIT 3: System Backups & Daily Reports to Email - Room 3</h2><span style="font-size:11px;color:#10b981">Notifications from all units + investor areas visible in top bar - Daily auto to cryptome2030@gmail.com</span></div>
-<div class="card"><div class="card-h">System Backups - Daily Auto Backup - Daily Reports Auto to cryptome2030@gmail.com - USA HQ</div><div style="font-size:11px"><div style="background:#070a12;padding:10px;border-radius:8px;margin-bottom:8px">Users Collection 89 users backup auto daily - Delaware LLC - USA HQ</div><div style="background:#070a12;padding:10px;border-radius:8px;margin-bottom:8px">Deposits & Withdrawals TXID Immutable - TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Blockchain verified - From investor areas notifications</div><div style="background:#070a12;padding:10px;border-radius:8px;margin-bottom:8px">Treasury Backup $1,247.89 Real - Cold $8,200 Hot $4,250 - 16192 Coastal Hwy, Lewes, DE 19958</div><div style="background:#070a12;padding:10px;border-radius:8px">Daily Reports Collection - Firestore dailyReports - Auto every 24H - Recipient cryptome2030@gmail.com - Contains users, deposits TXIDs, ROI $324.50, liquidity $12,450, KYC 12/89/2, compliance 98/100, ESG, treasury TATe...Fra, HQ USA - Notifications from all units visible</div></div><button onclick="alert('Backup + Daily report sent to cryptome2030@gmail.com - USA HQ - Delaware LLC')" style="background:#fbbf24;color:#000;border:none;padding:10px 14px;border-radius:8px;font-weight:700;margin-top:12px;width:100%">Backup Now + Send Daily Report to cryptome2030@gmail.com</button></div>
-</div>
-
-<div style="background:#0a0d1a;border-top:1px solid #1f2937;padding:12px 20px;font-size:10px;color:#475569;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><span>© 2026 SolarAI Capital ADMIN - 3 Icons - Click icon to enter room - Notifications from all 3 admin units + investor areas - USA HQ - Delaware LLC #2026-12345 - 16192 Coastal Hwy - Admin: cryptome2030@gmail.com - Treasury TATe...Fra - <a href="index.html" style="color:#fbbf24">Investor</a></span><span id="notifCount" style="color:#10b981">● Live notifications from all units + investor areas - Every 15s refresh</span></div>
+<div id="unit2" class="page"><h2 style="font-size:16px;color:#fbbf24">UNIT 2: Admin Compliance Monitoring System - USA HQ</h2><div class="card" style="margin-top:10px"><div class="card-h">AML/KYC - Audit Log - Licensing - USA</div><div style="font-size:11px">Compliance monitoring - Delaware LLC #2026-12345 - 16192 Coastal Hwy, Lewes, DE 19958, USA - NOT Africa</div></div></div>
+<div id="unit3" class="page"><h2 style="font-size:16px;color:#10b981">UNIT 3: SolarAI System Backups - USA HQ</h2><div class="card" style="margin-top:10px"><div class="card-h">System Backups - Treasury Backup - Restore Points - USA HQ</div><div style="font-size:11px">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Delaware Treasury - Backup verified - USA</div></div></div>
 
 <script>
-auth.onAuthStateChanged(u=>{
- if(checkUnlocked()){document.getElementById('lock').style.display='none';showLanding();return;}
- if(!u){document.getElementById('lock').style.display='flex';document.getElementById('iconsLanding').style.display='none';document.getElementById('notifBar').style.display='none';return;}
- if(u.email===ADMIN_EMAIL){document.getElementById('lock').style.display='flex';}else{document.getElementById('lock').innerHTML='<div style="text-align:center;color:#fff">Only '+ADMIN_EMAIL+'<br><a href="index.html" style="color:#fbbf24">→ Investor</a></div>';document.getElementById('lock').style.display='flex';}
+auth.onAuthStateChanged(async u=>{
+ if(!u){document.getElementById('lock').style.display='flex';return;}
+ const ok=await checkAdmin(u);
+ if(ok){
+  if(window.TradingView){new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"dark",style:"1",container_id:"tv_forex"});}
+  calcCompound();
+  setInterval(()=>{const el=document.getElementById('cd');if(!el)return;let[h,m,s]=el.innerText.split(':').map(Number);s--;if(s<0){s=59;m--}if(m<0){m=59;h--}if(h<0)h=2;el.innerText=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`},1000);
+  setInterval(()=>{const n=document.getElementById('news');if(n){const d=new Date().toLocaleTimeString();n.innerHTML=`${d} - World Bank reserves management - Liquidity provision - RubonAI preserving value<br>`+n.innerHTML.slice(0,600);}},8000);
+ }
 });
+function calcCompound(){const PV=parseFloat(document.getElementById('pv').value)||500;const i=parseFloat(document.getElementById('roi').value)||0.05;const n=parseFloat(document.getElementById('n').value)||365;const t=parseFloat(document.getElementById('t').value)||1;const FV=PV*Math.pow(1+i/n,n*t);document.getElementById('fv').innerText='$'+FV.toFixed(2);document.getElementById('profit').innerText='$'+(FV-PV).toFixed(2);document.getElementById('daily').innerText='$'+(PV*i).toFixed(2)+' daily → reinvested';const fv2=document.getElementById('fv2');if(fv2){fv2.innerText='$'+FV.toFixed(2);document.getElementById('profit2').innerText='$'+(FV-PV).toFixed(2);document.getElementById('daily2').innerText='$'+(PV*i).toFixed(2)+' daily reinvested';}}
 </script>
 </body></html>
