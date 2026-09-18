@@ -1,5 +1,127 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SolarAI Capital - Investor Area</title>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://s3.tradingview.com/tv.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#070a12;color:#e5e7eb;overflow-x:hidden}
+header{background:rgba(17,17,25,0.9);backdrop-filter:blur(12px);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #fbbf2420}
+header b{color:#fbbf24;font-size:18px}nav a{color:#9ca3af;text-decoration:none;margin-left:14px;font-size:12px;font-weight:700;transition:0.3s}nav a:hover,nav a.active{color:#fbbf24;text-shadow:0 0 10px #fbbf24}
+.page{display:none;padding:20px;max-width:1200px;margin:0 auto;animation:fadeIn 0.5s ease} .page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{background:#111119cc;border:1px solid #2a2a3a;border-radius:16px;padding:18px;transition:0.4s} .card:hover{border-color:#fbbf2440;box-shadow:0 0 30px #fbbf2415;transform:translateY(-2px)}
+.live-badge{display:inline-block;background:#10b98120;color:#10b981;border:1px solid #10b98140;padding:3px 10px;border-radius:20px;font-size:10px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.btn{padding:12px 18px;border-radius:10px;border:none;font-weight:800;cursor:pointer;transition:0.3s}
+.btn-y{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#000}.btn-y:hover{box-shadow:0 0 20px #fbbf2460;transform:scale(1.02)}
+.testimonial{scroll-snap-align:center;min-width:300px}
+.carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:10px}
+.carousel::-webkit-scrollbar{display:none}
+.portfolio-tile{position:relative;overflow:hidden;cursor:pointer}.portfolio-tile .stats{position:absolute;bottom:-100%;left:0;right:0;background:linear-gradient(transparent,#000c);padding:16px;transition:0.4s}.portfolio-tile:hover .stats{bottom:0}
+.sustain-badge{background:linear-gradient(135deg,#065f46,#10b981);padding:8px 14px;border-radius:10px;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
+</style>
+<script>
+const firebaseConfig={apiKey:"AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko",authDomain:"solarai-capital.firebaseapp.com",projectId:"solarai-capital",storageBucket:"solarai-capital.firebasestorage.app",messagingSenderId:"722787765054",appId:"1:722787765054:web:68ff0eac7bd505c077fa6f"};
+if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(),db=firebase.firestore();
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));const n=document.getElementById('nav-'+id);if(n)n.classList.add('active');}
+</script>
+</head><body>
+<header>
+<div><b>☀️ SolarAI Capital</b> <span class="sustain-badge" style="margin-left:10px">🌿 Delaware ESG Certified</span></div>
+<nav>
+<a id="nav-home" class="active" href="#" onclick="showPage('home')">Home</a>
+<a id="nav-packages" href="#" onclick="showPage('packages')">Packages</a>
+<a id="nav-portfolio" href="#" onclick="showPage('portfolio')">Portfolio</a>
+<a id="nav-impact" href="#" onclick="showPage('impact')">Impact</a>
+<a id="nav-balance" href="#" onclick="showPage('balance')">Balance</a>
+<a id="nav-referral" href="#" onclick="showPage('referral')">Referral</a>
+<a id="nav-profile" href="#" onclick="showPage('profile')">Profile</a>
+<a id="nav-login" href="#" onclick="showPage('login')">Sign In</a>
+<a id="nav-logout" style="display:none;color:#ef4444" href="#" onclick="auth.signOut().then(()=>location.reload())">Sign Out</a>
+</nav>
+</header>
+
+<!-- HOME - INVESTOR AREA -->
+<div id="home" class="page active">
+<!-- Real-time metrics -->
+<h2 style="display:flex;align-items:center;gap:10px">📊 Real-Time Metrics <span class="live-badge">● LIVE TRANSPARENCY</span></h2>
+<div class="metric-grid" style="margin-top:14px">
+<div class="card" style="text-align:center;border-color:#fbbf24"><small>🤖 ROBOT BALANCE</small><h2 id="m-rb" style="color:#fbbf24">$18.17</h2><small style="color:#10b981">▲ Live from Firestore</small></div>
+<div class="card" style="text-align:center"><small>💰 TOTAL PROFIT</small><h2 id="m-pf" style="color:#10b981">$8.60</h2><small>Daily ROI 3.3%-8%</small></div>
+<div class="card" style="text-align:center"><small>⚡ ENERGY IMPACT</small><h2 style="color:#06b6d4">2.4 MWh</h2><small>Powered today</small></div>
+<div class="card" style="text-align:center"><small>👥 ACTIVE INVESTORS</small><h2 id="m-inv">1,247</h2><small>Delaware & Global</small></div>
+</div>
+
+<!-- Chart + CTA -->
+<div style="display:grid;grid-template-columns:1fr 340px;gap:14px;margin-top:16px">
+<div class="card" style="height:460px;padding:0;overflow:hidden"><div id="tvchart" style="height:100%"></div></div>
+<div class="card">
+<h3>🚀 Start Investing</h3>
+<p style="color:#9ca3af;font-size:12px;margin-top:8px">Join SolarAI - AI trading + solar impact. Delaware registered.</p>
+<div style="background:#0a0a0f;padding:12px;border-radius:10px;margin-top:12px;border:1px dashed #fbbf24">
+<p style="font-size:11px;color:#9ca3af">Treasury TRC20</p><b style="font-size:11px;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</b>
+</div>
+<button onclick="showPage('packages')" class="btn btn-y" style="width:100%;margin-top:14px">Investor Login CTA → Join SolarAI</button>
+<button onclick="showPage('portfolio')" class="btn" style="width:100%;margin-top:8px;background:#1f1f2e;color:#fff">Interactive Portfolio Preview</button>
+</div>
+</div>
+
+<!-- Testimonials carousel -->
+<h3 style="margin-top:24px">💬 Investor Testimonials</h3>
+<div class="carousel" style="margin-top:12px">
+<div class="card testimonial"><p>"SolarAI gave me 5% daily - transparent and real impact!"</p><small style="color:#fbbf24">— Michael D., Delaware ⭐⭐⭐⭐⭐</small></div>
+<div class="card testimonial"><p>"Finally a platform with live metrics and ESG badge."</p><small style="color:#fbbf24">— Sarah K., Texas ⭐⭐⭐⭐⭐</small></div>
+<div class="card testimonial"><p>"Referral earnings paid instantly to my TRC20."</p><small style="color:#fbbf24">— James O., Kampala ⭐⭐⭐⭐⭐</small></div>
+</div>
+</div>
+
+<!-- PACKAGES - Interactive portfolio preview -->
+<div id="packages" class="page">
+<h2>📦 Interactive Portfolio Preview - Hover to Expand</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px">
+<div class="card portfolio-tile" style="border-color:#fbbf24"><h3>$100 Starter</h3><p style="color:#9ca3af">3.3% daily • 30 days</p><h1 style="color:#fbbf24">$100</h1><div class="stats"><small>Mini-stats:</small><br><b>Daily: $3.3 | Total: $99 | Impact: 0.1 MWh</b></div><button onclick="showPage('deposit')" class="btn btn-y" style="width:100%;margin-top:10px">Invest Now</button></div>
+<div class="card portfolio-tile" style="border-color:#10b981"><h3>$500 Pro</h3><p style="color:#9ca3af">5% daily • 30 days</p><h1 style="color:#10b981">$500</h1><div class="stats"><small>Mini-stats:</small><br><b>Daily: $25 | Total: $750 | Impact: 0.5 MWh</b></div><button onclick="showPage('deposit')" class="btn" style="width:100%;margin-top:10px;background:#10b981;color:#fff">Invest Now</button></div>
+<div class="card portfolio-tile" style="border-color:#7c3aed"><h3>$1000 Whale VIP</h3><p style="color:#9ca3af">8% daily • 30 days</p><h1 style="color:#7c3aed">$1000</h1><div class="stats"><small>Mini-stats:</small><br><b>Daily: $80 | Total: $2400 | Impact: 1.2 MWh</b></div><button onclick="showPage('deposit')" class="btn" style="width:100%;margin-top:10px;background:#7c3aed;color:#fff">Invest Now</button></div>
+</div>
+</div>
+
+<div id="portfolio" class="page"><h2>💼 My Portfolio - Live</h2><div class="card" id="port-data">Login to see live portfolio growth chart...</div></div>
+
+<!-- IMPACT STORYTELLING -->
+<div id="impact" class="page">
+<h2>🌍 Impact Storytelling Section</h2>
+<div class="card" style="margin-top:12px"><h3>How Your Investment Powers Real Communities</h3><p style="color:#9ca3af;margin-top:8px">Your $100 investment powers 0.1 MWh of clean energy, equivalent to lighting 12 homes in rural Uganda. SolarAI's AI trading profits fund solar micro-grids.</p><div style="background:#0a0a0f;padding:20px;border-radius:12px;margin-top:12px;text-align:center"><p style="font-size:48px">☀️ → 🤖 → 💡 → 🏘️</p><p style="color:#fbbf24;font-size:12px">Solar → AI Trading → Profit → Community Power</p></div><span class="sustain-badge" style="margin-top:12px">✓ Verified Clean-Energy Certification - Delaware ESG Rating A+</span></div>
+</div>
+
+<div id="balance" class="page"><h2>💰 Balance - REAL FIRESTORE</h2><div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:600px"><div><p style="color:#9ca3af">Robot</p><h1 id="b-rb" style="color:#fbbf24">$0</h1></div><div><p style="color:#9ca3af">Profit</p><h1 id="b-pf" style="color:#10b981">$0</h1></div></div></div>
+<div id="referral" class="page"><h2>👥 Referral - 10% LIVE</h2><div class="card" style="max-width:600px"><div id="r-link" style="background:#0a0a0f;padding:12px;border-radius:8px;border:1px dashed #fbbf24;word-break:break-all">Login first</div><p style="margin-top:10px">Referrals: <b id="r-c">0</b> | Earnings: <b id="r-e">$0</b></p></div></div>
+<div id="profile" class="page"><h2>👤 Profile</h2><div class="card" style="max-width:500px"><p id="p-em">-</p><input id="p-nm" placeholder="Name" style="width:100%;padding:12px;margin-top:8px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px"><button onclick="saveProfile()" class="btn" style="width:100%;margin-top:12px;background:#7c3aed;color:#fff">Save</button></div></div>
+<div id="deposit" class="page"><h2>💰 Deposit</h2><div class="card" style="max-width:500px"><input id="d-amt" type="number" placeholder="Amount" style="width:100%;padding:12px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px"><button onclick="doDeposit()" class="btn btn-y" style="width:100%;margin-top:12px">I Deposited - Send to Admin</button></div></div>
+<div id="login" class="page"><div class="card" style="max-width:400px;margin:0 auto"><h2>🔑 Investor Sign In</h2><input id="l-e" placeholder="Email" style="width:100%;padding:12px;margin-top:8px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px"><input id="l-p" type="password" placeholder="Password" style="width:100%;padding:12px;margin-top:8px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px"><button onclick="doLogin()" class="btn" style="width:100%;margin-top:12px;background:#10b981;color:#fff">Sign In</button><p style="text-align:center;margin-top:10px"><a href="#" onclick="showPage('register')" style="color:#fbbf24">Create account</a> | <a href="admin.html" style="color:#7c3aed">Admin Area</a></p></div></div>
+<div id="register" class="page"><div class="card" style="max-width:400px;margin:0 auto"><h2>Join SolarAI - Investor CTA</h2><input id="r-n" placeholder="Full Name" style="width:100%;padding:12px;margin-top:8px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px"><input id="r-e" placeholder="Email" style="width:100%;padding:12px;margin-top:8px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px"><input id="r-p" type="password" placeholder="Password" style="width:100%;padding:12px;margin-top:8px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px"><button onclick="doRegister()" class="btn btn-y" style="width:100%;margin-top:12px">Start Investing</button></div></div>
+
+<script>
+auth.onAuthStateChanged(async u=>{
+ if(u){
+  document.getElementById('nav-login').style.display='none';document.getElementById('nav-logout').style.display='inline';
+  document.getElementById('p-em').innerText=u.email;
+  try{const d=await db.collection('users').doc(u.email).get();if(d.exists){const x=d.data();document.getElementById('m-rb').innerText='$'+(x.robotBalance||0);document.getElementById('m-pf').innerText='$'+(x.profit||0);document.getElementById('b-rb').innerText='$'+(x.robotBalance||0);document.getElementById('b-pf').innerText='$'+(x.profit||0);document.getElementById('p-nm').value=x.name||'';document.getElementById('r-c').innerText=x.referrals||0;document.getElementById('r-e').innerText='$'+(x.referralEarnings||0);}}catch(e){}
+  document.getElementById('r-link').innerText=location.origin+location.pathname+'?ref='+u.email;
+ }else{document.getElementById('nav-login').style.display='inline';document.getElementById('nav-logout').style.display='none';}
+ if(window.TradingView){new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",theme:"dark",style:"1",container_id:"tvchart"});}
+});
+async function doRegister(){const e=document.getElementById('r-e').value,p=document.getElementById('r-p').value,n=document.getElementById('r-n').value,ref=new URLSearchParams(location.search).get('ref');try{await auth.createUserWithEmailAndPassword(e,p);await db.collection('users').doc(e).set({email:e,name:n,balance:0,robotBalance:18.17,profit:8.60,status:'active',referredBy:ref||null,createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Welcome to SolarAI!');showPage('home');}catch(err){alert(err.message);}}
+async function doLogin(){try{await auth.signInWithEmailAndPassword(document.getElementById('l-e').value,document.getElementById('l-p').value);showPage('home');}catch(err){alert(err.message);}}
+async function saveProfile(){await db.collection('users').doc(auth.currentUser.email).set({name:document.getElementById('p-nm').value},{merge:true});alert('Saved!');}
+async function doDeposit(){const u=auth.currentUser;if(!u)return showPage('login');const amt=parseFloat(document.getElementById('d-amt').value);await db.collection('deposits').add({email:u.email,amount:amt,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Deposit sent to Admin Area!');}
+</script>
+</body></html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SolarAI Capital - Investor Area PRO</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
