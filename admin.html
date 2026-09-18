@@ -1,108 +1,29 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ADMIN UNIT - RubonAI Real Live Forex - USA HQ Delaware - RESTRICTED</title>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script src="https://s3.tradingview.com/tv.js"></script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#05070f;color:#e5e7eb;font-family:Inter,system-ui}
-.topbar{background:#0a0d1a;border-bottom:2px solid #fbbf24;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.badge{font-size:9px;padding:3px 8px;border-radius:12px;background:#1e2937;border:1px solid #334155}
-.badge-live{background:#10b98120;border-color:#10b98140;color:#10b981}
-.badge-gold{background:#fbbf2420;border-color:#fbbf2440;color:#fbbf24}
-.tabs{display:flex;gap:6px;padding:10px;background:#0a0d1a;border-bottom:1px solid #1e2937;flex-wrap:wrap}
-.tab{padding:10px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;background:#111827;border:1px solid #1f2937;color:#94a3b8}
-.tab.active{background:#fbbf24;color:#000;border-color:#fbbf24}
-.page{display:none;padding:12px}.page.active{display:block}
-.card{background:#111827;border:1px solid #1f2937;border-radius:10px;padding:12px;margin-bottom:8px}
-.card-h{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;display:flex;justify-content:space-between}
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
-.grid2{display:grid;grid-template-columns:1fr 320px;gap:10px}
-.btn{padding:8px 12px;border-radius:6px;border:none;font-weight:700;cursor:pointer;font-size:11px}
-.btn-gold{background:#fbbf24;color:#000}.btn-red{background:#ef4444;color:#fff}.btn-dark{background:#1e2937;color:#fff;border:1px solid #334155}
-input,select{width:100%;padding:9px;background:#070a12;border:1px solid #1f2937;border-radius:6px;color:#fff;margin-top:6px;font-size:11px}
-.tool{background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px;text-align:center}
-.tool-icon{font-size:20px}.tool-name{font-size:10px;margin-top:4px;font-weight:700}.tool-status{font-size:8px;color:#10b981;margin-top:2px}
-.lock{position:fixed;inset:0;background:#05070f;z-index:100;display:flex;align-items:center;justify-content:center}
-.progress{height:6px;background:#1e2937;border-radius:10px;overflow:hidden;margin-top:6px}.progress>div{height:100%;background:linear-gradient(90deg,#fbbf24,#f59e0b)}
-@media(max-width:1000px){.grid2{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}}
-</style>
-<script>
-const firebaseConfig={apiKey:"AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko",authDomain:"solarai-capital.firebaseapp.com",projectId:"solarai-capital",storageBucket:"solarai-capital.firebasestorage.app",messagingSenderId:"722787765054",appId:"1:722787765054:web:68ff0eac7bd505c077fa6f"};
-firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
-const USA_HQ={address:"16192 Coastal Highway, Lewes, Delaware 19958, USA",llc:"Delaware LLC #2026-12345",country:"USA",treasury:"TATeM34UJsHhnADWrjemjYXdrHiyuPrFra"};
-const ADMIN_EMAILS=["cryptolordug@gmail.com","admin@solarai.capital","solarai.capital.usa@gmail.com"];
-function showTab(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('tab-'+id).classList.add('active');}
-async function checkAdmin(u){if(!u)return false;if(!ADMIN_EMAILS.includes(u.email)){document.getElementById('lockMsg').innerHTML=`⛔ RESTRICTED - Investors cannot view Admin Unit<br>Email: ${u.email} is NOT admin<br><br>Admin Unit is RubonAI Real Live Forex - Banks & Professional Tools<br>HQ: ${USA_HQ.address}<br><br><a href='index.html' style='color:#fbbf24'>→ Investor Dashboard</a>`;document.getElementById('lock').style.display='flex';return false;}document.getElementById('lock').style.display='none';document.getElementById('adminEmail').innerText=u.email;return true;}
-// Compound Interest System - Profit traded every 24 hours - FV = PV * (1 + i/n)^(n t)
-function calcCompound(){const PV=parseFloat(document.getElementById('pv').value)||500;const i=parseFloat(document.getElementById('roi').value)||0.05;const n=parseFloat(document.getElementById('n').value)||365;const t=parseFloat(document.getElementById('t').value)||1;const FV=PV*Math.pow(1+i/n,n*t);document.getElementById('fv').innerText='$'+FV.toFixed(2);document.getElementById('profit').innerText='$'+(FV-PV).toFixed(2);document.getElementById('daily').innerText='$'+(PV*i).toFixed(2)+' daily → reinvested';}
-</script></head><body>
-<div id="lock" class="lock"><div style="text-align:center;max-width:400px;padding:20px"><div style="font-size:48px">🔒</div><h2 style="margin-top:10px;color:#fbbf24">RubonAI ADMIN UNIT RESTRICTED</h2><p id="lockMsg" style="margin-top:10px;font-size:13px;color:#94a3b8">Checking admin access - USA HQ Delaware...</p><div style="margin-top:16px"><input id="aEmail" placeholder="Admin Email"><input id="aPass" type="password" placeholder="Password" style="margin-top:6px"><button onclick="auth.signInWithEmailAndPassword(document.getElementById('aEmail').value,document.getElementById('aPass').value).catch(e=>alert(e.message))" class="btn btn-gold" style="width:100%;margin-top:8px">RubonAI Admin Login - USA HQ</button></div></div></div>
+<!-- RUBONAI CAPITAL FOREX SHOWING TRADING STRONG - % SIGNALING STRENGTH - NO NOTES -->
+<div class="card" style="border:2px solid #fbbf2440"><div class="card-h">RubonAI Capital Forex showing trading strong - % strength - Real Live $1,247.89 - TATe...Fra</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:10px">
 
-<div class="topbar">
-<div><b style="color:#fbbf24">🤖 RubonAI</b> <span style="font-size:12px">Real Live Forex Trading Unit - Professional Bank Tools</span> <span style="font-size:8px;color:#10b981;border:1px solid #10b98130;background:#10b98110;padding:3px 8px;border-radius:20px;margin-left:8px">HQ USA: 16192 Coastal Hwy, Lewes, DE 19958 • Delaware LLC • USA • NOT Africa</span></div>
-<div style="display:flex;gap:6px;align-items:center"><span id="adminEmail" style="font-size:11px">-</span><span class="badge badge-live">● LIVE 24H - REAL ACCOUNT</span><a href="index.html" style="font-size:11px;color:#94a3b8;text-decoration:none">Investor Area</a></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">📊 MetaTrader 5</span><span style="font-size:11px;font-weight:800;color:#10b981">98%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:98%;height:6px;background:#10b981;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">📈 MetaTrader 4</span><span style="font-size:11px;font-weight:800;color:#10b981">95%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:95%;height:6px;background:#10b981;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">💹 cTrader</span><span style="font-size:11px;font-weight:800;color:#10b981">97%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:97%;height:6px;background:#10b981;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">📉 TradingView</span><span style="font-size:11px;font-weight:800;color:#10b981">99%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:99%;height:6px;background:#fbbf24;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">🥷 NinjaTrader</span><span style="font-size:11px;font-weight:800;color:#fbbf24">92%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:92%;height:6px;background:#fbbf24;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">📅 Economic Calendars</span><span style="font-size:11px;font-weight:800;color:#10b981">96%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:96%;height:6px;background:#10b981;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">📰 Real Time News Feeds</span><span style="font-size:11px;font-weight:800;color:#10b981">98%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:98%;height:6px;background:#10b981;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">📊 Technical Indicators</span><span style="font-size:11px;font-weight:800;color:#fbbf24">94%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:94%;height:6px;background:#fbbf24;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">🔍 Screeners & Alerts</span><span style="font-size:11px;font-weight:800;color:#fbbf24">93%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:93%;height:6px;background:#fbbf24;border-radius:3px"></div></div></div>
+
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700">🛡️ Risk Management</span><span style="font-size:11px;font-weight:800;color:#10b981">99%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:99%;height:6px;background:#10b981;border-radius:3px"></div></div></div>
+
+<div style="background:#fbbf2410;border:1px solid #fbbf2440;border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700;color:#fbbf24">💰 Compound System - 24H</span><span style="font-size:11px;font-weight:800;color:#fbbf24">100%</span></div><div style="height:6px;background:#1f2937;border-radius:3px;margin-top:6px"><div style="width:100%;height:6px;background:#fbbf24;border-radius:3px"></div></div><div style="margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px"><input id="pv" type="number" value="500" style="background:#070a12;border:1px solid #1f2937;border-radius:4px;padding:5px;font-size:10px;color:#fff"><input id="roi" type="number" value="0.05" step="0.01" style="background:#070a12;border:1px solid #1f2937;border-radius:4px;padding:5px;font-size:10px;color:#fff"></div><div style="margin-top:4px;font-size:10px">FV: <b id="fv" style="color:#fbbf24">$0</b> <b id="profitCalc" style="color:#10b981">$0</b> <button onclick="calcCompound()" style="background:#fbbf24;color:#000;border:none;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;cursor:pointer">Calc</button></div></div>
+
 </div>
-
-<div class="tabs">
-<div id="tab-unit1" class="tab active" onclick="showTab('unit1')">🔴 UNIT 1: RubonAI Real Account & Forex Pro Tools</div>
-<div id="tab-unit2" class="tab" onclick="showTab('unit2')">🟡 UNIT 2: Compliance Monitoring</div>
-<div id="tab-unit3" class="tab" onclick="showTab('unit3')">🟢 UNIT 3: System Backups</div>
+<div style="margin-top:10px;background:#10b98110;border:1px solid #10b98130;padding:8px;border-radius:8px;font-size:10px;color:#10b981;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px"><span>Overall Trading Strength: <b>96.5% Strong</b> - All systems live - Real $1,247.89 - TATe...Fra</span><span>16192 Coastal Hwy, Lewes, DE 19958, USA</span></div>
 </div>
-
-<!-- UNIT 1: RUBONAI REAL ACCOUNT -->
-<div id="unit1" class="page active">
-<div class="grid4">
-<div class="card"><div class="card-h">RubonAI Real Balance - USA Treasury <span class="badge badge-live">LIVE</span></div><div style="font-size:22px;font-weight:800;color:#fbbf24" id="realBal">$1,247.89</div><div style="font-size:10px;color:#64748b">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Delaware HQ - Real Money</div><div class="progress"><div style="width:78%"></div></div></div>
-<div class="card"><div class="card-h">Forex P/L - Backbone of Global Finance <span class="badge badge-gold">Bank Model</span></div><div style="font-size:20px;font-weight:800;color:#10b981">+$324.50 today</div><div style="font-size:10px;color:#64748b">Manage reserves, stabilize, hedge, profit from volatility - Like World Bank, IMF, Central Banks</div></div>
-<div class="card"><div class="card-h">Compounding System - Profit Every 24H <span class="badge badge-gold">FV=PV(1+i/n)^nt</span></div><div style="font-size:14px">FV: <b id="fv" style="color:#fbbf24">$500 → $...</b> Profit: <b id="profit" style="color:#10b981">$...</b></div><div style="font-size:10px;color:#94a3b8" id="daily">$25 daily → reinvested - Exponential growth</div></div>
-<div class="card"><div class="card-h">Trading Mode & Risk <span class="badge badge-live">STOP-LOSS ACTIVE</span></div><div style="font-size:12px"><span style="background:#10b98120;color:#10b981;padding:4px 8px;border-radius:12px">🟢 ROBOT LIVE 24H - USA HQ</span></div><div style="font-size:10px;margin-top:6px">Countdown: <b style="color:#fbbf24" id="cd">02:13:48</b> • 52/120 trades • Liquidity control active</div></div>
-</div>
-
-<!-- CORE TOOLS USED BY AI, BANKS & PROFESSIONAL FOREX TRADERS -->
-<div class="card"><div class="card-h">Core Tools Used by AI, Banks & Professional Forex Traders - RubonAI Professional Stack - USA HQ <span class="badge">Real Live Trading Unit</span></div>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:8px">
-<div class="tool"><div class="tool-icon">📊</div><div class="tool-name">MetaTrader 5</div><div class="tool-status">● Connected - Real</div></div>
-<div class="tool"><div class="tool-icon">📈</div><div class="tool-name">MetaTrader 4</div><div class="tool-status">● Connected - Real</div></div>
-<div class="tool"><div class="tool-icon">💹</div><div class="tool-name">cTrader</div><div class="tool-status">● Connected - ECN</div></div>
-<div class="tool"><div class="tool-icon">📉</div><div class="tool-name">TradingView</div><div class="tool-status">● LIVE - Pro+</div></div>
-<div class="tool"><div class="tool-icon">🥷</div><div class="tool-name">NinjaTrader</div><div class="tool-status">● Algo Active</div></div>
-<div class="tool"><div class="tool-icon">📅</div><div class="tool-name">Economic Calendars</div><div class="tool-status">● Fed, ECB, NFP</div></div>
-<div class="tool"><div class="tool-icon">📰</div><div class="tool-name">Real Time News Feeds</div><div class="tool-status">● Bloomberg, Reuters</div></div>
-<div class="tool"><div class="tool-icon">🔧</div><div class="tool-name">Technical Indicators</div><div class="tool-status">● RSI, MACD, BB 20+</div></div>
-<div class="tool"><div class="tool-icon">🔍</div><div class="tool-name">Screeners & Alerts</div><div class="tool-status">● 60 signals - LIVE</div></div>
-<div class="tool"><div class="tool-icon">🛡️</div><div class="tool-name">Risk Management</div><div class="tool-status">● Stop-Loss, Liquidity</div></div>
-<div class="tool" style="border-color:#fbbf24"><div class="tool-icon">💰</div><div class="tool-name">Compound Interest System</div><div class="tool-status">● Profit every 24H</div></div>
-</div>
-</div>
-
-<div class="grid2">
-<div class="card" style="padding:0;overflow:hidden"><div style="padding:10px;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px"><span style="font-size:12px;font-weight:700">RubonAI Real Account - Professional Forex Chart - MT5 / cTrader / TradingView - USA HQ</span><div><span class="badge badge-live">● LIVE REAL MONEY</span><span class="badge">EUR/USD • GBP/USD • XAU/USD • Leverage, Arbitrage, Algo</span></div></div><div id="tv_forex" style="height:500px"></div><div style="padding:8px;background:#070a12;border-top:1px solid #1f2937;display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-dark">MT5 Real</button><button class="btn btn-dark">MT4 Real</button><button class="btn btn-dark">cTrader ECN</button><button class="btn btn-dark">TradingView Pro</button><button class="btn btn-dark">NinjaTrader Algo</button><span style="font-size:10px;color:#64748b;margin-left:8px">Commercial banks earn spreads, commissions, hedging fees • RubonAI: leverage, algorithmic, arbitrage, macro events</span></div></div>
-
-<div>
-<div class="card"><div class="card-h">Compound Interest System - Profit Traded Every 24 Hours - Formula <span class="badge badge-gold">FV=PV(1+i/n)^nt</span></div><div style="margin-top:8px"><label style="font-size:10px">PV - Initial Deposit</label><input id="pv" type="number" value="500" oninput="calcCompound()"><label style="font-size:10px">i - ROI Rate (daily 5% = 0.05)</label><input id="roi" type="number" step="0.01" value="0.05" oninput="calcCompound()"><label style="font-size:10px">n - Compounding periods per year (365 = daily)</label><input id="n" type="number" value="365" oninput="calcCompound()"><label style="font-size:10px">t - Years</label><input id="t" type="number" step="0.1" value="1" oninput="calcCompound()"><div style="margin-top:8px;background:#070a12;padding:8px;border-radius:6px"><div style="font-size:12px">Future Value: <b id="fv2" style="color:#fbbf24">$...</b></div><div style="font-size:11px">Profit: <span id="profit2" style="color:#10b981">$...</span> • <span id="daily2">$... daily reinvested</span></div><div style="font-size:9px;color:#64748b;margin-top:4px">Automatically reinvesting daily forex profits into investor accounts - Flexible daily/weekly/monthly - Transparent dashboard - Stop-loss & liquidity controls - Profit accelerator</div></div><button onclick="calcCompound();alert('RubonAI Compound Applied - Profit reinvested every 24H - USA HQ - Delaware LLC')" class="btn btn-gold" style="width:100%;margin-top:8px">Apply Compounding - RubonAI Real Account - USA HQ</button></div></div>
-
-<div class="card"><div class="card-h">Real Time News & Economic Calendar - USA HQ <span class="badge badge-live">Bloomberg • Reuters • Fed</span></div><div style="font-size:10px;background:#070a12;padding:8px;border-radius:6px;max-height:120px;overflow:auto" id="news">Loading real time news feeds - USA HQ...<br>14:32 - Fed Interest Rate Decision - USD Volatility Expected - RubonAI hedging<br>14:28 - NFP Data - USD Strength - RubonAI arbitrage opportunity<br>14:15 - ECB Press Conference - EUR/USD spread earning - Commercial bank model</div></div>
-
-<div class="card"><div class="card-h">Screeners & Alerts + Risk Management - USA HQ</div><div style="font-size:10px"><div style="display:flex;justify-content:space-between;padding:4px;background:#070a12;border-radius:4px;margin-bottom:4px"><span>BUY EUR/USD - RSI Breakout Conf 81%</span><span style="color:#10b981">● Alert Sent</span></div><div style="display:flex;justify-content:space-between;padding:4px;background:#070a12;border-radius:4px;margin-bottom:4px"><span>Risk: Stop-loss 1.5% - Liquidity 90%</span><span style="color:#10b981">● Protected</span></div></div><button class="btn btn-dark" style="width:100%;margin-top:6px">View All 60 Signals - RubonAI Real</button></div>
-</div>
-</div>
-</div>
-
-<div id="unit2" class="page"><h2 style="font-size:16px;color:#fbbf24">UNIT 2: Admin Compliance Monitoring System - USA HQ</h2><div class="card" style="margin-top:10px"><div class="card-h">AML/KYC - Audit Log - Licensing - USA</div><div style="font-size:11px">Compliance monitoring - Delaware LLC #2026-12345 - 16192 Coastal Hwy, Lewes, DE 19958, USA - NOT Africa</div></div></div>
-<div id="unit3" class="page"><h2 style="font-size:16px;color:#10b981">UNIT 3: SolarAI System Backups - USA HQ</h2><div class="card" style="margin-top:10px"><div class="card-h">System Backups - Treasury Backup - Restore Points - USA HQ</div><div style="font-size:11px">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Delaware Treasury - Backup verified - USA</div></div></div>
-
-<script>
-auth.onAuthStateChanged(async u=>{
- if(!u){document.getElementById('lock').style.display='flex';return;}
- const ok=await checkAdmin(u);
- if(ok){
-  if(window.TradingView){new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"dark",style:"1",container_id:"tv_forex"});}
-  calcCompound();
-  setInterval(()=>{const el=document.getElementById('cd');if(!el)return;let[h,m,s]=el.innerText.split(':').map(Number);s--;if(s<0){s=59;m--}if(m<0){m=59;h--}if(h<0)h=2;el.innerText=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`},1000);
-  setInterval(()=>{const n=document.getElementById('news');if(n){const d=new Date().toLocaleTimeString();n.innerHTML=`${d} - World Bank reserves management - Liquidity provision - RubonAI preserving value<br>`+n.innerHTML.slice(0,600);}},8000);
- }
-});
-function calcCompound(){const PV=parseFloat(document.getElementById('pv').value)||500;const i=parseFloat(document.getElementById('roi').value)||0.05;const n=parseFloat(document.getElementById('n').value)||365;const t=parseFloat(document.getElementById('t').value)||1;const FV=PV*Math.pow(1+i/n,n*t);document.getElementById('fv').innerText='$'+FV.toFixed(2);document.getElementById('profit').innerText='$'+(FV-PV).toFixed(2);document.getElementById('daily').innerText='$'+(PV*i).toFixed(2)+' daily → reinvested';const fv2=document.getElementById('fv2');if(fv2){fv2.innerText='$'+FV.toFixed(2);document.getElementById('profit2').innerText='$'+(FV-PV).toFixed(2);document.getElementById('daily2').innerText='$'+(PV*i).toFixed(2)+' daily reinvested';}}
-</script>
-</body></html>
