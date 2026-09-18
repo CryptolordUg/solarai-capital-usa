@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard - SolarAI Capital USA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial;background:#0a0f1f;color:white;min-height:100vh}
+.header{background:#111a2f;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #d4af37}
+.logo{width:45px;height:45px;background:white;border-radius:50%;box-shadow:0 0 15px #ffeb3b}
+.header h2{color:#d4af37;font-size:18px}
+.nav a{color:#00d4ff;text-decoration:none;margin-left:15px;font-size:13px}
+.container{max-width:900px;margin:20px auto;padding:0 15px}
+.card{background:#111a2f;border:1px solid #223055;border-radius:15px;padding:20px;margin-bottom:20px}
+.card h3{color:#d4af37;margin-bottom:15px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:20px}
+.stat{background:#0f1830;border:1px solid #223055;padding:15px;border-radius:12px;text-align:center}
+.stat .val{font-size:22px;color:#d4af37;font-weight:bold}
+.stat .lab{font-size:11px;color:#888;letter-spacing:1px;margin-top:5px}
+.plan{display:flex;justify-content:space-between;align-items:center;background:#0f1830;padding:15px;border-radius:10px;margin-bottom:10px;border-left:4px solid #d4af37}
+.btn{background:#d4af37;color:#0a0f1f;padding:8px 18px;border-radius:20px;border:none;font-weight:bold;cursor:pointer}
+.btn-full{width:100%;padding:14px;background:linear-gradient(90deg,#d4af37,#b8960c);border-radius:30px;font-size:16px;margin-top:10px;border:none;font-weight:bold;cursor:pointer}
+input{width:100%;padding:12px;background:#0a0f1f;border:1px solid #223055;border-radius:8px;color:white;margin:8px 0}
+</style>
+</head>
+<body>
+<div class="header">
+<div style="display:flex;align-items:center;gap:10px"><div class="logo"></div><h2>SolarAI Capital</h2></div>
+<div class="nav"><a href="/">Home</a><a href="#">Logout</a></div>
+</div>
+<div class="container">
+<div class="card">
+<h3>Welcome, Investor 👋</h3>
+<div class="stats">
+<div class="stat"><div class="val">$0.00</div><div class="lab">TOTAL BALANCE</div></div>
+<div class="stat"><div class="val">$0.00</div><div class="lab">TOTAL EARNINGS</div></div>
+<div class="stat"><div class="val">0</div><div class="lab">ACTIVE INVESTMENTS</div></div>
+<div class="stat"><div class="val">0 kWh</div><div class="lab">SOLAR GENERATED</div></div>
+</div>
+</div>
+<div class="card">
+<h3>💰 Investment Plans - USA</h3>
+<div class="plan"><div><b>Starter Sun</b><br><span style="color:#00d4ff;font-size:12px">$100 - $499 | 5% daily | 20 days</span></div><button class="btn">Invest</button></div>
+<div class="plan"><div><b>Pro Solar</b><br><span style="color:#00d4ff;font-size:12px">$500 - $1999 | 7% daily | 30 days</span></div><button class="btn">Invest</button></div>
+<div class="plan"><div><b>Capital Max</b><br><span style="color:#00d4ff;font-size:12px">$2000+ | 10% daily | 40 days</span></div><button class="btn">Invest</button></div>
+</div>
+<div class="card">
+<h3>💸 Quick Actions</h3>
+<button class="btn-full">Deposit Funds</button>
+<button class="btn-full" style="background:#0f1830;color:#00d4ff;border:1px solid #00d4ff">Withdraw Earnings</button>
+</div>
+<div class="card">
+<h3>🔐 Login</h3>
+<input type="email" placeholder="Email address">
+<input type="password" placeholder="Password">
+<button class="btn-full">Login to Dashboard</button>
+<p style="text-align:center;margin-top:15px;font-size:12px"><a href="/" style="color:#d4af37">← Back to Home</a></p>
+</div>
+</div>
+</body>
+</html>
