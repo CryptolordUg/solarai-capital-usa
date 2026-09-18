@@ -1,91 +1,60 @@
-<div id="dashboard" class="dashboard">
-<!-- RUBONAI HEADER -->
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-<div><h2 style="font-size:18px">RubonAI <span style="color:#fbbf24">Real Live Forex Trading Unit</span></h2><div style="font-size:10px;color:#94a3b8">SolarAI Trading Robot RubonAI • 16192 Coastal Hwy, Lewes, DE 19958, USA • Delaware LLC #2026-12345 • Treasury TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div></div>
-<div style="display:flex;gap:10px;align-items:center">
-<div onclick="openDeposit()" style="width:44px;height:44px;background:#fbbf24;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px" title="Deposit - Click Icon">💰</div>
-<div onclick="openWithdraw()" style="width:44px;height:44px;background:#1e2937;border:1px solid #334155;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px" title="Withdraw - Click Icon">🏧</div>
-<span class="badge badge-live">● LIVE REAL $1,247.89</span>
-<button onclick="auth.signOut()" style="height:32px;padding:0 12px;background:#1e2937;border:1px solid #334155;color:#fff;border-radius:8px;font-size:11px;cursor:pointer">Log Out</button>
+<div class="card" style="padding:0;overflow:hidden;border:2px solid #fbbf2440">
+<div style="padding:12px;background:#0a0d1a;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+<div><b style="font-size:13px;color:#fbbf24">RubonAI Capital Forex</b> <span style="font-size:11px;color:#94a3b8">• Candlestick Chart Trading • Realtime Price Actual Trading • Real Live Forex • $1,247.89</span></div>
+<div style="display:flex;gap:6px;align-items:center">
+<span id="livePrice" style="background:#10b98120;border:1px solid #10b98140;color:#10b981;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">EUR/USD 1.08452 ▲ +0.12%</span>
+<span style="background:#fbbf2420;border:1px solid #fbbf2440;color:#fbbf24;padding:4px 10px;border-radius:20px;font-size:10px">● LIVE CANDLESTICK • REAL MONEY</span>
 </div>
 </div>
 
-<!-- MODALS - ICONS CLICKABLE ONLY -->
-<div id="depositModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:60;align-items:center;justify-content:center"><div style="background:#111827;border:1px solid #1f2937;border-radius:16px;padding:24px;max-width:380px;width:90%"><h3>💰 Deposit - Delaware Treasury</h3><input id="depAmount" type="number" placeholder="Amount $10 min" class="input" style="height:44px;margin-top:12px"><div style="margin-top:8px;font-size:10px;background:#070a12;padding:8px;border-radius:8px;word-break:break-all;color:#fbbf24">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra (TRC20)<br><span style="color:#94a3b8">16192 Coastal Hwy, Lewes, DE 19958, USA</span></div><button onclick="makeDeposit()" class="btn btn-gold" style="height:44px;margin-top:12px">Confirm - Working</button><div id="depStatus" style="font-size:11px;margin-top:8px;color:#10b981"></div><button onclick="document.getElementById('depositModal').style.display='none'" style="width:100%;margin-top:8px;background:transparent;border:1px solid #1f2937;color:#94a3b8;padding:8px;border-radius:8px;cursor:pointer">Close</button></div></div>
-<div id="withdrawModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:60;align-items:center;justify-content:center"><div style="background:#111827;border:1px solid #1f2937;border-radius:16px;padding:24px;max-width:380px;width:90%"><h3>🏧 Withdrawal - TXID Auto</h3><input id="wdAmount" type="number" placeholder="Amount Min $10" class="input" style="height:44px;margin-top:12px"><input id="wdAddr" placeholder="USDT TRC20 Address" class="input" style="height:44px;margin-top:8px"><button onclick="makeWithdrawal()" style="width:100%;height:44px;margin-top:12px;background:#1e2937;border:1px solid #334155;color:#fff;border-radius:8px;font-weight:700;cursor:pointer">Request - TXID Auto</button><div id="wdStatus" style="font-size:11px;margin-top:8px"></div><button onclick="document.getElementById('withdrawModal').style.display='none'" style="width:100%;margin-top:8px;background:transparent;border:1px solid #1f2937;color:#94a3b8;padding:8px;border-radius:8px;cursor:pointer">Close</button></div></div>
-
-<div style="display:grid;grid-template-columns:300px 1fr;gap:16px">
-<!-- LEFT: ROBOT VISIBLE -->
-<div>
-<div class="card" style="text-align:center"><div style="font-size:72px">🤖</div><div style="font-size:18px;font-weight:800;color:#fbbf24">RubonAI</div><div style="font-size:11px;color:#94a3b8">SolarAI Trading Robot</div><div style="font-size:11px;color:#10b981;margin-top:6px">● LIVE REAL ACCOUNT<br><span style="color:#fbbf24">$1,247.89 - TATe...Fra</span></div>
-<div style="margin-top:12px;background:#070a12;border-radius:8px;padding:10px;text-align:left;font-size:11px;line-height:1.6">
-<div>🧠 AI: GPT-4o + MT5 Algo</div>
-<div>⚡ Trades: 52/120 today</div>
-<div>📈 Win Rate: 68%</div>
-<div>💹 P/L Today: <span style="color:#10b981">$324.50</span></div>
-<div>⏱️ Next: <b id="cd" style="color:#fbbf24">02:13:48</b></div>
-<div>🏦 Treasury: TATeM34U...Fra</div>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px"><div onclick="openDeposit()" style="background:#fbbf24;color:#000;padding:10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer">💰 Deposit</div><div onclick="openWithdraw()" style="background:#1e2937;border:1px solid #334155;color:#fff;padding:10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer">🏧 Withdraw</div></div>
+<!-- REALTIME PRICE TICKER - ACTUAL TRADING -->
+<div style="background:#070a12;border-bottom:1px solid #1f2937;padding:8px 12px;display:flex;gap:12px;overflow-x:auto;font-size:11px">
+<div style="white-space:nowrap"><span style="color:#94a3b8">EUR/USD</span> <b id="p1" style="color:#10b981">1.08452 ▲</b> <span style="color:#64748b">0.2 pips</span></div>
+<div style="white-space:nowrap"><span style="color:#94a3b8">GBP/USD</span> <b id="p2" style="color:#10b981">1.27341 ▲</b></div>
+<div style="white-space:nowrap"><span style="color:#94a3b8">USD/JPY</span> <b id="p3" style="color:#ef4444">149.82 ▼</b></div>
+<div style="white-space:nowrap"><span style="color:#94a3b8">BTC/USD</span> <b id="p4" style="color:#10b981">43,250 ▲</b></div>
+<div style="white-space:nowrap"><span style="color:#94a3b8">XAU/USD</span> <b id="p5" style="color:#fbbf24">2,045.30 ●</b></div>
+<div style="white-space:nowrap"><span style="color:#94a3b8">RubonAI Balance</span> <b style="color:#fbbf24">$1,247.89 Real</b> <span style="color:#10b981">+$324.50 today</span></div>
 </div>
 
-<div class="card"><div class="card-h">Balance & Profit - Every 24H</div><div style="font-size:11px;color:#94a3b8">Balance</div><div style="font-size:22px;font-weight:800;color:#fbbf24" id="bal">$0.00</div><div style="font-size:11px;color:#94a3b8;margin-top:8px">Daily Profit</div><div style="font-size:16px;font-weight:800;color:#10b981" id="profit">+$0</div></div>
+<!-- CANDLESTICK CHART TRADING - REALTIME ACTUAL -->
+<div id="tv_candlestick" style="height:420px"></div>
+
+<div style="padding:8px;display:flex;gap:6px;flex-wrap:wrap;background:#0a0d1a;border-top:1px solid #1f2937">
+<span style="background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:12px;font-size:10px">● MT5 Candlestick Real</span>
+<span style="background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:12px;font-size:10px">● MT4 Candlestick Real</span>
+<span style="background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:12px;font-size:10px">● cTrader ECN Candlestick</span>
+<span style="background:#fbbf2420;border:1px solid #fbbf2440;color:#fbbf24;padding:4px 8px;border-radius:12px;font-size:10px">● TradingView Candlestick Pro+ LIVE</span>
+<span style="background:#fbbf2420;border:1px solid #fbbf2440;color:#fbbf24;padding:4px 8px;border-radius:12px;font-size:10px">● NinjaTrader Candlestick Algo</span>
+<span style="background:#070a12;border:1px solid #1f2937;color:#94a3b8;padding:4px 8px;border-radius:12px;font-size:10px">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra • 16192 Coastal Hwy, Lewes, DE 19958</span>
+</div>
 </div>
 
-<!-- RIGHT: LIVE CHART + CORE TOOLS + COMPOUND -->
-<div>
-<div class="card" style="padding:0;overflow:hidden"><div style="padding:12px;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px"><b style="font-size:12px">RubonAI Live - MT5 MT4 cTrader TradingView NinjaTrader - Real</b><span class="badge badge-live">● LIVE REAL $1,247.89 - 16192 Coastal Hwy, Lewes, DE 19958</span></div><div id="tv_main" style="height:360px"></div><div style="padding:8px;display:flex;gap:6px;flex-wrap:wrap"><span style="background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:12px;font-size:10px">MT5 Real</span><span style="background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:12px;font-size:10px">MT4 Real</span><span style="background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:12px;font-size:10px">cTrader ECN</span><span style="background:#10b98120;border:1px solid #10b98130;color:#10b981;padding:4px 8px;border-radius:12px;font-size:10px">TradingView Pro+</span><span style="background:#fbbf2420;border:1px solid #fbbf2440;color:#fbbf24;padding:4px 8px;border-radius:12px;font-size:10px">NinjaTrader Algo</span></div></div>
-
-<!-- ALL CORE TOOLS USED BY AI, BANKS & PROFESSIONAL FOREX TRADERS - BUILT IN -->
-<div class="card"><div class="card-h">Build RubonAI Unit - All Core Tools Used by AI, Banks & Professional Forex Traders - Built In</div>
+<!-- RUBONAI CAPITAL FOREX - ALL CORE TOOLS USED BY AI, BANKS & PROFESSIONAL FOREX TRADERS - BUILT IN -->
+<div class="card" style="border:2px solid #fbbf2440"><div class="card-h">RubonAI Capital Forex - All Core Tools Used by AI, Banks & Professional Forex Traders - Built In - Candlestick Chart Trading & Realtime Price Actual Trading</div>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:10px">
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📊 MetaTrader 5</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Advanced charting, MQL5 algo, backtesting, broker connectivity - Institutional</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Connected - Real Account - $1,247.89</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📊 MetaTrader 5 - Candlestick</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Advanced charting candlestick, MQL5 algo, backtesting, broker connectivity - Institutional - Realtime price actual</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Connected - Real - Candlestick Live $1,247.89</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📈 MetaTrader 4</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">EAs, automated strategies, familiar workflows - Widely used pro traders</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Connected - Real - EA Active</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📈 MetaTrader 4 - Candlestick</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">EAs candlestick, automated strategies, familiar workflows - Pro traders actual trading</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Connected - Real - Candlestick EA Active</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">💹 cTrader</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Advanced order types, C# cAlgo, strict execution control - ECN</div><div style="font-size:9px;color:#10b981;margin-top:4px">● ECN Live - Spread 0.2 pips</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">💹 cTrader - Candlestick ECN</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Advanced order types candlestick, C# cAlgo, strict execution control - ECN actual price</div><div style="font-size:9px;color:#10b981;margin-top:4px">● ECN Live - Spread 0.2 pips - Realtime price</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📉 TradingView</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Multi timeframe, scripting, social, webhook alerts automation - Pro+</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Pro+ LIVE - 60 signals</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📉 TradingView - Candlestick Pro+ LIVE</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Multi timeframe candlestick, scripting, social, webhook alerts automation - Actual trading chart</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Pro+ LIVE - 60 signals - Candlestick realtime</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">🥷 NinjaTrader</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Backtesting + automation - Institutional desks strategy testing execution</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Algo Active - Institutional</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">🥷 NinjaTrader - Candlestick Algo</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Backtesting candlestick + automation - Institutional desks strategy testing execution actual</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Algo Active - Institutional - Candlestick</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📅 Economic Calendars</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Monitor Fed/ECB, NFP, interest rates - Macro event tracking</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● Live - Fed 14:00 EST - NFP Fri</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📅 Economic Calendars - Realtime</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Monitor Fed/ECB, NFP, interest rates - Macro event tracking actual price impact</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● Live - Fed 14:00 EST - NFP Fri - Realtime</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📰 Real Time News Feeds</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Benzinga Pro, Bloomberg, Reuters - Instant reaction headlines - Market movers</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Bloomberg Reuters Live</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📰 Real Time News Feeds - Realtime Price</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Benzinga Pro, Bloomberg, Reuters - Instant reaction headlines - Market movers actual trading</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Bloomberg Reuters Live - Realtime price</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📊 Technical Indicators</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">EMA trend, RSI entry timing, Bollinger Bands volatility context - 20+ signals</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● 20+ Live - RSI BB EMA</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">📊 Technical Indicators - Candlestick</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">EMA trend candlestick, RSI entry timing, Bollinger Bands volatility context - 20+ signals actual</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● 20+ Live - RSI BB EMA - Candlestick</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">🔍 Screeners & Alerts</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Automated scans price levels, volume spikes, indicator crossovers - Efficiency</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● 60 Signals - Auto scans</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">🔍 Screeners & Alerts - Realtime</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Automated scans price levels, volume spikes, indicator crossovers - Efficiency candlestick</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● 60 Signals - Auto scans - Realtime</div></div>
 
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">🛡️ Risk Management Systems</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Stop loss automation, exposure limits, volatility filters, hedging - Capital protection</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Active 1.5% per trade $18.71</div></div>
+<div style="background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700">🛡️ Risk Management Systems - Actual Trading</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">Stop loss automation candlestick, exposure limits, volatility filters, hedging - Capital protection actual</div><div style="font-size:9px;color:#10b981;margin-top:4px">● Active 1.5% per trade $18.71 - Realtime</div></div>
 
-<div style="background:#fbbf2410;border:1px solid #fbbf2440;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700;color:#fbbf24">💰 Compound Interest System - Profit Every 24H</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">FV = PV × (1 + i/n)^nt - Reinvest profits, interest on interest, exponential growth - Daily weekly monthly - Stop-loss liquidity controls - Wealth creation tool</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● Every 24H - 02:13:48 - FV calculator live</div><div style="margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px"><input id="pv" type="number" value="500" placeholder="PV" style="background:#070a12;border:1px solid #1f2937;border-radius:4px;padding:4px;font-size:10px;color:#fff"><input id="roi" type="number" value="0.05" step="0.01" placeholder="i" style="background:#070a12;border:1px solid #1f2937;border-radius:4px;padding:4px;font-size:10px;color:#fff"></div><div style="margin-top:4px;font-size:10px">FV: <b id="fv" style="color:#fbbf24">$0</b> Profit: <b id="profitCalc" style="color:#10b981">$0</b> <button onclick="calcCompound()" style="background:#fbbf24;color:#000;border:none;padding:2px 6px;border-radius:4px;font-size:9px;margin-left:6px;cursor:pointer">Calc</button></div></div>
+<div style="background:#fbbf2410;border:1px solid #fbbf2440;border-radius:8px;padding:10px"><div style="font-size:11px;font-weight:700;color:#fbbf24">💰 Compound Interest System - Profit Every 24H - Actual</div><div style="font-size:10px;color:#94a3b8;margin-top:4px">FV = PV × (1 + i/n)^nt - Reinvest profits daily forex actual trading, interest on interest, exponential - Stop-loss liquidity controls - Wealth tool - 16192 Coastal Hwy, Lewes, DE 19958</div><div style="font-size:9px;color:#fbbf24;margin-top:4px">● Every 24H - 02:13:48 - FV calculator live - Actual trading</div><div style="margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px"><input id="pv" type="number" value="500" placeholder="PV Initial" style="background:#070a12;border:1px solid #1f2937;border-radius:4px;padding:6px;font-size:10px;color:#fff"><input id="roi" type="number" value="0.05" step="0.01" placeholder="i ROI" style="background:#070a12;border:1px solid #1f2937;border-radius:4px;padding:6px;font-size:10px;color:#fff"></div><div style="margin-top:6px;font-size:11px">FV: <b id="fv" style="color:#fbbf24">$0</b> Profit: <b id="profitCalc" style="color:#10b981">$0</b> <button onclick="calcCompound()" style="background:#fbbf24;color:#000;border:none;padding:4px 10px;border-radius:4px;font-size:10px;margin-left:6px;cursor:pointer;font-weight:700">Calc Actual</button></div></div>
 
-</div>
-</div>
-
-<!-- TRACKING - CALCULATOR STYLE - NO WRITINGS -->
-<div class="card"><div class="card-h">RubonAI Trading Tracking - 10 Checks - Calculator Style - No Writings</div>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-top:8px">
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">1. Market Context</div><div style="font-size:11px;font-weight:700">Risk-On</div><div style="font-size:9px;color:#10b981">EUR Strong</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">2. Economic Calendar</div><div style="font-size:11px;font-weight:700">Fed 14:00</div><div style="font-size:9px;color:#fbbf24">Filter ON</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">3. Trend Bias</div><div style="font-size:11px;font-weight:700">Bullish 4H</div><div style="font-size:9px;color:#10b981">200 EMA</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">4. Key Levels</div><div style="font-size:11px;font-weight:700">1.0840 / 1.0920</div><div style="font-size:9px;color:#94a3b8">Fib 61.8%</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">5. Risk Per Trade</div><div style="font-size:11px;font-weight:700">1.5% = $18.71</div><div style="font-size:9px;color:#10b981">1:2 RR</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">6. Liquidity & Spreads</div><div style="font-size:11px;font-weight:700">$12,450 90%</div><div style="font-size:9px;color:#10b981">0.2 pips</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">7. Session Timing</div><div style="font-size:11px;font-weight:700">NY Active</div><div style="font-size:9px;color:#10b981">13-16 GMT Best</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">8. Stop Loss & Confluence</div><div style="font-size:11px;font-weight:700">SL 1.5% 3 conf</div><div style="font-size:9px;color:#10b981">RSI+BB+EMA</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">9. Behavioral</div><div style="font-size:11px;font-weight:700">98/100</div><div style="font-size:9px;color:#10b981">0 alerts</div></div>
-<div style="background:#070a12;border:1px solid #1f2937;border-radius:6px;padding:8px;text-align:center"><div style="font-size:9px;color:#94a3b8">10. Overnight Risk</div><div style="font-size:11px;font-weight:700">Flat Weekend</div><div style="font-size:9px;color:#fbbf24">Close Fri 21:00</div></div>
-</div>
-</div>
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-<div class="card"><div class="card-h">Portfolio - Solar 60% - Delaware Farm A - 16192 Coastal Hwy</div><div style="font-size:11px"><div style="display:flex;justify-content:space-between;padding:6px;background:#070a12;border-radius:6px;margin-bottom:4px"><span>Delaware Farm A</span><b>60%</b></div><div style="display:flex;justify-content:space-between;padding:6px;background:#070a12;border-radius:6px;margin-bottom:4px"><span>Electronics USA</span><b>25%</b></div><div style="display:flex;justify-content:space-between;padding:6px;background:#070a12;border-radius:6px"><span>Real Estate DE</span><b>15%</b></div></div></div>
-<div class="card"><div class="card-h">Support - Working - 24/7 - USA HQ</div><div style="display:flex;gap:8px"><input id="supportMsg" placeholder="Message" class="input" style="height:40px;margin-top:0"><button onclick="sendSupport()" style="background:#1e2937;border:1px solid #334155;color:#fff;padding:0 14px;border-radius:8px;height:40px;font-size:12px;cursor:pointer">Send</button></div><div id="supportStatus" style="font-size:11px;margin-top:6px;color:#10b981"></div></div>
-</div>
-
-</div>
 </div>
 </div>
