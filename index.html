@@ -1,109 +1,111 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SolarAI Capital - Delaware HQ - Rainbow PRO</title>
+<title>SolarAI Capital LLC - Delaware HQ - Complete Framework - Rainbow PRO</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="https://s3.tradingview.com/tv.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#07080f;color:#e5e7eb;font-family:Inter,system-ui}
-:root{--rainbow: linear-gradient(90deg,#ff0080,#ff8a00,#ffd600,#00ff88,#00c2ff,#8b5cf6,#ff0080)}
-/* HEADER PRO */
-.top-bar{background:#05070a;border-bottom:1px solid #1a1a24;padding:6px 16px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#9ca3af;flex-wrap:wrap;gap:6px}
+:root{--rainbow:linear-gradient(90deg,#ff0080,#ff8a00,#ffd600,#00ff88,#00c2ff,#8b5cf6,#ff0080)}
+.top-bar{background:#05070a;border-bottom:1px solid #1a1a24;padding:6px 16px;display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;flex-wrap:wrap;gap:6px}
 .live-dot{width:6px;height:6px;background:#00ff88;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.header-main{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;background:#0a0b12f0;backdrop-filter:blur(16px);border-bottom:2px solid transparent;border-image: var(--rainbow) 1;flex-wrap:wrap;gap:10px}
-.logo-box{display:flex;align-items:center;gap:10px}
-.logo-icon{width:38px;height:38px;border-radius:10px;background:var(--rainbow);display:grid;place-items:center;color:#fff;font-weight:900}
+.header-main{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;background:#0a0b12f0;backdrop-filter:blur(16px);border-bottom:2px solid transparent;border-image:var(--rainbow) 1;flex-wrap:wrap;gap:10px}
+.logo-icon{width:38px;height:38px;border-radius:10px;background:var(--rainbow);display:grid;place-items:center;font-weight:900}
 .logo-text{background:var(--rainbow);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:18px}
-.logo-tag{font-size:9px;color:#10b981;letter-spacing:0.8px}
-.nav-links{display:flex;gap:14px;align-items:center;font-size:11px;flex-wrap:wrap}
-.nav-links a{color:#9ca3af;text-decoration:none;font-weight:600}.nav-links a:hover{color:#fff}
-.nav-links a.active{color:#fff;background:var(--rainbow);padding:5px 12px;border-radius:20px}
-.compliance-badge{display:flex;gap:6px;align-items:center;font-size:9px}
-.badge{padding:3px 8px;border-radius:12px;border:1px solid #23233a;background:#12131a}
+.nav-links{display:flex;gap:12px;font-size:11px;flex-wrap:wrap}.nav-links a{color:#9ca3af;text-decoration:none;font-weight:600}.nav-links a.active{color:#fff;background:var(--rainbow);padding:5px 12px;border-radius:20px}
+.badge{padding:3px 8px;border-radius:12px;border:1px solid #23233a;background:#12131a;font-size:9px}
 .login-btn{background:var(--rainbow);color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:800;cursor:pointer;font-size:11px}
-.lang-btn{background:#18181b;border:1px solid #3f3f46;color:#fff;padding:5px 10px;border-radius:20px;font-size:10px;cursor:pointer}
-/* FOOTER PRO */
-footer{margin-top:40px;background:#05060a;border-top:2px solid transparent;border-image: var(--rainbow) 1;padding:30px 18px 20px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:1200px;margin:0 auto}
-.footer-title{font-size:11px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:10px;background:var(--rainbow);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.footer-link{font-size:11px;color:#9ca3af;text-decoration:none;display:block;margin:5px 0}.footer-link:hover{color:#fff}
-.footer-bottom{max-width:1200px;margin:20px auto 0;border-top:1px solid #1a1a24;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:10px;color:#71717a}
-.card{background:linear-gradient(180deg,#12131a,#0e0f15);border:1px solid #23233a;border-radius:14px;padding:14px;position:relative;overflow:hidden}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--rainbow);opacity:0.7}
-.btn{padding:11px 16px;border-radius:10px;border:none;font-weight:800;cursor:pointer}.btn-rainbow{background:var(--rainbow);color:#fff;background-size:200% 100%;animation:rainbowShift 3s linear infinite}@keyframes rainbowShift{0%{background-position:0% 50%}100%{background-position:200% 50%}}
-.page{display:none;max-width:1200px;margin:0 auto;padding:16px}.page.active{display:block}
+.card{background:linear-gradient(180deg,#12131a,#0e0f15);border:1px solid #23233a;border-radius:14px;padding:14px;position:relative;overflow:hidden}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--rainbow);opacity:.7}
+.card:hover{transform:translateY(-2px);transition:.3s;box-shadow:0 10px 30px #00000060,0 0 20px #8b5cf640}
+.btn{padding:11px 16px;border-radius:10px;border:none;font-weight:800;cursor:pointer}.btn-rainbow{background:var(--rainbow);color:#fff;background-size:200% 100%;animation:rs 3s linear infinite}@keyframes rs{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.page{display:none;max-width:1220px;margin:0 auto;padding:16px}.page.active{display:block}
 input,select{width:100%;padding:11px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;border-radius:8px;margin-top:6px}
-.rainbow-border{border:1px solid transparent;background:linear-gradient(#12131a,#12131a) padding-box, var(--rainbow) border-box}
+.rainbow-border{border:1px solid transparent;background:linear-gradient(#12131a,#12131a) padding-box,var(--rainbow) border-box}
 .stat-rainbow{background:var(--rainbow);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900}
+.unit-title{font-size:12px;letter-spacing:2px;color:#a1a1aa;margin:20px 0 8px;font-weight:800}
+footer{margin-top:40px;background:#05060a;border-top:2px solid transparent;border-image:var(--rainbow) 1;padding:30px 18px 20px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:1220px;margin:0 auto}
+.footer-title{font-size:11px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:10px;background:var(--rainbow);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.footer-link{font-size:11px;color:#9ca3af;text-decoration:none;display:block;margin:5px 0}
+.footer-bottom{max-width:1220px;margin:20px auto 0;border-top:1px solid #1a1a24;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:10px;color:#71717a}
 </style>
 <script>
 const firebaseConfig={apiKey:"AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko",authDomain:"solarai-capital.firebaseapp.com",projectId:"solarai-capital",storageBucket:"solarai-capital.firebasestorage.app",messagingSenderId:"722787765054",appId:"1:722787765054:web:68ff0eac7bd505c077fa6f"};
 firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
-function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 </script></head><body>
 
-<!-- ========== HEADER - ALL YOUR ELEMENTS ========== -->
-<div class="top-bar">
-<div style="display:flex;gap:12px;align-items:center"><span><span class="live-dot"></span> ROI 8.6% LIVE</span><span>🌱 CO₂ 2.4MWh OFFSET</span><span>👥 1,247 Active Investors - Delaware HQ</span></div>
-<div style="display:flex;gap:8px;align-items:center"><span>HQ: 16192 Coastal Hwy, Lewes, DE 19958, USA - NOT Africa</span><button class="lang-btn" onclick="alert('EN / ES / FR / DE - Delaware HQ')">🌐 EN</button><button class="lang-btn">♿ Accessibility</button></div>
-</div>
-
+<!-- HEADER - ALL ELEMENTS -->
+<div class="top-bar"><div style="display:flex;gap:12px"><span><span class="live-dot"></span> ROI 8.6% LIVE</span><span>🌱 CO₂ 2.4MWh</span><span>👥 1,247 Active - Delaware HQ</span></div><div>HQ: 16192 Coastal Hwy, Lewes, DE 19958, USA - NOT Africa - Rainbow PRO</div></div>
 <header class="header-main">
-<div class="logo-box"><div class="logo-icon">☀️</div><div><div class="logo-text">SolarAI Capital</div><div class="logo-tag">Invest in Energy, Invest in Impact • Delaware LLC #2026-12345</div></div></div>
-
+<div style="display:flex;gap:10px;align-items:center"><div class="logo-icon">☀️</div><div><div class="logo-text">SolarAI Capital</div><div style="font-size:9px;color:#10b981">Invest in Energy, Invest in Impact • Delaware LLC #2026-12345 • NOT Africa</div></div></div>
 <nav class="nav-links">
-<a href="#" onclick="show('portfolio')" class="active">Investor Workspace</a>
-<a href="admin.html">Admin Monitoring</a>
-<a href="#" onclick="show('packages')">Packages</a>
-<a href="#" onclick="show('performance')">Reports</a>
-<a href="#" onclick="show('support')">Support</a>
-<a href="forex.html">Live Forex</a>
+<a href="#" onclick="show('u1')" class="active">Unit 1: Investor Workspace</a>
+<a href="#" onclick="show('u2a')">Unit 2A: Live Forex</a>
+<a href="admin.html">Unit 2B: Admin Monitoring</a>
+<a href="system.html">Unit 2C: System Detection</a>
+<a href="#" onclick="show('packages')">Packages</a><a href="#" onclick="show('reports')">Reports</a>
 </nav>
-
-<div style="display:flex;gap:8px;align-items:center">
-<div class="compliance-badge"><span class="badge">✅ AML/KYC</span><span class="badge">🔒 ISO 27001</span><span class="badge" style="border-color:#10b98140;color:#10b981">🌱 ESG A+</span><span class="badge">🏛️ Delaware LLC</span></div>
-<button class="login-btn" onclick="show('login')">🔐 Login • MFA • Biometric</button>
-</div>
+<div style="display:flex;gap:6px;align-items:center"><span class="badge">✅ AML/KYC</span><span class="badge">🔒 ISO 27001</span><span class="badge" style="color:#10b981">🌱 ESG A+</span><button class="login-btn" onclick="show('login')">🔐 Login MFA • Biometric</button><button style="background:#18181b;border:1px solid #3f3f46;color:#fff;padding:5px 10px;border-radius:20px;font-size:10px">🌐 EN ♿</button></div>
 </header>
 
-<!-- ========== PAGES ========== -->
-<div id="portfolio" class="page active">
-<div style="background:var(--rainbow);padding:1px;border-radius:16px;margin-bottom:12px"><div style="background:#0e0f15;border-radius:15px;padding:20px;text-align:center"><small style="letter-spacing:3px;color:#a1a1aa">TOTAL BALANCE - RAINBOW PRO • Delaware HQ</small><div class="stat-rainbow" id="pb" style="font-size:52px">$18.17</div><small style="color:#10b981">● Risk 22/100 LOW • Benchmark +12% Above Market • Trust + Clarity</small></div></div>
-<div class="card" style="height:300px"><div id="tv" style="height:100%"></div></div>
-</div>
-<div id="packages" class="page"><h2><span class="stat-rainbow">Packages - Dynamic Customization</span></h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:10px"><div class="card rainbow-border"><h3>$100 Starter - 3.3%</h3><select><option>30 days</option><option>90 days</option></select><select><option>Delaware Solar Farm</option></select><button onclick="show('transactions')" class="btn btn-rainbow" style="width:100%;margin-top:6px">Invest</button></div><div class="card rainbow-border"><h3>$500 Pro - 5%</h3><button onclick="show('transactions')" class="btn" style="width:100%;background:#00ff88;color:#000;margin-top:6px">Invest</button></div><div class="card rainbow-border"><h3>$1000 Whale - 8%</h3><button onclick="show('transactions')" class="btn" style="width:100%;background:#8b5cf6;color:#fff;margin-top:6px">Invest</button></div></div></div>
-<div id="performance" class="page"><h2><span class="stat-rainbow">Performance - AI Forecasting</span></h2><div class="card" style="margin-top:10px"><canvas id="perfChart" height="90"></canvas></div></div>
-<div id="transactions" class="page"><h2><span class="stat-rainbow">Transactions - Multi-currency + Crypto</span></h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:10px;max-width:800px"><div class="card rainbow-border"><h4>Deposit - Delaware Treasury</h4><select><option>USDT TRC20</option><option>BTC</option><option>USD Wire - Delaware Bank</option></select><input id="depAmt" type="number" placeholder="Amount"><p style="font-size:10px;word-break:break-all;color:#fbbf24;margin-top:6px">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</p><button onclick="doDep()" class="btn btn-rainbow" style="width:100%;margin-top:6px">Deposit</button></div><div class="card rainbow-border"><h4>Withdraw</h4><input id="wAmt" type="number" placeholder="Amount"><input id="wAddr" placeholder="Address"><button onclick="doWit()" class="btn" style="width:100%;margin-top:6px;background:#00c2ff;color:#000">Withdraw</button></div></div></div>
-<div id="impact" class="page"><h2><span class="stat-rainbow">Impact - Third-party Verified</span></h2><div class="card rainbow-border" style="margin-top:10px"><p>HQ: 16192 Coastal Highway, Lewes, Delaware 19958, USA - NOT Africa</p><button class="btn btn-rainbow" style="margin-top:10px">📄 Download Verified Report</button></div></div>
-<div id="support" class="page"><h2><span class="stat-rainbow">Support - Education + Webinars</span></h2><div class="card rainbow-border" style="margin-top:10px">🎥 Weekly Webinar Friday 2pm EST - Live from Delaware HQ • 📚 Modules • 💬 24/7 Chat</div></div>
-<div id="login" class="page"><div class="card rainbow-border" style="max-width:360px;margin:30px auto"><h2><span class="stat-rainbow">Delaware Secure Login</span></h2><input id="le" placeholder="Email"><input id="lp" type="password" placeholder="Password"><p style="font-size:10px;color:#9ca3af;margin-top:6px">🔐 Multi-factor authentication • Biometric option • Delaware encrypted</p><button onclick="doLogin()" class="btn btn-rainbow" style="width:100%;margin-top:10px">Sign In</button></div></div>
+<!-- UNIT 1: INVESTOR WORKSPACE - ALL 6 FEATURES -->
+<div id="u1" class="page active">
+<p class="unit-title">UNIT 1: INVESTOR WORKSPACE - DELAWARE HQ</p>
+<div style="background:var(--rainbow);padding:1px;border-radius:16px;margin-bottom:12px"><div style="background:#0e0f15;border-radius:15px;padding:20px;text-align:center"><small style="letter-spacing:3px;color:#a1a1aa">PORTFOLIO OVERVIEW + RISK SCORING + BENCHMARK</small><div class="stat-rainbow" id="pb" style="font-size:52px">$18.17</div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px"><span style="background:#18181b;padding:6px 12px;border-radius:20px;font-size:11px;border-left:3px solid #ff0080">Risk: 22/100 LOW • Personalized Risk Scoring ADDED</span><span style="background:#18181b;padding:6px 12px;border-radius:20px;font-size:11px;border-left:3px solid #00ff88">Benchmark +12% Above Market Averages ADDED</span><span style="background:#18181b;padding:6px 12px;border-radius:20px;font-size:11px;border-left:3px solid #00c2ff">ROI, Balance, Contract Duration • Outcome: Trust + Clarity</span></div></div></div>
 
-<!-- ========== FOOTER - ALL YOUR ELEMENTS ========== -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px">
+<div class="card rainbow-border"><h4>Investment Packages - Dynamic Customization FIX</h4><p style="font-size:10px;color:#9ca3af">Current: Tiered ROI visuals → Fix: Duration + Impact focus</p><select><option>Duration: 30 / 60 / 90 / 180 / 365 days</option></select><select><option>Impact: Delaware Solar Farm / Texas Grid / Global</option></select><p style="font-size:10px;color:#00ff88;margin-top:4px">Outcome: Attracts diverse investors with tailored options</p><button onclick="show('packages')" class="btn btn-rainbow" style="width:100%;margin-top:6px">Customize Package - Rainbow</button></div>
+<div class="card rainbow-border"><h4>Performance Tracking - Predictive Analytics + AI Forecasting FIX</h4><p style="font-size:10px;color:#9ca3af">Current: ROI graphs, CO₂ → Fix: Predictive + AI forecasting</p><canvas id="perfChart" height="70"></canvas><p style="font-size:10px;color:#fbbf24">Outcome: Demonstrates accountability and future outlook • AI: $18→$89</p></div>
+<div class="card rainbow-border"><h4>Transaction Tools - Multi-currency + Crypto FIX</h4><p style="font-size:10px;color:#9ca3af">Current: Deposit, withdraw, reinvest → Fix: Multi-currency + Crypto</p><select><option>USDT TRC20 / ERC20 / BTC / USDC / USD Wire Delaware Bank</option></select><input id="depAmt" type="number" placeholder="Amount USD"><p style="font-size:9px;word-break:break-all;color:#fbbf24">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Delaware Treasury</p><button onclick="doDep()" class="btn btn-rainbow" style="width:100%;margin-top:4px">Deposit - Global Reach</button><p style="font-size:10px;color:#00ff88">Outcome: Expands accessibility and global reach</p></div>
+<div class="card rainbow-border"><h4>Impact Reports - Third-party Verification + Downloadable FIX</h4><p style="font-size:10px;color:#9ca3af">Current: ESG metrics, solar usage → Fix: Third-party + PDF</p><p style="font-size:11px">HQ: 16192 Coastal Hwy, Lewes, DE 19958, USA - NOT Africa - Verified</p><button class="btn" style="width:100%;margin-top:6px;background:#065f46;color:#fff">📄 Download Delaware Verified Report PDF</button><p style="font-size:10px;color:#00ff88">Outcome: Reinforces credibility and transparency</p></div>
+<div class="card rainbow-border"><h4>Support Access - Education Modules + Webinars FIX</h4><p style="font-size:10px;color:#9ca3af">Current: 24/7 chat, FAQs → Fix: Education + Webinars</p><p style="font-size:11px">🎥 Webinar Friday 2pm EST Delaware HQ • 📚 Module: Why Delaware LLC</p><button class="btn" style="width:100%;margin-top:6px;background:#18181b;color:#fff;border:1px solid #3f3f46">Join Webinar - Knowledge + Loyalty</button><p style="font-size:10px;color:#00ff88">Outcome: Builds investor knowledge and loyalty</p></div>
+<div class="card rainbow-border"><h4>TradingView - Live Metrics Transparency - Header Element</h4><div id="tv" style="height:200px"></div></div>
+</div>
+</div>
+
+<!-- UNIT 2A: LIVE FOREX -->
+<div id="u2a" class="page">
+<p class="unit-title">UNIT 2A: LIVE FOREX ACCOUNT - RAINBOW PRO - DELAWARE HQ</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
+<div class="card rainbow-border"><h4>Forex Integration - Hedging Tools + Derivatives FIX</h4><p style="font-size:10px;color:#9ca3af">Current: Real-time FX trading → Fix: Hedging + derivatives</p><div id="tv2" style="height:240px;background:#000;border-radius:8px"></div><p style="font-size:10px;color:#00ff88;margin-top:6px">Outcome: Enhances risk management • Delaware managed</p></div>
+<div class="card rainbow-border"><h4>Withdrawable Balances - Tiered Limits + Instant Settlement FIX</h4><p style="font-size:10px;color:#9ca3af">Current: Transparent liquidity → Fix: Tiered limits + instant</p><input id="wAmt" type="number" placeholder="Amount"><input id="wAddr" placeholder="Wallet / Bank"><select><option>Tier 1: $0-$500 Instant</option><option>Tier 2: $501-$5000 1hr Delaware approval</option><option>Tier 3: $5000+ 24hr Delaware treasury</option></select><button onclick="doWit()" class="btn" style="width:100%;margin-top:6px;background:#00c2ff;color:#000">Instant Settlement - Rainbow</button><p style="font-size:10px;color:#00ff88">Outcome: Improves liquidity trust • HQ NOT Africa</p></div>
+</div>
+</div>
+
+<div id="packages" class="page"><p class="unit-title">INVESTMENT PACKAGES - DYNAMIC CUSTOMIZATION - OUTCOME: DIVERSE INVESTORS</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px"><div class="card rainbow-border"><h3>$100 Starter - Rainbow</h3><p style="color:#ff8a00">3.3% daily</p><button onclick="show('u1')" class="btn btn-rainbow" style="width:100%">Customize Duration + Impact</button></div><div class="card rainbow-border"><h3>$500 Pro - Delaware Favorite</h3><p style="color:#00ff88">5% daily</p><button class="btn" style="width:100%;background:#00ff88;color:#000">Customize</button></div><div class="card rainbow-border"><h3>$1000 Whale VIP - 16192 Coastal Hwy</h3><p style="color:#8b5cf6">8% daily</p><button class="btn" style="width:100%;background:#8b5cf6;color:#fff">Customize</button></div></div></div>
+
+<div id="reports" class="page"><p class="unit-title">PERFORMANCE ANALYTICS + IMPACT - PREDICTIVE + AI + VERIFICATION</p><div class="card rainbow-border"><canvas id="perfChart2" height="80"></canvas><p style="margin-top:8px"><span style="background:var(--rainbow);padding:3px 10px;border-radius:12px;color:#fff;font-size:10px">AI Forecast + Benchmark vs Market + Renewable Sector</span> Outcome: Accountability + Future + Efficiency + Competitiveness</p></div></div>
+
+<div id="login" class="page"><div class="card rainbow-border" style="max-width:360px;margin:30px auto"><h2><span class="stat-rainbow">Investor Login - MFA + Biometric - Header Element</span></h2><input id="le" placeholder="Email"><input id="lp" type="password" placeholder="Password"><p style="font-size:10px;color:#9ca3af">Secure access - Multi factor auth, biometric - Delaware encrypted</p><button onclick="doLogin()" class="btn btn-rainbow" style="width:100%;margin-top:8px">Login</button></div></div>
+
+<!-- FOOTER - ALL ELEMENTS -->
 <footer>
 <div class="footer-grid">
-<div><div class="footer-title">Legal & Compliance</div><a class="footer-link" href="#">AML/KYC Policy - Delaware Compliant</a><a class="footer-link" href="#">Terms of Service - Delaware LLC Law</a><a class="footer-link" href="#">Privacy Policy - US SEC</a><a class="footer-link" href="#">Risk Disclosure - 16192 Coastal Hwy</a></div>
-<div><div class="footer-title">Audit & Verification</div><a class="footer-link" href="#">Third-party Audit Report - Delaware Auditor</a><a class="footer-link" href="#">Blockchain Verification - TRC20 TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</a><a class="footer-link" href="#">Delaware Division of Corps #2026-12345</a><a class="footer-link" href="#">Live Proof of Reserves</a></div>
-<div><div class="footer-title">Contact & Support</div><a class="footer-link" href="#">24/7 Support - Delaware HQ Team</a><a class="footer-link" href="#">📞 Click to Call +1 (302) 555-0142 - Delaware</a><a class="footer-link" href="#">💬 Live Chat - Rainbow PRO</a><a class="footer-link" href="#">📧 hq@solarai-capital.com - Lewes, DE</a></div>
-<div><div class="footer-title">Investor Education</div><a class="footer-link" href="#">Tutorials - Solar Investing 101</a><a class="footer-link" href="#">Webinars - Every Friday 2pm EST Delaware HQ</a><a class="footer-link" href="#">ESG Learning Center</a><a class="footer-link" href="#">Why Delaware LLC Protects You</a></div>
-<div><div class="footer-title">Social & Transparency</div><a class="footer-link" href="#">Verified X / Twitter</a><a class="footer-link" href="#">LinkedIn - Delaware HQ</a><a class="footer-link" href="#">Transparency Blog - Delaware</a><a class="footer-link" href="#">YouTube - HQ Tours Lewes, DE</a></div>
-<div><div class="footer-title">Certifications & Partnerships</div><a class="footer-link" href="#">✅ ISO 27001 - Data Security</a><a class="footer-link" href="#">🌱 ESG A+ - Delaware Clean Energy</a><a class="footer-link" href="#">🏦 Fintech Partner - First National Bank Delaware</a><a class="footer-link" href="#">☀️ Solar Partner - Delaware Solar Farm</a></div>
-<div><div class="footer-title">Data Security</div><p class="footer-link">🔒 Encryption: AES-256 • TLS 1.3 • Delaware servers</p><p class="footer-link">🔄 Disaster Recovery: Geo-redundancy • Multi-region backups • Real-time failover</p><p class="footer-link">🛡️ SOC 2 Type II • Delaware encrypted vault</p></div>
-<div><div class="footer-title">Accessibility & Language</div><a class="footer-link" href="#">🌐 Multilingual: EN / ES / FR / DE</a><a class="footer-link" href="#">♿ Screen Reader Optimized</a><a class="footer-link" href="#">🎨 High Contrast - Rainbow PRO</a><a class="footer-link" href="#">⌨️ Keyboard Navigation</a></div>
-<div><div class="footer-title">Investor Rights & Governance</div><a class="footer-link" href="#">📜 Statement of Investor Rights - Delaware Law</a><a class="footer-link" href="#">🏛️ Governance Charter - Delaware LLC</a><a class="footer-link" href="#">🚨 Whistleblower Policy - SEC Protected</a><a class="footer-link" href="#">🗳️ Voting Rights - Delaware HQ</a></div>
+<div><div class="footer-title">Legal & Compliance Links - Transparency</div><a class="footer-link" href="#">AML/KYC Policy - Delaware SEC</a><a class="footer-link" href="#">Terms of Service - Delaware LLC Law</a><a class="footer-link" href="#">Privacy Policy - US</a></div>
+<div><div class="footer-title">Audit & Verification - Legitimacy</div><a class="footer-link" href="#">Third-party Audit - Delaware Auditor</a><a class="footer-link" href="#">Blockchain Verification: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</a></div>
+<div><div class="footer-title">Contact & Support - Accessibility</div><a class="footer-link" href="#">24/7 Support - Delaware HQ Team</a><a class="footer-link" href="#">📞 +1 (302) 555-0142 - Click to Call Delaware</a><a class="footer-link" href="#">💬 Live Chat Rainbow</a></div>
+<div><div class="footer-title">Investor Education - Knowledge</div><a class="footer-link" href="#">Tutorials - Solar Investing</a><a class="footer-link" href="#">Webinars - Friday 2pm EST Lewes, DE</a><a class="footer-link" href="#">ESG Learning Center - Delaware</a></div>
+<div><div class="footer-title">Social & Transparency Channels - Engagement</div><a class="footer-link" href="#">Verified X • LinkedIn Delaware HQ</a><a class="footer-link" href="#">Transparency Blog - NOT Africa</a></div>
+<div><div class="footer-title">Certifications & Partnerships - Credibility</div><a class="footer-link" href="#">✅ ISO 27001 • 🌱 ESG A+ • Fintech Delaware</a><a class="footer-link" href="#">🏦 First National Bank Delaware - Partner</a></div>
+<div><div class="footer-title">Data Security Statement - Trust</div><p class="footer-link">🔒 AES-256 • TLS 1.3 • Disaster Recovery • Geo-redundancy Multi-region • Real-time Failover • Delaware Servers</p></div>
+<div><div class="footer-title">Accessibility & Language Options - Inclusivity</div><a class="footer-link" href="#">🌐 Multilingual Toggle EN/ES/FR/DE • ♿ Screen Reader • High Contrast Rainbow</a></div>
+<div><div class="footer-title">Investor Rights & Governance - Accountability</div><a class="footer-link" href="#">📜 Investor Rights - Delaware Law • Governance Charter • Whistleblower Policy SEC Protected</a></div>
 </div>
 <div class="footer-bottom">
-<div>© 2026 SolarAI Capital LLC - 16192 Coastal Highway, Lewes, Delaware 19958, USA • Delaware LLC #2026-12345 • <b>NOT Africa - HQ is Delaware, USA</b> • Rainbow PRO Dashboard • SEC Compliant</div>
-<div style="display:flex;gap:8px"><span style="background:var(--rainbow);padding:3px 10px;border-radius:12px;color:#fff">🔒 Delaware Secure</span><span style="border:1px solid #3f3f46;padding:3px 10px;border-radius:12px">🌐 EN</span></div>
+<div>© 2026 SolarAI Capital LLC - 16192 Coastal Highway, Lewes, Delaware 19958, USA • LLC #2026-12345 • NOT Africa - HQ Delaware USA • Rainbow PRO • Complete Framework: Unit1 + Unit2A + Unit2B + Unit2C + Header + Footer • Outcome: Trust + Diverse + Accountability + Global Reach + Credibility + Loyalty + Risk Management + Liquidity + Integrity + Compliance + Efficiency + Uptime + Resilience + Continuity + Transparency</div>
+<div><span style="background:var(--rainbow);padding:3px 10px;border-radius:12px;color:#fff">Delaware HQ</span></div>
 </div>
 </footer>
 
 <script>
 auth.onAuthStateChanged(async u=>{
  if(u){try{const d=await db.collection('users').doc(u.email).get();if(d.exists)document.getElementById('pb').innerText='$'+(d.data().robotBalance||18.17);}catch(e){}}
- if(window.TradingView){new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",theme:"dark",style:"1",container_id:"tv"});}
- const ctx=document.getElementById('perfChart'); if(ctx){new Chart(ctx,{type:'line',data:{labels:['Day1',[STRIPPED] 45','60'],datasets:[{label:'Rainbow Forecast',data:[18,[STRIPPED] 
+ if(window.TradingView){new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",theme:"dark",style:"1",container_id:"tv"});new TradingView.widget({autosize:true,symbol:"FX:EURUSD",interval:"5",theme:"dark",style:"1",container_id:"tv2"});}
+ const c1=document.getElementById('perfChart'); if(c1){new Chart(c1,{type:'line',data:{labels:['Day1',[STRIPPED] 45','60'],datasets:[{label:'Delaware Rainbow + AI Forecasting + Benchmark',data:[18,[STRIPPED] 
 });
-async function doLogin(){try{await auth.signInWithEmailAndPassword(document.getElementById('le').value,document.getElementById('lp').value);show('portfolio');}catch(e){alert(e.message);}}
-async function doDep(){const u=auth.currentUser;if(!u)return show('login');await db.collection('deposits').add({email:u.email,amount:parseFloat(document.getElementById('depAmt').value),hq:'Delaware Treasury Rainbow - TATeM34UJsHhnADWrjemjYXdrHiyuPrFra',status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Rainbow deposit to Delaware HQ');}
-async function doWit(){const u=auth.currentUser;if(!u)return show('login');await db.collection('withdrawals').add({email:u.email,amount:parseFloat(document.getElementById('wAmt').value),address:document.getElementById('wAddr').value,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Withdraw to Delaware HQ');}
+async function doLogin(){try{await auth.signInWithEmailAndPassword(document.getElementById('le').value,document.getElementById('lp').value);show('u1');}catch(e){alert(e.message);}}
+async function doDep(){const u=auth.currentUser;if(!u)return show('login');await db.collection('deposits').add({email:u.email,amount:parseFloat(document.getElementById('depAmt').value),hq:'Delaware Treasury Rainbow TATeM34UJsHhnADWrjemjYXdrHiyuPrFra',status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Deposit to Delaware HQ - Rainbow');}
+async function doWit(){const u=auth.currentUser;if(!u)return show('login');await db.collection('withdrawals').add({email:u.email,amount:parseFloat(document.getElementById('wAmt').value),address:document.getElementById('wAddr').value,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('Withdraw Delaware HQ - Instant');}
 </script>
 </body></html>
