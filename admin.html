@@ -1,1 +1,106 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin - SolarAI</title><style>body{margin:0;font-family:Arial;background:#0f172a;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh}.card{background:#1e293b;padding:28px;border-radius:12px;width:90%;max-width:380px}h1{text-align:center;color:#38bdf8}input,button{width:100%;padding:12px;margin:8px 0;border-radius:8px;box-sizing:border-box}input{border:none;background:#334155;color:#fff}button{background:#38bdf8;border:none;font-weight:bold;cursor:pointer}</style></head><body><div class="card"><h1>Welcome Admin</h1><p style="text-align:center;color:#94a3b8">SolarAI Capital USA - Admin Panel Fixed</p><input placeholder="Admin Email"><input type="password" placeholder="Password"><button onclick="alert('Admin page works!')">Login</button><p style="text-align:center;margin-top:15px"><a href="/" style="color:#38bdf8">Back to Home</a></p></div></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin - SolarAI Capital USA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+// USE YOUR FIREBASE CONFIG FROM index.html - REPLACE BELOW
+const firebaseConfig = {
+  apiKey: "AIzaSy...YOURS",
+  authDomain: "solarai-capital-usa.firebaseapp.com",
+  projectId: "solarai-capital-usa",
+  storageBucket: "solarai-capital-usa.appspot.com",
+  messagingSenderId: "YOUR_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const ADMIN_EMAIL = "ogwal.bemmanuel@gmail.com";
+
+window.login = async ()=>{
+  const e=document.getElementById('email').value;
+  const p=document.getElementById('pass').value;
+  try{
+    const cred=await signInWithEmailAndPassword(auth,e,p);
+    if(cred.user.email!==ADMIN_EMAIL){alert("Not admin!"); await signOut(auth); return;}
+    location.reload();
+  }catch(err){alert(err.message)}
+}
+
+onAuthStateChanged(auth, async (user)=>{
+  if(!user || user.email!==ADMIN_EMAIL){
+    document.getElementById('loginBox').classList.remove('hidden');
+    document.getElementById('dashboard').classList.add('hidden');
+    return;
+  }
+  document.getElementById('loginBox').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('adminEmail').innerText=user.email;
+  loadStats();
+});
+
+async function loadStats(){
+  try{
+    const usersSnap=await getDocs(collection(db,"users"));
+    const depSnap=await getDocs(collection(db,"deposits"));
+    const withSnap=await getDocs(collection(db,"withdrawals"));
+    document.getElementById('totalUsers').innerText=usersSnap.size;
+    document.getElementById('totalDeps').innerText=depSnap.size;
+    document.getElementById('totalWiths').innerText=withSnap.size;
+    
+    let html="";
+    usersSnap.forEach(d=>{
+      const u=d.data();
+      html+=`<tr class="border-b border-slate-700"><td class="p-2">${u.email||'N/A'}</td><td class="p-2">$${u.balance||0}</td><td class="p-2">${u.referralCode||''}</td></tr>`;
+    });
+    document.getElementById('usersTable').innerHTML=html||"<tr><td>No users yet</td></tr>";
+  }catch(e){console.log(e)}
+}
+window.logout=()=>signOut(auth).then(()=>location.reload());
+</script>
+</head>
+<body class="bg-[#0f172a] text-white min-h-screen">
+<!-- LOGIN -->
+<div id="loginBox" class="hidden min-h-screen flex items-center justify-center p-4">
+  <div class="bg-[#1e293b] p-8 rounded-2xl w-full max-w-sm">
+    <h1 class="text-2xl font-bold text-center text-cyan-400">Welcome Admin</h1>
+    <p class="text-center text-slate-400 text-sm mt-1">SolarAI Capital USA</p>
+    <input id="email" value="ogwal.bemmanuel@gmail.com" class="w-full mt-6 p-3 rounded-lg bg-[#334155] outline-none" placeholder="Admin Email">
+    <input id="pass" type="password" class="w-full mt-3 p-3 rounded-lg bg-[#334155] outline-none" placeholder="Password">
+    <button onclick="login()" class="w-full mt-4 bg-cyan-400 text-black p-3 rounded-lg font-bold">Login</button>
+    <a href="/" class="block text-center mt-4 text-cyan-400 text-sm">Back to Home</a>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+  <div class="bg-[#1e293b] p-4 flex justify-between items-center">
+    <h1 class="font-bold text-cyan-400">⚡ SOLARAI CAPITAL - ADMIN</h1>
+    <div class="flex gap-3 items-center"><span id="adminEmail" class="text-sm text-slate-400"></span><button onclick="logout()" class="bg-red-500 px-3 py-1 rounded text-sm">Logout</button></div>
+  </div>
+  
+  <div class="p-4 grid grid-cols-3 gap-3">
+    <div class="bg-[#1e293b] p-4 rounded-xl text-center"><p class="text-slate-400 text-xs">TOTAL USERS</p><p id="totalUsers" class="text-2xl font-bold">0</p></div>
+    <div class="bg-[#1e293b] p-4 rounded-xl text-center"><p class="text-slate-400 text-xs">DEPOSITS</p><p id="totalDeps" class="text-2xl font-bold text-green-400">0</p></div>
+    <div class="bg-[#1e293b] p-4 rounded-xl text-center"><p class="text-slate-400 text-xs">WITHDRAWALS</p><p id="totalWiths" class="text-2xl font-bold text-orange-400">0</p></div>
+  </div>
+
+  <div class="p-4">
+    <div class="bg-[#1e293b] rounded-xl p-4">
+      <h2 class="font-bold mb-3">Recent Users</h2>
+      <div class="overflow-auto">
+        <table class="w-full text-sm"><thead><tr class="text-slate-400 text-left"><th class="p-2">Email</th><th class="p-2">Balance</th><th class="p-2">Ref Code</th></tr></thead><tbody id="usersTable"><tr><td>Loading...</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
