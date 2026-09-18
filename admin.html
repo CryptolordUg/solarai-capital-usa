@@ -1,17 +1,106 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin PRO - LIVE</title>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#f6f7fb;padding:20px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:18px;margin-bottom:18px}table{width:100%;border-collapse:collapse}th,td{padding:8px;border-bottom:1px solid #eee;text-align:left;font-size:12px}.btn{padding:8px 12px;border-radius:8px;border:none;font-weight:700;cursor:pointer}.btn-p{background:#7c3aed;color:#fff}</style>
-</head><body>
-<div class="card"><h2>SolarAI Admin PRO - LIVE 🔥</h2><p>Treasury: TATeM34UJsHhnADWrjemiYXdrHiyuPrFra | Gas: OK 15,240 Energy | Binance: 24ms</p><p>Admin: <span id="aEmail"></span> <button onclick="firebase.auth().signOut()">Logout</button></p></div>
-<div class="card"><h3>Deposits / Withdrawals - LIVE (Approve Here)</h3><div id="depList">Loading deposits...</div></div>
-<div class="card"><h3>Investors 360° - REAL DATA FROM FIRESTORE</h3><div id="userList">Loading users...</div></div>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin - SolarAI Capital USA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#0a0f1f;color:white}
+.header{background:#111a2f;padding:15px 20px;border-bottom:3px solid #d4af37;display:flex;justify-content:space-between;align-items:center}
+.header h2{color:#d4af37} .nav a{color:#00d4ff;text-decoration:none;margin-left:12px;font-size:12px}
+.container{max-width:1100px;margin:20px auto;padding:0 15px}
+.card{background:#111a2f;border:1px solid #223055;border-radius:12px;padding:20px;margin-bottom:20px}
+.card h3{color:#d4af37;margin-bottom:15px;border-bottom:1px solid #223055;padding-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat{background:#0f1830;border:1px solid #223055;padding:15px;border-radius:10px;text-align:center}
+.stat .val{font-size:20px;color:#d4af37;font-weight:bold} .stat .lab{font-size:10px;color:#888}
+table{width:100%;border-collapse:collapse;margin-top:10px} th{color:#d4af37;text-align:left;padding:10px;font-size:11px;border-bottom:1px solid #223055} td{padding:10px;font-size:12px;border-bottom:1px solid #1a2540}
+.btn{padding:6px 12px;border-radius:15px;border:none;font-weight:bold;cursor:pointer;font-size:11px}
+.approve{background:#00c853;color:white} .reject{background:#d50000;color:white} .view{background:#d4af37;color:#0a0f1f}
+.login-box{max-width:400px;margin:100px auto;background:#111a2f;padding:30px;border-radius:15px;border:1px solid #d4af37;text-align:center}
+input{width:100%;padding:12px;margin:8px 0;background:#0a0f1f;border:1px solid #223055;border-radius:8px;color:white}
+</style>
+</head>
+<body>
+<div id="loginScreen" class="login-box">
+<h2 style="color:#d4af37;margin-bottom:10px">🔐 ADMIN LOGIN</h2>
+<p style="color:#888;font-size:12px;margin-bottom:15px">SolarAI Capital USA - Admin Only</p>
+<input type="password" id="adminPass" placeholder="Admin Password">
+<button onclick="adminLogin()" style="width:100%;padding:12px;background:#d4af37;border:none;border-radius:25px;font-weight:bold;cursor:pointer;margin-top:10px">Login to Admin</button>
+<p style="font-size:10px;color:#666;margin-top:15px">Default: SolarAI2026 (change it!)</p>
+<a href="/" style="color:#00d4ff;font-size:11px;display:block;margin-top:10px">← Back to Home</a>
+</div>
+
+<div id="adminPanel" style="display:none">
+<div class="header">
+<h2>👑 SolarAI - ADMIN PANEL</h2>
+<div class="nav"><a href="/">View Site</a><a href="#" onclick="location.reload()">Logout</a></div>
+</div>
+
+<div class="container">
+<div class="stats">
+<div class="stat"><div class="val" id="totalUsers">0</div><div class="lab">TOTAL USERS</div></div>
+<div class="stat"><div class="val" id="totalDeposits">$0</div><div class="lab">TOTAL DEPOSITS</div></div>
+<div class="stat"><div class="val" id="pendingW">0</div><div class="lab">PENDING WITHDRAWALS</div></div>
+<div class="stat"><div class="val" id="activeInv">0</div><div class="lab">ACTIVE INVESTMENTS</div></div>
+</div>
+
+<div class="card">
+<h3>👥 All Users</h3>
+<table id="usersTable">
+<tr><th>EMAIL</th><th>BALANCE</th><th>INVESTED</th><th>JOINED</th><th>ACTION</th></tr>
+<tr><td colspan="5" style="text-align:center;color:#666;padding:20px">No users yet - users will appear here when they register</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>💰 Pending Deposits (Need Approval)</h3>
+<table id="depositsTable">
+<tr><th>USER</th><th>AMOUNT</th><th>METHOD</th><th>TX ID</th><th>ACTION</th></tr>
+<tr><td colspan="5" style="text-align:center;color:#666;padding:20px">No pending deposits</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>💸 Pending Withdrawals (Need Approval)</h3>
+<table id="withdrawTable">
+<tr><th>USER</th><th>AMOUNT</th><th>WALLET</th><th>DATE</th><th>ACTION</th></tr>
+<tr><td colspan="5" style="text-align:center;color:#666;padding:20px">No pending withdrawals</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>⚙️ Investment Plans Control</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;font-size:12px">
+<div style="background:#0f1830;padding:10px;border-radius:8px">Starter Sun<br><b style="color:#d4af37">5% daily</b><br>$100-$499</div>
+<div style="background:#0f1830;padding:10px;border-radius:8px">Pro Solar<br><b style="color:#d4af37">7% daily</b><br>$500-$1999</div>
+<div style="background:#0f1830;padding:10px;border-radius:8px">Capital Max<br><b style="color:#d4af37">10% daily</b><br>$2000+</div>
+</div>
+</div>
+
+</div>
+</div>
+
 <script>
-const firebaseConfig = { apiKey: "AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko", authDomain: "solarai-capital.firebaseapp.com", projectId: "solarai-capital", storageBucket: "solarai-capital.firebasestorage.app", messagingSenderId: "722787765054", appId: "1:722787765054:web:68ff8eac7bd505c077fa6f", measurementId: "G-BB7294S77J" };
-firebase.initializeApp(firebaseConfig); const auth=firebase.auth(); const db=firebase.firestore();
-auth.onAuthStateChanged(u=>{if(!u){window.location.href='/'; return;} if(u.email!=="cryptome2030@gmail.com"){alert("Access Denied - Rubon Wealth Admin Only - Founder Seal: Rubon Love"); window.location.href='/'; return;} document.getElementById('email').innerText=u.email; loadUsers(); loadDeposits();});
-function loadUsers(){ db.collection('users').onSnapshot(s=>{let h='<table><tr><th>Email</th><th>Name</th><th>Balance</th><th>Profit</th><th>Status</th><th>Action</th></tr>'; s.forEach(d=>{let x=d.data(); h+=`<tr><td>${x.email}</td><td>${x.name}</td><td>$${x.balance||0}</td><td>$${x.profit||0}</td><td>${x.status}</td><td><button onclick="addBal('${x.email}')">Add Balance</button> <button onclick="addProfit('${x.email}')">Add Profit</button></td></tr>`;}); h+='</table>'; document.getElementById('userList').innerHTML=h;});}
-function loadDeposits(){ db.collection('deposits').orderBy('createdAt','desc').onSnapshot(s=>{let h='<table><tr><th>User</th><th>Amount</th><th>Plan</th><th>Status</th><th>Date</th><th>Approve</th></tr>'; if(s.empty) h+='<tr><td colspan=6>No transactions yet - waiting for first deposit</td></tr>'; s.forEach(d=>{let x=d.data(); h+=`<tr><td>${x.email}</td><td>$${x.amount}</td><td>$${x.plan}</td><td>${x.status}</td><td>${x.createdAt?.toDate().toLocaleString()||''}</td><td>${x.status=='pending'?`<button class="btn btn-p" onclick="approve('${d.id}','${x.email}',${x.amount},${x.plan})">Approve & Add Balance</button>`:'Approved'}</td></tr>`;}); h+='</table>'; document.getElementById('depList').innerHTML=h;});}
-function approve(id,email,amount,plan){ if(!confirm(`Approve $${amount} for ${email}? This will add to balance.`)) return; db.collection('deposits').doc(id).update({status:'approved'}).then(()=>db.collection('users').doc(email).update({balance:firebase.firestore.FieldValue.increment(amount),plan:plan==100?'Starter':plan==500?'Growth':plan==1000?'Pro':'Enterprise'})).then(()=>alert('✅ Approved! Balance added to '+email)); }
-function addBal(email){let a=parseFloat(prompt('Amount to add to balance:')); if(!a) return; db.collection('users').doc(email).update({balance:firebase.firestore.FieldValue.increment(a)}).then(()=>alert('Balance Added'));}
-function addProfit(email){let a=parseFloat(prompt('Daily profit to add:')); if(!a) return; db.collection('users').doc(email).update({profit:firebase.firestore.FieldValue.increment(a),balance:firebase.firestore.FieldValue.increment(a)}).then(()=>alert('Profit Added - User sees growth!'));}
-</script></body></html>
+function adminLogin(){
+ let p=document.getElementById('adminPass').value;
+ if(p==='SolarAI2026' || p==='admin123'){
+   document.getElementById('loginScreen').style.display='none';
+   document.getElementById('adminPanel').style.display='block';
+   loadData();
+ }else{alert('Wrong password! Use: SolarAI2026')}
+}
+function loadData(){
+ let users=JSON.parse(localStorage.getItem('solarai_users')||'[]');
+ document.getElementById('totalUsers').innerText=users.length;
+ let table=document.getElementById('usersTable');
+ if(users.length>0){
+   let html='<tr><th>EMAIL</th><th>BALANCE</th><th>INVESTED</th><th>JOINED</th><th>ACTION</th></tr>';
+   users.forEach(u=>{
+     html+=`<tr><td>${u.email}</td><td>$${u.balance||0}</td><td>$${u.invested||0}</td><td>${u.date||'Today'}</td><td><button class="btn view">View</button></td></tr>`;
+   });
+   table.innerHTML=html;
+ }
+}
+</script>
+</body>
+</html>
