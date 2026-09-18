@@ -1,95 +1,37 @@
-<div class="grid2">
-<div class="card">
-<h4 style="font-weight:800">💰 Quick Add Balance (Firebase LIVE)</h4>
-<input id="qEmail" placeholder="User email e.g. ogwal.bemmanuel@gmail.com" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e5e7eb;margin-top:8px">
-<input id="qAmount" type="number" placeholder="Amount e.g. 100" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e5e7eb;margin-top:8px">
-<div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-p" onclick="quickAdd('balance')">Add Balance</button><button class="btn btn-g" onclick="quickAdd('profit')">Add Profit</button></div>
-</div>
-<div class="card">
-<h4 style="font-weight:800">🤖 AI LIVE REAL AUTOMATED ACCOUNT TRADING</h4>
-<div style="background:#111827;color:#10b981;padding:10px;border-radius:8px;margin-top:8px;font-family:monospace;font-size:12px" id="aiLog">● LIVE 24H - Robot trading SOL @ $101.25<br>● 52/120 trades - Countdown 02:15:16 - Firebase syncing</div>
-<button class="btn btn-p" style="margin-top:10px" onclick="document.getElementById('aiLog').innerText='● STARTED - LIVE 24H - Real automated trading ON - '+new Date().toLocaleString()">▶️ START ROBOT LIVE 24H</button>
-</div>
-</div>
-</div>
-
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin - SolarAI LIVE</title>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyYOUR_REAL_KEY_HERE",
+  apiKey: "AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko",
   authDomain: "solarai-capital.firebaseapp.com",
   projectId: "solarai-capital",
-  storageBucket: "solarai-capital.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
+  storageBucket: "solarai-capital.firebasestorage.app",
+  messagingSenderId: "722787765054",
+  appId: "1:722787765054:web:68ff0eac7bd505c077fa6f"
 };
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-auth.onAuthStateChanged(u=>{
- if(u) document.getElementById('adminEmail').innerText=u.email;
- loadInvestors(); loadDeps();
-});
-
-async function loadInvestors(){
- try{
-  const snap = await db.collection('users').orderBy('createdAt','desc').get();
-  let h='';
-  snap.forEach(d=>{
-   const u=d.data();
-   h+=`<tr><td>${u.email||d.id}</td><td>${u.name||'Emmanuel'}</td><td>$${(u.robotBalance||u.balance||0).toString()}</td><td>$${(u.profit||0).toString()}</td><td><span class="badge">${u.status||'active'}</span></td><td><button class="btn" onclick="setQuick('${u.email}')">Add Balance</button> <button class="btn" onclick="setQuick('${u.email}')">Add Profit</button></td></tr>`;
-  });
-  if(!h) h=`<tr><td>ogwal.bemmanuel@gmail.com</td><td>Emmanuel</td><td>$100</td><td>$0</td><td>active</td><td><button class="btn" onclick="setQuick('ogwal.bemmanuel@gmail.com')">Add Balance</button> <button class="btn">Add Profit</button></td></tr>
-  <tr><td>testing123@gmail.com</td><td>Testing</td><td>$0</td><td>$0</td><td>active</td><td><button class="btn">Add Balance</button> <button class="btn">Add Profit</button></td></tr>`;
-  document.getElementById('invTable').innerHTML=h;
- }catch(e){
-  document.getElementById('invTable').innerHTML=`<tr><td>ogwal.bemmanuel@gmail.com</td><td>Emmanuel</td><td>$100</td><td>$0</td><td>active</td><td><button class="btn">Add Balance</button> <button class="btn">Add Profit</button></td></tr>
-  <tr><td>testing123@gmail.com</td><td>Testing</td><td>$0</td><td>0</td><td>active</td><td><button class="btn">Add Balance</button> <button class="btn">Add Profit</button></td></tr>`;
- }
-}
-async function loadDeps(){
- try{
-  const snap = await db.collection('deposits').orderBy('createdAt','desc').limit(20).get();
-  if(snap.empty) return;
-  let h='';
-  snap.forEach(d=>{
-   const x=d.data(); const date = x.createdAt? new Date(x.createdAt.seconds*1000).toLocaleString() : '9/18/2026, 2:42:19 AM';
-   h+=`<tr><td>${x.email}</td><td>$${x.amount}</td><td>$${x.plan||x.amount}</td><td><span class="badge">${x.status||'pending'}</span></td><td>${date}</td><td>${x.status=='approved'?'<button class="btn" disabled>Approved</button>':`<button class="btn btn-p" onclick="approveDep('${d.id}')">Approve</button>`}</td></tr>`;
-  });
-  document.getElementById('depTable').innerHTML=h;
- }catch(e){}
-}
-function setQuick(email){ document.getElementById('qEmail').value=email; window.scrollTo(0,document.body.scrollHeight); }
-async function quickAdd(type){
- const email=document.getElementById('qEmail').value.trim(); const amt=parseFloat(document.getElementById('qAmount').value);
- if(!email||!amt) return alert('Enter email and amount');
- try{
-  const q=await db.collection('users').where('email','==',email).get();
-  if(q.empty){ await db.collection('users').doc(email).set({email:email,name:'Emmanuel',robotBalance:type=='balance'?amt:0,profit:type=='profit'?amt:0,balance:amt,status:'active',createdAt: firebase.firestore.FieldValue.serverTimestamp()},{merge:true}); }
-  else{
-   const field = type=='balance'? {robotBalance: firebase.firestore.FieldValue.increment(amt), balance: firebase.firestore.FieldValue.increment(amt)} : {profit: firebase.firestore.FieldValue.increment(amt)};
-   await q.docs[0].ref.update(field);
-  }
-  alert('✅ Approved! Balance added to '+email);
-  loadInvestors();
- }catch(e){ alert('✅ Approved! Balance added to '+email); }
-}
-async function approveDep(id){
- try{
-  await db.collection('deposits').doc(id).update({status:'approved'});
-  const dep=(await db.collection('deposits').doc(id).get()).data();
-  const q=await db.collection('users').where('email','==',dep.email).get();
-  if(!q.empty) await q.docs[0].ref.update({robotBalance: firebase.firestore.FieldValue.increment(dep.amount), balance: firebase.firestore.FieldValue.increment(dep.amount)});
-  alert('✅ Approved! Balance added to '+dep.email);
-  loadDeps(); loadInvestors();
- }catch(e){ alert('✅ Approved! Balance added to ogwal.bemmanuel@gmail.com'); }
-}
+const auth=firebase.auth();const db=firebase.firestore();
 </script>
-</body>
-</html>
-const firebaseConfig = {
-  apiKey: "AIzaSy....",
-  authDomain: "...",
-  projectId: "...",
-  ...
-}
+</head><body style="background:#0a0a0f;color:#fff;font-family:Inter;padding:20px">
+<h1>👑 Admin PRO LIVE - SolarAI Capital Delaware</h1>
+<p style="color:#10b981">● LIVE - REAL DATA FROM FIRESTORE - Admin: ogwal.bemmanuel@gmail.com</p>
+<div style="background:#111119;padding:16px;border-radius:12px;margin-top:16px"><h3>Investors 360°</h3><div id="investors">Loading...</div></div>
+<div style="background:#111119;padding:16px;border-radius:12px;margin-top:12px"><h3>Deposits / Withdrawals - LIVE</h3><div id="tx">Loading...</div></div>
+<script>
+auth.onAuthStateChanged(async u=>{
+ if(!u)return location.href='index.html';
+ if(u.email!=='ogwal.bemmanuel@gmail.com'){alert('Admin only');location.href='index.html';return;}
+ const usersSnap=await db.collection('users').get();
+ let html='<table style="width:100%;font-size:12px"><tr><th>Email</th><th>Name</th><th>Balance</th></tr>';
+ usersSnap.forEach(doc=>{const d=doc.data();html+=`<tr><td>${d.email}</td><td>${d.name||''}</td><td>$${d.robotBalance||d.balance||0}</td></tr>`;});
+ html+='</table>';document.getElementById('investors').innerHTML=html;
+ const depSnap=await db.collection('deposits').orderBy('createdAt','desc').limit(10).get();
+ const withSnap=await db.collection('withdrawals').orderBy('createdAt','desc').limit(10).get();
+ let txHtml='<h4>Deposits</h4>';depSnap.forEach(d=>{const x=d.data();txHtml+=`${x.email} - $${x.amount} - ${x.status}<br>`;});
+ txHtml+='<h4 style="margin-top:8px">Withdrawals</h4>';withSnap.forEach(d=>{const x=d.data();txHtml+=`${x.email} - $${x.amount} - ${x.address?.substring(0,20)} - ${x.status}<br>`;});
+ document.getElementById('tx').innerHTML=txHtml;
+});
+</script>
+</body></html>
