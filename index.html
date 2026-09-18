@@ -1,27 +1,24 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SolarAI Capital - USA HQ - Binance Style</title>
+<title>SolarAI Capital - USA HQ Delaware</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script src="https://s3.tradingview.com/tv.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:BinancePlex,Inter,Arial,sans-serif;background:#fafafa;color:#1e2329}
-.binance-header{height:64px;background:#fff;border-bottom:1px solid #eaecef;display:flex;justify-content:space-between;align-items:center;padding:0 24px;position:sticky;top:0;z-index:50}
-.binance-logo{font-weight:800;font-size:20px;letter-spacing:-0.5px;color:#1e2329}.binance-logo span{color:#f3ba2f}
-.login-wrapper{display:flex;min-height:calc(100vh - 64px);align-items:center;justify-content:center;padding:20px;background:#fafafa}
-.login-card{width:100%;max-width:400px;background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border:1px solid #eaecef}
-.login-card h1{font-size:28px;font-weight:600;margin-bottom:8px}.login-card p{color:#707a8a;font-size:14px;margin-bottom:24px}
-.binance-input{width:100%;height:48px;border:1px solid #eaecef;border-radius:8px;padding:0 16px;font-size:14px;outline:none;margin-top:12px;background:#fff;transition:0.2s}.binance-input:focus{border-color:#f3ba2f}
-.binance-btn{width:100%;height:48px;background:#fcd535;border:none;border-radius:8px;font-weight:600;font-size:16px;cursor:pointer;margin-top:20px;color:#1e2329}.binance-btn:hover{background:#f3ba2f}
-.binance-btn-dark{background:#1e2329;color:#fff}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui;background:#05070f;color:#e5e7eb}
+.header{height:64px;background:#0a0d1a;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;align-items:center;padding:0 24px;position:sticky;top:0;z-index:50}
+.logo{font-weight:800;font-size:19px}.logo span{color:#fbbf24}
+.login-wrapper{display:flex;min-height:calc(100vh - 64px);align-items:center;justify-content:center;padding:20px;background:#05070f}
+.login-card{width:100%;max-width:400px;background:#111827;border:1px solid #1f2937;border-radius:16px;padding:32px}
+.login-card h1{font-size:26px;font-weight:700;margin-bottom:8px;color:#fff}.login-card p{color:#94a3b8;font-size:13px;margin-bottom:20px}
+.input{width:100%;height:48px;background:#070a12;border:1px solid #1f2937;border-radius:8px;padding:0 14px;color:#fff;font-size:14px;outline:none;margin-top:12px}.input:focus{border-color:#fbbf24}
+.btn{width:100%;height:48px;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;margin-top:16px}.btn-gold{background:#fbbf24;color:#000}.btn-dark{background:#1e2937;color:#fff;border:1px solid #334155}
 .dashboard{max-width:1200px;margin:0 auto;padding:20px;display:none}
-.card{background:#fff;border:1px solid #eaecef;border-radius:12px;padding:16px;margin-bottom:12px}
-.card-h{font-size:12px;color:#707a8a;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;display:flex;justify-content:space-between}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.btn{padding:10px 16px;border-radius:8px;border:none;font-weight:600;cursor:pointer;font-size:13px}.btn-yellow{background:#fcd535;color:#1e2329}.btn-dark{background:#1e2329;color:#fff}
-.badge{font-size:10px;padding:4px 8px;border-radius:4px;background:#f5f5f5;border:1px solid #eaecef}
-.badge-live{background:#e6fff1;border-color:#c2f1d3;color:#0ecb81}
-.footer{background:#fff;border-top:1px solid #eaecef;padding:24px;color:#707a8a;font-size:12px}
+.card{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:16px;margin-bottom:12px}
+.card-h{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;display:flex;justify-content:space-between}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.badge{font-size:9px;padding:4px 8px;border-radius:12px;background:#1e2937;border:1px solid #334155}.badge-live{background:#10b98120;border-color:#10b98140;color:#10b981}
+.footer{background:#0a0d1a;border-top:1px solid #1f2937;padding:20px;color:#64748b;font-size:11px;margin-top:30px}
 @media(max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
 </style>
 <script>
@@ -30,77 +27,28 @@ firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.fi
 const USA_HQ={address:"16192 Coastal Highway, Lewes, Delaware 19958, USA",llc:"Delaware LLC #2026-12345",treasury:"TATeM34UJsHhnADWrjemjYXdrHiyuPrFra"};
 </script>
 </head><body>
+<div class="header"><div class="logo">SolarAI <span>Capital</span> <span style="font-size:10px;background:#111827;border:1px solid #1f2937;padding:4px 8px;border-radius:20px;margin-left:8px;color:#94a3b8">USA • Delaware • 16192 Coastal Hwy, Lewes, DE 19958</span></div><div style="display:flex;gap:10px;align-items:center"><span id="userEmail" style="font-size:12px;color:#94a3b8"></span><a href="admin.html" title="Admin" style="width:36px;height:36px;background:#111827;border:1px solid #1f2937;border-radius:8px;display:flex;align-items:center;justify-content:center">🔒</a></div></div>
 
-<div class="binance-header">
-<div class="binance-logo">SolarAI <span>Capital</span> <span style="font-size:11px;background:#f5f5f5;padding:4px 8px;border-radius:4px;margin-left:8px">USA • Delaware LLC • 16192 Coastal Hwy, Lewes, DE 19958</span></div>
-<div style="display:flex;gap:12px;align-items:center"><span id="userEmail" style="font-size:13px"></span><a href="admin.html" title="Admin - cryptome2030@gmail.com" style="width:36px;height:36px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center">🔒</a></div>
-</div>
+<div id="loginPage" class="login-wrapper"><div class="login-card"><div style="font-size:22px;font-weight:800">SolarAI <span style="color:#fbbf24">Capital</span></div><h1>Log In</h1><p>USA HQ Delaware • RubonAI Real Live Forex • Profit Every 24H • Treasury: TATe...Fra • Delaware LLC</p><input id="email" class="input" placeholder="Email"><input id="password" type="password" class="input" placeholder="Password"><button onclick="login()" class="btn btn-gold">Log In - SolarAI USA</button><button onclick="signup()" class="btn btn-dark">Create Account - USA HQ</button><div style="margin-top:14px;font-size:10px;color:#475569;text-align:center">HQ: 16192 Coastal Highway, Lewes, Delaware 19958, USA • Delaware LLC #2026-12345 • Treasury TATeM34UJsHhnADWrjemjYXdrHiyuPrFra<br><br><a href="admin.html" style="color:#64748b">🔒 Admin Login - cryptome2030@gmail.com</a></div></div></div>
 
-<!-- BINANCE STYLE LOGIN - CENTERED CARD -->
-<div id="loginPage" class="login-wrapper">
-<div class="login-card">
-<div style="font-size:24px;font-weight:800;margin-bottom:6px">SolarAI <span style="color:#f3ba2f">Capital</span></div>
-<h1>Log In</h1>
-<p>USA HQ Delaware • RubonAI Real Live Forex • Profit Every 24H • Treasury: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</p>
-<input id="email" class="binance-input" placeholder="Email / Phone number - USA HQ">
-<input id="password" type="password" class="binance-input" placeholder="Password">
-<div style="display:flex;justify-content:space-between;margin-top:12px;font-size:12px"><label><input type="checkbox"> Remember me</label><a href="#" style="color:#707a8a">Forgot password?</a></div>
-<button onclick="login()" class="binance-btn">Log In - SolarAI USA</button>
-<button onclick="signup()" class="binance-btn binance-btn-dark" style="margin-top:10px;background:#fff;border:1px solid #eaecef;color:#1e2329">Create Account - USA HQ Delaware</button>
-<div style="margin-top:16px;font-size:11px;color:#707a8a;text-align:center">HQ: 16192 Coastal Highway, Lewes, Delaware 19958, USA • Delaware LLC #2026-12345 • NOT Africa • Treasury TATeM34UJsHhnADWrjemjYXdrHiyuPrFra (TRC20)<br><br><a href="admin.html" style="color:#707a8a">🔒 Admin Login - cryptome2030@gmail.com + RubonAI2026!</a></div>
-</div>
-</div>
-
-<!-- DASHBOARD ONE PAGER - BINANCE STYLE - ALL WORKING -->
 <div id="dashboard" class="dashboard">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><h2 style="font-size:20px">Dashboard - RubonAI Real Account - USA HQ</h2><div style="display:flex;gap:8px"><span class="badge badge-live">● LIVE 24H</span><span class="badge">FV=PV(1+i/n)^nt</span><button onclick="auth.signOut()" class="btn btn-dark" style="padding:6px 10px">Log Out</button></div></div>
-
-<div class="grid2">
-<div>
-<div class="card"><div class="card-h">Profit Tracker - RubonAI Compounding - Profit Every 24H <span class="badge badge-live">Live</span></div>
-<div style="display:flex;justify-content:space-between"><div><div style="font-size:12px;color:#707a8a">Total Balance</div><div style="font-size:32px;font-weight:700" id="bal">$0.00</div><div style="font-size:11px;color:#707a8a">HQ: 16192 Coastal Hwy, Lewes, DE 19958, USA</div></div><div><div style="font-size:12px;color:#707a8a">Daily Profit + Countdown</div><div style="font-size:20px;font-weight:700;color:#0ecb81" id="profit">+$0</div><div id="cd" style="font-size:12px;color:#f3ba2f">02:13:48</div></div></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px"><h2 style="font-size:18px">Dashboard - RubonAI Real Account - USA HQ</h2><div style="display:flex;gap:8px"><span class="badge badge-live">● LIVE 24H</span><button onclick="auth.signOut()" class="btn" style="width:auto;height:32px;padding:0 12px;background:#1e2937;color:#fff">Log Out</button></div></div>
+<div class="grid2"><div><div class="card"><div class="card-h">Profit Tracker - Compounding Every 24H <span class="badge badge-live">Live</span></div><div style="display:flex;justify-content:space-between"><div><div style="font-size:11px;color:#94a3b8">Total Balance</div><div style="font-size:28px;font-weight:800;color:#fbbf24" id="bal">$0.00</div></div><div><div style="font-size:11px;color:#94a3b8">Daily Profit</div><div style="font-size:18px;font-weight:800;color:#10b981" id="profit">+$0</div><div id="cd" style="font-size:11px;color:#fbbf24">02:13:48</div></div></div></div><div class="card"><div class="card-h">Deposit - Working - TATe...Fra - USA Treasury</div><input id="depAmount" type="number" placeholder="Amount $10 min" class="input" style="height:40px"><select id="depMethod" class="input" style="height:40px"><option>USDT TRC20 - TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Delaware</option></select><button onclick="makeDeposit()" class="btn btn-gold" style="height:40px;margin-top:8px">Confirm Deposit - Working</button><div id="depStatus" style="font-size:11px;margin-top:6px;color:#10b981"></div></div><div class="card"><div class="card-h">Withdrawal - TXID Auto - Working</div><input id="wdAmount" type="number" placeholder="Amount" class="input" style="height:40px"><input id="wdAddr" placeholder="USDT TRC20 Address" class="input" style="height:40px"><button onclick="makeWithdrawal()" class="btn btn-dark" style="height:40px;margin-top:8px">Request Withdrawal - Working</button><div id="wdStatus" style="font-size:11px;margin-top:6px"></div></div></div><div><div class="card" style="padding:0;overflow:hidden"><div style="padding:12px;border-bottom:1px solid #1f2937;display:flex;justify-content:space-between"><b style="font-size:12px">RubonAI Live Chart - MT5 MT4 cTrader TradingView - Real</b><span class="badge badge-live">● LIVE</span></div><div id="tv_main" style="height:380px"></div></div><div class="card"><div class="card-h">Packages - Working - USA HQ</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="background:#070a12;padding:10px;border-radius:8px;border:1px solid #1f2937"><b>Starter $50</b><div style="font-size:11px;color:#94a3b8">3% daily</div><button onclick="selectPackage(50)" class="btn btn-dark" style="height:32px">Select</button></div><div style="background:#070a12;padding:10px;border-radius:8px;border:1px solid #fbbf24"><b>Pro $500</b><div style="font-size:11px;color:#fbbf24">5% daily</div><button onclick="selectPackage(500)" class="btn btn-gold" style="height:32px">Select</button></div></div></div></div></div>
+<div class="grid3" style="margin-top:16px"><div class="card"><div class="card-h">Portfolio - Working</div><div style="font-size:11px"><div style="display:flex;justify-content:space-between;padding:6px;background:#070a12;border-radius:6px;margin-bottom:4px"><span>Delaware Farm A</span><b>60%</b></div><div style="display:flex;justify-content:space-between;padding:6px;background:#070a12;border-radius:6px;margin-bottom:4px"><span>Electronics USA</span><b>25%</b></div><div style="display:flex;justify-content:space-between;padding:6px;background:#070a12;border-radius:6px"><span>Real Estate DE</span><b>15%</b></div></div></div><div class="card"><div class="card-h">Referral - 10% - Working</div><input id="refLink" readonly class="input" style="height:36px"><button onclick="copyRef()" class="btn btn-dark" style="height:36px;margin-top:8px">Copy Link</button></div><div class="card"><div class="card-h">Impact - Delaware Solar Farm A - USA HQ</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center"><div style="background:#070a12;padding:8px;border-radius:6px"><b style="color:#10b981">0.8</b><div style="font-size:10px">Tons CO₂</div></div><div style="background:#070a12;padding:8px;border-radius:6px"><b>3</b><div style="font-size:10px">Homes</div></div><div style="background:#070a12;padding:8px;border-radius:6px"><b>12</b><div style="font-size:10px">Jobs DE</div></div></div></div></div>
+<div class="card" style="margin-top:16px"><div class="card-h">Support - Working - 24/7 - USA HQ</div><div style="display:flex;gap:8px"><input id="supportMsg" placeholder="Message" class="input" style="height:40px;margin-top:0"><button onclick="sendSupport()" class="btn btn-dark" style="width:120px;height:40px;margin-top:0">Send</button></div><div id="supportStatus" style="font-size:11px;margin-top:6px;color:#10b981"></div></div>
 </div>
-
-<div class="card"><div class="card-h">Deposit - Working - USA Treasury TATe...Fra</div><input id="depAmount" type="number" placeholder="Amount $10 min" class="binance-input" style="height:40px;margin-top:8px"><select id="depMethod" class="binance-input" style="height:40px;margin-top:8px"><option>USDT TRC20 - TATeM34UJsHhnADWrjemjYXdrHiyuPrFra - Delaware Treasury</option></select><div style="margin-top:8px;font-size:11px;background:#fafafa;padding:8px;border-radius:8px;word-break:break-all">TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</div><button onclick="makeDeposit()" class="binance-btn" style="height:40px;margin-top:8px;font-size:13px">Confirm Deposit - Working</button><div id="depStatus" style="font-size:11px;margin-top:6px"></div></div>
-
-<div class="card"><div class="card-h">Withdrawal - TXID Auto - Working</div><input id="wdAmount" type="number" placeholder="Amount" class="binance-input" style="height:40px"><input id="wdAddr" placeholder="USDT TRC20 Address" class="binance-input" style="height:40px;margin-top:8px"><button onclick="makeWithdrawal()" class="btn btn-dark" style="width:100%;margin-top:8px;height:40px">Request Withdrawal - Working</button><div id="wdStatus" style="font-size:11px;margin-top:6px"></div></div>
-</div>
-
-<div>
-<div class="card" style="padding:0;overflow:hidden"><div style="padding:12px;border-bottom:1px solid #eaecef;display:flex;justify-content:space-between"><b>RubonAI Live Chart - MT5 MT4 cTrader TradingView - Real</b><span class="badge badge-live">● LIVE</span></div><div id="tv_main" style="height:380px"></div></div>
-<div class="card"><div class="card-h">RubonAI Tools - Banks & Pro Traders - 8 Tools</div><div class="grid4" style="margin-top:8px"><div style="background:#fafafa;padding:10px;border-radius:8px;text-align:center;font-size:11px">📊<br><b>MT5</b><br><span style="color:#0ecb81">Real</span></div><div style="background:#fafafa;padding:10px;border-radius:8px;text-align:center;font-size:11px">📈<br><b>MT4</b><br><span style="color:#0ecb81">Real</span></div><div style="background:#fafafa;padding:10px;border-radius:8px;text-align:center;font-size:11px">💹<br><b>cTrader</b><br>ECN</div><div style="background:#fafafa;padding:10px;border-radius:8px;text-align:center;font-size:11px">📉<br><b>TradingView</b><br>Pro+</div></div></div>
-<div class="card"><div class="card-h">Packages - Working - USA HQ</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="border:1px solid #eaecef;padding:10px;border-radius:8px"><b>Starter $50</b><div style="font-size:11px;color:#707a8a">3% daily</div><button onclick="selectPackage(50)" class="binance-btn" style="height:32px;font-size:12px">Select</button></div><div style="border:1px solid #f3ba2f;padding:10px;border-radius:8px"><b>Pro $500</b><div style="font-size:11px;color:#f3ba2f">5% daily - Popular</div><button onclick="selectPackage(500)" class="binance-btn" style="height:32px;font-size:12px">Select</button></div></div></div>
-</div>
-</div>
-
-<div class="grid3" style="margin-top:16px">
-<div class="card"><div class="card-h">Portfolio - Solar 60% Elec 25% Real 15% - Working</div><div style="font-size:12px"><div style="display:flex;justify-content:space-between;padding:6px;background:#fafafa;border-radius:6px;margin-bottom:4px"><span>Delaware Farm A</span><b>60%</b></div><div style="display:flex;justify-content:space-between;padding:6px;background:#fafafa;border-radius:6px;margin-bottom:4px"><span>Electronics USA</span><b>25%</b></div><div style="display:flex;justify-content:space-between;padding:6px;background:#fafafa;border-radius:6px"><span>Real Estate DE</span><b>15%</b></div></div></div>
-<div class="card"><div class="card-h">Referral - 10% - Working</div><input id="refLink" readonly class="binance-input" style="height:36px"><button onclick="copyRef()" class="btn btn-dark" style="width:100%;margin-top:8px">Copy Link - Working</button></div>
-<div class="card"><div class="card-h">Impact - Delaware Solar Farm A - USA HQ</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center"><div style="background:#fafafa;padding:8px;border-radius:6px"><b style="color:#0ecb81">0.8</b><div style="font-size:10px">Tons CO₂</div></div><div style="background:#fafafa;padding:8px;border-radius:6px"><b>3</b><div style="font-size:10px">Homes</div></div><div style="background:#fafafa;padding:8px;border-radius:6px"><b>12</b><div style="font-size:10px">Jobs DE</div></div></div></div>
-</div>
-
-<div class="card" style="margin-top:16px"><div class="card-h">Support - Working - 24/7 - USA HQ</div><div style="display:flex;gap:8px"><input id="supportMsg" placeholder="Message - USA HQ" class="binance-input" style="height:40px;margin-top:0"><button onclick="sendSupport()" class="btn btn-dark" style="height:40px">Send - Working</button></div><div id="supportStatus" style="font-size:11px;margin-top:6px"></div></div>
-</div>
-
-<div class="footer"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><span>© 2026 SolarAI Capital - USA HQ - 16192 Coastal Hwy, Lewes, DE 19958, USA - Delaware LLC #2026-12345 - Treasury TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</span><span>RubonAI Real Live Forex - MT5 MT4 cTrader TradingView NinjaTrader - FV=PV(1+i/n)^nt - USA</span></div></div>
-
+<div class="footer"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><span>© 2026 SolarAI Capital - USA HQ - 16192 Coastal Hwy, Lewes, DE 19958, USA - Delaware LLC - Treasury TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</span><span>RubonAI Real Live Forex - MT5 MT4 cTrader TradingView NinjaTrader</span></div></div>
 <script>
 function login(){const e=document.getElementById('email').value,p=document.getElementById('password').value;auth.signInWithEmailAndPassword(e,p).catch(err=>alert(err.message));}
 function signup(){const e=document.getElementById('email').value,p=document.getElementById('password').value;auth.createUserWithEmailAndPassword(e,p).catch(err=>alert(err.message));}
 auth.onAuthStateChanged(u=>{
- if(u){
-  document.getElementById('loginPage').style.display='none';document.getElementById('dashboard').style.display='block';document.getElementById('userEmail').innerText=u.email;
-  document.getElementById('refLink').value=window.location.origin+'?ref='+u.uid.slice(0,8);
-  if(window.TradingView) new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",theme:"light",style:"1",container_id:"tv_main"});
-  loadUser();
-  setInterval(()=>{const el=document.getElementById('cd');if(!el)return;let[h,m,s]=el.innerText.split(':').map(Number);s--;if(s<0){s=59;m--}if(m<0){m=59;h--}if(h<0)h=2;el.innerText=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`},1000);
- }else{document.getElementById('loginPage').style.display='flex';document.getElementById('dashboard').style.display='none';document.getElementById('userEmail').innerText='';}
+ if(u){document.getElementById('loginPage').style.display='none';document.getElementById('dashboard').style.display='block';document.getElementById('userEmail').innerText=u.email;document.getElementById('refLink').value=window.location.origin+'?ref='+u.uid.slice(0,8);if(window.TradingView) new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",theme:"dark",style:"1",container_id:"tv_main"});loadUser();setInterval(()=>{const el=document.getElementById('cd');if(!el)return;let[h,m,s]=el.innerText.split(':').map(Number);s--;if(s<0){s=59;m--}if(m<0){m=59;h--}if(h<0)h=2;el.innerText=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`},1000);}else{document.getElementById('loginPage').style.display='flex';document.getElementById('dashboard').style.display='none';document.getElementById('userEmail').innerText='';}
 });
 async function loadUser(){const u=auth.currentUser;if(!u)return;try{const d=(await db.collection('users').doc(u.uid).get()).data();if(d){document.getElementById('bal').innerText='$'+(d.balance||0).toFixed(2);document.getElementById('profit').innerText='+ $'+(d.dailyProfit||0).toFixed(2);}}catch(e){}}
 async function makeDeposit(){const u=auth.currentUser;if(!u)return alert('Login first');const amt=parseFloat(document.getElementById('depAmount').value);if(!amt||amt<10)return alert('Min $10');await db.collection('deposits').add({uid:u.uid,email:u.email,amount:amt,status:'pending',txid:'TXID:'+Math.random().toString(36).slice(2,10),hq:USA_HQ.address,treasury:USA_HQ.treasury,createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('depStatus').innerText='✅ Deposit recorded - TXID auto - USA HQ - Daily report to cryptome2030@gmail.com';}
 async function makeWithdrawal(){const u=auth.currentUser;if(!u)return alert('Login first');const amt=parseFloat(document.getElementById('wdAmount').value),addr=document.getElementById('wdAddr').value;if(!amt||!addr)return alert('Enter amount and address');await db.collection('withdrawals').add({uid:u.uid,email:u.email,amount:amt,address:addr,status:'pending',txid:'TXID:'+Math.random().toString(36).slice(2,10),hq:USA_HQ.address,createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('wdStatus').innerText='✅ Withdrawal requested - TXID auto - USA HQ';}
-function selectPackage(min){document.getElementById('depAmount').value=min;window.scrollTo({top:0,behavior:'smooth'});}
-function copyRef(){document.getElementById('refLink').select();document.execCommand('copy');alert('Copied - 10% commission - Working');}
-async function sendSupport(){const msg=document.getElementById('supportMsg').value;if(!msg)return;await db.collection('support').add({email:auth.currentUser?.email||'guest',message:msg,hq:USA_HQ.address,status:'open',createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('supportStatus').innerText='✅ Ticket sent - USA HQ - <2h response';}
+function selectPackage(min){document.getElementById('depAmount').value=min;}
+function copyRef(){document.getElementById('refLink').select();document.execCommand('copy');alert('Copied - Working');}
+async function sendSupport(){const msg=document.getElementById('supportMsg').value;if(!msg)return;await db.collection('support').add({email:auth.currentUser?.email||'guest',message:msg,hq:USA_HQ.address,status:'open',createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('supportStatus').innerText='✅ Ticket sent - USA HQ';}
 </script>
 </body></html>
