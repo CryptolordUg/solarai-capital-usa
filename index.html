@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SolarAI Capital - Delaware PRO LIVE - All Menus</title>
+<title>SolarAI Capital - Delaware PRO LIVE - All Menus Functional</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -21,11 +21,18 @@ header b{color:#fbbf24}nav a{color:#e5e7eb;text-decoration:none;margin-left:12px
 input{width:100%;padding:12px;border-radius:8px;background:#0a0a0f;border:1px solid #2a2a3a;color:#fff;margin-top:8px}
 </style>
 <script>
-const firebaseConfig={apiKey:"AIzaSyYOUR_KEY",authDomain:"solarai-capital.firebaseapp.com",projectId:"solarai-capital",storageBucket:"solarai-capital.firebasestorage.app",messagingSenderId:"123456789",appId:"1:123456789:web:abcdef"};
+const firebaseConfig = {
+  apiKey: "AIzaSyCQPwUopPvRH_8QprQcdWd1LyXgnz8b1Ko",
+  authDomain: "solarai-capital.firebaseapp.com",
+  projectId: "solarai-capital",
+  storageBucket: "solarai-capital.firebasestorage.app",
+  messagingSenderId: "722787765054",
+  appId: "1:722787765054:web:68ff0eac7bd505c077fa6f",
+  measurementId: "G-BB7294S77J"
+};
 if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();const db=firebase.firestore();
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));document.getElementById('nav-'+id)?.classList.add('active'); if(id==='home') loadTV();}
-function initTV(){ if(window.TradingView) new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",timezone:"America/New_York",theme:"dark",style:"1",container_id:"tvchart"}); }
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));const n=document.getElementById('nav-'+id);if(n)n.classList.add('active');}
 </script>
 </head>
 <body>
@@ -40,12 +47,12 @@ function initTV(){ if(window.TradingView) new TradingView.widget({autosize:true,
 <a href="#" id="nav-profile" onclick="showPage('profile')">My Profile</a>
 <a href="#" id="nav-register" onclick="showPage('register')">P Register</a>
 <a href="#" id="nav-login" onclick="showPage('login')">🔑 Sign In</a>
-<a href="#" id="nav-logout" style="display:none;color:#ef4444" onclick="auth.signOut().then(()=>{showPage('login')})">🚪 Sign Out</a>
-<a href="admin.html" style="background:#7c3aed;color:#fff;padding:4px 10px;border-radius:10px">👑 Admin</a>
+<a href="#" id="nav-logout" style="display:none;color:#ef4444" onclick="auth.signOut().then(()=>{showPage('login');location.reload()})">🚪 Sign Out</a>
+<a href="admin.html" style="background:#7c3aed;color:#fff;padding:4px 10px;border-radius:10px;text-decoration:none">👑 Admin</a>
 </nav>
 </header>
 
-<!-- HOME = YOUR 7:20 AM TRADING SCREEN -->
+<!-- HOME -->
 <div id="home" class="page active">
 <div class="topbar">
 <div class="tcard"><small>₿ BTC</small><b>$76,670</b><small style="color:#10b981">▲0.89%</small></div>
@@ -57,18 +64,18 @@ function initTV(){ if(window.TradingView) new TradingView.widget({autosize:true,
 <div style="display:grid;grid-template-columns:1fr 320px;gap:12px;margin-top:12px">
 <div class="card" style="height:520px;padding:0;overflow:hidden"><div id="tvchart" style="height:100%"></div></div>
 <div class="card"><h4>🤖 AI SIGNALS - ADMIN ONLY</h4><div style="background:#1a1a24;padding:8px;border-radius:8px;margin-top:8px;display:flex;justify-content:space-between"><span style="background:#10b981;color:#000;padding:2px 8px;border-radius:12px;font-size:11px">RUNNING - LIVE 24H</span><span style="color:#fbbf24">02:13:48<br><small>52/120</small></span></div>
-<div style="margin-top:10px"><div style="background:#1a1a24;border-left:3px solid #10b981;padding:8px;border-radius:8px;margin-top:6px;display:flex;justify-content:space-between"><div><b style="font-size:12px">BUY SOL</b><br><small>2:48:08 PM - Conf 73%</small></div><button class="btn btn-y" style="padding:4px 8px;font-size:11px">BUY</button></div></div>
-<button onclick="showPage('packages')" class="btn btn-g" style="width:100%;margin-top:12px">💰 Deposit - USDT TRC20</button></div>
+<button onclick="showPage('packages')" class="btn btn-g" style="width:100%;margin-top:12px">💰 Deposit - USDT TRC20</button>
+</div>
 </div>
 </div>
 
 <!-- PACKAGES -->
 <div id="packages" class="page">
-<h2>📦 Packages - LIVE 24H</h2>
+<h2>📦 Packages - LIVE</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px">
-<div class="card" style="border-color:#fbbf24"><h3>$100 Starter</h3><p style="color:#9ca3af">3.3% daily - SOL AI</p><h1 style="color:#fbbf24">$100</h1><button onclick="showPage('deposit')" class="btn btn-y" style="width:100%">Invest Now</button></div>
-<div class="card" style="border-color:#10b981"><h3>$500 Pro</h3><p style="color:#9ca3af">5% daily - Popular</p><h1 style="color:#10b981">$500</h1><button onclick="showPage('deposit')" class="btn btn-g" style="width:100%">Invest Now</button></div>
-<div class="card" style="border-color:#7c3aed"><h3>$1000 Whale</h3><p style="color:#9ca3af">8% daily - VIP</p><h1 style="color:#7c3aed">$1000</h1><button onclick="showPage('deposit')" class="btn btn-p" style="width:100%">Invest Now</button></div>
+<div class="card" style="border-color:#fbbf24"><h3>$100 Starter</h3><p style="color:#9ca3af">3.3% daily</p><h1 style="color:#fbbf24">$100</h1><button onclick="showPage('deposit')" class="btn btn-y" style="width:100%">Invest Now</button></div>
+<div class="card" style="border-color:#10b981"><h3>$500 Pro</h3><p style="color:#9ca3af">5% daily</p><h1 style="color:#10b981">$500</h1><button onclick="showPage('deposit')" class="btn btn-g" style="width:100%">Invest Now</button></div>
+<div class="card" style="border-color:#7c3aed"><h3>$1000 Whale VIP</h3><p style="color:#9ca3af">8% daily</p><h1 style="color:#7c3aed">$1000</h1><button onclick="showPage('deposit')" class="btn btn-p" style="width:100%">Invest Now</button></div>
 </div>
 </div>
 
@@ -96,9 +103,9 @@ function initTV(){ if(window.TradingView) new TradingView.widget({autosize:true,
 <h2>👤 My Profile - Firestore</h2><div class="card" style="max-width:500px"><p style="color:#9ca3af;font-size:12px">Email</p><b id="p-em">-</b><p style="color:#9ca3af;font-size:12px;margin-top:12px">Name</p><input id="p-nm"><button onclick="saveProfile()" class="btn btn-p" style="width:100%;margin-top:12px">Save to Investors 360°</button></div>
 </div>
 
-<!-- DEPOSIT (for Packages Invest Now) -->
+<!-- DEPOSIT -->
 <div id="deposit" class="page">
-<h2>💰 Deposit - USDT TRC20 - Treasury</h2><div class="card" style="max-width:500px"><p style="color:#9ca3af;font-size:12px">Treasury: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</p><input id="d-amt" type="number" placeholder="Amount 100"><button onclick="doDeposit()" class="btn btn-y" style="width:100%;margin-top:12px">I Have Deposited - Send to Admin Approval</button><p id="d-msg" style="font-size:11px;color:#9ca3af;margin-top:8px">After deposit, Admin will approve in Deposits / Withdrawals - LIVE</p></div>
+<h2>💰 Deposit - USDT TRC20 - Treasury</h2><div class="card" style="max-width:500px"><p style="color:#9ca3af;font-size:12px">Treasury: TATeM34UJsHhnADWrjemjYXdrHiyuPrFra</p><input id="d-amt" type="number" placeholder="Amount 100"><button onclick="doDeposit()" class="btn btn-y" style="width:100%;margin-top:12px">I Have Deposited - Send to Admin</button><p id="d-msg" style="font-size:11px;color:#9ca3af;margin-top:8px">Admin will approve in Deposits / Withdrawals - LIVE</p></div>
 </div>
 
 <!-- REGISTER -->
@@ -112,44 +119,30 @@ function initTV(){ if(window.TradingView) new TradingView.widget({autosize:true,
 </div>
 
 <script>
-// Auth UI
 auth.onAuthStateChanged(async u=>{
  if(u){
   document.getElementById('nav-login').style.display='none';
   document.getElementById('nav-register').style.display='none';
   document.getElementById('nav-logout').style.display='inline';
   document.getElementById('p-em').innerText=u.email;
-  const d=await db.collection('users').doc(u.email).get();
-  if(d.exists){
-   const x=d.data();
-   document.getElementById('h-rb').innerText='$'+(x.robotBalance||0);
-   document.getElementById('h-pf').innerText='$'+(x.profit||0);
-   document.getElementById('b-rb').innerText='$'+(x.robotBalance||0);
-   document.getElementById('b-pf').innerText='$'+(x.profit||0);
-   document.getElementById('b-vt').innerText='$'+(x.profit||0);
-   document.getElementById('w-bal').innerText='$'+(x.robotBalance||0);
-   document.getElementById('p-nm').value=x.name||'';
-   document.getElementById('r-c').innerText=x.referrals||0;
-   document.getElementById('r-e').innerText='$'+(x.referralEarnings||0);
-  }
+  try{const d=await db.collection('users').doc(u.email).get();if(d.exists){const x=d.data();document.getElementById('h-rb').innerText='$'+(x.robotBalance||x.balance||0);document.getElementById('h-pf').innerText='$'+(x.profit||0);document.getElementById('b-rb').innerText='$'+(x.robotBalance||0);document.getElementById('b-pf').innerText='$'+(x.profit||0);document.getElementById('b-vt').innerText='$'+(x.profit||0);document.getElementById('w-bal').innerText='$'+(x.robotBalance||0);document.getElementById('p-nm').value=x.name||'';document.getElementById('r-c').innerText=x.referrals||0;document.getElementById('r-e').innerText='$'+(x.referralEarnings||0);}}catch(e){}
   document.getElementById('r-link').innerText=location.origin+location.pathname+'?ref='+u.email;
-  initTV();
  }else{
   document.getElementById('nav-login').style.display='inline';
   document.getElementById('nav-register').style.display='inline';
   document.getElementById('nav-logout').style.display='none';
  }
+ if(window.TradingView){ new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"5",timezone:"America/New_York",theme:"dark",style:"1",container_id:"tvchart"}); }
 });
 async function doRegister(){
  const email=document.getElementById('r-e').value; const pass=document.getElementById('r-p').value; const name=document.getElementById('r-n').value;
  const ref=new URLSearchParams(location.search).get('ref');
- try{await auth.createUserWithEmailAndPassword(email,pass);await db.collection('users').doc(email).set({email:email,name:name,balance:0,robotBalance:0,profit:0,status:'active',referredBy:ref||null,createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('✅ Account created! Now in Investors 360° - REAL DATA FROM FIRESTORE');showPage('home');}catch(e){alert(e.message);}
+ try{await auth.createUserWithEmailAndPassword(email,pass);await db.collection('users').doc(email).set({email:email,name:name,balance:0,robotBalance:0,profit:0,status:'active',referredBy:ref||null,createdAt:firebase.firestore.FieldValue.serverTimestamp()});alert('✅ Created! In Investors 360° LIVE');showPage('home');}catch(e){alert(e.message);}
 }
 async function doLogin(){try{await auth.signInWithEmailAndPassword(document.getElementById('l-e').value,document.getElementById('l-p').value);showPage('home');}catch(e){alert(e.message);}}
 async function saveProfile(){await db.collection('users').doc(auth.currentUser.email).set({name:document.getElementById('p-nm').value},{merge:true});alert('✅ Saved to Investors 360°!');}
-async function doDeposit(){const u=auth.currentUser;if(!u)return showPage('login');const amt=parseFloat(document.getElementById('d-amt').value);if(!amt)return alert('Enter amount');await db.collection('deposits').add({email:u.email,amount:amt,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('d-msg').innerText='✅ Deposit sent to Admin PRO LIVE - Deposits / Withdrawals LIVE table!';alert('✅ Sent to Admin for approval!');}
-async function doWithdraw(){const u=auth.currentUser;if(!u)return showPage('login');const amt=parseFloat(document.getElementById('w-amt').value);const addr=document.getElementById('w-addr').value;if(!amt||!addr)return alert('Enter amount & address');await db.collection('withdrawals').add({email:u.email,amount:amt,address:addr,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('w-msg').innerText='✅ Withdraw sent to Admin PRO LIVE!';alert('✅ Withdraw request sent to Admin Monitoring!');}
-window.onload=()=>initTV();
+async function doDeposit(){const u=auth.currentUser;if(!u)return showPage('login');const amt=parseFloat(document.getElementById('d-amt').value);if(!amt)return alert('Enter amount');await db.collection('deposits').add({email:u.email,amount:amt,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('d-msg').innerText='✅ Deposit sent to Admin PRO LIVE!';alert('✅ Sent to Admin!');}
+async function doWithdraw(){const u=auth.currentUser;if(!u)return showPage('login');const amt=parseFloat(document.getElementById('w-amt').value);const addr=document.getElementById('w-addr').value;if(!amt||!addr)return alert('Enter amount & address');await db.collection('withdrawals').add({email:u.email,amount:amt,address:addr,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById('w-msg').innerText='✅ Withdraw sent to Admin PRO LIVE!';alert('✅ Withdraw request sent!');}
 </script>
 </body>
 </html>
