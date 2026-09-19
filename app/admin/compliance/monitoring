@@ -1,0 +1,1 @@
+export default function Page(){return <div style={{background:"#020617",color:"#fff",minHeight:"100vh",padding:40}}><h1 style={{color:"#fbbf24"}}>🛡️ Compliance LIVE</h1><p>✅ KYC Active</p><p>✅ AML Monitoring</p><p style={{color:"#10b981"}}>SYSTEM SECURE</p><a href="/admin" style={{color:"#fbbf24",display:"block",marginTop:20}}>← Back</a></div>}
