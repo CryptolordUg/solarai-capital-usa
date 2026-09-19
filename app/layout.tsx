@@ -1,1 +1,14 @@
-export default function RootLayout({children}:{children:any}){return <html><body style={{margin:0,background:"#020617",color:"#fff",fontFamily:"system-ui"}}>{children}</body></html>}
+import "./globals.css";
+
+export const metadata = {
+  title: "SolarAI Capital USA",
+  description: "SolarAI Capital USA",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
