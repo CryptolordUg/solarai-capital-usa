@@ -1,9 +1,4 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "SolarAI Capital USA",
-  description: "SolarAI Capital USA - Solar Investment Platform",
-};
+import "./globals.css" with { type: "css" } as any;
 
 export default function RootLayout({
   children,
