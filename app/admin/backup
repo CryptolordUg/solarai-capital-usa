@@ -1,0 +1,14 @@
+export default function Backup(){
+ return (
+  <div style={{background:"#020617",color:"#fff",minHeight:"100vh",padding:40}}>
+   <h1 style={{color:"#fbbf24"}}>💾 SolarAI System Backup</h1>
+   <div style={{background:"#1e293b",padding:24,borderRadius:12,marginTop:20}}>
+    <p>Last Backup: {new Date().toLocaleString()}</p>
+    <p>Database: TRC20 + Trading Signals</p>
+    <p>Status: <span style={{color:"#10b981"}}>✅ Auto-Backup Active</span></p>
+    <button style={{marginTop:20,background:"#fbbf24",color:"#000",padding:"10px 20px",borderRadius:8,fontWeight:900,border:0}}>Run Manual Backup Now</button>
+   </div>
+   <a href="/admin" style={{color:"#fbbf24",display:"block",marginTop:20}}>← Back</a>
+  </div>
+ )
+}
