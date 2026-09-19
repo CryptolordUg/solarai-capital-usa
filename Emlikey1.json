@@ -1,0 +1,13 @@
+{
+  "backupName": "Emlikey1 V2",
+  "dashboard1": ["Registration API","Referral API","Deposit API","Withdrawal API","Staking API","Price Feed API","Email API","Announcement API","Customer Care API","Calendar API"],
+  "dashboard2": {
+    "unit1": "RubonAI Trader - 10 APIs - Trading Engine, Node RPCs, Blockchain RPCs, Order Management, Risk Analytics, Exchange Nodes, Fraud API, Compliance, Investor Dashboard",
+    "unit2": "Real-Time Mining 24/7 - 10 APIs - BTC, ETH, SOL, Cardano, TronGrid, Binance Mining, F2Pool, CryptoAPIs, NiceHash, Compliance",
+    "unit3": "Compliance Monitoring - AML/KYC, ERC 725/735, BTC RPC, SOL listeners, Cardano metadata, TronGrid, Smart Contracts, ERC721 badges, Reporting, Treasury Automation",
+    "unit4": "Backup & Maintenance - Recovery Engine, Backup Engine, Anchoring, Error Correction, AI Recovery, Deposit/Withdraw, BTC, ETH, TronGrid, SOL, Cardano"
+  },
+  "forex": "KEPT",
+  "mining": "10 Nodes Integrated from Start",
+  "saved": "Forever"
+}
