@@ -1,3 +1,1 @@
-export default function Backup(){
- return <div style={{background:"#020617",color:"#fff",minHeight:"100vh",padding:40}}><h1 style={{color:"#fbbf24"}}>💾 Backup LIVE</h1><p>Last Backup: Live</p><p>Status: ✅ Auto Active</p><a href="/admin" style={{color:"#fbbf24",display:"block",marginTop:20}}>← Admin</a></div>
-}
+export default function Page(){return <div style={{background:"#020617",color:"#fff",padding:40}}><h1 style={{color:"#fbbf24"}}>💾 SolarAI Backup</h1><p>Auto-Backup Active</p><p style={{marginTop:20}}>Last: {new Date().toLocaleString()}</p><a href="/admin" style={{color:"#fbbf24",display:"block",marginTop:20}}>← Back</a></div>}
