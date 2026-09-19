@@ -1,0 +1,1 @@
+export default function Page(){return <div style={{background:"#020617",color:"#fff",minHeight:"100vh",padding:40}}><h1 style={{color:"#fbbf24"}}>💾 Backup LIVE</h1><p>Auto-Backup Active</p><a href="/admin" style={{color:"#fbbf24",display:"block",marginTop:20}}>← Back</a></div>}
