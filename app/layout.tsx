@@ -1,5 +1,3 @@
-import "./globals.css";
-
 export const metadata = {
   title: "SolarAI Capital USA",
   description: "SolarAI Capital USA",
